@@ -5,7 +5,8 @@ endpoint = SPARQLWrapper(wikidata_url)
 endpoint.setReturnFormat(JSON)
 prefixs = "PREFIX wd: <http://www.wikidata.org/entity/>\n"+"PREFIX wds: <http://www.wikidata.org/entity/statement/>\n"+\
          "PREFIX wdt: <http://www.wikidata.org/prop/direct/>\n"+"PREFIX p: <http://www.wikidata.org/prop/>\n "+ \
-         "PREFIX ps: <http://www.wikidata.org/prop/statement/>\n"+"PREFIX pq: <http://www.wikidata.org/prop/qualifier/>\n"
+         "PREFIX ps: <http://www.wikidata.org/prop/statement/>\n"+"PREFIX pq: <http://www.wikidata.org/prop/qualifier/>\n" +\
+         "PREFIX wikibase: <http://wikiba.se/ontology#>\n"
 # p580 start time p582 end time p585 point in time
 
 
@@ -78,7 +79,13 @@ def get_label(p):
 
 def get_class_pairs(p):
     pairs = []
-    id=p.replace("http://www.wikidata.org/entity/","")
+    id = p.replace("http://www.wikidata.org/entity/", "")
+    ItemCheckQuery = "SELECT DISTINCT ?p WHERE { wd:"+id+" wikibase:propertyType ?p.}"
+    # print(query_kg(ItemCheckQuery)[0]['p'])
+    if query_kg(ItemCheckQuery)[0]['p']!="http://wikiba.se/ontology#WikibaseItem":
+        return 0,pairs
+
+
     query = prefixs + "SELECT ?ac ?bc WHERE " \
                       "{ ?a p:" + id+ " ?statement." \
                         "?statement ps:" + id+ " ?b. " \
@@ -110,7 +117,7 @@ def get_class_pairs(p):
 
 if __name__ == "__main__":
     predicates = []
-    with open("to_time_statement_predicates.txt","r",encoding="utf-8") as f:
+    with open("to_time_statement_predicates(1).txt","r",encoding="utf-8") as f:
     # with open("test.txt", "r", encoding="utf-8") as f:
         for line in f.readlines():
             predicates.append(line.strip())
