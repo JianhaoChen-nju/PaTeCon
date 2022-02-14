@@ -1,4 +1,5 @@
 from SPARQLWrapper import SPARQLWrapper,JSON
+from time import *
 wikidata_url = "http://114.212.81.217:8890/sparql/"
 endpoint = SPARQLWrapper(wikidata_url)
 endpoint.setReturnFormat(JSON)
@@ -77,35 +78,28 @@ def get_label(p):
 
 def get_class_pairs(p):
     pairs = []
-    query = prefixs + "SELECT distinct count(?a) WHERE { ?a wdt:" + p.replace("http://www.wikidata.org/entity/",
-                                                                        "") + " ?b.?a wdt:P31 ?ac.?b wdt:P31 ?bc.}"
-    if(query_kg(query)>0):
-        print(query_kg)
-        query = prefixs + "SELECT distinct ?ac WHERE { ?a wdt:" + p.replace("http://www.wikidata.org/entity/",
-                                                                                "") + " ?b.?a wdt:P31 ?ac.?b wdt:P31 ?bc.}"
-        a_class = []
-        results = query_kg(query)
-        for i in results:
-            a_class += i.values()
-        query = prefixs + "SELECT distinct ?bc WHERE { ?a wdt:" + p.replace("http://www.wikidata.org/entity/",
-                                                                            "") + " ?b.?b wdt:P31 ?bc.?a wdt:P31 ?ac.}"
-        b_class = []
-        results = query_kg(query)
-        for i in results:
-            b_class += i.values()
-        for a in a_class:
-            for b in b_class:
-                query = prefixs + "SELECT distinct count(?a) WHERE {?a wdt:"+ p.replace("http://www.wikidata.org/entity/",
-                                            "") + " ?b.?a wdt:P31 <"+a+">.?b wdt:P31 <"+b+">.}"
-                num = query_kg(query)
-                if(num>0):
-                    pairs.append([get_label(a),get_label(b),num])
+    query = prefixs + "SELECT ?ac ?bc WHERE { ?a wdt:" + p.replace("http://www.wikidata.org/entity/",
+                                                                   "") + " ?b.?a wdt:P31 ?ac.?b wdt:P31 ?bc.}"
+    query2 = prefixs + "SELECT distinct ?ac ?bc WHERE { ?a wdt:" + p.replace("http://www.wikidata.org/entity/",
+                                                                   "") + " ?b.?a wdt:P31 ?ac.?b wdt:P31 ?bc.}"
+    results = query_kg(query)
+    results2= query_kg(query2)
+    if (len(results) > 0):
+        # print(len(results))
+        # print(len(results2))
+        for i in results2:
+            num=0
+            for j in results:
+                if i==j:
+                    num+=1
+            # print(num)
+            pairs.append([get_label(i['ac']),get_label(i['bc']),num])
     return pairs
 
 if __name__ == "__main__":
     predicates = []
-    # with open("to_time_statement_predicates.txt","r",encoding="utf-8") as f:
-    with open("test.txt", "r", encoding="utf-8") as f:
+    with open("to_time_statement_predicates.txt","r",encoding="utf-8") as f:
+    # with open("test.txt", "r", encoding="utf-8") as f:
         for line in f.readlines():
             predicates.append(line.strip())
     predicate_dict = dict()
@@ -114,6 +108,7 @@ if __name__ == "__main__":
     p2 = []
     p3 = []
     p = []
+    begin_time = time()
     for i in predicates:
         pqs = is_to_time_statement(i)
         # print(pqs)
@@ -126,13 +121,14 @@ if __name__ == "__main__":
         # else:
         #     p.append(i)
         pairs = get_class_pairs(i)
-        print(pairs)
         if (len(pairs) > 0):
             pairs = sorted(pairs, key=lambda i: i[2], reverse=True)
+            print(pairs)
             predicate_dict[i.replace("http://www.wikidata.org/entity/", "")] = pairs
             write_file.write(
                 get_label(i) + "\t" + i.replace("http://www.wikidata.org/entity/", "") + "\t" + str(pairs) + "\t" + str(pqs) +"\n" )
-
-    # print(p)
+    end_time = time()
+    run_time = end_time - begin_time
+    print('该循环程序运行时间(s)：', run_time)
 
 
