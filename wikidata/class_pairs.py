@@ -4,8 +4,8 @@ wikidata_url = "http://114.212.81.217:8890/sparql/"
 endpoint = SPARQLWrapper(wikidata_url)
 endpoint.setReturnFormat(JSON)
 prefixs = "PREFIX wd: <http://www.wikidata.org/entity/>\n"+"PREFIX wds: <http://www.wikidata.org/entity/statement/>\n"+\
-         "PREFIX wdt: <http://www.wikidata.org/prop/direct/>\n"+"PREFIX p: <http://www.wikidata.org/prop/>\nPREFIX " \
-                                                                "pq: <http://www.wikidata.org/prop/qualifier/>\n"
+         "PREFIX wdt: <http://www.wikidata.org/prop/direct/>\n"+"PREFIX p: <http://www.wikidata.org/prop/>\n "+ \
+         "PREFIX ps: <http://www.wikidata.org/prop/statement/>\n"+"PREFIX pq: <http://www.wikidata.org/prop/qualifier/>\n"
 # p580 start time p582 end time p585 point in time
 
 
@@ -78,12 +78,24 @@ def get_label(p):
 
 def get_class_pairs(p):
     pairs = []
-    query = prefixs + "SELECT ?ac ?bc WHERE { ?a wdt:" + p.replace("http://www.wikidata.org/entity/",
-                                                                   "") + " ?b.?a wdt:P31 ?ac.?b wdt:P31 ?bc.}"
-    query2 = prefixs + "SELECT distinct ?ac ?bc WHERE { ?a wdt:" + p.replace("http://www.wikidata.org/entity/",
-                                                                   "") + " ?b.?a wdt:P31 ?ac.?b wdt:P31 ?bc.}"
+    id=p.replace("http://www.wikidata.org/entity/","")
+    query = prefixs + "SELECT ?ac ?bc WHERE " \
+                      "{ ?a p:" + id+ " ?statement." \
+                        "?statement ps:" + id+ " ?b. " \
+                        "?statement ?pq ?t FILTER regex (STR(?pq),\"prop/qualifier/P58\") FILTER (datatype(?t)=xsd:dateTime) ." \
+                        "?a wdt:P31 ?ac. ?b wdt:P31 ?bc." \
+                        "}"
+
+
+    query2 = prefixs + "SELECT distinct ?ac ?bc WHERE " \
+                  "{ ?a p:" + id + " ?statement." \
+                    "?statement ps:" + id + " ?b. " \
+                    "?statement ?pq ?t FILTER regex (STR(?pq),\"prop/qualifier/P58\") FILTER (datatype(?t)=xsd:dateTime) ." \
+                    "?a wdt:P31 ?ac. ?b wdt:P31 ?bc." \
+                    "}"
     results = query_kg(query)
     results2= query_kg(query2)
+    # print(len(results))
     if (len(results) > 0):
         # print(len(results))
         # print(len(results2))
@@ -93,8 +105,8 @@ def get_class_pairs(p):
                 if i==j:
                     num+=1
             # print(num)
-            pairs.append([get_label(i['ac']),get_label(i['bc']),num])
-    return pairs
+            pairs.append([i['ac'].replace("http://www.wikidata.org/entity/",""),i['bc'].replace("http://www.wikidata.org/entity/",""),num])
+    return len(results),pairs
 
 if __name__ == "__main__":
     predicates = []
@@ -110,6 +122,7 @@ if __name__ == "__main__":
     p = []
     begin_time = time()
     for i in predicates:
+        single_begin_time=time()
         pqs = is_to_time_statement(i)
         # print(pqs)
         # if(len(pqs)==3):
@@ -120,13 +133,17 @@ if __name__ == "__main__":
         #     p1.append(i)
         # else:
         #     p.append(i)
-        pairs = get_class_pairs(i)
+        num,pairs = get_class_pairs(i)
+        single_end_time=time()
+
+        print(i,num,single_end_time-single_begin_time)
+
         if (len(pairs) > 0):
             pairs = sorted(pairs, key=lambda i: i[2], reverse=True)
-            print(pairs)
+            # print(pairs)
             predicate_dict[i.replace("http://www.wikidata.org/entity/", "")] = pairs
             write_file.write(
-                get_label(i) + "\t" + i.replace("http://www.wikidata.org/entity/", "") + "\t" + str(pairs) + "\t" + str(pqs) +"\n" )
+                get_label(i) + "\t" + i.replace("http://www.wikidata.org/entity/", "") + "\t" + str(num) + "\t" + str(pairs) + "\t" + str(pqs) +"\n" )
     end_time = time()
     run_time = end_time - begin_time
     print('该循环程序运行时间(s)：', run_time)
