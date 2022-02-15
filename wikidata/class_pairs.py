@@ -81,12 +81,12 @@ def get_class_pairs(p):
     pairs = []
     id = p.replace("http://www.wikidata.org/entity/", "")
     ItemCheckQuery = "SELECT DISTINCT ?p WHERE { wd:"+id+" wikibase:propertyType ?p.}"
-    # print(query_kg(ItemCheckQuery)[0]['p'])
+    # range不是item的全部过滤了
     if query_kg(ItemCheckQuery)[0]['p']!="http://wikiba.se/ontology#WikibaseItem":
         return 0,pairs
 
-
-    query = prefixs + "SELECT ?ac ?bc WHERE " \
+    #为了提高效率
+    query1 = prefixs + "SELECT ?ac ?bc WHERE " \
                       "{ ?a p:" + id+ " ?statement." \
                         "?statement ps:" + id+ " ?b. " \
                         "?statement ?pq ?t FILTER regex (STR(?pq),\"prop/qualifier/P58\") FILTER (datatype(?t)=xsd:dateTime) ." \
@@ -100,20 +100,20 @@ def get_class_pairs(p):
                     "?statement ?pq ?t FILTER regex (STR(?pq),\"prop/qualifier/P58\") FILTER (datatype(?t)=xsd:dateTime) ." \
                     "?a wdt:P31 ?ac. ?b wdt:P31 ?bc." \
                     "}"
-    results = query_kg(query)
+    results1 = query_kg(query1)
     results2= query_kg(query2)
     # print(len(results))
-    if (len(results) > 0):
+    if (len(results1) > 0):
         # print(len(results))
         # print(len(results2))
         for i in results2:
             num=0
-            for j in results:
+            for j in results1:
                 if i==j:
                     num+=1
             # print(num)
             pairs.append([i['ac'].replace("http://www.wikidata.org/entity/",""),i['bc'].replace("http://www.wikidata.org/entity/",""),num])
-    return len(results),pairs
+    return len(results1),pairs
 
 if __name__ == "__main__":
     predicates = []
