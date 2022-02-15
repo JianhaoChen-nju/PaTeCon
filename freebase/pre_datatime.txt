@@ -1,0 +1,1915 @@
+http://rdf.freebase.com/ns/american_football.football_game.date
+http://rdf.freebase.com/ns/american_football.forty_yard_dash_time.date
+http://rdf.freebase.com/ns/amusement_parks.accident.date
+http://rdf.freebase.com/ns/architecture.lighthouse.automated
+http://rdf.freebase.com/ns/architecture.lighthouse.out_of_service_date
+http://rdf.freebase.com/ns/architecture.lighthouse.year_first_lit
+http://rdf.freebase.com/ns/architecture.museum.established
+http://rdf.freebase.com/ns/architecture.structure.construction_started
+http://rdf.freebase.com/ns/architecture.structure.destruction_date
+http://rdf.freebase.com/ns/architecture.structure.topped_out
+http://rdf.freebase.com/ns/astronomy.astronomical_discovery.discovery_date
+http://rdf.freebase.com/ns/astronomy.comet.last_perihelion
+http://rdf.freebase.com/ns/astronomy.comet.next_perihelion_predicted
+http://rdf.freebase.com/ns/astronomy.meteor_shower_occurrence.observation_ends
+http://rdf.freebase.com/ns/astronomy.meteor_shower_occurrence.observation_start
+http://rdf.freebase.com/ns/astronomy.meteor_shower_occurrence.peak_of_meteor_shower
+http://rdf.freebase.com/ns/astronomy.meteorite.meteorite_discovery_date
+http://rdf.freebase.com/ns/astronomy.meteorite.meteorite_fall_date
+http://rdf.freebase.com/ns/atom.feed.updated
+http://rdf.freebase.com/ns/atom.feed_item.created
+http://rdf.freebase.com/ns/atom.feed_item.expired
+http://rdf.freebase.com/ns/automotive.model_year.year
+http://rdf.freebase.com/ns/automotive.trim_level.year
+http://rdf.freebase.com/ns/aviation.aircraft.date_manufactured
+http://rdf.freebase.com/ns/aviation.aircraft.first_flight
+http://rdf.freebase.com/ns/aviation.aircraft_model.introduced
+http://rdf.freebase.com/ns/aviation.aircraft_model.maiden_flight
+http://rdf.freebase.com/ns/aviation.aircraft_model.retired
+http://rdf.freebase.com/ns/aviation.aircraft_status.date
+http://rdf.freebase.com/ns/aviation.airline_alliance.official_launch_date
+http://rdf.freebase.com/ns/aviation.airliner_accident.date
+http://rdf.freebase.com/ns/aviation.cargo_by_year.date
+http://rdf.freebase.com/ns/award.award_achievement_level.date_discontinued
+http://rdf.freebase.com/ns/award.award_achievement_level.date_established
+http://rdf.freebase.com/ns/award.award_category.date_discontinued
+http://rdf.freebase.com/ns/award.award_category.date_established
+http://rdf.freebase.com/ns/award.award_honor.year
+http://rdf.freebase.com/ns/award.award_judging_term.year
+http://rdf.freebase.com/ns/award.award_nomination.year
+http://rdf.freebase.com/ns/award.hall_of_fame_induction.date
+http://rdf.freebase.com/ns/award.long_list_nomination.year
+http://rdf.freebase.com/ns/award.ranked_list.year_inaugurated
+http://rdf.freebase.com/ns/award.ranking.year
+http://rdf.freebase.com/ns/base.actsofparliament.acts_of_parliament.date
+http://rdf.freebase.com/ns/base.adoption.adoption.date_of_adoption
+http://rdf.freebase.com/ns/base.adoption.adoption.date_of_disruption
+http://rdf.freebase.com/ns/base.advertisingcharacters.advertising_character.debut
+http://rdf.freebase.com/ns/base.advertisingcharacters.advertising_character.ended
+http://rdf.freebase.com/ns/base.airtrafficcontrol.air_traffic_dialogue.time
+http://rdf.freebase.com/ns/base.aliens.ufo_sighting.date
+http://rdf.freebase.com/ns/base.americancomedy.movie.release_date
+http://rdf.freebase.com/ns/base.americancomedy.tv_show.first_aired
+http://rdf.freebase.com/ns/base.ancientegypt.tomb.discovery_date
+http://rdf.freebase.com/ns/base.anglican.church.founded
+http://rdf.freebase.com/ns/base.animalmassdeaths.massdeaths.date
+http://rdf.freebase.com/ns/base.animalpathology.animal_disease.first_discovered
+http://rdf.freebase.com/ns/base.animemanga.anime_ova.release_date
+http://rdf.freebase.com/ns/base.animemanga.manga_title.first_run
+http://rdf.freebase.com/ns/base.animemanga.manga_title.last_run
+http://rdf.freebase.com/ns/base.appraiser_domain.appraisal.on
+http://rdf.freebase.com/ns/base.architecture2.proposed_structure.date_first_announced
+http://rdf.freebase.com/ns/base.argumentmaps.event_of_disputed_occurance.date
+http://rdf.freebase.com/ns/base.articleindices.resource_topic_index.approval_timestamp
+http://rdf.freebase.com/ns/base.athletics.current_area_record.date
+http://rdf.freebase.com/ns/base.athletics.personal_best.date
+http://rdf.freebase.com/ns/base.aubreymaturin.book.copyright_date
+http://rdf.freebase.com/ns/base.aubreymaturin.real_ship.keel_laid
+http://rdf.freebase.com/ns/base.aubreymaturin.real_ship.launched
+http://rdf.freebase.com/ns/base.aubreymaturin.written_work.date_of_first_publication
+http://rdf.freebase.com/ns/base.audiobase.audio_equipment.year_introduced
+http://rdf.freebase.com/ns/base.backpacking1.wilderness_area.date_established
+http://rdf.freebase.com/ns/base.ballet.ballet.date_written
+http://rdf.freebase.com/ns/base.ballet.ballet.premiere_production
+http://rdf.freebase.com/ns/base.ballet.ballet_company.founded
+http://rdf.freebase.com/ns/base.ballet.ballet_school.founded
+http://rdf.freebase.com/ns/base.banned.blacklisted.rehabilitated_in
+http://rdf.freebase.com/ns/base.banned.blacklisted.when_blacklisted
+http://rdf.freebase.com/ns/base.bartering.exchange.date
+http://rdf.freebase.com/ns/base.bibkn.thesis.submission_date
+http://rdf.freebase.com/ns/base.bio2rdf.bm_database_load.date
+http://rdf.freebase.com/ns/base.bio2rdf.bm_database_statistics.date
+http://rdf.freebase.com/ns/base.bio2rdf.dataset.date_updated
+http://rdf.freebase.com/ns/base.bio2rdf.sparql.date_modified
+http://rdf.freebase.com/ns/base.bioventurist.bv_investment_round.date
+http://rdf.freebase.com/ns/base.bioventurist.bv_therapeutic.approval_date
+http://rdf.freebase.com/ns/base.bioventurist.date_with_note.date
+http://rdf.freebase.com/ns/base.bioventurist.patent.priority_application_date
+http://rdf.freebase.com/ns/base.bioventurist.patent.publication_date
+http://rdf.freebase.com/ns/base.bioventurist.sales.year
+http://rdf.freebase.com/ns/base.birdconservation.population_size.date
+http://rdf.freebase.com/ns/base.birdwatching.checklist.publication_date
+http://rdf.freebase.com/ns/base.bizmo.segment_milestone.actual_completion_date
+http://rdf.freebase.com/ns/base.bizmo.segment_milestone.target_completion_date
+http://rdf.freebase.com/ns/base.bookpf.book_edition.publication_date
+http://rdf.freebase.com/ns/base.braziliangovt.brazilian_political_party.acceptance_date
+http://rdf.freebase.com/ns/base.braziliangovt.politician.birth_date
+http://rdf.freebase.com/ns/base.breakfast.breakfast_cereal_box.discontinued
+http://rdf.freebase.com/ns/base.breakfast.breakfast_cereal_box.introduced
+http://rdf.freebase.com/ns/base.breakfast.breakfast_cereal_brand.discontinued
+http://rdf.freebase.com/ns/base.breakfast.breakfast_cereal_brand.introduced
+http://rdf.freebase.com/ns/base.brickbase.lego_set.release_date
+http://rdf.freebase.com/ns/base.britishpubs.pub.opening_date
+http://rdf.freebase.com/ns/base.burningkumquat.harvest.date
+http://rdf.freebase.com/ns/base.business_report.financial_report.report_date
+http://rdf.freebase.com/ns/base.business_report.reporting_period.year
+http://rdf.freebase.com/ns/base.canineagility.canine_agility_event.registration_closing_date
+http://rdf.freebase.com/ns/base.canineagility.legs_earned.date
+http://rdf.freebase.com/ns/base.carrier_domain.transaction.datereceived
+http://rdf.freebase.com/ns/base.carrier_domain.transaction.dateshipped
+http://rdf.freebase.com/ns/base.cars_refactor.model_year.year
+http://rdf.freebase.com/ns/base.cdnpolitics.bill.tabled_on
+http://rdf.freebase.com/ns/base.cdnpolitics.legislative_assembly.disolved
+http://rdf.freebase.com/ns/base.cdnpolitics.legislative_assembly.founded
+http://rdf.freebase.com/ns/base.certification.person_certification.date
+http://rdf.freebase.com/ns/base.cgcollection.computer_game_release.release_date
+http://rdf.freebase.com/ns/base.coinsdaily.coin_series.minted_from
+http://rdf.freebase.com/ns/base.coinsdaily.coin_series.minted_to
+http://rdf.freebase.com/ns/base.column.column.date_of_first_column
+http://rdf.freebase.com/ns/base.column.column.date_of_last_column
+http://rdf.freebase.com/ns/base.column.column_article.date_of_first_publication
+http://rdf.freebase.com/ns/base.conservation.protected_species_status.date_listed
+http://rdf.freebase.com/ns/base.conservation.protected_species_status.date_removed
+http://rdf.freebase.com/ns/base.contractbridge.bridge_tournament_location.when
+http://rdf.freebase.com/ns/base.contractbridge.bridge_tournament_standings.year
+http://rdf.freebase.com/ns/base.convictsydney.building.destruction_date
+http://rdf.freebase.com/ns/base.convictsydney.convict.arrived_in_colony
+http://rdf.freebase.com/ns/base.convictsydney.convict.date_of_conviction
+http://rdf.freebase.com/ns/base.convictsydney.convict_fleet.arrival_date
+http://rdf.freebase.com/ns/base.convictsydney.convict_fleet.departure_date
+http://rdf.freebase.com/ns/base.convictsydney.convict_transport.date_of_arrival
+http://rdf.freebase.com/ns/base.convictsydney.free_settler.date_of_arrival
+http://rdf.freebase.com/ns/base.crime.arrest_warrants.date_warrant_issued
+http://rdf.freebase.com/ns/base.crime.crime_accusation.date_accusation_revoked
+http://rdf.freebase.com/ns/base.crime.crime_accusation.date_of_accusation
+http://rdf.freebase.com/ns/base.crime.criminal_conviction.date_arrested
+http://rdf.freebase.com/ns/base.crime.fbi_top_10_most_wanted_fugitive.date_entered_list
+http://rdf.freebase.com/ns/base.crime.fbi_top_10_most_wanted_fugitive.date_left_list
+http://rdf.freebase.com/ns/base.crime.fugitive.date_captured
+http://rdf.freebase.com/ns/base.crime.fugitive.date_fugitive_from
+http://rdf.freebase.com/ns/base.crime.lawyer.date_of_accreditation
+http://rdf.freebase.com/ns/base.culturalevent.treaty.date_effective
+http://rdf.freebase.com/ns/base.culturalevent.treaty.signature
+http://rdf.freebase.com/ns/base.damsbase.dam_failure.failure_date
+http://rdf.freebase.com/ns/base.dance.dance_company.date_founded
+http://rdf.freebase.com/ns/base.darwincore.darwincore_collectiondates.earliest
+http://rdf.freebase.com/ns/base.darwincore.darwincore_collectiondates.latest
+http://rdf.freebase.com/ns/base.darwincore.darwincore_modificationdate.modification_date
+http://rdf.freebase.com/ns/base.database.database.launch_date
+http://rdf.freebase.com/ns/base.datedlocationtest.dated_location_break_up.date
+http://rdf.freebase.com/ns/base.datedlocationtest.dated_location_joining.date
+http://rdf.freebase.com/ns/base.datedlocationtest.dated_location_merger.date
+http://rdf.freebase.com/ns/base.datedlocationtest.dated_location_split.date
+http://rdf.freebase.com/ns/base.datedlocationtest.dated_location_succession.date
+http://rdf.freebase.com/ns/base.daylifeservices.controlled_topic_set.last_approved
+http://rdf.freebase.com/ns/base.digitalformatpolicies.file_format_policy.policy_expiry_date
+http://rdf.freebase.com/ns/base.disaster2.injury.date
+http://rdf.freebase.com/ns/base.dndbase.ruleset.publication_date
+http://rdf.freebase.com/ns/base.documentaryeditions.documentary_edition.date_of_first_publication
+http://rdf.freebase.com/ns/base.dss_domain.mo.date_posted
+http://rdf.freebase.com/ns/base.dss_domain.sla_dss.date_approval_dsr
+http://rdf.freebase.com/ns/base.dss_domain.sla_dss.date_approval_dss
+http://rdf.freebase.com/ns/base.ecology.introduced_species_info.first_introduced
+http://rdf.freebase.com/ns/base.educationalshortfilm.studios_and_companies.date_folded
+http://rdf.freebase.com/ns/base.educationalshortfilm.studios_and_companies.date_founded
+http://rdf.freebase.com/ns/base.endorsements.newspaper_endorsement.date_published
+http://rdf.freebase.com/ns/base.endorsements.personal_endorsement.date_announced
+http://rdf.freebase.com/ns/base.engineering.canal.construction_started
+http://rdf.freebase.com/ns/base.engineering.chartership.date_of_chartership
+http://rdf.freebase.com/ns/base.engineering.mine.date_closed
+http://rdf.freebase.com/ns/base.engineering.mine.date_opened
+http://rdf.freebase.com/ns/base.engineeringdraft.manufactured_component.end_of_production
+http://rdf.freebase.com/ns/base.engineeringdraft.manufactured_component.first_introduced
+http://rdf.freebase.com/ns/base.entertainmentutilities.nomination_page_metadata.award_ceremony_date
+http://rdf.freebase.com/ns/base.esolangs.language.created
+http://rdf.freebase.com/ns/base.fairytales.fairy_tale.date_published
+http://rdf.freebase.com/ns/base.farmfed.delivery.delivered_on
+http://rdf.freebase.com/ns/base.fblinux.linux_kernel_release.release_date
+http://rdf.freebase.com/ns/base.feudalism.vassalage.until
+http://rdf.freebase.com/ns/base.fictionaluniverse.fictional_spacecraft.date_designed
+http://rdf.freebase.com/ns/base.film_actors.actor.birthdate
+http://rdf.freebase.com/ns/base.foobase2.foo_type.property3
+http://rdf.freebase.com/ns/base.footballcoaches.defensive_coaching_tenure.started
+http://rdf.freebase.com/ns/base.formula1.formula_1_grand_prix.date
+http://rdf.freebase.com/ns/base.formula1.formula_1_season.year
+http://rdf.freebase.com/ns/base.fragrances.fragrances.ended
+http://rdf.freebase.com/ns/base.fragrances.fragrances.year_debut
+http://rdf.freebase.com/ns/base.gambling.lottery.founded
+http://rdf.freebase.com/ns/base.gamecollection.console.acquired
+http://rdf.freebase.com/ns/base.gamecollection.game.acquired
+http://rdf.freebase.com/ns/base.gamecollection.game.beaten
+http://rdf.freebase.com/ns/base.gamecollection.game.completed
+http://rdf.freebase.com/ns/base.geolocation.geotagged_image.date_created
+http://rdf.freebase.com/ns/base.giscience.giscience_event.has_submission_deadline
+http://rdf.freebase.com/ns/base.goldenbooks.little_golden_books.year_published
+http://rdf.freebase.com/ns/base.graphapi.global_properties.architecture_opened
+http://rdf.freebase.com/ns/base.graphapi.global_properties.automotive_trim_year
+http://rdf.freebase.com/ns/base.graphapi.global_properties.boats_launched
+http://rdf.freebase.com/ns/base.graphapi.global_properties.book_copyright_date
+http://rdf.freebase.com/ns/base.graphapi.global_properties.book_date_of_first_publication
+http://rdf.freebase.com/ns/base.graphapi.global_properties.book_date_written
+http://rdf.freebase.com/ns/base.graphapi.global_properties.book_publication_date
+http://rdf.freebase.com/ns/base.graphapi.global_properties.business_company_founded
+http://rdf.freebase.com/ns/base.graphapi.global_properties.cvg_release_date
+http://rdf.freebase.com/ns/base.graphapi.global_properties.education_founded
+http://rdf.freebase.com/ns/base.graphapi.global_properties.film_initial_release_date
+http://rdf.freebase.com/ns/base.graphapi.global_properties.music_active_start
+http://rdf.freebase.com/ns/base.graphapi.global_properties.music_release_date
+http://rdf.freebase.com/ns/base.graphapi.global_properties.people_date_of_birth
+http://rdf.freebase.com/ns/base.graphapi.global_properties.people_date_of_death
+http://rdf.freebase.com/ns/base.graphapi.global_properties.release_date
+http://rdf.freebase.com/ns/base.graphapi.global_properties.sports_founded
+http://rdf.freebase.com/ns/base.graphapi.global_properties.tv_air_date
+http://rdf.freebase.com/ns/base.graphapi.global_properties.tv_air_date_of_final_episode
+http://rdf.freebase.com/ns/base.graphapi.global_properties.tv_air_date_of_first_episode
+http://rdf.freebase.com/ns/base.greenbuilding.leed_registration_and_certification.certification_date
+http://rdf.freebase.com/ns/base.greenbuilding.leed_registration_and_certification.registration_date
+http://rdf.freebase.com/ns/base.gsnstations.station.maxyr
+http://rdf.freebase.com/ns/base.gsnstations.station.minyr
+http://rdf.freebase.com/ns/base.historicalcountries.defunct_country.dissolution_date
+http://rdf.freebase.com/ns/base.horticulture.cultivar.first_developed
+http://rdf.freebase.com/ns/base.hospitalinformationsystem1.examination.physical_examination_date
+http://rdf.freebase.com/ns/base.hospitalinformationsystem1.operating_room.operation_date
+http://rdf.freebase.com/ns/base.hospitalinformationsystem1.polyclinic.examination_date
+http://rdf.freebase.com/ns/base.hotelbooking.booking.date
+http://rdf.freebase.com/ns/base.hotwheels.hot_wheels_cars.year_released
+http://rdf.freebase.com/ns/base.humanresources.advertisement.ad_date
+http://rdf.freebase.com/ns/base.humanresources.request.datetime
+http://rdf.freebase.com/ns/base.iceandfire.noble_house.date_destroyed
+http://rdf.freebase.com/ns/base.iceandfire.noble_house.date_founded
+http://rdf.freebase.com/ns/base.iceandfire.notable_object.date_created
+http://rdf.freebase.com/ns/base.iceandfire.notable_object.date_destroyed
+http://rdf.freebase.com/ns/base.ignvideogames.ign_video_game_version_release.release_date
+http://rdf.freebase.com/ns/base.infinitejest.year.equivalent_year
+http://rdf.freebase.com/ns/base.iniciador.evento_iniciador.fecha
+http://rdf.freebase.com/ns/base.internetmemes.internet_meme.first_appeared
+http://rdf.freebase.com/ns/base.iraqimusicbase.albums.year_released
+http://rdf.freebase.com/ns/base.irisxbrl.period.date
+http://rdf.freebase.com/ns/base.irmusictypes.track_type.m_date
+http://rdf.freebase.com/ns/base.itskill.language.ssss
+http://rdf.freebase.com/ns/base.jewlib.acquisition.date
+http://rdf.freebase.com/ns/base.jewlib.collection_extent.date
+http://rdf.freebase.com/ns/base.kickstarter.kickstarter_project.launch_date
+http://rdf.freebase.com/ns/base.kickstarter.kickstarter_project.target_date
+http://rdf.freebase.com/ns/base.kinometric.feature_film_stats.date
+http://rdf.freebase.com/ns/base.kwebbase.kwconnection.until
+http://rdf.freebase.com/ns/base.kwebbase.kwsentence.until
+http://rdf.freebase.com/ns/base.lawsandbox.statute.date_passed_house
+http://rdf.freebase.com/ns/base.lawsandbox.statute.date_passed_senate
+http://rdf.freebase.com/ns/base.lawsandbox.statute.date_signed_by_president
+http://rdf.freebase.com/ns/base.legislation.bill.date_introduced
+http://rdf.freebase.com/ns/base.legislation.law.date_signed
+http://rdf.freebase.com/ns/base.legislation.law.effective_date
+http://rdf.freebase.com/ns/base.legislation.legislative_matter.date_of_vote
+http://rdf.freebase.com/ns/base.lightweight.regional_dated_float.date
+http://rdf.freebase.com/ns/base.lightweight.regional_dated_integer.date
+http://rdf.freebase.com/ns/base.lightweight.regional_dated_money_value.valid_date
+http://rdf.freebase.com/ns/base.litcentral.magazine_import.date_of_publication
+http://rdf.freebase.com/ns/base.litcentral.sampling_campaign.date_sampling_ended
+http://rdf.freebase.com/ns/base.litcentral.sampling_campaign.date_sampling_started
+http://rdf.freebase.com/ns/base.lostart.recovered_artwork.date_recovered
+http://rdf.freebase.com/ns/base.lostintime.probable_date.date
+http://rdf.freebase.com/ns/base.magic_the_gathering.champion.winning_date
+http://rdf.freebase.com/ns/base.mapcentral.fgdc_lineage.time_period_end
+http://rdf.freebase.com/ns/base.mapcentral.fgdc_lineage.time_period_start
+http://rdf.freebase.com/ns/base.mapcentral.fgdc_process_step.process_date_time
+http://rdf.freebase.com/ns/base.mapcentral.fgdc_status.status_date
+http://rdf.freebase.com/ns/base.mapcentral.fgdc_time_period.beginning_date
+http://rdf.freebase.com/ns/base.mapcentral.fgdc_time_period.ending_date
+http://rdf.freebase.com/ns/base.massanimaldeaths.exitevent.datetime
+http://rdf.freebase.com/ns/base.medical_schema_staging.board_certified_physician.year_certified
+http://rdf.freebase.com/ns/base.medical_schema_staging.privileged_physician.credentialing_end_date
+http://rdf.freebase.com/ns/base.medical_schema_staging.privileged_physician.credentialing_start_date
+http://rdf.freebase.com/ns/base.melomania.artiste.cr_le
+http://rdf.freebase.com/ns/base.metalfoundries.annual_tons.year
+http://rdf.freebase.com/ns/base.microdata.dcresource.date
+http://rdf.freebase.com/ns/base.microdata.hentry.published
+http://rdf.freebase.com/ns/base.microdata.hentry.updated
+http://rdf.freebase.com/ns/base.microdata.hreview.dtreviewed
+http://rdf.freebase.com/ns/base.microdata.vcard.bday
+http://rdf.freebase.com/ns/base.microdata.vcard.rev
+http://rdf.freebase.com/ns/base.microdata.vevent.created
+http://rdf.freebase.com/ns/base.microdata.vevent.dtend
+http://rdf.freebase.com/ns/base.microdata.vevent.dtstart
+http://rdf.freebase.com/ns/base.microdata.vevent.exdate
+http://rdf.freebase.com/ns/base.microdata.vevent.last-modified
+http://rdf.freebase.com/ns/base.microdata.vevent.rdate
+http://rdf.freebase.com/ns/base.minerals.mineral.discovery_date
+http://rdf.freebase.com/ns/base.minerals.world_mine_production.date
+http://rdf.freebase.com/ns/base.mladraft.collection_ownership.acquisition_date
+http://rdf.freebase.com/ns/base.monster.monstrous_act_of_creation.date_of_creation
+http://rdf.freebase.com/ns/base.moregeography.volcano_eruption.date
+http://rdf.freebase.com/ns/base.morelaw.law.date_passed
+http://rdf.freebase.com/ns/base.morstministryofresearchscienceandtechnology.morst_keyword.date_added
+http://rdf.freebase.com/ns/base.morstministryofresearchscienceandtechnology.morst_scan.date
+http://rdf.freebase.com/ns/base.motorcycle.internet_forum.date_forum_closed
+http://rdf.freebase.com/ns/base.motorcycle.internet_forum.date_forum_created
+http://rdf.freebase.com/ns/base.motorcycle.motorcycle_blog_entry.date
+http://rdf.freebase.com/ns/base.motorcycle.motorcycle_gas_consumption.date
+http://rdf.freebase.com/ns/base.motorcycle.motorcycle_owner.purchase_date
+http://rdf.freebase.com/ns/base.motorcycle.motorcycle_ride_report.date
+http://rdf.freebase.com/ns/base.motorcycle.motorcycle_video.date_of_video
+http://rdf.freebase.com/ns/base.motorcycle.privately_owned_motorcycle.production_date
+http://rdf.freebase.com/ns/base.motorsports.lap_record.date_of_the_lap_record
+http://rdf.freebase.com/ns/base.mtabudgetdata.budget_data.year
+http://rdf.freebase.com/ns/base.mtgbase.magic_set.release_date
+http://rdf.freebase.com/ns/base.mullardspacesciencelaboratoryprojects.deactivated_satellite.deactivation_date
+http://rdf.freebase.com/ns/base.mullardspacesciencelaboratoryprojects.decommissioned_satellite.decommissioned_date
+http://rdf.freebase.com/ns/base.mullardspacesciencelaboratoryprojects.satellite.failure_date
+http://rdf.freebase.com/ns/base.mullardspacesciencelaboratoryprojects.satellite.launch_date
+http://rdf.freebase.com/ns/base.mullardspacesciencelaboratoryprojects.solar_flare.start_time
+http://rdf.freebase.com/ns/base.mullardspacesciencelaboratoryprojects.telescope.first_light
+http://rdf.freebase.com/ns/base.musiteca.situation.situation_date
+http://rdf.freebase.com/ns/base.musteriiliskileri.aday.ba_lang_zaman
+http://rdf.freebase.com/ns/base.musteriiliskileri.aday.biti_zaman
+http://rdf.freebase.com/ns/base.musteriiliskileri.f_rsat.ba_lang_zaman
+http://rdf.freebase.com/ns/base.musteriiliskileri.f_rsat.biti_zaman
+http://rdf.freebase.com/ns/base.musteriiliskileri.m_teri_temsilcisi.do_um_tarihi
+http://rdf.freebase.com/ns/base.musteriiliskileri.sat_aktivitesi.tarih
+http://rdf.freebase.com/ns/base.musteriiliskileri.x_irket.kurulu_y_l
+http://rdf.freebase.com/ns/base.mystery.cryptid_observation.date
+http://rdf.freebase.com/ns/base.mystery.hoax.date_initiated
+http://rdf.freebase.com/ns/base.mystery.hoax_demystification.date
+http://rdf.freebase.com/ns/base.mytelevisionkb.familydrama.tvtime
+http://rdf.freebase.com/ns/base.nascar.nascar_race.first_race
+http://rdf.freebase.com/ns/base.nascar.nascar_race_instance.date
+http://rdf.freebase.com/ns/base.nationalbridgeinventory.bridge_inventory_rating.date
+http://rdf.freebase.com/ns/base.nationalbridgeinventory.bridge_operating_rating.date
+http://rdf.freebase.com/ns/base.nationalbridgeinventory.predicted_traffic_rate.date_when_predicted
+http://rdf.freebase.com/ns/base.nationalbridgeinventory.predicted_traffic_rate.valid_date
+http://rdf.freebase.com/ns/base.nationalbridgeinventory.traffic_survey.valid_date
+http://rdf.freebase.com/ns/base.nativedaughterslawgivers.topic.date
+http://rdf.freebase.com/ns/base.naturalist.organism_observation.date
+http://rdf.freebase.com/ns/base.newsevents.news_report.date
+http://rdf.freebase.com/ns/base.nobelprizes.nobel_honor.year
+http://rdf.freebase.com/ns/base.noisepop.performance.time
+http://rdf.freebase.com/ns/base.nuclearregulatorycommission.inspection_report.inspection_end_date
+http://rdf.freebase.com/ns/base.nuclearregulatorycommission.inspection_report.inspection_start_date
+http://rdf.freebase.com/ns/base.nuclearregulatorycommission.inspection_report.publication_date
+http://rdf.freebase.com/ns/base.obamabase.cabinet_member.date_selected
+http://rdf.freebase.com/ns/base.oclbase.video.production_date
+http://rdf.freebase.com/ns/base.ovguide.bollywood_films.initial_release_date
+http://rdf.freebase.com/ns/base.page3girls.page_three_girl.debut
+http://rdf.freebase.com/ns/base.page3girls.page_three_girl.last_appearance
+http://rdf.freebase.com/ns/base.partnersinflight.population_estimate.date
+http://rdf.freebase.com/ns/base.patienthealthrecord.phr_prescription.dispensed_on
+http://rdf.freebase.com/ns/base.patienthealthrecord.phr_prescription.written_on
+http://rdf.freebase.com/ns/base.patienthealthrecord.phr_record.date_started
+http://rdf.freebase.com/ns/base.patienthealthrecord.phr_wellness_record.collection_date
+http://rdf.freebase.com/ns/base.patronage.patron_client_relationship.not_after
+http://rdf.freebase.com/ns/base.patronage.patron_client_relationship.not_before
+http://rdf.freebase.com/ns/base.petbreeds.dog_city_relationship.date
+http://rdf.freebase.com/ns/base.philbsuniverse.musical_album_detailed_view.purchase_date
+http://rdf.freebase.com/ns/base.philbsuniverse.my_spectacle_universe.my_spectacle_universe
+http://rdf.freebase.com/ns/base.phones1.smartphone.announced
+http://rdf.freebase.com/ns/base.phones1.smartphone.released
+http://rdf.freebase.com/ns/base.pinball.pinball_machine.release_date
+http://rdf.freebase.com/ns/base.pirates.letter_of_marque.date_issued
+http://rdf.freebase.com/ns/base.pirates.pirate.active_from
+http://rdf.freebase.com/ns/base.pirates.pirate.career_ended
+http://rdf.freebase.com/ns/base.plannedevent.date_time_interval.valid
+http://rdf.freebase.com/ns/base.plannedevent.dated_date.date
+http://rdf.freebase.com/ns/base.plannedevent.dated_date.valid
+http://rdf.freebase.com/ns/base.plannedevent.dated_location.valid
+http://rdf.freebase.com/ns/base.plannedevent.planned_event.first_thought_about_on
+http://rdf.freebase.com/ns/base.plaques.blue_plaque.erected_on
+http://rdf.freebase.com/ns/base.politicalconventions.convention_speech.date
+http://rdf.freebase.com/ns/base.politicalpromises.political_promise.date
+http://rdf.freebase.com/ns/base.popstra.arrest.date
+http://rdf.freebase.com/ns/base.popstra.breakup.date
+http://rdf.freebase.com/ns/base.popstra.canoodled.date
+http://rdf.freebase.com/ns/base.popstra.fashion_choice.date
+http://rdf.freebase.com/ns/base.popstra.hangout.date
+http://rdf.freebase.com/ns/base.popstra.infidelity.date
+http://rdf.freebase.com/ns/base.popstra.operation.date
+http://rdf.freebase.com/ns/base.popstra.party.date
+http://rdf.freebase.com/ns/base.popstra.party_attendance_person.date
+http://rdf.freebase.com/ns/base.popstra.party_choice.date
+http://rdf.freebase.com/ns/base.popstra.product_choice.date
+http://rdf.freebase.com/ns/base.popstra.public_insult.date
+http://rdf.freebase.com/ns/base.popstra.restaurant_choice.date
+http://rdf.freebase.com/ns/base.popstra.shopping_choice.date
+http://rdf.freebase.com/ns/base.ports.annual_container_volume.year
+http://rdf.freebase.com/ns/base.ports.annual_teus.date_or_year_reported
+http://rdf.freebase.com/ns/base.ports.annual_tonnage.year
+http://rdf.freebase.com/ns/base.postagestamps.postage_stamp.introduced
+http://rdf.freebase.com/ns/base.proofsareprograms.key_contribution.date
+http://rdf.freebase.com/ns/base.proposedprojects.proposed_project.first_proposed
+http://rdf.freebase.com/ns/base.pruebas.prueba.prueba
+http://rdf.freebase.com/ns/base.recalledproducts.product_recall.recall_date
+http://rdf.freebase.com/ns/base.recordingstudios.recording_studio.date_opened
+http://rdf.freebase.com/ns/base.recordingstudios.studio_album.recording_dates
+http://rdf.freebase.com/ns/base.recordingstudios.studio_album.recording_ended
+http://rdf.freebase.com/ns/base.recoveryact.recovery_act_project.award_date
+http://rdf.freebase.com/ns/base.recoveryact.recovery_act_sub_recipient_award.date
+http://rdf.freebase.com/ns/base.refugee.refugee_encampment_period.inflow_began
+http://rdf.freebase.com/ns/base.refugee.refugee_encampment_period.outflow_began
+http://rdf.freebase.com/ns/base.refugee.refugee_encampment_period.outflow_complete
+http://rdf.freebase.com/ns/base.regulation.regulatory_code.date_published
+http://rdf.freebase.com/ns/base.rejectedapps.rejection.date_rejected
+http://rdf.freebase.com/ns/base.renwu.renwu.birth
+http://rdf.freebase.com/ns/base.rivalries.rivalry.end_of_rivalry
+http://rdf.freebase.com/ns/base.rivalries.rivalry.start_of_rivalry
+http://rdf.freebase.com/ns/base.roguelike.roguelike_game.initial_release_date
+http://rdf.freebase.com/ns/base.rollerderby.bout.date
+http://rdf.freebase.com/ns/base.roses.roses.year
+http://rdf.freebase.com/ns/base.runescape.runescape_item.release_date
+http://rdf.freebase.com/ns/base.safewater.test_result.test_date
+http://rdf.freebase.com/ns/base.sailors.ship_crew_tenure.until
+http://rdf.freebase.com/ns/base.sailors.ship_passenger_journey.date_disembarked
+http://rdf.freebase.com/ns/base.sailors.ship_passenger_journey.date_embarked
+http://rdf.freebase.com/ns/base.sails.sailing_handicap_rating.date
+http://rdf.freebase.com/ns/base.sails.sailing_ship_class.date_designed
+http://rdf.freebase.com/ns/base.sanfranciscoscene.san_francisco_drag_queen_title.year
+http://rdf.freebase.com/ns/base.sanfranciscoscene.san_francisco_event_guest_appearances.date
+http://rdf.freebase.com/ns/base.sanfranciscoscene.san_francisco_scene_event.date
+http://rdf.freebase.com/ns/base.sanfranciscoscene.san_francisco_scene_event.date_started
+http://rdf.freebase.com/ns/base.satelites.earth_orbiting_satellite.local_equator_crossing_time
+http://rdf.freebase.com/ns/base.satelites.orbit_geosynchronous.mean_solar_time_at_equator
+http://rdf.freebase.com/ns/base.satelites.satellite_image_product.image_date
+http://rdf.freebase.com/ns/base.satelites.satellite_imagery.date_image_collection_ended
+http://rdf.freebase.com/ns/base.satelites.satellite_imagery.date_image_collection_started
+http://rdf.freebase.com/ns/base.satelites.satellite_sensor.date_of_first_image
+http://rdf.freebase.com/ns/base.satelites.satellite_sensor.date_of_last_image
+http://rdf.freebase.com/ns/base.satelites.sensor_status.date
+http://rdf.freebase.com/ns/base.satellites.satellite.launch_date
+http://rdf.freebase.com/ns/base.saturdaynightlive.snl_movie_spin_off.initial_release_date
+http://rdf.freebase.com/ns/base.saveaussiemusic.street_press_index.issue_date
+http://rdf.freebase.com/ns/base.scenedb.scene_group.earliest_observation
+http://rdf.freebase.com/ns/base.schemastaging.aircraft_model_family.date_introduced
+http://rdf.freebase.com/ns/base.schemastaging.airport_extra.closing_date
+http://rdf.freebase.com/ns/base.schemastaging.airport_extra.opening_date
+http://rdf.freebase.com/ns/base.schemastaging.application_version.release_date
+http://rdf.freebase.com/ns/base.schemastaging.athlete_salary.date
+http://rdf.freebase.com/ns/base.schemastaging.book_edition_extra.pub_date
+http://rdf.freebase.com/ns/base.schemastaging.concept.date_of_origination
+http://rdf.freebase.com/ns/base.schemastaging.concept_developer_relationship.date
+http://rdf.freebase.com/ns/base.schemastaging.holiday_observance_rule.date_established
+http://rdf.freebase.com/ns/base.schemastaging.holiday_occurrence.additional_day_off
+http://rdf.freebase.com/ns/base.schemastaging.holiday_occurrence.additional_work_day
+http://rdf.freebase.com/ns/base.schemastaging.orbital_relationship_extra.epoch_datetime
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.friday_closing_time
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.friday_open_time
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.monday_closing_time
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.monday_open_time
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.saturday_closing_time
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.saturday_open_time
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.sunday_closing_time
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.sunday_open_time
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.thursday_closing_time
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.thursday_open_time
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.tuesday_closing_time
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.tuesday_open_time
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.wednesday_closing_time
+http://rdf.freebase.com/ns/base.schemastaging.phone_open_times.wednesday_open_time
+http://rdf.freebase.com/ns/base.schemastaging.referendum.year
+http://rdf.freebase.com/ns/base.schemastaging.school_constituency_relationship.date
+http://rdf.freebase.com/ns/base.schemastaging.spacecraft_extra.final_launch
+http://rdf.freebase.com/ns/base.schemastaging.spacecraft_extra.first_launch
+http://rdf.freebase.com/ns/base.scottishclans.scottish_clan_sept.until
+http://rdf.freebase.com/ns/base.seafood.certification_program.started_on
+http://rdf.freebase.com/ns/base.services.chiropractor.start_of_practice
+http://rdf.freebase.com/ns/base.services.dentist.start_of_dental_practice
+http://rdf.freebase.com/ns/base.services.doctor.start_of_practice
+http://rdf.freebase.com/ns/base.services.general_contractor.start_of_practice
+http://rdf.freebase.com/ns/base.services.home_inspection_service.service_since
+http://rdf.freebase.com/ns/base.services.laundromat.last_wash
+http://rdf.freebase.com/ns/base.services.optician.start_of_practice
+http://rdf.freebase.com/ns/base.services.optometrist.start_of_practice
+http://rdf.freebase.com/ns/base.services.retail_location.in_business_since
+http://rdf.freebase.com/ns/base.services.special_hours.hour_end
+http://rdf.freebase.com/ns/base.services.special_hours.hour_start
+http://rdf.freebase.com/ns/base.services.veterinarian.start_of_practice
+http://rdf.freebase.com/ns/base.shelvedcancelledandunfinishedfilms.development_hell.began
+http://rdf.freebase.com/ns/base.shelvedcancelledandunfinishedfilms.development_hell.ended
+http://rdf.freebase.com/ns/base.shelvedcancelledandunfinishedfilms.unfinished_films.date_production_began
+http://rdf.freebase.com/ns/base.skateboarding.skateboarder.pro_career_start
+http://rdf.freebase.com/ns/base.skateboarding.skateboarder.professional_career_end
+http://rdf.freebase.com/ns/base.skateboarding.skateboarder_trick_relationship.date
+http://rdf.freebase.com/ns/base.slowmovement.cittaslow_town.date_founded
+http://rdf.freebase.com/ns/base.sounds.audio_recording.date_recorded
+http://rdf.freebase.com/ns/base.sounds.audio_release.original_release_data
+http://rdf.freebase.com/ns/base.spawrksmusic.recording.date_of_recording
+http://rdf.freebase.com/ns/base.sportbase.club_owner.date_of_bith
+http://rdf.freebase.com/ns/base.sportbase.sport_club_player.date_of_bith
+http://rdf.freebase.com/ns/base.sportsrecords.sports_record.date_set
+http://rdf.freebase.com/ns/base.startrek.starship_from_star_trek.datestatus
+http://rdf.freebase.com/ns/base.strangeebayitems.ebay_item.auction_end_date
+http://rdf.freebase.com/ns/base.summarystatistics.dated_location.end_date_time
+http://rdf.freebase.com/ns/base.summarystatistics.dated_location.start_date_time
+http://rdf.freebase.com/ns/base.summarystatistics.odometer_reading.date
+http://rdf.freebase.com/ns/base.summarystatistics.production_period.end_date_time
+http://rdf.freebase.com/ns/base.summarystatistics.production_period.start_date_time
+http://rdf.freebase.com/ns/base.summarystatistics.time_span.end_date_time
+http://rdf.freebase.com/ns/base.summarystatistics.time_span.start_date_time
+http://rdf.freebase.com/ns/base.summarystatistics.user_defined_time.date_time
+http://rdf.freebase.com/ns/base.surfing.asp_world_tour.year
+http://rdf.freebase.com/ns/base.svocab.content.releasedate
+http://rdf.freebase.com/ns/base.svocab.event.enddate
+http://rdf.freebase.com/ns/base.svocab.event.startdate
+http://rdf.freebase.com/ns/base.svocab.hotel.checkin
+http://rdf.freebase.com/ns/base.svocab.hotel.checkout
+http://rdf.freebase.com/ns/base.svocab.hours.times
+http://rdf.freebase.com/ns/base.svocab.localbusiness.dateopened
+http://rdf.freebase.com/ns/base.svocab.media.expires
+http://rdf.freebase.com/ns/base.svocab.offer.pricevaliduntil
+http://rdf.freebase.com/ns/base.svocab.person.birthdate
+http://rdf.freebase.com/ns/base.svocab.recipe.cooktime
+http://rdf.freebase.com/ns/base.svocab.recipe.preptime
+http://rdf.freebase.com/ns/base.svocab.recipe.published
+http://rdf.freebase.com/ns/base.svocab.recipe.totaltime
+http://rdf.freebase.com/ns/base.svocab.review.reviewdate
+http://rdf.freebase.com/ns/base.svocab.sportsmatch.starttime
+http://rdf.freebase.com/ns/base.svocab.tvseason.enddate
+http://rdf.freebase.com/ns/base.svocab.tvseason.startdate
+http://rdf.freebase.com/ns/base.svocab.tvseries.enddate
+http://rdf.freebase.com/ns/base.svocab.tvseries.startdate
+http://rdf.freebase.com/ns/base.tallships.film_with_tall_ships.release_date
+http://rdf.freebase.com/ns/base.tang1.wuzhenyu.age
+http://rdf.freebase.com/ns/base.technologyofdoing.knowledge_worker_practice.inception
+http://rdf.freebase.com/ns/base.testcards.test_card.year_introduced
+http://rdf.freebase.com/ns/base.tests.t1.rrrr
+http://rdf.freebase.com/ns/base.thefuture.future_event.probable_date
+http://rdf.freebase.com/ns/base.thoroughbredracing.thoroughbred_racehorse.foaled
+http://rdf.freebase.com/ns/base.todolists.data_upload_conversation_record.date_of_correspondence
+http://rdf.freebase.com/ns/base.topiccuration.curation_state.review_timestamp
+http://rdf.freebase.com/ns/base.toylines.toy_line.year_introduced
+http://rdf.freebase.com/ns/base.transition.transition_initiative.date_of_unleashing
+http://rdf.freebase.com/ns/base.trixtypes.daily_stats.date
+http://rdf.freebase.com/ns/base.troubleshooting.action_taken.action_datetime
+http://rdf.freebase.com/ns/base.truereligion.collection.year
+http://rdf.freebase.com/ns/base.typefaces.typeface.date_created
+http://rdf.freebase.com/ns/base.typefaces.typeface.date_released
+http://rdf.freebase.com/ns/base.uamember.lp.datebegin
+http://rdf.freebase.com/ns/base.uamember.lp.dateend
+http://rdf.freebase.com/ns/base.uamember.sla_mm.dateapproval_consumer
+http://rdf.freebase.com/ns/base.uamember.sla_mm.dateapproval_producer
+http://rdf.freebase.com/ns/base.uamember.sla_mm.datebegin
+http://rdf.freebase.com/ns/base.uamember.sla_mm.dateend
+http://rdf.freebase.com/ns/base.ultimatefightingchampionship.ufc_event.date
+http://rdf.freebase.com/ns/base.unitednations.united_nations_member_state.date_joined
+http://rdf.freebase.com/ns/base.unitednations.united_nations_member_state.date_of_membership_dissolution
+http://rdf.freebase.com/ns/base.unitednations.united_nations_resolution.adopted_on
+http://rdf.freebase.com/ns/base.urbanlegends.urban_legend.first_occurance
+http://rdf.freebase.com/ns/base.usnationalparks.us_national_park.date_established
+http://rdf.freebase.com/ns/base.usnris.nris_listing.significant_year
+http://rdf.freebase.com/ns/base.uxtrans.translation.published_in
+http://rdf.freebase.com/ns/base.vanhomeless.media_coverage.date
+http://rdf.freebase.com/ns/base.vegas.film.release_date
+http://rdf.freebase.com/ns/base.vgames.video_game_release.release_date
+http://rdf.freebase.com/ns/base.virology.biological_sample.date
+http://rdf.freebase.com/ns/base.virtualheliosphericobservatory.instrument.approximate_end_of_operations_date
+http://rdf.freebase.com/ns/base.webtechnology.w3c_recommendation.date_latest_version
+http://rdf.freebase.com/ns/base.webvideo.internet_video.original_broadcast_date
+http://rdf.freebase.com/ns/base.webvideo.internet_video_episode.air_date
+http://rdf.freebase.com/ns/base.wfilmbase.film.release_date
+http://rdf.freebase.com/ns/base.whamoworld.wham_o_toy_imitations.original_manufacture_date
+http://rdf.freebase.com/ns/base.whamoworld.wham_o_toys.last_year_of_manufacture
+http://rdf.freebase.com/ns/base.whamoworld.wham_o_toys.original_manufacturing_date
+http://rdf.freebase.com/ns/base.wikipedia_infobox.video_game.released
+http://rdf.freebase.com/ns/base.wineawards.wine_review.date_of_review
+http://rdf.freebase.com/ns/base.wonderlabs.organisation.date_founded
+http://rdf.freebase.com/ns/base.worldwonders.ancient_wonder.construction_completed
+http://rdf.freebase.com/ns/base.worldwonders.ancient_wonder.construction_started
+http://rdf.freebase.com/ns/base.worldwonders.wonder_of_the_medieval_world.construction_completed
+http://rdf.freebase.com/ns/base.worldwonders.wonder_of_the_medieval_world.construction_started
+http://rdf.freebase.com/ns/base.wsjspeakeasy.resource.date_published
+http://rdf.freebase.com/ns/base.wymbase.test.kal
+http://rdf.freebase.com/ns/base.x2010fifaworldcupsouthafrica.world_cup_qualifying_round.matches_end_date
+http://rdf.freebase.com/ns/base.x2010fifaworldcupsouthafrica.world_cup_qualifying_round.matches_start_date
+http://rdf.freebase.com/ns/base.x2010fifaworldcupsouthafrica.world_cup_spot_allocations.qualifying_end_date
+http://rdf.freebase.com/ns/base.x2010fifaworldcupsouthafrica.world_cup_team.qualified_on
+http://rdf.freebase.com/ns/base.x2right4.entscheidung.datum
+http://rdf.freebase.com/ns/base.yalebase.residential_college.renovations_completed
+http://rdf.freebase.com/ns/base.yalebase.secret_society.founded
+http://rdf.freebase.com/ns/base.yalebase.secret_society_membership.year
+http://rdf.freebase.com/ns/base.zerofilmesdados.topic.inicio
+http://rdf.freebase.com/ns/base.zerofilmesdados.topic.t_rmino
+http://rdf.freebase.com/ns/base.zhicheng1988.test.test1
+http://rdf.freebase.com/ns/baseball.baseball_player.hall_of_fame_induction
+http://rdf.freebase.com/ns/baseball.current_coaching_tenure.started
+http://rdf.freebase.com/ns/biology.genome_build.release_date
+http://rdf.freebase.com/ns/boats.boat_disposition.date
+http://rdf.freebase.com/ns/boats.ship.keel_laid
+http://rdf.freebase.com/ns/boats.ship.launched
+http://rdf.freebase.com/ns/boats.ship_class.date_designed
+http://rdf.freebase.com/ns/book.book_edition.publication_date
+http://rdf.freebase.com/ns/book.interview.date_of_interview
+http://rdf.freebase.com/ns/book.journal_publication.issue_date
+http://rdf.freebase.com/ns/book.newspaper_circulation.date
+http://rdf.freebase.com/ns/book.periodical_publication_date.date
+http://rdf.freebase.com/ns/book.translation.date_of_translation
+http://rdf.freebase.com/ns/book.written_work.copyright_date
+http://rdf.freebase.com/ns/book.written_work.date_of_first_publication
+http://rdf.freebase.com/ns/book.written_work.date_written
+http://rdf.freebase.com/ns/broadcast.content.production_end
+http://rdf.freebase.com/ns/broadcast.content.production_start
+http://rdf.freebase.com/ns/broadcast.podcast_feed.date_published
+http://rdf.freebase.com/ns/broadcast.radio_station.founded
+http://rdf.freebase.com/ns/broadcast.tv_station.founded
+http://rdf.freebase.com/ns/business.acquisition.date
+http://rdf.freebase.com/ns/business.business_location.closing_date
+http://rdf.freebase.com/ns/business.business_location.opening_date
+http://rdf.freebase.com/ns/business.currency_sub_unit.date_introduced
+http://rdf.freebase.com/ns/business.currency_sub_unit.date_revoked
+http://rdf.freebase.com/ns/business.defunct_company.ceased_operations
+http://rdf.freebase.com/ns/business.holding.as_of_date
+http://rdf.freebase.com/ns/business.issue.cancellation_date
+http://rdf.freebase.com/ns/business.issue.first_issued
+http://rdf.freebase.com/ns/business.market_share.date
+http://rdf.freebase.com/ns/business.market_size.valid_date
+http://rdf.freebase.com/ns/business.oil_field.year_discovered
+http://rdf.freebase.com/ns/business.open_times.hour_end
+http://rdf.freebase.com/ns/business.open_times.hour_start
+http://rdf.freebase.com/ns/business.product_line.introduced
+http://rdf.freebase.com/ns/celebrities.legal_entanglement.date
+http://rdf.freebase.com/ns/celebrities.rehab.completed
+http://rdf.freebase.com/ns/celebrities.rehab.entered
+http://rdf.freebase.com/ns/chemistry.chemical_element.discovery_date
+http://rdf.freebase.com/ns/chess.chess_game.date
+http://rdf.freebase.com/ns/comic_books.comic_book_issue.date_of_publication
+http://rdf.freebase.com/ns/comic_strips.comic_strip.date_of_first_strip
+http://rdf.freebase.com/ns/comic_strips.comic_strip.date_of_last_strip
+http://rdf.freebase.com/ns/common.document.published
+http://rdf.freebase.com/ns/common.document.updated
+http://rdf.freebase.com/ns/common.image.creation_date
+http://rdf.freebase.com/ns/community.discussion_thread.updated
+http://rdf.freebase.com/ns/computer.computer.discontinued
+http://rdf.freebase.com/ns/computer.computer.introduced
+http://rdf.freebase.com/ns/computer.computer_peripheral.discontinued
+http://rdf.freebase.com/ns/computer.computer_peripheral.introduced
+http://rdf.freebase.com/ns/computer.computer_processor.introduced
+http://rdf.freebase.com/ns/computer.file_format.creation_date
+http://rdf.freebase.com/ns/computer.operating_system.release_date
+http://rdf.freebase.com/ns/computer.programming_language.introduced
+http://rdf.freebase.com/ns/computer.software.first_released
+http://rdf.freebase.com/ns/computer.software.latest_release_date
+http://rdf.freebase.com/ns/cricket.cricket_player_debut.date
+http://rdf.freebase.com/ns/cvg.computer_videogame.release_date
+http://rdf.freebase.com/ns/cvg.game_version.release_date
+http://rdf.freebase.com/ns/cvg.musical_game_song_relationship.release_date
+http://rdf.freebase.com/ns/dataworld.data_task.target
+http://rdf.freebase.com/ns/dataworld.mass_data_operation.ended_operation
+http://rdf.freebase.com/ns/dataworld.mass_data_operation.started_operation
+http://rdf.freebase.com/ns/dataworld.public_type_schema_change.when_changed
+http://rdf.freebase.com/ns/dataworld.user_reversion_operation.after
+http://rdf.freebase.com/ns/dataworld.user_reversion_operation.before
+http://rdf.freebase.com/ns/digicams.digital_camera.announced
+http://rdf.freebase.com/ns/digicams.digital_camera.released
+http://rdf.freebase.com/ns/education.acceptance_rate.year
+http://rdf.freebase.com/ns/education.department.date_closed
+http://rdf.freebase.com/ns/education.department.date_founded
+http://rdf.freebase.com/ns/education.dissertation.defense_date
+http://rdf.freebase.com/ns/education.dissertation.submission_date
+http://rdf.freebase.com/ns/education.honorary_degree.awarded_on
+http://rdf.freebase.com/ns/education.student_teacher_ratio.date
+http://rdf.freebase.com/ns/engineering.engine.first_ran
+http://rdf.freebase.com/ns/event.speech_or_presentation.date
+http://rdf.freebase.com/ns/exhibitions.exhibition_run.closed_on
+http://rdf.freebase.com/ns/exhibitions.exhibition_run.opened_on
+http://rdf.freebase.com/ns/fictional_universe.fictional_date_time.date_time
+http://rdf.freebase.com/ns/fictional_universe.fictional_object.date_created
+http://rdf.freebase.com/ns/fictional_universe.fictional_object.date_destroyed
+http://rdf.freebase.com/ns/film.film.initial_release_date
+http://rdf.freebase.com/ns/film.film_festival.date_founded
+http://rdf.freebase.com/ns/film.film_festival_event.closing_date
+http://rdf.freebase.com/ns/film.film_festival_event.opening_date
+http://rdf.freebase.com/ns/film.film_film_distributor_relationship.year
+http://rdf.freebase.com/ns/film.film_regional_release_date.release_date
+http://rdf.freebase.com/ns/finance.exchange_rate.date_of_rate
+http://rdf.freebase.com/ns/food.beer.first_brewed
+http://rdf.freebase.com/ns/food.beer_production.date
+http://rdf.freebase.com/ns/food.candy_bar.introduced
+http://rdf.freebase.com/ns/freebase.apps.acre_app_version.as_of_time
+http://rdf.freebase.com/ns/freebase.apps.acre_patch.generated_on
+http://rdf.freebase.com/ns/freebase.apps.hosts.com.freebaseapps.glamourapartments.item_cost.period_from
+http://rdf.freebase.com/ns/freebase.apps.hosts.com.freebaseapps.glamourapartments.item_cost.period_to
+http://rdf.freebase.com/ns/freebase.apps.hosts.com.freebaseapps.topics.company.date_founded
+http://rdf.freebase.com/ns/freebase.apps.hosts.com.freebaseapps.topics.film.initial_release_date
+http://rdf.freebase.com/ns/freebase.apps.hosts.z.appspot.acre.topics.person2.date_of_cremation
+http://rdf.freebase.com/ns/freebase.apps.hosts.z.appspot.acre.topics.stats.date_founded
+http://rdf.freebase.com/ns/freebase.labs_project.publicized_date
+http://rdf.freebase.com/ns/freebase.object_profile.object_generation_time
+http://rdf.freebase.com/ns/freebase.user_profile.birthday
+http://rdf.freebase.com/ns/games.game.introduced
+http://rdf.freebase.com/ns/geography.mountain.date_of_first_ascent
+http://rdf.freebase.com/ns/geography.mountain.last_eruption
+http://rdf.freebase.com/ns/government.election.election_year
+http://rdf.freebase.com/ns/government.election_poll.poll_end_date
+http://rdf.freebase.com/ns/government.election_poll.poll_start_date
+http://rdf.freebase.com/ns/government.election_poll.release_date
+http://rdf.freebase.com/ns/government.government_agency.date_founded
+http://rdf.freebase.com/ns/government.governmental_body.date_dissolved
+http://rdf.freebase.com/ns/government.governmental_body.date_formed
+http://rdf.freebase.com/ns/government.legislative_committee.date_dissolved
+http://rdf.freebase.com/ns/government.legislative_committee.date_formed
+http://rdf.freebase.com/ns/government.national_anthem_of_a_country.official_anthem_since
+http://rdf.freebase.com/ns/government.national_anthem_of_a_country.official_anthem_until
+http://rdf.freebase.com/ns/ice_hockey.hockey_coach.first_year_with_current_team
+http://rdf.freebase.com/ns/interests.collectable_item.release_date
+http://rdf.freebase.com/ns/internet.blog.started
+http://rdf.freebase.com/ns/internet.top_level_domain.introduced
+http://rdf.freebase.com/ns/internet.website.ended
+http://rdf.freebase.com/ns/internet.website.launched
+http://rdf.freebase.com/ns/language.conlang.date_created
+http://rdf.freebase.com/ns/language.language_writing_system.used_from
+http://rdf.freebase.com/ns/language.language_writing_system.used_until
+http://rdf.freebase.com/ns/law.constitution.in_force_from
+http://rdf.freebase.com/ns/law.constitution.in_force_until
+http://rdf.freebase.com/ns/law.constitutional_amendment.proposed_on
+http://rdf.freebase.com/ns/law.constitutional_amendment.ratification_completed_on
+http://rdf.freebase.com/ns/law.court.dissolved
+http://rdf.freebase.com/ns/law.court.founded
+http://rdf.freebase.com/ns/law.invention.date_of_invention
+http://rdf.freebase.com/ns/law.us_patent.application_date
+http://rdf.freebase.com/ns/law.us_patent.date_revoked
+http://rdf.freebase.com/ns/law.us_patent.issue_date
+http://rdf.freebase.com/ns/library.public_library.established_in
+http://rdf.freebase.com/ns/location.co2_emission.date
+http://rdf.freebase.com/ns/location.dated_location.date_dissolved
+http://rdf.freebase.com/ns/location.dated_location.date_founded
+http://rdf.freebase.com/ns/location.electricity_production.date
+http://rdf.freebase.com/ns/location.imports_and_exports.date
+http://rdf.freebase.com/ns/location.imports_exports_by_industry.date
+http://rdf.freebase.com/ns/location.location_symbol_relationship.date_adopted
+http://rdf.freebase.com/ns/location.location_symbol_relationship.date_revoked
+http://rdf.freebase.com/ns/location.natural_gas_production.date
+http://rdf.freebase.com/ns/location.oil_production.date
+http://rdf.freebase.com/ns/location.population_growth_rate.date_one
+http://rdf.freebase.com/ns/location.population_growth_rate.date_two
+http://rdf.freebase.com/ns/location.religion_percentage.date
+http://rdf.freebase.com/ns/m.01xpm_r
+http://rdf.freebase.com/ns/m.01xpn1l
+http://rdf.freebase.com/ns/m.01y0r__
+http://rdf.freebase.com/ns/m.01y0r_k
+http://rdf.freebase.com/ns/m.01y0r_s
+http://rdf.freebase.com/ns/m.021m10v
+http://rdf.freebase.com/ns/m.022q_2r
+http://rdf.freebase.com/ns/m.02_3hr5
+http://rdf.freebase.com/ns/m.02_3hrh
+http://rdf.freebase.com/ns/m.02h6vqm
+http://rdf.freebase.com/ns/m.02h6vsm
+http://rdf.freebase.com/ns/m.02hz19m
+http://rdf.freebase.com/ns/m.02kdx1z
+http://rdf.freebase.com/ns/m.02kdx8_
+http://rdf.freebase.com/ns/m.02kpghn
+http://rdf.freebase.com/ns/m.02kzk9f
+http://rdf.freebase.com/ns/m.02kzxmv
+http://rdf.freebase.com/ns/m.02wk79d
+http://rdf.freebase.com/ns/m.02wk7fm
+http://rdf.freebase.com/ns/m.02xj0sz
+http://rdf.freebase.com/ns/m.02ylcbf
+http://rdf.freebase.com/ns/m.02ylnpc
+http://rdf.freebase.com/ns/m.02ylnwq
+http://rdf.freebase.com/ns/m.030rj9j
+http://rdf.freebase.com/ns/m.030rjb0
+http://rdf.freebase.com/ns/m.030rjb8
+http://rdf.freebase.com/ns/m.030rjbj
+http://rdf.freebase.com/ns/m.030rjc0
+http://rdf.freebase.com/ns/m.030rjc8
+http://rdf.freebase.com/ns/m.031bqbs
+http://rdf.freebase.com/ns/m.031kl75
+http://rdf.freebase.com/ns/m.03gjpk5
+http://rdf.freebase.com/ns/m.03k02b_
+http://rdf.freebase.com/ns/m.03l_cvw
+http://rdf.freebase.com/ns/m.03l_cwb
+http://rdf.freebase.com/ns/m.03l_dx5
+http://rdf.freebase.com/ns/m.03l_f1t
+http://rdf.freebase.com/ns/m.03l_f3b
+http://rdf.freebase.com/ns/m.03l_fh1
+http://rdf.freebase.com/ns/m.03l_fhk
+http://rdf.freebase.com/ns/m.03l_ftp
+http://rdf.freebase.com/ns/m.03l_ftz
+http://rdf.freebase.com/ns/m.03l_gms
+http://rdf.freebase.com/ns/m.03l_gn3
+http://rdf.freebase.com/ns/m.03l_jpf
+http://rdf.freebase.com/ns/m.03l_k0b
+http://rdf.freebase.com/ns/m.03l_k0r
+http://rdf.freebase.com/ns/m.03q4vd4
+http://rdf.freebase.com/ns/m.03qqszz
+http://rdf.freebase.com/ns/m.03wzfvl
+http://rdf.freebase.com/ns/m.03y8qly
+http://rdf.freebase.com/ns/m.040_1n5
+http://rdf.freebase.com/ns/m.040_1nj
+http://rdf.freebase.com/ns/m.040wggk
+http://rdf.freebase.com/ns/m.0413y9s
+http://rdf.freebase.com/ns/m.0413ybs
+http://rdf.freebase.com/ns/m.041mmhv
+http://rdf.freebase.com/ns/m.041mmk_
+http://rdf.freebase.com/ns/m.043272c
+http://rdf.freebase.com/ns/m.0468g9g
+http://rdf.freebase.com/ns/m.046cpmj
+http://rdf.freebase.com/ns/m.046cpmy
+http://rdf.freebase.com/ns/m.046v_29
+http://rdf.freebase.com/ns/m.046w18y
+http://rdf.freebase.com/ns/m.046xt5h
+http://rdf.freebase.com/ns/m.046xt5v
+http://rdf.freebase.com/ns/m.046xy55
+http://rdf.freebase.com/ns/m.046xy5k
+http://rdf.freebase.com/ns/m.046xykh
+http://rdf.freebase.com/ns/m.046xymb
+http://rdf.freebase.com/ns/m.046xymp
+http://rdf.freebase.com/ns/m.04_4bz6
+http://rdf.freebase.com/ns/m.04_4bzs
+http://rdf.freebase.com/ns/m.04_7bgh
+http://rdf.freebase.com/ns/m.04_lx0y
+http://rdf.freebase.com/ns/m.04_p0nf
+http://rdf.freebase.com/ns/m.04dn73t
+http://rdf.freebase.com/ns/m.04dsnq_
+http://rdf.freebase.com/ns/m.04dsnr9
+http://rdf.freebase.com/ns/m.04dv_bh
+http://rdf.freebase.com/ns/m.04f6tfx
+http://rdf.freebase.com/ns/m.04fmk0l
+http://rdf.freebase.com/ns/m.04fmk23
+http://rdf.freebase.com/ns/m.04fmpmp
+http://rdf.freebase.com/ns/m.04g4mtm
+http://rdf.freebase.com/ns/m.04g4n4w
+http://rdf.freebase.com/ns/m.04g4n7x
+http://rdf.freebase.com/ns/m.04g55xb
+http://rdf.freebase.com/ns/m.04h644v
+http://rdf.freebase.com/ns/m.04jsw_j
+http://rdf.freebase.com/ns/m.04jtkn3
+http://rdf.freebase.com/ns/m.04kp3qj
+http://rdf.freebase.com/ns/m.04kp3sr
+http://rdf.freebase.com/ns/m.04l4nf1
+http://rdf.freebase.com/ns/m.04l4nff
+http://rdf.freebase.com/ns/m.04njmn6
+http://rdf.freebase.com/ns/m.04njmnk
+http://rdf.freebase.com/ns/m.04njmr7
+http://rdf.freebase.com/ns/m.04njmrk
+http://rdf.freebase.com/ns/m.04s_3rw
+http://rdf.freebase.com/ns/m.04s_rjw
+http://rdf.freebase.com/ns/m.04sx0y_
+http://rdf.freebase.com/ns/m.04sxlwm
+http://rdf.freebase.com/ns/m.04tmgkc
+http://rdf.freebase.com/ns/m.04tmgkq
+http://rdf.freebase.com/ns/m.04yk8bq
+http://rdf.freebase.com/ns/m.04yp29g
+http://rdf.freebase.com/ns/m.04yrzfm
+http://rdf.freebase.com/ns/m.04zgtvj
+http://rdf.freebase.com/ns/m.04zrbr0
+http://rdf.freebase.com/ns/m.051fc7p
+http://rdf.freebase.com/ns/m.051rzw3
+http://rdf.freebase.com/ns/m.051rzwr
+http://rdf.freebase.com/ns/m.0572ylv
+http://rdf.freebase.com/ns/m.059v_5q
+http://rdf.freebase.com/ns/m.05bfff9
+http://rdf.freebase.com/ns/m.05bflt7
+http://rdf.freebase.com/ns/m.05bg1yy
+http://rdf.freebase.com/ns/m.05bg1z7
+http://rdf.freebase.com/ns/m.05bgr_l
+http://rdf.freebase.com/ns/m.05bgr_y
+http://rdf.freebase.com/ns/m.05bj41x
+http://rdf.freebase.com/ns/m.05bj7wb
+http://rdf.freebase.com/ns/m.05bp3c2
+http://rdf.freebase.com/ns/m.05bvts2
+http://rdf.freebase.com/ns/m.05bvtss
+http://rdf.freebase.com/ns/m.05bz04f
+http://rdf.freebase.com/ns/m.05czzcl
+http://rdf.freebase.com/ns/m.05czzcx
+http://rdf.freebase.com/ns/m.05dbsft
+http://rdf.freebase.com/ns/m.05fms_x
+http://rdf.freebase.com/ns/m.05fmsx3
+http://rdf.freebase.com/ns/m.05gjx_t
+http://rdf.freebase.com/ns/m.05gqq5l
+http://rdf.freebase.com/ns/m.05hqvtw
+http://rdf.freebase.com/ns/m.05hqwxd
+http://rdf.freebase.com/ns/m.05hqxlh
+http://rdf.freebase.com/ns/m.05hqxsz
+http://rdf.freebase.com/ns/m.05l_rzv
+http://rdf.freebase.com/ns/m.05l_xwm
+http://rdf.freebase.com/ns/m.05lm4qr
+http://rdf.freebase.com/ns/m.05lq9q_
+http://rdf.freebase.com/ns/m.05lrgxx
+http://rdf.freebase.com/ns/m.05m020d
+http://rdf.freebase.com/ns/m.05m61v4
+http://rdf.freebase.com/ns/m.05n2j2c
+http://rdf.freebase.com/ns/m.05n56hb
+http://rdf.freebase.com/ns/m.05n5cg6
+http://rdf.freebase.com/ns/m.05n5r00
+http://rdf.freebase.com/ns/m.05n74lj
+http://rdf.freebase.com/ns/m.05n75dy
+http://rdf.freebase.com/ns/m.05nbbr0
+http://rdf.freebase.com/ns/m.05ncjbl
+http://rdf.freebase.com/ns/m.05ncwy7
+http://rdf.freebase.com/ns/m.05ndjrt
+http://rdf.freebase.com/ns/m.05ndjs6
+http://rdf.freebase.com/ns/m.05ndjsl
+http://rdf.freebase.com/ns/m.05ndq1n
+http://rdf.freebase.com/ns/m.05ndq20
+http://rdf.freebase.com/ns/m.05sp_39
+http://rdf.freebase.com/ns/m.05stxw1
+http://rdf.freebase.com/ns/m.05t_gmm
+http://rdf.freebase.com/ns/m.05v24vf
+http://rdf.freebase.com/ns/m.063y5jg
+http://rdf.freebase.com/ns/m.063y623
+http://rdf.freebase.com/ns/m.065nwqq
+http://rdf.freebase.com/ns/m.065nwr1
+http://rdf.freebase.com/ns/m.065r1_1
+http://rdf.freebase.com/ns/m.065r1g9
+http://rdf.freebase.com/ns/m.065r1gz
+http://rdf.freebase.com/ns/m.065r1q6
+http://rdf.freebase.com/ns/m.065r1zq
+http://rdf.freebase.com/ns/m.0669r7t
+http://rdf.freebase.com/ns/m.0669r8g
+http://rdf.freebase.com/ns/m.066mm2m
+http://rdf.freebase.com/ns/m.066mm46
+http://rdf.freebase.com/ns/m.06gxqm_
+http://rdf.freebase.com/ns/m.06hybf4
+http://rdf.freebase.com/ns/m.06zdyph
+http://rdf.freebase.com/ns/m.06zdyx3
+http://rdf.freebase.com/ns/m.0737sy2
+http://rdf.freebase.com/ns/m.075dsmc
+http://rdf.freebase.com/ns/m.075hsbd
+http://rdf.freebase.com/ns/m.075hsbq
+http://rdf.freebase.com/ns/m.07_1x_1
+http://rdf.freebase.com/ns/m.07_1xzq
+http://rdf.freebase.com/ns/m.07fs9vh
+http://rdf.freebase.com/ns/m.07t7fcy
+http://rdf.freebase.com/ns/m.07v14mz
+http://rdf.freebase.com/ns/m.07v14vs
+http://rdf.freebase.com/ns/m.07yf_6b
+http://rdf.freebase.com/ns/m.07yg75x
+http://rdf.freebase.com/ns/m.07yg76h
+http://rdf.freebase.com/ns/m.07z2shf
+http://rdf.freebase.com/ns/m.07z2sj1
+http://rdf.freebase.com/ns/m.07zqgmm
+http://rdf.freebase.com/ns/m.07zqgrt
+http://rdf.freebase.com/ns/m.092v9nl
+http://rdf.freebase.com/ns/m.09p5wxz
+http://rdf.freebase.com/ns/m.0bc3ymm
+http://rdf.freebase.com/ns/m.0bdt0xp
+http://rdf.freebase.com/ns/m.0bjbmpn
+http://rdf.freebase.com/ns/m.0bjbmq9
+http://rdf.freebase.com/ns/m.0bjbnfd
+http://rdf.freebase.com/ns/m.0bjbngp
+http://rdf.freebase.com/ns/m.0bm6q2f
+http://rdf.freebase.com/ns/m.0bz86zp
+http://rdf.freebase.com/ns/m.0c0l0vj
+http://rdf.freebase.com/ns/m.0c0l0vw
+http://rdf.freebase.com/ns/m.0c9gy8_
+http://rdf.freebase.com/ns/m.0cg_m_m
+http://rdf.freebase.com/ns/m.0ck757s
+http://rdf.freebase.com/ns/m.0dmq08q
+http://rdf.freebase.com/ns/m.0dmq29_
+http://rdf.freebase.com/ns/m.0g4s6n1
+http://rdf.freebase.com/ns/m.0g4s6nc
+http://rdf.freebase.com/ns/m.0g9h749
+http://rdf.freebase.com/ns/m.0h3dhq1
+http://rdf.freebase.com/ns/m.0hpnpp_
+http://rdf.freebase.com/ns/m.0j_tnnb
+http://rdf.freebase.com/ns/m.0j_x2ql
+http://rdf.freebase.com/ns/m.0j_x2rv
+http://rdf.freebase.com/ns/m.0j_x2st
+http://rdf.freebase.com/ns/m.0jsdl4
+http://rdf.freebase.com/ns/m.0jyct05
+http://rdf.freebase.com/ns/m.0jyct1m
+http://rdf.freebase.com/ns/m.0jyn_gj
+http://rdf.freebase.com/ns/m.0jyn_n_
+http://rdf.freebase.com/ns/m.0jyx2lf
+http://rdf.freebase.com/ns/m.0jyx2nl
+http://rdf.freebase.com/ns/m.0jzq2f4
+http://rdf.freebase.com/ns/m.0jzq2hz
+http://rdf.freebase.com/ns/m.0jzq2kp
+http://rdf.freebase.com/ns/m.0ksmx12
+http://rdf.freebase.com/ns/m.0q2b59v
+http://rdf.freebase.com/ns/m.0q2b93_
+http://rdf.freebase.com/ns/m.0w3v73l
+http://rdf.freebase.com/ns/m.0zgttg6
+http://rdf.freebase.com/ns/martial_arts.martial_arts_certification.date
+http://rdf.freebase.com/ns/measurement_unit.adjusted_money_value.adjustment_date
+http://rdf.freebase.com/ns/measurement_unit.adjusted_money_value.measurement_date
+http://rdf.freebase.com/ns/measurement_unit.dated_btu.date
+http://rdf.freebase.com/ns/measurement_unit.dated_cubic_meters.date
+http://rdf.freebase.com/ns/measurement_unit.dated_days.date
+http://rdf.freebase.com/ns/measurement_unit.dated_float.date
+http://rdf.freebase.com/ns/measurement_unit.dated_index_value.base_period
+http://rdf.freebase.com/ns/measurement_unit.dated_index_value.date
+http://rdf.freebase.com/ns/measurement_unit.dated_integer.year
+http://rdf.freebase.com/ns/measurement_unit.dated_internet_speed.date
+http://rdf.freebase.com/ns/measurement_unit.dated_kgoe.date
+http://rdf.freebase.com/ns/measurement_unit.dated_kilowatt_hour.date
+http://rdf.freebase.com/ns/measurement_unit.dated_metric_ton.date
+http://rdf.freebase.com/ns/measurement_unit.dated_metric_tons_per_million_ppp_dollars.date
+http://rdf.freebase.com/ns/measurement_unit.dated_money_value.valid_date
+http://rdf.freebase.com/ns/measurement_unit.dated_percentage.date
+http://rdf.freebase.com/ns/measurement_unit.dated_ratio.date
+http://rdf.freebase.com/ns/measurement_unit.monetary_range.date
+http://rdf.freebase.com/ns/measurement_unit.recurring_money_value.date
+http://rdf.freebase.com/ns/media_common.lost_work.date_lost
+http://rdf.freebase.com/ns/media_common.quotation.date
+http://rdf.freebase.com/ns/medicine.hospital.date_closed
+http://rdf.freebase.com/ns/medicine.hospital.date_founded
+http://rdf.freebase.com/ns/medicine.manufactured_drug_form.label_date
+http://rdf.freebase.com/ns/medicine.manufactured_drug_form.marketing_end_date
+http://rdf.freebase.com/ns/medicine.manufactured_drug_form.marketing_start_date
+http://rdf.freebase.com/ns/medicine.manufactured_drug_form.patent_expiry_date
+http://rdf.freebase.com/ns/medicine.medical_trial.last_follow_up
+http://rdf.freebase.com/ns/meteorology.tropical_cyclone.dissipated
+http://rdf.freebase.com/ns/meteorology.tropical_cyclone.formed
+http://rdf.freebase.com/ns/meteorology.tropical_cyclone_season.first_storm_formed
+http://rdf.freebase.com/ns/meteorology.tropical_cyclone_season.last_storm_dissipated
+http://rdf.freebase.com/ns/metropolitan_transit.transit_system.inception
+http://rdf.freebase.com/ns/military.force_strength.date
+http://rdf.freebase.com/ns/military.military_unit.formed
+http://rdf.freebase.com/ns/music.album.release_date
+http://rdf.freebase.com/ns/music.artist.active_end
+http://rdf.freebase.com/ns/music.artist.active_start
+http://rdf.freebase.com/ns/music.composition.date_completed
+http://rdf.freebase.com/ns/music.composition.date_of_first_performance
+http://rdf.freebase.com/ns/music.music_video.initial_release_date
+http://rdf.freebase.com/ns/music.recording.date
+http://rdf.freebase.com/ns/music.release.release_date
+http://rdf.freebase.com/ns/olympics.olympic_torch_relay.date
+http://rdf.freebase.com/ns/opera.opera.date_of_first_performance
+http://rdf.freebase.com/ns/opera.opera.date_written
+http://rdf.freebase.com/ns/opera.opera_production.date_closed
+http://rdf.freebase.com/ns/opera.opera_production.date_opened
+http://rdf.freebase.com/ns/organization.leadership.as_of_date
+http://rdf.freebase.com/ns/organization.non_profit_registration.date_of_revocation
+http://rdf.freebase.com/ns/organization.non_profit_registration.date_registered
+http://rdf.freebase.com/ns/organization.organization.date_founded
+http://rdf.freebase.com/ns/organization.organization_committee.date_dissolved
+http://rdf.freebase.com/ns/organization.organization_committee.date_formed
+http://rdf.freebase.com/ns/organization.organization_merger.date
+http://rdf.freebase.com/ns/organization.organization_relationship.as_of_date
+http://rdf.freebase.com/ns/organization.organization_spin_off.date
+http://rdf.freebase.com/ns/people.appointment.declared_on
+http://rdf.freebase.com/ns/people.deceased_person.date_of_burial
+http://rdf.freebase.com/ns/people.deceased_person.date_of_cremation
+http://rdf.freebase.com/ns/people.human_measurement.date
+http://rdf.freebase.com/ns/projects.project.actual_completion_date
+http://rdf.freebase.com/ns/projects.project.planned_completion_date
+http://rdf.freebase.com/ns/protected_sites.natural_or_cultural_site_listing.date_listed
+http://rdf.freebase.com/ns/protected_sites.protected_site.date_established
+http://rdf.freebase.com/ns/radio.radio_program.final_broadcast
+http://rdf.freebase.com/ns/radio.radio_program.first_broadcast
+http://rdf.freebase.com/ns/radio.radio_program_episode.air_date
+http://rdf.freebase.com/ns/rail.locomotive.construction_begun
+http://rdf.freebase.com/ns/rail.locomotive.construction_completed
+http://rdf.freebase.com/ns/rail.locomotive_class.introduced
+http://rdf.freebase.com/ns/rail.locomotive_class.withdrawn
+http://rdf.freebase.com/ns/royalty.chivalric_order_position_tenure.until
+http://rdf.freebase.com/ns/royalty.order_of_chivalry.date_founded
+http://rdf.freebase.com/ns/royalty.order_of_chivalry.date_last_awarded
+http://rdf.freebase.com/ns/royalty.royal_line.ruled_from
+http://rdf.freebase.com/ns/royalty.royal_line.ruled_to
+http://rdf.freebase.com/ns/royalty.system_of_nobility.used_from_date
+http://rdf.freebase.com/ns/royalty.system_of_nobility.used_to_date
+http://rdf.freebase.com/ns/skiing.lift_tenure.date_built
+http://rdf.freebase.com/ns/skiing.lift_tenure.date_removed
+http://rdf.freebase.com/ns/skiing.ski_area.closing_date
+http://rdf.freebase.com/ns/skiing.ski_area.opening_date
+http://rdf.freebase.com/ns/skiing.ski_run.date_closed
+http://rdf.freebase.com/ns/skiing.ski_run.date_opened
+http://rdf.freebase.com/ns/skiing.yearly_snowfall.season_end
+http://rdf.freebase.com/ns/skiing.yearly_snowfall.season_start
+http://rdf.freebase.com/ns/soccer.football_player_transfer.date_transfer_was_agreed
+http://rdf.freebase.com/ns/spaceflight.rocket.last_flight
+http://rdf.freebase.com/ns/spaceflight.rocket.maiden_flight
+http://rdf.freebase.com/ns/spaceflight.satellite.began_operating
+http://rdf.freebase.com/ns/spaceflight.satellite.ceased_operating
+http://rdf.freebase.com/ns/spaceflight.satellite.launch_date
+http://rdf.freebase.com/ns/spaceflight.space_mission.mission_end_date
+http://rdf.freebase.com/ns/spaceflight.space_mission.mission_start_date
+http://rdf.freebase.com/ns/spaceflight.space_program.completed
+http://rdf.freebase.com/ns/spaceflight.space_program.started
+http://rdf.freebase.com/ns/sports.golf_course.year_built
+http://rdf.freebase.com/ns/sports.pro_athlete.career_end
+http://rdf.freebase.com/ns/sports.pro_athlete.career_start
+http://rdf.freebase.com/ns/sports.pro_sports_played.career_end
+http://rdf.freebase.com/ns/sports.pro_sports_played.career_start
+http://rdf.freebase.com/ns/sports.sports_league_draft.year
+http://rdf.freebase.com/ns/sports.sports_team.founded
+http://rdf.freebase.com/ns/symbols.armorial_grant.used_from
+http://rdf.freebase.com/ns/symbols.armorial_grant.used_until
+http://rdf.freebase.com/ns/tennis.tennis_match.date
+http://rdf.freebase.com/ns/tennis.tennis_player.year_turned_pro
+http://rdf.freebase.com/ns/tennis.tennis_tournament_championship.year
+http://rdf.freebase.com/ns/theater.play.date_of_first_performance
+http://rdf.freebase.com/ns/theater.theater_production.date_closed
+http://rdf.freebase.com/ns/theater.theater_production.date_opened
+http://rdf.freebase.com/ns/time.defunct_time_zone.usage_ceased
+http://rdf.freebase.com/ns/time.recurring_event.date_of_final_occurance
+http://rdf.freebase.com/ns/time.recurring_event.date_of_first_occurance
+http://rdf.freebase.com/ns/transportation.road.formed
+http://rdf.freebase.com/ns/transportation.transit_system_length.date
+http://rdf.freebase.com/ns/travel.hotel_grade.years_awarded
+http://rdf.freebase.com/ns/travel.hotel_guest_visit.date_of_stays
+http://rdf.freebase.com/ns/tv.tv_program.air_date_of_final_episode
+http://rdf.freebase.com/ns/tv.tv_program.air_date_of_first_episode
+http://rdf.freebase.com/ns/tv.tv_series_episode.air_date
+http://rdf.freebase.com/ns/tv.video.expires
+http://rdf.freebase.com/ns/type.content_import.import_time
+http://rdf.freebase.com/ns/type.link.timestamp
+http://rdf.freebase.com/ns/type.object.timestamp
+http://rdf.freebase.com/ns/user.ajain.default_domain.app_deadline.deadline
+http://rdf.freebase.com/ns/user.ajain.default_domain.app_deadline.term_applying_for
+http://rdf.freebase.com/ns/user.ajain.default_domain.disease_prevalence.year
+http://rdf.freebase.com/ns/user.akatenev.weapons.military_comission.date
+http://rdf.freebase.com/ns/user.akatenev.weapons.military_supply.supply_date
+http://rdf.freebase.com/ns/user.akatenev.weapons.weapon.production_end_date
+http://rdf.freebase.com/ns/user.akatenev.weapons.weapon.production_start_date
+http://rdf.freebase.com/ns/user.alexander.default_domain.fire_department.established
+http://rdf.freebase.com/ns/user.alexander.default_domain.robot.date_of_inception
+http://rdf.freebase.com/ns/user.alexander.misc.murdered_person.date_murdered
+http://rdf.freebase.com/ns/user.alexander.misc.review.published
+http://rdf.freebase.com/ns/user.alexbl.congressional_voting_records.bill.date_proposed
+http://rdf.freebase.com/ns/user.alexbl.congressional_voting_records.legislative_matter.date
+http://rdf.freebase.com/ns/user.alexbl.honorary_title.honorary_title_holding.date_conferred
+http://rdf.freebase.com/ns/user.alexbl.space_shuttle_mission.space_shuttle.contract_awarded
+http://rdf.freebase.com/ns/user.alexwright.transit.transit_line_timetable_stop.time
+http://rdf.freebase.com/ns/user.alexyiu.default_domain.mathematical_theory.first_conceived_when
+http://rdf.freebase.com/ns/user.amitre.default_domain.stamps.date_of_production
+http://rdf.freebase.com/ns/user.anandology.default_domain.train_arrival_departure.time_of_arrival
+http://rdf.freebase.com/ns/user.anandology.default_domain.train_arrival_departure.time_of_departure
+http://rdf.freebase.com/ns/user.angiexiayin.default_domain.story.date_of_story
+http://rdf.freebase.com/ns/user.arielb.default_domain.concentration_camp.dismantled
+http://rdf.freebase.com/ns/user.arielb.default_domain.concentration_camp.established
+http://rdf.freebase.com/ns/user.arielb.stalag.prisoners.arrived
+http://rdf.freebase.com/ns/user.arielb.stalag.stalag.liberated_on
+http://rdf.freebase.com/ns/user.azstu.default_domain.testtypeie6.date
+http://rdf.freebase.com/ns/user.azstu.default_domain.testtypeie7.dateie7
+http://rdf.freebase.com/ns/user.azstu.default_domain.testtypesff.date
+http://rdf.freebase.com/ns/user.basefree.default_domain.chinaactors.actorage
+http://rdf.freebase.com/ns/user.basefree.default_domain.place.when
+http://rdf.freebase.com/ns/user.bblfish.default_domain.issue.created
+http://rdf.freebase.com/ns/user.billkatz.default_domain.publication.year
+http://rdf.freebase.com/ns/user.bio2rdf.default_domain.timeline_of_bio2rdf.dc_created
+http://rdf.freebase.com/ns/user.bio2rdf.project.load_rdf_repository.last_update
+http://rdf.freebase.com/ns/user.bio2rdf.project.rdf_load_step.date
+http://rdf.freebase.com/ns/user.blackhound.hornblower_universe.book.copyright_date
+http://rdf.freebase.com/ns/user.booklars.default_domain.typographical_art.copyright_date
+http://rdf.freebase.com/ns/user.booklars.default_domain.typographical_art.date_of_first_publication
+http://rdf.freebase.com/ns/user.booklars.default_domain.typographical_art.date_written
+http://rdf.freebase.com/ns/user.brandon_macuser.conventions.convention.year
+http://rdf.freebase.com/ns/user.brandon_macuser.conventions.convention_occurrence.dates
+http://rdf.freebase.com/ns/user.brendan.musician_products.product_model.production_end_date
+http://rdf.freebase.com/ns/user.brendan.musician_products.product_model.production_start_date
+http://rdf.freebase.com/ns/user.brendan.rated.caterer_rating.eaten_on
+http://rdf.freebase.com/ns/user.brendankwilliams.default_domain.inflation_rate.month
+http://rdf.freebase.com/ns/user.calebl.default_domain.company.initial_registration_date
+http://rdf.freebase.com/ns/user.camuzotomotiv.default_domain.camuz_auto_cars.year
+http://rdf.freebase.com/ns/user.casperone.finance.unit_of_currency.circulated_from
+http://rdf.freebase.com/ns/user.casperone.finance.unit_of_currency.circulated_to
+http://rdf.freebase.com/ns/user.castagna.default_domain.mytype.myp
+http://rdf.freebase.com/ns/user.cbeer.default_domain.media_carrier.earliest_date
+http://rdf.freebase.com/ns/user.cbeer.default_domain.media_carrier.latest_date
+http://rdf.freebase.com/ns/user.chalsall.default_domain.submarine_fiber_cables.installed
+http://rdf.freebase.com/ns/user.chalsall.default_domain.submarine_landing_stations.installed
+http://rdf.freebase.com/ns/user.chendy.default_domain.political_donation.date
+http://rdf.freebase.com/ns/user.cheunger.default_domain.crime.date_of_accusation
+http://rdf.freebase.com/ns/user.cheunger.golf.golf_handicap.date
+http://rdf.freebase.com/ns/user.cheunger.golf.golfer_statistic.date
+http://rdf.freebase.com/ns/user.chuljin.default_domain.event.endtime
+http://rdf.freebase.com/ns/user.chuljin.default_domain.event.starttime
+http://rdf.freebase.com/ns/user.cia_world_factbook.cia_world_factbook.dated_percentage.valid_date
+http://rdf.freebase.com/ns/user.cip22.default_domain.recording_session.date
+http://rdf.freebase.com/ns/user.cliotropic.default_domain.birth_data.birth_date
+http://rdf.freebase.com/ns/user.cliotropic.default_domain.letter.date_sent
+http://rdf.freebase.com/ns/user.collintmiller.default_domain.communication.time
+http://rdf.freebase.com/ns/user.collintmiller.default_domain.traveller.time_of_travel
+http://rdf.freebase.com/ns/user.collord.bicycle_model.frame_material.end_available_date
+http://rdf.freebase.com/ns/user.collord.bicycle_model.frame_material.start_available_date
+http://rdf.freebase.com/ns/user.commonplace.default_domain.u_s_supreme_court.dateargued
+http://rdf.freebase.com/ns/user.commonplace.default_domain.u_s_supreme_court.datedecided
+http://rdf.freebase.com/ns/user.contactgcs.default_domain.x3434.dgghyet_yety
+http://rdf.freebase.com/ns/user.cpryde.default_domain.instant_money_value.value_date
+http://rdf.freebase.com/ns/user.daepark.default_domain.golf_club.production_year
+http://rdf.freebase.com/ns/user.daepark.default_domain.test_cvt_2.prop_1
+http://rdf.freebase.com/ns/user.daepark.default_domain.test_type.date
+http://rdf.freebase.com/ns/user.daepark.default_domain.test_type.date_unique
+http://rdf.freebase.com/ns/user.danboo.default_domain.bicycle_model_frame.year
+http://rdf.freebase.com/ns/user.davidx.default_domain.timed_message.delivertime
+http://rdf.freebase.com/ns/user.ddammann.default_domain.annotation.time_stamp
+http://rdf.freebase.com/ns/user.deizel.default_domain.event.end_date_time
+http://rdf.freebase.com/ns/user.deizel.default_domain.event.start_date_time
+http://rdf.freebase.com/ns/user.denny.default_domain.role_playing_game.newest_version_published_in
+http://rdf.freebase.com/ns/user.denny.default_domain.role_playing_game.published_in
+http://rdf.freebase.com/ns/user.dfhuynh.default_domain.assassination.date
+http://rdf.freebase.com/ns/user.dfhuynh.default_domain.freebase_labs_project.publicized_date
+http://rdf.freebase.com/ns/user.dharmatech.default_domain.nicaraguan_presidential_election.date
+http://rdf.freebase.com/ns/user.dharmatech.default_domain.political_organization.date_founded
+http://rdf.freebase.com/ns/user.digitalarchivist.default_domain.ephemera.date_issued
+http://rdf.freebase.com/ns/user.digitalarchivist.default_domain.incunabulum.exact_date_printed
+http://rdf.freebase.com/ns/user.djmixtape.default_domain.mixtape.release_date
+http://rdf.freebase.com/ns/user.dme.default_domain.board_committee_membership.committeememberend
+http://rdf.freebase.com/ns/user.dme.default_domain.board_committee_membership.committeememberstart
+http://rdf.freebase.com/ns/user.dme.default_domain.board_committee_membership.during
+http://rdf.freebase.com/ns/user.dminkley.biology.biological_sample.date_and_time_of_collection
+http://rdf.freebase.com/ns/user.dminkley.virology.influenza_a_sequence.sample_date
+http://rdf.freebase.com/ns/user.dnbornstein.SE-Individual.organization.date_founded
+http://rdf.freebase.com/ns/user.doconnor.default_domain.organism_sighting.date
+http://rdf.freebase.com/ns/user.donkeyshot.datenwerkstatt.bird.test
+http://rdf.freebase.com/ns/user.doug.default_domain.horse.user_prop_2
+http://rdf.freebase.com/ns/user.dubble.default_domain.news_item.publication_date
+http://rdf.freebase.com/ns/user.duck1123.default_domain.mtg_set.first_released
+http://rdf.freebase.com/ns/user.dvyjones.default_domain.dated_name.date
+http://rdf.freebase.com/ns/user.dylanrocks.default_domain.set_lists.date
+http://rdf.freebase.com/ns/user.dylanrocks.default_domain.set_lists.starting_time
+http://rdf.freebase.com/ns/user.dylanrocks.national_football_league.nfl_cheerleader.season
+http://rdf.freebase.com/ns/user.dylanrocks.national_football_league.nfl_draft_diamond_in_the_rough.year_drafted
+http://rdf.freebase.com/ns/user.dylanrocks.national_football_league.nfl_player_who_has_been_suspended.season_suspended
+http://rdf.freebase.com/ns/user.dylanrocks.national_football_league.nfl_stadium.first_year
+http://rdf.freebase.com/ns/user.dylanrocks.national_football_league.nfl_stadiums_where_home_team_lost_the_first_game.date_of_first_home_game
+http://rdf.freebase.com/ns/user.dylanrocks.national_football_league.nfl_teams_that_have_moved_cities.first_season
+http://rdf.freebase.com/ns/user.dylanrocks.national_football_league.suffered_nasty_nfl_injury.date_of_injury
+http://rdf.freebase.com/ns/user.ebel.default_domain.eurovision_song_contest.date_of_final
+http://rdf.freebase.com/ns/user.ebel.default_domain.eurovision_song_contest.date_of_semi_final_1
+http://rdf.freebase.com/ns/user.ebel.default_domain.eurovision_song_contest.date_of_semi_final_2
+http://rdf.freebase.com/ns/user.ebel.default_domain.irish_referendum.date
+http://rdf.freebase.com/ns/user.eranio.default_domain.kabbalah1.date
+http://rdf.freebase.com/ns/user.esin.default_domain.physical_examination_date.physical_examination_date
+http://rdf.freebase.com/ns/user.fabricio.default_domain.media_appearance.when
+http://rdf.freebase.com/ns/user.faye.default_domain.hotel.check_in_time
+http://rdf.freebase.com/ns/user.faye.default_domain.hotel.check_out_time
+http://rdf.freebase.com/ns/user.fbelleau.default_domain.dc_elements.dc_dateaccepted
+http://rdf.freebase.com/ns/user.fbelleau.default_domain.dc_elements.dc_datesubmitted
+http://rdf.freebase.com/ns/user.fbrunacci.default_domain.test2.unedate
+http://rdf.freebase.com/ns/user.fengtao.default_domain.mobile_software1.date_time
+http://rdf.freebase.com/ns/user.firstlive.default_domain.small.fdasfdasf
+http://rdf.freebase.com/ns/user.floreno.default_domain.mass_deaths.time
+http://rdf.freebase.com/ns/user.fuzziebrain.default_domain.restaurant_menu.last_modified_date
+http://rdf.freebase.com/ns/user.fuzziebrain.default_domain.vcard.bday
+http://rdf.freebase.com/ns/user.g_null_device.default_domain.psychoanalytic_relationship.psychoanalysis_ended
+http://rdf.freebase.com/ns/user.g_null_device.default_domain.psychoanalytic_relationship.psychoanalysis_started
+http://rdf.freebase.com/ns/user.g_null_device.default_domain.psychoanalytic_supervision.supervision_from
+http://rdf.freebase.com/ns/user.g_null_device.default_domain.psychoanalytic_supervision.supervision_to
+http://rdf.freebase.com/ns/user.g_null_device.default_domain.registration_of_psychoanalysis.psychoanalyst_registered_from
+http://rdf.freebase.com/ns/user.g_null_device.default_domain.registration_of_psychoanalysis.psychoanalyst_registered_to
+http://rdf.freebase.com/ns/user.gisvlasta.ISO19115_-_Geographic_Information_-_Metadata.title.editiondate
+http://rdf.freebase.com/ns/user.gmackenz.dance.dance_performance.premiere_date
+http://rdf.freebase.com/ns/user.gogza.default_domain.event.date
+http://rdf.freebase.com/ns/user.gogza.default_domain.recurring_event.first_date
+http://rdf.freebase.com/ns/user.greengod.default_domain.x2012_masarati.year
+http://rdf.freebase.com/ns/user.gusandrews.default_domain.horse_race.date
+http://rdf.freebase.com/ns/user.h_morita_esm.default_domain.note.date
+http://rdf.freebase.com/ns/user.hailey2009.default_domain.golden_books.first_published
+http://rdf.freebase.com/ns/user.harish.default_domain.webapplication.released_in
+http://rdf.freebase.com/ns/user.hds.default_domain.radio_series.air_date_of_final_episode
+http://rdf.freebase.com/ns/user.hds.default_domain.radio_series.air_date_of_first_episode
+http://rdf.freebase.com/ns/user.hds.default_domain.school_house.founded
+http://rdf.freebase.com/ns/user.hedgehog.default_domain.prediction.verifiable_by
+http://rdf.freebase.com/ns/user.hedgehog.default_domain.verifiable_statement.statement_date
+http://rdf.freebase.com/ns/user.hedgehog.default_domain.verifiable_statement.verified_date
+http://rdf.freebase.com/ns/user.hirschch.academic_conferences.academic_conference.abstract_submission
+http://rdf.freebase.com/ns/user.hirschch.academic_conferences.academic_conference.camera_ready
+http://rdf.freebase.com/ns/user.hirschch.academic_conferences.academic_conference.paper_submission
+http://rdf.freebase.com/ns/user.itteco.ga.scheme.app.lastTimestamp
+http://rdf.freebase.com/ns/user.itteco.ga.scheme.item_cost.period_from
+http://rdf.freebase.com/ns/user.itteco.ga.scheme.item_cost.period_to
+http://rdf.freebase.com/ns/user.ivanwong_23.x.tv.bir
+http://rdf.freebase.com/ns/user.jack.default_domain.all_systems_types_test.date
+http://rdf.freebase.com/ns/user.jack.default_domain.golf_tournament_event.date
+http://rdf.freebase.com/ns/user.jackiegiardina.default_domain.jacquelyn_giardina.age
+http://rdf.freebase.com/ns/user.jamie.default_domain.boat.keel_laid
+http://rdf.freebase.com/ns/user.jamie.default_domain.boat.launched
+http://rdf.freebase.com/ns/user.jamie.default_domain.hack.dob
+http://rdf.freebase.com/ns/user.jamie.default_domain.war_ship.commissioned
+http://rdf.freebase.com/ns/user.jamie.default_domain.war_ship.decommissioned
+http://rdf.freebase.com/ns/user.jamie.default_domain.yacht_racing.yacht_club.incorporated
+http://rdf.freebase.com/ns/user.jamie.military_awards.circumstances_for_award.award_date
+http://rdf.freebase.com/ns/user.jamie.oldwine.vintage.year
+http://rdf.freebase.com/ns/user.jamie.oldwine.vintage.year_of_maturity
+http://rdf.freebase.com/ns/user.jamie.sunlight.earmark.year
+http://rdf.freebase.com/ns/user.jasonmorrison.pobol.biobrick.date
+http://rdf.freebase.com/ns/user.jasonmorrison.pobol.sample.date
+http://rdf.freebase.com/ns/user.jattto.sistema_de_certificados.evento.datafim
+http://rdf.freebase.com/ns/user.jattto.sistema_de_certificados.evento.datainicio
+http://rdf.freebase.com/ns/user.jctoledo.default_domain.dataset.hasadate
+http://rdf.freebase.com/ns/user.jcupp.default_domain.gmd_ci_citation.gmd_date
+http://rdf.freebase.com/ns/user.jdelacueva.default_domain.sentencia.date
+http://rdf.freebase.com/ns/user.jdouglas.base.person.birthdate
+http://rdf.freebase.com/ns/user.jdouglas.default_domain.my_person.birthdate
+http://rdf.freebase.com/ns/user.jdouglas.default_domain.my_person.deathdate
+http://rdf.freebase.com/ns/user.jeff.default_domain.dated_per_mil.date
+http://rdf.freebase.com/ns/user.jeff.default_domain.dated_specific_conductance.date
+http://rdf.freebase.com/ns/user.jeff.default_domain.salinity.date
+http://rdf.freebase.com/ns/user.jerols.default_domain.historical_event.time_range
+http://rdf.freebase.com/ns/user.jfno.default_domain.waittime.reportedwhen
+http://rdf.freebase.com/ns/user.jfno.default_domain.waittime.when
+http://rdf.freebase.com/ns/user.jfry.default_domain.agricultural_certification.certification_end_date
+http://rdf.freebase.com/ns/user.jfry.default_domain.agricultural_certification.certification_start_date
+http://rdf.freebase.com/ns/user.jfry.default_domain.community_supported_agriculture.season_end_date
+http://rdf.freebase.com/ns/user.jfry.default_domain.community_supported_agriculture.season_start_date
+http://rdf.freebase.com/ns/user.jfry.default_domain.fossil.date_lived
+http://rdf.freebase.com/ns/user.jfry.default_domain.knight.date_knighted
+http://rdf.freebase.com/ns/user.jg.default_domain.olympic_games.closing_date
+http://rdf.freebase.com/ns/user.jg.default_domain.olympic_games.opening_date
+http://rdf.freebase.com/ns/user.jg.default_domain.taxonomic_assignment.date
+http://rdf.freebase.com/ns/user.jiayong.default_domain.concept.createtime
+http://rdf.freebase.com/ns/user.joehughes.default_domain.lifetime.earliest_end_date
+http://rdf.freebase.com/ns/user.joehughes.default_domain.lifetime.earliest_start_date
+http://rdf.freebase.com/ns/user.joehughes.default_domain.lifetime.latest_end_date
+http://rdf.freebase.com/ns/user.joehughes.default_domain.lifetime.latest_start_date
+http://rdf.freebase.com/ns/user.johannsg.default_domain.studentenverbindung.gestiftet
+http://rdf.freebase.com/ns/user.johannsg.default_domain.studentenverbindung_dachverband.studentenverbindung_dachverband_founded
+http://rdf.freebase.com/ns/user.jonathanwlowe.transportation.rail_line.formed
+http://rdf.freebase.com/ns/user.jonathanwlowe.us_census_2000.statistical_region.survey_year
+http://rdf.freebase.com/ns/user.josh.default_domain.former_mayan.tenure
+http://rdf.freebase.com/ns/user.jpholbrook.default_domain.merger.merger_announced
+http://rdf.freebase.com/ns/user.jpholbrook.default_domain.merger.merger_completed
+http://rdf.freebase.com/ns/user.jylee.default_domain.museum.established
+http://rdf.freebase.com/ns/user.kake.iron_chef.iron_chef_episode.original_air_date
+http://rdf.freebase.com/ns/user.kconragan.default_domain.shipwreck.date
+http://rdf.freebase.com/ns/user.kesava.indian_railways_base.railway_zone.established
+http://rdf.freebase.com/ns/user.kgyst.default_domain.rocket_flight.date
+http://rdf.freebase.com/ns/user.kkhaw.default_domain.doodles.date
+http://rdf.freebase.com/ns/user.klotzandi.default_domain.climber.started_climbing
+http://rdf.freebase.com/ns/user.klotzandi.default_domain.climbing_ascent.date
+http://rdf.freebase.com/ns/user.klotzandi.default_domain.climbing_ascent.date1
+http://rdf.freebase.com/ns/user.klotzandi.default_domain.wallcalendar.published_when
+http://rdf.freebase.com/ns/user.kochhar.default_domain.tongue_in_cheek_job_title.given_on
+http://rdf.freebase.com/ns/user.kochhar.default_domain.tongue_in_cheek_job_title.held_until
+http://rdf.freebase.com/ns/user.ktrueman.default_domain.academic_journal.founded
+http://rdf.freebase.com/ns/user.ktrueman.default_domain.economics_prize_award.year
+http://rdf.freebase.com/ns/user.ktrueman.default_domain.governing_body.founded
+http://rdf.freebase.com/ns/user.ktrueman.default_domain.international_organization.founded
+http://rdf.freebase.com/ns/user.librarianavenger.second_life.resident.rez_date
+http://rdf.freebase.com/ns/user.ligtvoet.default_domain.power_plant.built_in
+http://rdf.freebase.com/ns/user.ligtvoet.default_domain.power_plant.closed_in
+http://rdf.freebase.com/ns/user.lmegliol.default_domain.concert_performance.date
+http://rdf.freebase.com/ns/user.lojinx.default_domain.lojinx_release.release_date
+http://rdf.freebase.com/ns/user.lynndemarest.default_domain.voter_registration.dob
+http://rdf.freebase.com/ns/user.lynndemarest.default_domain.voter_registration.registereddate
+http://rdf.freebase.com/ns/user.macro1970.default_domain.tv_broadcast.date_and_time
+http://rdf.freebase.com/ns/user.maltra.default_domain.myself.age
+http://rdf.freebase.com/ns/user.margolin.art_object.appraisal.date
+http://rdf.freebase.com/ns/user.margolin.art_object.folk_art_object.date_acquired
+http://rdf.freebase.com/ns/user.margolin.art_object.folk_art_object.date_created
+http://rdf.freebase.com/ns/user.markce.default_domain.opinion.opinion_date
+http://rdf.freebase.com/ns/user.markeltr.default_domain.pf_engineers.start_of_operations
+http://rdf.freebase.com/ns/user.masouras.rss.post.publication_date
+http://rdf.freebase.com/ns/user.matrixhasneo.default_domain.gtd_application.acquire_date
+http://rdf.freebase.com/ns/user.max9876.default_domain.myveryownone.periodofhappiness
+http://rdf.freebase.com/ns/user.maxim75.default_domain.dbpedia_import.containedby_chekced
+http://rdf.freebase.com/ns/user.maxim75.default_domain.dbpedia_import.date_of_birth_checked
+http://rdf.freebase.com/ns/user.maxim75.default_domain.dbpedia_import.geocode_checked
+http://rdf.freebase.com/ns/user.mdaconta.human_resources.employee.startdate
+http://rdf.freebase.com/ns/user.mheller.default_domain.patent.filing_date
+http://rdf.freebase.com/ns/user.mheller.default_domain.patent.issue_date
+http://rdf.freebase.com/ns/user.micahsaul.advertising.tv_ad_launch.date
+http://rdf.freebase.com/ns/user.micahsaul.default_domain.music_festival.date_s
+http://rdf.freebase.com/ns/user.micahsaul.five_alarm_food.hot_food_manufacturer.date_founded
+http://rdf.freebase.com/ns/user.miguelrochefort.default_domain.music_festival.occurences
+http://rdf.freebase.com/ns/user.modusoperandi.Domain_of_Modus.type_of_modus.birth_date
+http://rdf.freebase.com/ns/user.monsterceo.my_stuff.places_i_have_been.date_of_first_visit
+http://rdf.freebase.com/ns/user.moonhouse.default_domain.periodical.founded
+http://rdf.freebase.com/ns/user.moonhouse.default_domain.reference_rate.end_of_publication
+http://rdf.freebase.com/ns/user.moonhouse.default_domain.reference_rate.start_of_publication
+http://rdf.freebase.com/ns/user.morganmay.default_domain.inernet_meme.started
+http://rdf.freebase.com/ns/user.mrmasterbastard.default_domain.finnish_municipality.ceased_to_exist
+http://rdf.freebase.com/ns/user.mrmasterbastard.default_domain.finnish_municipality.first_mentioned_in
+http://rdf.freebase.com/ns/user.mrmasterbastard.default_domain.finnish_municipality.founded_in
+http://rdf.freebase.com/ns/user.mrmasterbastard.default_domain.flashlight.released_in
+http://rdf.freebase.com/ns/user.mrmasterbastard.default_domain.region_in_finland.date_dissolved
+http://rdf.freebase.com/ns/user.mrmasterbastard.default_domain.region_in_finland.date_founded
+http://rdf.freebase.com/ns/user.mrmasterbastard.default_domain.world_record_breaker.date
+http://rdf.freebase.com/ns/user.mt.default_domain.book_ownership.date_obtained
+http://rdf.freebase.com/ns/user.namesbc.default_domain.test.starting
+http://rdf.freebase.com/ns/user.natasha.default_domain.event.starts
+http://rdf.freebase.com/ns/user.ndunham.default_domain.uol_drama.date
+http://rdf.freebase.com/ns/user.ndunham.default_domain.uol_philo.date
+http://rdf.freebase.com/ns/user.ndunham.default_domain.uol_poetry.date
+http://rdf.freebase.com/ns/user.ndunham.default_domain.uol_prose.date
+http://rdf.freebase.com/ns/user.nigelkerr.default_domain.citation.year_of_publication
+http://rdf.freebase.com/ns/user.ninjascience.default_domain.anime_manga_product.release_date
+http://rdf.freebase.com/ns/user.nkb.default_domain.uranium_ore_deposit.discovery_year
+http://rdf.freebase.com/ns/user.nlatysh.default_domain.scientific_model.last_update
+http://rdf.freebase.com/ns/user.nlatysh.default_domain.scientific_model.year_of_development
+http://rdf.freebase.com/ns/user.oleganza.default_domain.award.year
+http://rdf.freebase.com/ns/user.p4nnous.default_domain.android_phone.announced
+http://rdf.freebase.com/ns/user.p4nnous.default_domain.android_phone.released
+http://rdf.freebase.com/ns/user.pak21.hotstuff.hourly_statistics.date
+http://rdf.freebase.com/ns/user.pak21.hotstuff.hourly_statistics.hour
+http://rdf.freebase.com/ns/user.pak21.whoareyou.user_distance.last_updated
+http://rdf.freebase.com/ns/user.pak21.whoareyou.user_statistics.last_updated
+http://rdf.freebase.com/ns/user.paredes_jaime.default_domain.test.fecha_de_nacimiento
+http://rdf.freebase.com/ns/user.patrick.default_domain.ia_podcast.recording_date
+http://rdf.freebase.com/ns/user.patrick.default_domain.warship_v1_1.commissioned
+http://rdf.freebase.com/ns/user.patrick.default_domain.warship_v1_1.decommissioned
+http://rdf.freebase.com/ns/user.patrick.default_domain.warship_v1_1.struck
+http://rdf.freebase.com/ns/user.paul_houle.default_domain.nuclear_reactor.began_commercial_operation
+http://rdf.freebase.com/ns/user.paul_houle.default_domain.nuclear_reactor.first_critical
+http://rdf.freebase.com/ns/user.paul_houle.default_domain.nuclear_reactor.shut_down
+http://rdf.freebase.com/ns/user.perseus.default_domain.film_director.agian_maybe
+http://rdf.freebase.com/ns/user.pmackay.default_domain.simpletest.date
+http://rdf.freebase.com/ns/user.pmika.default_domain.publication.year
+http://rdf.freebase.com/ns/user.pmika.default_domain.wine.year
+http://rdf.freebase.com/ns/user.psych0fred.default_domain.discovered_by.date
+http://rdf.freebase.com/ns/user.pvonstackelberg.Futures_Studies.data_point.date
+http://rdf.freebase.com/ns/user.pvonstackelberg.Futures_Studies.event.date_entered
+http://rdf.freebase.com/ns/user.pvonstackelberg.Futures_Studies.forecast.end_forecast_timeframe
+http://rdf.freebase.com/ns/user.pvonstackelberg.Futures_Studies.forecast.forecast_date
+http://rdf.freebase.com/ns/user.pvonstackelberg.Futures_Studies.forecast.forecast_timeframe
+http://rdf.freebase.com/ns/user.pvonstackelberg.Futures_Studies.issue.date_entered
+http://rdf.freebase.com/ns/user.pvonstackelberg.Futures_Studies.issue.end_timeframe
+http://rdf.freebase.com/ns/user.pvonstackelberg.Futures_Studies.issue.start_timeframe
+http://rdf.freebase.com/ns/user.pvonstackelberg.Futures_Studies.trend.end_timeframe
+http://rdf.freebase.com/ns/user.pvonstackelberg.Futures_Studies.trend.start_timeframe
+http://rdf.freebase.com/ns/user.qjhart.ows.timeobject.time
+http://rdf.freebase.com/ns/user.randy.default_domain.consumer_electronics.release_date
+http://rdf.freebase.com/ns/user.rca.default_domain.us_court_decision.argued
+http://rdf.freebase.com/ns/user.rca.default_domain.us_court_decision.decided
+http://rdf.freebase.com/ns/user.rcheramy.default_domain.hockey_league.founded
+http://rdf.freebase.com/ns/user.rcheramy.default_domain.hockey_season.year
+http://rdf.freebase.com/ns/user.rcheramy.default_domain.nhl_draft.date
+http://rdf.freebase.com/ns/user.rcheramy.default_domain.product.discontinued
+http://rdf.freebase.com/ns/user.rcheramy.default_domain.product.introduced
+http://rdf.freebase.com/ns/user.redpointed.default_domain.climbing_ascents.date
+http://rdf.freebase.com/ns/user.robert.area_codes.area_code.created
+http://rdf.freebase.com/ns/user.robert.default_domain.current_event.marked_as_current_event_on
+http://rdf.freebase.com/ns/user.robert.default_domain.data_load.ended_load
+http://rdf.freebase.com/ns/user.robert.default_domain.data_load.started
+http://rdf.freebase.com/ns/user.robert.default_domain.film_review.when_viewed
+http://rdf.freebase.com/ns/user.robert.default_domain.test_mediator.date
+http://rdf.freebase.com/ns/user.robert.earthquakes.earthquake.date_and_time
+http://rdf.freebase.com/ns/user.robert.earthquakes.qualified_money_value.on_date
+http://rdf.freebase.com/ns/user.robert.mobile_phones.mobile_phone.announced
+http://rdf.freebase.com/ns/user.robert.mobile_phones.mobile_phone.released
+http://rdf.freebase.com/ns/user.robert.performance.performance.date
+http://rdf.freebase.com/ns/user.robert.us_congress.congressional_caucus.founded
+http://rdf.freebase.com/ns/user.robert.us_congress.crp_contribution.election_cycle
+http://rdf.freebase.com/ns/user.robert.x2008_presidential_election.campaign.began_campaign
+http://rdf.freebase.com/ns/user.robert.x2008_presidential_election.campaign.ended_campaign
+http://rdf.freebase.com/ns/user.robert3.default_domain.building.date_opened
+http://rdf.freebase.com/ns/user.robinboast.default_domain.museum_object.collection_date
+http://rdf.freebase.com/ns/user.robinboast.default_domain.museum_object.production_date
+http://rdf.freebase.com/ns/user.sandos.research.research_proj_involvement.end_time
+http://rdf.freebase.com/ns/user.sandos.research.research_proj_involvement.start_time
+http://rdf.freebase.com/ns/user.sandos.social.internet_meme.first_appeared
+http://rdf.freebase.com/ns/user.sandos.spatial.dated_name.date
+http://rdf.freebase.com/ns/user.sandos.temporal.yearly_event.first_year
+http://rdf.freebase.com/ns/user.sandos.temporal.yearly_event.last_year
+http://rdf.freebase.com/ns/user.shubhampatodi.default_domain.shubhgam_patodi.shubham_patodi_s_date_of_birth
+http://rdf.freebase.com/ns/user.skud.boats.vessel.keel_laid
+http://rdf.freebase.com/ns/user.skud.boats.vessel.launched
+http://rdf.freebase.com/ns/user.skud.boats.vessel_class.introduced
+http://rdf.freebase.com/ns/user.skud.boats.vessel_class.obsoleted
+http://rdf.freebase.com/ns/user.skud.default_domain.internet_meme.date_originated
+http://rdf.freebase.com/ns/user.skud.legal.treaty_signature.date
+http://rdf.freebase.com/ns/user.skud.nuclear_weapons.nuclear_test.date
+http://rdf.freebase.com/ns/user.spatialed.spaceflight_copy.rocket.last_flight
+http://rdf.freebase.com/ns/user.spatialed.spaceflight_copy.rocket.maiden_flight
+http://rdf.freebase.com/ns/user.spatialed.spaceflight_copy.satellite.launch_date
+http://rdf.freebase.com/ns/user.spatialed.spaceflight_copy.space_program.completed
+http://rdf.freebase.com/ns/user.spatialed.spaceflight_copy.space_program.started
+http://rdf.freebase.com/ns/user.spencermountain.default_domain.testcvt.startdate
+http://rdf.freebase.com/ns/user.sprocketonline.economics.legislation.date_passed
+http://rdf.freebase.com/ns/user.sprocketonline.economics.legislation.effective_from
+http://rdf.freebase.com/ns/user.squeegy.default_domain.music_performance.date
+http://rdf.freebase.com/ns/user.sterops.accessibility.available_accessible_equipment.weekday_availability_end
+http://rdf.freebase.com/ns/user.sterops.accessibility.available_accessible_equipment.weekday_availability_start
+http://rdf.freebase.com/ns/user.sterops.accessibility.available_accessible_equipment.weekend_availability_end
+http://rdf.freebase.com/ns/user.sterops.accessibility.available_accessible_equipment.weekend_availability_start
+http://rdf.freebase.com/ns/user.stu.default_domain.heavenly_bodies.date_of_discovery
+http://rdf.freebase.com/ns/user.synedra.default_domain.donorschoose_donation.donation_time
+http://rdf.freebase.com/ns/user.synedra.default_domain.donorschoose_project.date_completed
+http://rdf.freebase.com/ns/user.synedra.default_domain.donorschoose_project.date_expiration
+http://rdf.freebase.com/ns/user.synedra.default_domain.donorschoose_project.date_posted
+http://rdf.freebase.com/ns/user.synedra.default_domain.donorschoose_project.date_thank_you_packet_mailed
+http://rdf.freebase.com/ns/user.synedra.didwho.arrest.date
+http://rdf.freebase.com/ns/user.synedra.didwho.divorce.date
+http://rdf.freebase.com/ns/user.synedra.didwho.incarceration.release_date
+http://rdf.freebase.com/ns/user.synedra.didwho.lawsuit.date
+http://rdf.freebase.com/ns/user.synedra.didwho.marriage.date
+http://rdf.freebase.com/ns/user.tadhg.default_domain.group_membership.joined
+http://rdf.freebase.com/ns/user.tadhg.default_domain.group_membership.left_group
+http://rdf.freebase.com/ns/user.tadhg.irish_politics.dail_eireann_constituency.created
+http://rdf.freebase.com/ns/user.tadhg.politics.telection.election_date
+http://rdf.freebase.com/ns/user.techgnostic.default_domain.tv_series_serial.first_episode_broadcast
+http://rdf.freebase.com/ns/user.techgnostic.default_domain.tv_series_serial.last_episode_broadcast
+http://rdf.freebase.com/ns/user.teeler.default_domain.moses3.moses3_a
+http://rdf.freebase.com/ns/user.tfmorris.default_domain.computer.date_decommissioned
+http://rdf.freebase.com/ns/user.tfmorris.default_domain.computer.date_installed
+http://rdf.freebase.com/ns/user.tfmorris.default_domain.document.date
+http://rdf.freebase.com/ns/user.tfmorris.default_domain.family.marriage_date
+http://rdf.freebase.com/ns/user.tfmorris.default_domain.family.marriage_end_date
+http://rdf.freebase.com/ns/user.tfmorris.default_domain.newsgroup.date_created
+http://rdf.freebase.com/ns/user.thadguidry.default_domain.ad_spot.date_first_aired
+http://rdf.freebase.com/ns/user.thadguidry.default_domain.aircraft_model_replica.built_on
+http://rdf.freebase.com/ns/user.thadguidry.default_domain.american_viticultural_area.effective_date
+http://rdf.freebase.com/ns/user.thadguidry.default_domain.generally_accepted_auditing_standard.issued_on
+http://rdf.freebase.com/ns/user.thadguidry.default_domain.synthetic_genome.first_viable_date
+http://rdf.freebase.com/ns/user.thalendar.default_domain.roleplaying_game_edition.introduced
+http://rdf.freebase.com/ns/user.thalendar.default_domain.roleplaying_game_product_edition.publication_date
+http://rdf.freebase.com/ns/user.thinker007.default_domain.song.date
+http://rdf.freebase.com/ns/user.timothyf.default_domain.cub_scout_pack.charter_date
+http://rdf.freebase.com/ns/user.timothyf.default_domain.toy.release_year
+http://rdf.freebase.com/ns/user.timrdf.default_domain.limited_useful_life.useful_on
+http://rdf.freebase.com/ns/user.timrdf.default_domain.operational.operational_as_of
+http://rdf.freebase.com/ns/user.tjgillies.default_domain.x_tjgillies_docs_default_domain_us_state_quarter.release
+http://rdf.freebase.com/ns/user.tjgillies.default_domain.x_tjgillies_docs_default_domain_us_state_quarter.statehood
+http://rdf.freebase.com/ns/user.tlg.tlg.murder.when
+http://rdf.freebase.com/ns/user.tmalaher.default_domain.photograph.date_taken
+http://rdf.freebase.com/ns/user.tpshek.default_domain.salary_change.date_applied
+http://rdf.freebase.com/ns/user.tsegaran.business.health_department_score.date
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.agreement.dateconsumer
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.agreement.dateproducer
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.carrier.dateshipped
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.discount.datebegin
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.discount.dateend
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.events.datebegin
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.events.dateend
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.market_offer.dateposted
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.market_offer.datesold
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.posts.date
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.proposed.date_closed
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.proposed.date_open
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.sla.datebegin
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.sla.dateend
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.sla_consumer_producer.date_approval_consumer
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.sla_consumer_producer.date_approval_producer
+http://rdf.freebase.com/ns/user.uoa_it.uoa_it.uoa_application.purchase_date
+http://rdf.freebase.com/ns/user.vtalwar.default_domain.discontinued_game.date_discontinued
+http://rdf.freebase.com/ns/user.vtalwar.default_domain.logo.held_from
+http://rdf.freebase.com/ns/user.vtalwar.default_domain.logo.held_until
+http://rdf.freebase.com/ns/user.vtalwar.default_domain.unreleased_game.date_of_cancellation
+http://rdf.freebase.com/ns/user.vthung.default_domain.computer.dateofpurchase
+http://rdf.freebase.com/ns/user.wf.shape_note_singing.singing.date
+http://rdf.freebase.com/ns/user.wf.shape_note_singing.tune_sung.date
+http://rdf.freebase.com/ns/user.xandr.scrap.schema.app.lastTimestamp
+http://rdf.freebase.com/ns/user.xibei.default_domain.xibei_type.time
+http://rdf.freebase.com/ns/user.xleioo.winning_night.soccer.date
+http://rdf.freebase.com/ns/user.yuheerov.blogging.blog_entry.date
+http://rdf.freebase.com/ns/user.zsi_editorial.editorial.comment.reviewed
+http://rdf.freebase.com/ns/user.zsi_editorial.editorial.list.reviewed_timestamp
+http://rdf.freebase.com/ns/venture_capital.venture_investment.date
+http://rdf.freebase.com/ns/visual_art.art_period_movement.began_approximately
+http://rdf.freebase.com/ns/visual_art.art_period_movement.ended_approximately
+http://rdf.freebase.com/ns/visual_art.artwork.date_begun
+http://rdf.freebase.com/ns/visual_art.artwork.date_completed
+http://rdf.freebase.com/ns/visual_art.artwork_owner_relationship.date_acquired
+http://rdf.freebase.com/ns/visual_art.artwork_owner_relationship.last_date_owned
+http://rdf.freebase.com/ns/wine.wine.vintage
+http://rdf.freebase.com/ns/base.charlie_southwell.person.date_of_birth
+http://rdf.freebase.com/ns/base.chevva_pradeep.type_enumeration.date_of_birth
+http://rdf.freebase.com/ns/base.feudalism.vassalage.from
+http://rdf.freebase.com/ns/base.ihistory.event.start_date
+http://rdf.freebase.com/ns/base.ihistory.topic.start_date
+http://rdf.freebase.com/ns/base.iraqimusicbase.band_member.date_of_birth
+http://rdf.freebase.com/ns/base.iraqimusicbase.iraqi_person.date_of_birth
+http://rdf.freebase.com/ns/base.kwebbase.kwconnection.from
+http://rdf.freebase.com/ns/base.kwebbase.kwsentence.from
+http://rdf.freebase.com/ns/base.legislation.law.end_date
+http://rdf.freebase.com/ns/base.mediaextended.youtube_channel.start_date
+http://rdf.freebase.com/ns/base.motorcycle.motorcycle_ride_report.end_date
+http://rdf.freebase.com/ns/base.motorsports.circuit.opened
+http://rdf.freebase.com/ns/base.myevents.friend.date_of_birth
+http://rdf.freebase.com/ns/base.patienthealthrecord.phr_record.date_ended
+http://rdf.freebase.com/ns/base.peleton.cycling_team_membership.from
+http://rdf.freebase.com/ns/base.pirates.letter_of_marque.date_ended
+http://rdf.freebase.com/ns/base.sailors.ship_crew_tenure.from
+http://rdf.freebase.com/ns/base.sanfranciscoscene.san_francisco_scene_event.date_ended
+http://rdf.freebase.com/ns/base.schemastaging.holiday_observance_rule.date_ended
+http://rdf.freebase.com/ns/base.scottishclans.scottish_clan_sept.from
+http://rdf.freebase.com/ns/base.sportbase.sport_club_coach.date_of_birth
+http://rdf.freebase.com/ns/base.supertopics.supertopic.start_date
+http://rdf.freebase.com/ns/base.thoroughbredracing.thoroughbred_racehorse.date_of_death
+http://rdf.freebase.com/ns/base.topics.prop.date_of_birth
+http://rdf.freebase.com/ns/base.trixtypes.stat_set.start_date
+http://rdf.freebase.com/ns/base.yalebase.building.opened
+http://rdf.freebase.com/ns/biology.deceased_organism.date_of_death
+http://rdf.freebase.com/ns/biology.organism.date_of_birth
+http://rdf.freebase.com/ns/freebase.apps.hosts.com.freebaseapps.topics.person2.date_of_death
+http://rdf.freebase.com/ns/freebase.apps.hosts.z.appspot.acre.topics.person2.date_of_birth
+http://rdf.freebase.com/ns/people.deceased_person.date_of_death
+http://rdf.freebase.com/ns/people.person.date_of_birth
+http://rdf.freebase.com/ns/projects.project.start_date
+http://rdf.freebase.com/ns/royalty.chivalric_order_position_tenure.from
+http://rdf.freebase.com/ns/user.alexander.misc.murdered_person.date_of_death
+http://rdf.freebase.com/ns/user.bugs.default_domain.x.date_of_birth
+http://rdf.freebase.com/ns/user.dsinclair.default_domain.colony.start
+http://rdf.freebase.com/ns/user.dsinclair.default_domain.former_colony.end
+http://rdf.freebase.com/ns/user.hailey2009.default_domain.room.opened
+http://rdf.freebase.com/ns/user.hds.default_domain.rail_station.opened
+http://rdf.freebase.com/ns/user.jargonjustin.school.lecture.start_date
+http://rdf.freebase.com/ns/user.jasondexter.default_domain.jason_dexter.date_of_birth
+http://rdf.freebase.com/ns/user.jerols.default_domain.historical_event.date_ended
+http://rdf.freebase.com/ns/user.karins.default_domain.teresa_orlowski.date_of_birth
+http://rdf.freebase.com/ns/user.lm5290.default_domain.date.date_of_birth
+http://rdf.freebase.com/ns/user.robert.default_domain.scientologist_actors_2.date_of_birth
+http://rdf.freebase.com/ns/user.robert.world$0027s_tallest.building.from
+http://rdf.freebase.com/ns/user.synedra.didwho.incarceration.start_date
+http://rdf.freebase.com/ns/user.wf.shape_note_singing.singing.end_date
+http://rdf.freebase.com/ns/american_football.football_historical_coach_position.from	http://rdf.freebase.com/ns/american_football.football_historical_coach_position.to
+http://rdf.freebase.com/ns/amusement_parks.disney_ride_ticket_membership.from	http://rdf.freebase.com/ns/amusement_parks.disney_ride_ticket_membership.to
+http://rdf.freebase.com/ns/amusement_parks.park.opened	http://rdf.freebase.com/ns/amusement_parks.park.closed
+http://rdf.freebase.com/ns/amusement_parks.ride.opened	http://rdf.freebase.com/ns/amusement_parks.ride.closed
+http://rdf.freebase.com/ns/architecture.landscape_project.opened	http://rdf.freebase.com/ns/architecture.landscape_project.closed
+http://rdf.freebase.com/ns/architecture.occupancy.from	http://rdf.freebase.com/ns/architecture.occupancy.to
+http://rdf.freebase.com/ns/architecture.ownership.start_date	http://rdf.freebase.com/ns/architecture.ownership.end_date
+http://rdf.freebase.com/ns/architecture.structure.opened	http://rdf.freebase.com/ns/architecture.structure.closed
+http://rdf.freebase.com/ns/automotive.manufacturing_plant_model_relationship.from	http://rdf.freebase.com/ns/automotive.manufacturing_plant_model_relationship.to
+http://rdf.freebase.com/ns/award.category_ceremony_relationship.from	http://rdf.freebase.com/ns/award.category_ceremony_relationship.to
+http://rdf.freebase.com/ns/base.americancivilwar.battle.start_date	http://rdf.freebase.com/ns/base.americancivilwar.battle.end_date
+http://rdf.freebase.com/ns/base.americancivilwar.campaign.start_date	http://rdf.freebase.com/ns/base.americancivilwar.campaign.end_date
+http://rdf.freebase.com/ns/base.americancivilwar.ship_allegiance.from_date	http://rdf.freebase.com/ns/base.americancivilwar.ship_allegiance.to_date
+http://rdf.freebase.com/ns/base.americancomedy.comedian.date_of_birth	http://rdf.freebase.com/ns/base.americancomedy.comedian.date_of_death
+http://rdf.freebase.com/ns/base.americancomedy.comedy_group_membership.start_date	http://rdf.freebase.com/ns/base.americancomedy.comedy_group_membership.end_date
+http://rdf.freebase.com/ns/base.architecture2.architectural_structure_ownership.from	http://rdf.freebase.com/ns/base.architecture2.architectural_structure_ownership.to
+http://rdf.freebase.com/ns/base.architecture2.architectural_structure_use_period.from	http://rdf.freebase.com/ns/base.architecture2.architectural_structure_use_period.to
+http://rdf.freebase.com/ns/base.architecture2.building_tenancy.from	http://rdf.freebase.com/ns/base.architecture2.building_tenancy.to
+http://rdf.freebase.com/ns/base.art_retailer.discount.date_begin	http://rdf.freebase.com/ns/base.art_retailer.discount.date_end
+http://rdf.freebase.com/ns/base.associationfootball.soccer_squad_position.from	http://rdf.freebase.com/ns/base.associationfootball.soccer_squad_position.to
+http://rdf.freebase.com/ns/base.aubreymaturin.crew_membership.from_date	http://rdf.freebase.com/ns/base.aubreymaturin.crew_membership.to_date
+http://rdf.freebase.com/ns/base.aubreymaturin.historical_event.start_date	http://rdf.freebase.com/ns/base.aubreymaturin.historical_event.end_date
+http://rdf.freebase.com/ns/base.aubreymaturin.real_person.date_of_birth	http://rdf.freebase.com/ns/base.aubreymaturin.real_person.date_of_death
+http://rdf.freebase.com/ns/base.banned.exiled.from	http://rdf.freebase.com/ns/base.banned.exiled.to
+http://rdf.freebase.com/ns/base.britishpubs.pub_owner_tenure.from	http://rdf.freebase.com/ns/base.britishpubs.pub_owner_tenure.to
+http://rdf.freebase.com/ns/base.brothels.prostitute_employment_tenure.from	http://rdf.freebase.com/ns/base.brothels.prostitute_employment_tenure.to
+http://rdf.freebase.com/ns/base.business_report.dated_financial_reporting_value.start_date	http://rdf.freebase.com/ns/base.business_report.dated_financial_reporting_value.end_date
+http://rdf.freebase.com/ns/base.campaigns.activist_campaign.start_date	http://rdf.freebase.com/ns/base.campaigns.activist_campaign.end_date
+http://rdf.freebase.com/ns/base.cars_refactor.company_make_relationship.from	http://rdf.freebase.com/ns/base.cars_refactor.company_make_relationship.to
+http://rdf.freebase.com/ns/base.cars_refactor.plant_model_year_relationship.from	http://rdf.freebase.com/ns/base.cars_refactor.plant_model_year_relationship.to
+http://rdf.freebase.com/ns/base.casinos.casino.opened	http://rdf.freebase.com/ns/base.casinos.casino.closed
+http://rdf.freebase.com/ns/base.cdnpolitics.lobbying_session.start_date	http://rdf.freebase.com/ns/base.cdnpolitics.lobbying_session.end_date
+http://rdf.freebase.com/ns/base.cdnpolitics.parliamentary_session.date_began	http://rdf.freebase.com/ns/base.cdnpolitics.parliamentary_session.date_ended
+http://rdf.freebase.com/ns/base.celeb.lived_with.start	http://rdf.freebase.com/ns/base.celeb.lived_with.end
+http://rdf.freebase.com/ns/base.change.name_change.from	http://rdf.freebase.com/ns/base.change.name_change.to
+http://rdf.freebase.com/ns/base.clinicaltrials.clinical_trials_sponsorship.from	http://rdf.freebase.com/ns/base.clinicaltrials.clinical_trials_sponsorship.to
+http://rdf.freebase.com/ns/base.collectives.armed_force_alliance_tenure.from	http://rdf.freebase.com/ns/base.collectives.armed_force_alliance_tenure.to
+http://rdf.freebase.com/ns/base.collectives.collective_membership.from	http://rdf.freebase.com/ns/base.collectives.collective_membership.to
+http://rdf.freebase.com/ns/base.coloniesandempire.colony.start	http://rdf.freebase.com/ns/base.coloniesandempire.colony.end
+http://rdf.freebase.com/ns/base.column.column_author_duration.from	http://rdf.freebase.com/ns/base.column.column_author_duration.to
+http://rdf.freebase.com/ns/base.column.column_frequency_duration.from	http://rdf.freebase.com/ns/base.column.column_frequency_duration.to
+http://rdf.freebase.com/ns/base.column.column_periodical_duration.date_began	http://rdf.freebase.com/ns/base.column.column_periodical_duration.date_ended
+http://rdf.freebase.com/ns/base.column.column_syndicate_duration.from	http://rdf.freebase.com/ns/base.column.column_syndicate_duration.to
+http://rdf.freebase.com/ns/base.conservationaction.participation.start	http://rdf.freebase.com/ns/base.conservationaction.participation.end
+http://rdf.freebase.com/ns/base.conservationaction.program_coordination.start	http://rdf.freebase.com/ns/base.conservationaction.program_coordination.end
+http://rdf.freebase.com/ns/base.conservationaction.program_financial_support.start	http://rdf.freebase.com/ns/base.conservationaction.program_financial_support.end
+http://rdf.freebase.com/ns/base.convictsydney.building.construction_began	http://rdf.freebase.com/ns/base.convictsydney.building.construction_ended
+http://rdf.freebase.com/ns/base.convictsydney.governor.from	http://rdf.freebase.com/ns/base.convictsydney.governor.to
+http://rdf.freebase.com/ns/base.convictsydney.residence_period.from	http://rdf.freebase.com/ns/base.convictsydney.residence_period.to
+http://rdf.freebase.com/ns/base.convictsydney.resident.date_of_birth	http://rdf.freebase.com/ns/base.convictsydney.resident.date_of_death
+http://rdf.freebase.com/ns/base.correctedassumptions.corrected_is_a_assumption.from	http://rdf.freebase.com/ns/base.correctedassumptions.corrected_is_a_assumption.to
+http://rdf.freebase.com/ns/base.crime.chief_of_police_tenure.from_date	http://rdf.freebase.com/ns/base.crime.chief_of_police_tenure.to_date
+http://rdf.freebase.com/ns/base.dancegroups.dance_group_membership.period_start	http://rdf.freebase.com/ns/base.dancegroups.dance_group_membership.period_end
+http://rdf.freebase.com/ns/base.disaster2.state_of_emergency_declaration.from_date	http://rdf.freebase.com/ns/base.disaster2.state_of_emergency_declaration.to_date
+http://rdf.freebase.com/ns/base.dss_domain.mo.date_begin	http://rdf.freebase.com/ns/base.dss_domain.mo.date_end
+http://rdf.freebase.com/ns/base.dss_domain.sla_dss.date_begin	http://rdf.freebase.com/ns/base.dss_domain.sla_dss.date_end
+http://rdf.freebase.com/ns/base.educationextended.residential_gender.from	http://rdf.freebase.com/ns/base.educationextended.residential_gender.to
+http://rdf.freebase.com/ns/base.engineering.canal.opened	http://rdf.freebase.com/ns/base.engineering.canal.closed
+http://rdf.freebase.com/ns/base.engineering.engineering_project_phase.from	http://rdf.freebase.com/ns/base.engineering.engineering_project_phase.to
+http://rdf.freebase.com/ns/base.engineeringdraft.component_manufacturing.from	http://rdf.freebase.com/ns/base.engineeringdraft.component_manufacturing.to
+http://rdf.freebase.com/ns/base.engineeringdraft.manufacturing_plant_operation.from	http://rdf.freebase.com/ns/base.engineeringdraft.manufacturing_plant_operation.to
+http://rdf.freebase.com/ns/base.engineeringdraft.manufacturing_plant_production.from	http://rdf.freebase.com/ns/base.engineeringdraft.manufacturing_plant_production.to
+http://rdf.freebase.com/ns/base.esports.e_sports_roster_position.from	http://rdf.freebase.com/ns/base.esports.e_sports_roster_position.to
+http://rdf.freebase.com/ns/base.famouspets.pet_ownership.from	http://rdf.freebase.com/ns/base.famouspets.pet_ownership.to
+http://rdf.freebase.com/ns/base.feudalism.fief_ownership.from	http://rdf.freebase.com/ns/base.feudalism.fief_ownership.to
+http://rdf.freebase.com/ns/base.fight.sports_official_tenure.from_date	http://rdf.freebase.com/ns/base.fight.sports_official_tenure.to_date
+http://rdf.freebase.com/ns/base.folklore.event_in_mythology.start_date	http://rdf.freebase.com/ns/base.folklore.event_in_mythology.end_date
+http://rdf.freebase.com/ns/base.formula1.formula_1_season.start_date	http://rdf.freebase.com/ns/base.formula1.formula_1_season.end_date
+http://rdf.freebase.com/ns/base.formula1.formula_1_team_member.from	http://rdf.freebase.com/ns/base.formula1.formula_1_team_member.to
+http://rdf.freebase.com/ns/base.gender.personal_gender_identity.start_date	http://rdf.freebase.com/ns/base.gender.personal_gender_identity.end_date
+http://rdf.freebase.com/ns/base.goodrelations.offer.valid_from	http://rdf.freebase.com/ns/base.goodrelations.offer.valid_to
+http://rdf.freebase.com/ns/base.government2.elected_government_positions_held.from	http://rdf.freebase.com/ns/base.government2.elected_government_positions_held.to
+http://rdf.freebase.com/ns/base.government2.legislative_position_held.from	http://rdf.freebase.com/ns/base.government2.legislative_position_held.to
+http://rdf.freebase.com/ns/base.handball.handball_roster_position.from	http://rdf.freebase.com/ns/base.handball.handball_roster_position.to
+http://rdf.freebase.com/ns/base.harvard.house_master_tenure.start_date	http://rdf.freebase.com/ns/base.harvard.house_master_tenure.end_date
+http://rdf.freebase.com/ns/base.horseracing.racecourse_horse_race_dates.from_date	http://rdf.freebase.com/ns/base.horseracing.racecourse_horse_race_dates.to_date
+http://rdf.freebase.com/ns/base.hotelbooking.stay.start	http://rdf.freebase.com/ns/base.hotelbooking.stay.end
+http://rdf.freebase.com/ns/base.iceandfire.house_lordship.start_date	http://rdf.freebase.com/ns/base.iceandfire.house_lordship.end_date
+http://rdf.freebase.com/ns/base.iceandfire.house_weapon_stint.from	http://rdf.freebase.com/ns/base.iceandfire.house_weapon_stint.to
+http://rdf.freebase.com/ns/base.iceandfire.marriage.from	http://rdf.freebase.com/ns/base.iceandfire.marriage.to
+http://rdf.freebase.com/ns/base.iceandfire.person.date_of_birth	http://rdf.freebase.com/ns/base.iceandfire.person.date_of_death
+http://rdf.freebase.com/ns/base.iceandfire.possession.from	http://rdf.freebase.com/ns/base.iceandfire.possession.to
+http://rdf.freebase.com/ns/base.intellectualproperty.intellectual_property_owner.from_date	http://rdf.freebase.com/ns/base.intellectualproperty.intellectual_property_owner.to_date
+http://rdf.freebase.com/ns/base.jewishcommunities.jewish_cemetery_use.from	http://rdf.freebase.com/ns/base.jewishcommunities.jewish_cemetery_use.to
+http://rdf.freebase.com/ns/base.jewishcommunities.jewish_community_existence_period.from	http://rdf.freebase.com/ns/base.jewishcommunities.jewish_community_existence_period.to
+http://rdf.freebase.com/ns/base.jewishcommunities.synagogue_use.from	http://rdf.freebase.com/ns/base.jewishcommunities.synagogue_use.to
+http://rdf.freebase.com/ns/base.jewishpress.responsibility.from	http://rdf.freebase.com/ns/base.jewishpress.responsibility.to
+http://rdf.freebase.com/ns/base.killers.serial_killing_period.period_start	http://rdf.freebase.com/ns/base.killers.serial_killing_period.period_end
+http://rdf.freebase.com/ns/base.lewisandclark.places_eastward.from	http://rdf.freebase.com/ns/base.lewisandclark.places_eastward.to
+http://rdf.freebase.com/ns/base.lewisandclark.places_westward.from	http://rdf.freebase.com/ns/base.lewisandclark.places_westward.to
+http://rdf.freebase.com/ns/base.livemusic.concert.start_date	http://rdf.freebase.com/ns/base.livemusic.concert.end_date
+http://rdf.freebase.com/ns/base.livemusic.concert_performance.start_date	http://rdf.freebase.com/ns/base.livemusic.concert_performance.end_date
+http://rdf.freebase.com/ns/base.markets.financial_market_operator_tenure.from	http://rdf.freebase.com/ns/base.markets.financial_market_operator_tenure.to
+http://rdf.freebase.com/ns/base.mediaextended.film_ranch_owner.from	http://rdf.freebase.com/ns/base.mediaextended.film_ranch_owner.to
+http://rdf.freebase.com/ns/base.mladraft.library_system_tenure.from_date	http://rdf.freebase.com/ns/base.mladraft.library_system_tenure.to_date
+http://rdf.freebase.com/ns/base.mladraft.mla_location_tenure.from_date	http://rdf.freebase.com/ns/base.mladraft.mla_location_tenure.to_date
+http://rdf.freebase.com/ns/base.motorcycle.internet_forum_administration.start	http://rdf.freebase.com/ns/base.motorcycle.internet_forum_administration.end
+http://rdf.freebase.com/ns/base.musicfestival.artist_festival_relationship.from	http://rdf.freebase.com/ns/base.musicfestival.artist_festival_relationship.to
+http://rdf.freebase.com/ns/base.mystery.cryptid_expedition.start_date	http://rdf.freebase.com/ns/base.mystery.cryptid_expedition.end_date
+http://rdf.freebase.com/ns/base.nationalbridgeinventory.bridge_maintenance_tenure.from	http://rdf.freebase.com/ns/base.nationalbridgeinventory.bridge_maintenance_tenure.to
+http://rdf.freebase.com/ns/base.nightclubs.nightclub_residency.from	http://rdf.freebase.com/ns/base.nightclubs.nightclub_residency.to
+http://rdf.freebase.com/ns/base.numismatics.obverse_legend.from	http://rdf.freebase.com/ns/base.numismatics.obverse_legend.to
+http://rdf.freebase.com/ns/base.peleton.cycling_team_based_at.from	http://rdf.freebase.com/ns/base.peleton.cycling_team_based_at.to
+http://rdf.freebase.com/ns/base.peleton.historical_cycling_roster_position.from	http://rdf.freebase.com/ns/base.peleton.historical_cycling_roster_position.to
+http://rdf.freebase.com/ns/base.plaques.blue_plaque_dedication.from	http://rdf.freebase.com/ns/base.plaques.blue_plaque_dedication.to
+http://rdf.freebase.com/ns/base.playball.naming_information.from	http://rdf.freebase.com/ns/base.playball.naming_information.to
+http://rdf.freebase.com/ns/base.popstra.dated.start_date	http://rdf.freebase.com/ns/base.popstra.dated.end_date
+http://rdf.freebase.com/ns/base.popstra.friendship.start_date	http://rdf.freebase.com/ns/base.popstra.friendship.end_date
+http://rdf.freebase.com/ns/base.popstra.incarceration.start_date	http://rdf.freebase.com/ns/base.popstra.incarceration.end_date
+http://rdf.freebase.com/ns/base.popstra.legal_dispute.start_date	http://rdf.freebase.com/ns/base.popstra.legal_dispute.end_date
+http://rdf.freebase.com/ns/base.popstra.lived_with.start_date	http://rdf.freebase.com/ns/base.popstra.lived_with.end_date
+http://rdf.freebase.com/ns/base.popstra.paid_support.start_date	http://rdf.freebase.com/ns/base.popstra.paid_support.end_date
+http://rdf.freebase.com/ns/base.popstra.rehab_stay.start_date	http://rdf.freebase.com/ns/base.popstra.rehab_stay.end_date
+http://rdf.freebase.com/ns/base.popstra.religion_choice.start_date	http://rdf.freebase.com/ns/base.popstra.religion_choice.end_date
+http://rdf.freebase.com/ns/base.popstra.substance_abuse.start_date	http://rdf.freebase.com/ns/base.popstra.substance_abuse.end_date
+http://rdf.freebase.com/ns/base.popstra.support.start_date	http://rdf.freebase.com/ns/base.popstra.support.end_date
+http://rdf.freebase.com/ns/base.popstra.vacation_choice.start_date	http://rdf.freebase.com/ns/base.popstra.vacation_choice.end_date
+http://rdf.freebase.com/ns/base.prison.imprisonment.from	http://rdf.freebase.com/ns/base.prison.imprisonment.to
+http://rdf.freebase.com/ns/base.prison.prison.opened	http://rdf.freebase.com/ns/base.prison.prison.closed
+http://rdf.freebase.com/ns/base.refugee.camp_security_provision.from	http://rdf.freebase.com/ns/base.refugee.camp_security_provision.to
+http://rdf.freebase.com/ns/base.refugee.refugee_camp.opened	http://rdf.freebase.com/ns/base.refugee.refugee_camp.closed
+http://rdf.freebase.com/ns/base.religiousjurisdiction.religious_leader_appointment.from	http://rdf.freebase.com/ns/base.religiousjurisdiction.religious_leader_appointment.to
+http://rdf.freebase.com/ns/base.represent.agent_agency_relationship.from	http://rdf.freebase.com/ns/base.represent.agent_agency_relationship.to
+http://rdf.freebase.com/ns/base.represent.agent_celebrity_representation.from	http://rdf.freebase.com/ns/base.represent.agent_celebrity_representation.to
+http://rdf.freebase.com/ns/base.retail.retail_inventory_line.from	http://rdf.freebase.com/ns/base.retail.retail_inventory_line.to
+http://rdf.freebase.com/ns/base.rollerderby.coach_performance.from	http://rdf.freebase.com/ns/base.rollerderby.coach_performance.to
+http://rdf.freebase.com/ns/base.rollerderby.official_performance.from	http://rdf.freebase.com/ns/base.rollerderby.official_performance.to
+http://rdf.freebase.com/ns/base.rollerderby.team_performance.from	http://rdf.freebase.com/ns/base.rollerderby.team_performance.to
+http://rdf.freebase.com/ns/base.rugby.rugby_club_tenure.from_date	http://rdf.freebase.com/ns/base.rugby.rugby_club_tenure.to_date
+http://rdf.freebase.com/ns/base.rugby.rugby_coaching_tenure.from_date	http://rdf.freebase.com/ns/base.rugby.rugby_coaching_tenure.to_date
+http://rdf.freebase.com/ns/base.saints.saint.date_of_birth	http://rdf.freebase.com/ns/base.saints.saint.date_of_death
+http://rdf.freebase.com/ns/base.schemastaging.book_author_credit.from	http://rdf.freebase.com/ns/base.schemastaging.book_author_credit.to
+http://rdf.freebase.com/ns/base.schemastaging.coach_athlete_relationship.from	http://rdf.freebase.com/ns/base.schemastaging.coach_athlete_relationship.to
+http://rdf.freebase.com/ns/base.schemastaging.comedy_group_membership.from	http://rdf.freebase.com/ns/base.schemastaging.comedy_group_membership.to
+http://rdf.freebase.com/ns/base.schemastaging.cricket_roster.from	http://rdf.freebase.com/ns/base.schemastaging.cricket_roster.to
+http://rdf.freebase.com/ns/base.schemastaging.education_board_school_relationship.from	http://rdf.freebase.com/ns/base.schemastaging.education_board_school_relationship.to
+http://rdf.freebase.com/ns/base.schemastaging.election_campaign_extra.start_date	http://rdf.freebase.com/ns/base.schemastaging.election_campaign_extra.end_date
+http://rdf.freebase.com/ns/base.schemastaging.golfer_caddie_relationship.from	http://rdf.freebase.com/ns/base.schemastaging.golfer_caddie_relationship.to
+http://rdf.freebase.com/ns/base.schemastaging.heya_wrestler_relationship.from	http://rdf.freebase.com/ns/base.schemastaging.heya_wrestler_relationship.to
+http://rdf.freebase.com/ns/base.schemastaging.holiday_occurrence.start	http://rdf.freebase.com/ns/base.schemastaging.holiday_occurrence.end
+http://rdf.freebase.com/ns/base.schemastaging.military_unit_posting.from	http://rdf.freebase.com/ns/base.schemastaging.military_unit_posting.to
+http://rdf.freebase.com/ns/base.schemastaging.previous_name.from	http://rdf.freebase.com/ns/base.schemastaging.previous_name.to
+http://rdf.freebase.com/ns/base.schemastaging.sports_team_manager_tenure.from	http://rdf.freebase.com/ns/base.schemastaging.sports_team_manager_tenure.to
+http://rdf.freebase.com/ns/base.schemastaging.sumo_wrestler_division_relationship.from	http://rdf.freebase.com/ns/base.schemastaging.sumo_wrestler_division_relationship.to
+http://rdf.freebase.com/ns/base.schemastaging.sumo_wrestler_rank_relationship.from	http://rdf.freebase.com/ns/base.schemastaging.sumo_wrestler_rank_relationship.to
+http://rdf.freebase.com/ns/base.schemastaging.team_training_ground_relationship.from	http://rdf.freebase.com/ns/base.schemastaging.team_training_ground_relationship.to
+http://rdf.freebase.com/ns/base.schemastaging.written_work_author_credit.from	http://rdf.freebase.com/ns/base.schemastaging.written_work_author_credit.to
+http://rdf.freebase.com/ns/base.scottishclans.scottish_clan_status_period.from	http://rdf.freebase.com/ns/base.scottishclans.scottish_clan_status_period.to
+http://rdf.freebase.com/ns/base.skateboarding.brand_distribution_relationship.from	http://rdf.freebase.com/ns/base.skateboarding.brand_distribution_relationship.to
+http://rdf.freebase.com/ns/base.spabase.spa_operator_tenure.from	http://rdf.freebase.com/ns/base.spabase.spa_operator_tenure.to
+http://rdf.freebase.com/ns/base.sportssandbox.sports_team_roster.from	http://rdf.freebase.com/ns/base.sportssandbox.sports_team_roster.to
+http://rdf.freebase.com/ns/base.stage_performance.performance_role.from	http://rdf.freebase.com/ns/base.stage_performance.performance_role.to
+http://rdf.freebase.com/ns/base.stage_performance.production_venue_relationship.start_date	http://rdf.freebase.com/ns/base.stage_performance.production_venue_relationship.end_date
+http://rdf.freebase.com/ns/base.survivor.filming_dates.start	http://rdf.freebase.com/ns/base.survivor.filming_dates.end
+http://rdf.freebase.com/ns/base.tallships.tall_ship_event_instance.start_date	http://rdf.freebase.com/ns/base.tallships.tall_ship_event_instance.end_date
+http://rdf.freebase.com/ns/base.tatort.tatort_team.from	http://rdf.freebase.com/ns/base.tatort.tatort_team.to
+http://rdf.freebase.com/ns/base.technologyofdoing.mission_statement.from	http://rdf.freebase.com/ns/base.technologyofdoing.mission_statement.to
+http://rdf.freebase.com/ns/base.testmatchspecial.test_match_special_commentary_relationship.start	http://rdf.freebase.com/ns/base.testmatchspecial.test_match_special_commentary_relationship.end
+http://rdf.freebase.com/ns/base.thebigpitch.promoted_product.from	http://rdf.freebase.com/ns/base.thebigpitch.promoted_product.to
+http://rdf.freebase.com/ns/base.theosbornboysaregrowing.trip.from	http://rdf.freebase.com/ns/base.theosbornboysaregrowing.trip.to
+http://rdf.freebase.com/ns/base.thoroughbredracing.horse_owner_relationship.start_date	http://rdf.freebase.com/ns/base.thoroughbredracing.horse_owner_relationship.end_date
+http://rdf.freebase.com/ns/base.thoroughbredracing.horse_trainer_relationship.start_date	http://rdf.freebase.com/ns/base.thoroughbredracing.horse_trainer_relationship.end_date
+http://rdf.freebase.com/ns/base.ultimate.ultimate_historical_roster_position.from	http://rdf.freebase.com/ns/base.ultimate.ultimate_historical_roster_position.to
+http://rdf.freebase.com/ns/base.unitednations.united_nations_body_head_tenure.from	http://rdf.freebase.com/ns/base.unitednations.united_nations_body_head_tenure.to
+http://rdf.freebase.com/ns/base.unitednations.united_nations_body_membership.from	http://rdf.freebase.com/ns/base.unitednations.united_nations_body_membership.to
+http://rdf.freebase.com/ns/base.visleg.collaborative_participation.from	http://rdf.freebase.com/ns/base.visleg.collaborative_participation.to
+http://rdf.freebase.com/ns/base.webvideo.internet_video_season.from	http://rdf.freebase.com/ns/base.webvideo.internet_video_season.to
+http://rdf.freebase.com/ns/base.wrestling.championship_title_reign.from	http://rdf.freebase.com/ns/base.wrestling.championship_title_reign.to
+http://rdf.freebase.com/ns/base.x2010fifaworldcupsouthafrica.tournament_date.from	http://rdf.freebase.com/ns/base.x2010fifaworldcupsouthafrica.tournament_date.to
+http://rdf.freebase.com/ns/base.yalebase.comedy_group_membership.start	http://rdf.freebase.com/ns/base.yalebase.comedy_group_membership.end
+http://rdf.freebase.com/ns/base.yalebase.person.date_of_birth	http://rdf.freebase.com/ns/base.yalebase.person.date_of_death
+http://rdf.freebase.com/ns/baseball.baseball_historical_managerial_position.from	http://rdf.freebase.com/ns/baseball.baseball_historical_managerial_position.to
+http://rdf.freebase.com/ns/baseball.historical_coaching_tenure.from	http://rdf.freebase.com/ns/baseball.historical_coaching_tenure.to
+http://rdf.freebase.com/ns/basketball.basketball_historical_coach_position.from	http://rdf.freebase.com/ns/basketball.basketball_historical_coach_position.to
+http://rdf.freebase.com/ns/biology.animal_ownership.from	http://rdf.freebase.com/ns/biology.animal_ownership.to
+http://rdf.freebase.com/ns/biology.breed_registration.from	http://rdf.freebase.com/ns/biology.breed_registration.to
+http://rdf.freebase.com/ns/boats.ship_ownership.from_date	http://rdf.freebase.com/ns/boats.ship_ownership.to_date
+http://rdf.freebase.com/ns/boats.warship_service_period.start_date	http://rdf.freebase.com/ns/boats.warship_service_period.end_date
+http://rdf.freebase.com/ns/book.editorial_tenure.from	http://rdf.freebase.com/ns/book.editorial_tenure.to
+http://rdf.freebase.com/ns/book.periodical_format_period.from	http://rdf.freebase.com/ns/book.periodical_format_period.to
+http://rdf.freebase.com/ns/book.periodical_frequency.from	http://rdf.freebase.com/ns/book.periodical_frequency.to
+http://rdf.freebase.com/ns/book.periodical_publisher_period.from	http://rdf.freebase.com/ns/book.periodical_publisher_period.to
+http://rdf.freebase.com/ns/book.place_of_publication_period.from	http://rdf.freebase.com/ns/book.place_of_publication_period.to
+http://rdf.freebase.com/ns/book.publisher_imprint_tenure.from	http://rdf.freebase.com/ns/book.publisher_imprint_tenure.to
+http://rdf.freebase.com/ns/boxing.boxing_title_tenure.from	http://rdf.freebase.com/ns/boxing.boxing_title_tenure.to
+http://rdf.freebase.com/ns/broadcast.callsign_duration.from_date	http://rdf.freebase.com/ns/broadcast.callsign_duration.to_date
+http://rdf.freebase.com/ns/broadcast.radio_affiliation_duration.from_date	http://rdf.freebase.com/ns/broadcast.radio_affiliation_duration.to_date
+http://rdf.freebase.com/ns/broadcast.tv_affiliation_duration.from_date	http://rdf.freebase.com/ns/broadcast.tv_affiliation_duration.to_date
+http://rdf.freebase.com/ns/broadcast.tv_channel.from	http://rdf.freebase.com/ns/broadcast.tv_channel.to
+http://rdf.freebase.com/ns/business.asset_ownership.from	http://rdf.freebase.com/ns/business.asset_ownership.to
+http://rdf.freebase.com/ns/business.brand_colors.from_date	http://rdf.freebase.com/ns/business.brand_colors.to_date
+http://rdf.freebase.com/ns/business.brand_slogan.from_date	http://rdf.freebase.com/ns/business.brand_slogan.to_date
+http://rdf.freebase.com/ns/business.company_brand_relationship.from_date	http://rdf.freebase.com/ns/business.company_brand_relationship.to_date
+http://rdf.freebase.com/ns/business.company_name_change.start_date	http://rdf.freebase.com/ns/business.company_name_change.end_date
+http://rdf.freebase.com/ns/business.company_product_line_relationship.from_date	http://rdf.freebase.com/ns/business.company_product_line_relationship.to_date
+http://rdf.freebase.com/ns/business.company_product_relationship.from_date	http://rdf.freebase.com/ns/business.company_product_relationship.to_date
+http://rdf.freebase.com/ns/business.employment_tenure.from	http://rdf.freebase.com/ns/business.employment_tenure.to
+http://rdf.freebase.com/ns/business.product_endorsement.from	http://rdf.freebase.com/ns/business.product_endorsement.to
+http://rdf.freebase.com/ns/business.sponsorship.from	http://rdf.freebase.com/ns/business.sponsorship.to
+http://rdf.freebase.com/ns/business.stock_ticker_symbol.start_date	http://rdf.freebase.com/ns/business.stock_ticker_symbol.end_date
+http://rdf.freebase.com/ns/celebrities.romantic_relationship.start_date	http://rdf.freebase.com/ns/celebrities.romantic_relationship.end_date
+http://rdf.freebase.com/ns/celebrities.sexual_orientation_phase.start	http://rdf.freebase.com/ns/celebrities.sexual_orientation_phase.end
+http://rdf.freebase.com/ns/celebrities.substance_abuse_problem.start	http://rdf.freebase.com/ns/celebrities.substance_abuse_problem.end
+http://rdf.freebase.com/ns/comedy.comedy_group_membership.from	http://rdf.freebase.com/ns/comedy.comedy_group_membership.to
+http://rdf.freebase.com/ns/comic_strips.comic_strip_creator_duration.from	http://rdf.freebase.com/ns/comic_strips.comic_strip_creator_duration.to
+http://rdf.freebase.com/ns/comic_strips.comic_strip_syndicate_duration.from	http://rdf.freebase.com/ns/comic_strips.comic_strip_syndicate_duration.to
+http://rdf.freebase.com/ns/cricket.cricket_coach_tenure.start_date	http://rdf.freebase.com/ns/cricket.cricket_coach_tenure.end_date
+http://rdf.freebase.com/ns/cricket.cricket_umpire_panel_membership.start	http://rdf.freebase.com/ns/cricket.cricket_umpire_panel_membership.end
+http://rdf.freebase.com/ns/dining.restaurant_chef_association.from_date	http://rdf.freebase.com/ns/dining.restaurant_chef_association.to_date
+http://rdf.freebase.com/ns/education.academic_post.from	http://rdf.freebase.com/ns/education.academic_post.to
+http://rdf.freebase.com/ns/education.education.start_date	http://rdf.freebase.com/ns/education.education.end_date
+http://rdf.freebase.com/ns/education.gender_enrollment.from	http://rdf.freebase.com/ns/education.gender_enrollment.to
+http://rdf.freebase.com/ns/fashion.designer_label_association.from_date	http://rdf.freebase.com/ns/fashion.designer_label_association.to_date
+http://rdf.freebase.com/ns/film.film_festival_sponsorship.from	http://rdf.freebase.com/ns/film.film_festival_sponsorship.to
+http://rdf.freebase.com/ns/finance.exchange_operator_relationship.from	http://rdf.freebase.com/ns/finance.exchange_operator_relationship.to
+http://rdf.freebase.com/ns/food.licensee_tenure.from	http://rdf.freebase.com/ns/food.licensee_tenure.to
+http://rdf.freebase.com/ns/government.electoral_college_elected_office.from	http://rdf.freebase.com/ns/government.electoral_college_elected_office.to
+http://rdf.freebase.com/ns/government.government_position_held.from	http://rdf.freebase.com/ns/government.government_position_held.to
+http://rdf.freebase.com/ns/government.legislative_committee_membership.start_date	http://rdf.freebase.com/ns/government.legislative_committee_membership.end_date
+http://rdf.freebase.com/ns/government.legislative_session.date_began	http://rdf.freebase.com/ns/government.legislative_session.date_ended
+http://rdf.freebase.com/ns/government.political_party_tenure.from	http://rdf.freebase.com/ns/government.political_party_tenure.to
+http://rdf.freebase.com/ns/internet.website_ownership.from	http://rdf.freebase.com/ns/internet.website_ownership.to
+http://rdf.freebase.com/ns/law.court_courthouse_relationship.from_date	http://rdf.freebase.com/ns/law.court_courthouse_relationship.to_date
+http://rdf.freebase.com/ns/law.judicial_tenure.from_date	http://rdf.freebase.com/ns/law.judicial_tenure.to_date
+http://rdf.freebase.com/ns/location.administrative_division_capital_relationship.from	http://rdf.freebase.com/ns/location.administrative_division_capital_relationship.to
+http://rdf.freebase.com/ns/measurement_unit.time_interval.start	http://rdf.freebase.com/ns/measurement_unit.time_interval.end
+http://rdf.freebase.com/ns/medicine.hospital_ownership.start_date	http://rdf.freebase.com/ns/medicine.hospital_ownership.end_date
+http://rdf.freebase.com/ns/medicine.medical_trial.start_date	http://rdf.freebase.com/ns/medicine.medical_trial.end_date
+http://rdf.freebase.com/ns/military.military_post_use.from_date	http://rdf.freebase.com/ns/military.military_post_use.to_date
+http://rdf.freebase.com/ns/military.military_posting.from_date	http://rdf.freebase.com/ns/military.military_posting.to_date
+http://rdf.freebase.com/ns/military.military_service.from_date	http://rdf.freebase.com/ns/military.military_service.to_date
+http://rdf.freebase.com/ns/music.concert.start_date	http://rdf.freebase.com/ns/music.concert.end_date
+http://rdf.freebase.com/ns/music.conducting_tenure.from	http://rdf.freebase.com/ns/music.conducting_tenure.to
+http://rdf.freebase.com/ns/music.group_membership.start	http://rdf.freebase.com/ns/music.group_membership.end
+http://rdf.freebase.com/ns/opera.opera_production_staff_gig.from	http://rdf.freebase.com/ns/opera.opera_production_staff_gig.to
+http://rdf.freebase.com/ns/opera.opera_production_venue_relationship.start_date	http://rdf.freebase.com/ns/opera.opera_production_venue_relationship.end_date
+http://rdf.freebase.com/ns/opera.opera_role.from	http://rdf.freebase.com/ns/opera.opera_role.to
+http://rdf.freebase.com/ns/organization.leadership.from	http://rdf.freebase.com/ns/organization.leadership.to
+http://rdf.freebase.com/ns/organization.organization_board_membership.from	http://rdf.freebase.com/ns/organization.organization_board_membership.to
+http://rdf.freebase.com/ns/organization.organization_committee_membership.from	http://rdf.freebase.com/ns/organization.organization_committee_membership.to
+http://rdf.freebase.com/ns/organization.organization_membership.from	http://rdf.freebase.com/ns/organization.organization_membership.to
+http://rdf.freebase.com/ns/organization.organization_relationship.from	http://rdf.freebase.com/ns/organization.organization_relationship.to
+http://rdf.freebase.com/ns/people.appointment_nomination.from	http://rdf.freebase.com/ns/people.appointment_nomination.to
+http://rdf.freebase.com/ns/people.group_membership.from	http://rdf.freebase.com/ns/people.group_membership.to
+http://rdf.freebase.com/ns/people.marriage.from	http://rdf.freebase.com/ns/people.marriage.to
+http://rdf.freebase.com/ns/people.place_lived.start_date	http://rdf.freebase.com/ns/people.place_lived.end_date
+http://rdf.freebase.com/ns/projects.project_participation.from_date	http://rdf.freebase.com/ns/projects.project_participation.to_date
+http://rdf.freebase.com/ns/rail.locomotive_class_operator_relationship.from_date	http://rdf.freebase.com/ns/rail.locomotive_class_operator_relationship.to_date
+http://rdf.freebase.com/ns/rail.locomotive_ownership.from_date	http://rdf.freebase.com/ns/rail.locomotive_ownership.to_date
+http://rdf.freebase.com/ns/rail.railway.opened	http://rdf.freebase.com/ns/rail.railway.closed
+http://rdf.freebase.com/ns/rail.railway_gauge_relationship.from_date	http://rdf.freebase.com/ns/rail.railway_gauge_relationship.to_date
+http://rdf.freebase.com/ns/rail.railway_operator_relationship.from_date	http://rdf.freebase.com/ns/rail.railway_operator_relationship.to_date
+http://rdf.freebase.com/ns/rail.railway_type_relationship.from_date	http://rdf.freebase.com/ns/rail.railway_type_relationship.to_date
+http://rdf.freebase.com/ns/rail.rolling_stock_tenure.from_date	http://rdf.freebase.com/ns/rail.rolling_stock_tenure.to_date
+http://rdf.freebase.com/ns/religion.place_of_worship_historical_use.from_date	http://rdf.freebase.com/ns/religion.place_of_worship_historical_use.to_date
+http://rdf.freebase.com/ns/religion.religious_leadership_jurisdiction_appointment.from	http://rdf.freebase.com/ns/religion.religious_leadership_jurisdiction_appointment.to
+http://rdf.freebase.com/ns/religion.religious_organization_leadership.start_date	http://rdf.freebase.com/ns/religion.religious_organization_leadership.end_date
+http://rdf.freebase.com/ns/royalty.chivalric_order_membership.from	http://rdf.freebase.com/ns/royalty.chivalric_order_membership.to
+http://rdf.freebase.com/ns/royalty.chivalric_rank_precedence.from	http://rdf.freebase.com/ns/royalty.chivalric_rank_precedence.to
+http://rdf.freebase.com/ns/royalty.monarch.from_date	http://rdf.freebase.com/ns/royalty.monarch.to_date
+http://rdf.freebase.com/ns/royalty.noble_title_tenure.from_date	http://rdf.freebase.com/ns/royalty.noble_title_tenure.to_date
+http://rdf.freebase.com/ns/royalty.system_order_relationship.from	http://rdf.freebase.com/ns/royalty.system_order_relationship.to
+http://rdf.freebase.com/ns/royalty.system_rank_relationship.from_date	http://rdf.freebase.com/ns/royalty.system_rank_relationship.to_date
+http://rdf.freebase.com/ns/royalty.system_title_relationship.from_date	http://rdf.freebase.com/ns/royalty.system_title_relationship.to_date
+http://rdf.freebase.com/ns/skiing.ski_area_ownership.start_date	http://rdf.freebase.com/ns/skiing.ski_area_ownership.end_date
+http://rdf.freebase.com/ns/soccer.football_player_loan.from	http://rdf.freebase.com/ns/soccer.football_player_loan.to
+http://rdf.freebase.com/ns/soccer.football_player_stats.from	http://rdf.freebase.com/ns/soccer.football_player_stats.to
+http://rdf.freebase.com/ns/soccer.football_team_management_tenure.from	http://rdf.freebase.com/ns/soccer.football_team_management_tenure.to
+http://rdf.freebase.com/ns/sports.sports_official_tenure.from_date	http://rdf.freebase.com/ns/sports.sports_official_tenure.to_date
+http://rdf.freebase.com/ns/sports.sports_team_captain_tenure.from	http://rdf.freebase.com/ns/sports.sports_team_captain_tenure.to
+http://rdf.freebase.com/ns/sports.sports_team_coach_tenure.from	http://rdf.freebase.com/ns/sports.sports_team_coach_tenure.to
+http://rdf.freebase.com/ns/sports.sports_team_roster.from	http://rdf.freebase.com/ns/sports.sports_team_roster.to
+http://rdf.freebase.com/ns/sports.team_venue_relationship.from	http://rdf.freebase.com/ns/sports.team_venue_relationship.to
+http://rdf.freebase.com/ns/symbols.flag_use.from_date	http://rdf.freebase.com/ns/symbols.flag_use.to_date
+http://rdf.freebase.com/ns/theater.theater_production_staff_gig.from	http://rdf.freebase.com/ns/theater.theater_production_staff_gig.to
+http://rdf.freebase.com/ns/theater.theater_production_venue_relationship.start_date	http://rdf.freebase.com/ns/theater.theater_production_venue_relationship.end_date
+http://rdf.freebase.com/ns/theater.theater_role.from	http://rdf.freebase.com/ns/theater.theater_role.to
+http://rdf.freebase.com/ns/time.event.start_date	http://rdf.freebase.com/ns/time.event.end_date
+http://rdf.freebase.com/ns/tv.regular_tv_appearance.from	http://rdf.freebase.com/ns/tv.regular_tv_appearance.to
+http://rdf.freebase.com/ns/tv.tv_network_duration.from	http://rdf.freebase.com/ns/tv.tv_network_duration.to
+http://rdf.freebase.com/ns/tv.tv_producer_term.from	http://rdf.freebase.com/ns/tv.tv_producer_term.to
+http://rdf.freebase.com/ns/tv.tv_program_writer_relationship.start_date	http://rdf.freebase.com/ns/tv.tv_program_writer_relationship.end_date
+http://rdf.freebase.com/ns/tv.tv_regular_personal_appearance.from	http://rdf.freebase.com/ns/tv.tv_regular_personal_appearance.to
+http://rdf.freebase.com/ns/tv.tv_series_season.from	http://rdf.freebase.com/ns/tv.tv_series_season.to
+http://rdf.freebase.com/ns/user.alexander.misc.dated_name.from	http://rdf.freebase.com/ns/user.alexander.misc.dated_name.to
+http://rdf.freebase.com/ns/user.blackhound.pennsylvania_state_navy.service_period.from_date	http://rdf.freebase.com/ns/user.blackhound.pennsylvania_state_navy.service_period.to_date
+http://rdf.freebase.com/ns/user.brandon_macuser.default_domain.convention.start_date	http://rdf.freebase.com/ns/user.brandon_macuser.default_domain.convention.end_date
+http://rdf.freebase.com/ns/user.cheunger.mw_ping_pong.match.start_date	http://rdf.freebase.com/ns/user.cheunger.mw_ping_pong.match.end_date
+http://rdf.freebase.com/ns/user.cheunger.sports_test.coaching_relationship.from	http://rdf.freebase.com/ns/user.cheunger.sports_test.coaching_relationship.to
+http://rdf.freebase.com/ns/user.cheunger.sports_test.professional_athlete_career.from	http://rdf.freebase.com/ns/user.cheunger.sports_test.professional_athlete_career.to
+http://rdf.freebase.com/ns/user.cheunger.sports_test.ranking.from	http://rdf.freebase.com/ns/user.cheunger.sports_test.ranking.to
+http://rdf.freebase.com/ns/user.cheunger.sports_test.roster_membership.from	http://rdf.freebase.com/ns/user.cheunger.sports_test.roster_membership.to
+http://rdf.freebase.com/ns/user.cheunger.sports_test.sports_team_membership.from	http://rdf.freebase.com/ns/user.cheunger.sports_test.sports_team_membership.to
+http://rdf.freebase.com/ns/user.cheunger.tennis.tennis_team_membership.from	http://rdf.freebase.com/ns/user.cheunger.tennis.tennis_team_membership.to
+http://rdf.freebase.com/ns/user.cip22.default_domain.group_exposition.start_date	http://rdf.freebase.com/ns/user.cip22.default_domain.group_exposition.end_date
+http://rdf.freebase.com/ns/user.danm.default_domain.sexual_relationship.from	http://rdf.freebase.com/ns/user.danm.default_domain.sexual_relationship.to
+http://rdf.freebase.com/ns/user.digitalarchivist.default_domain.appointed_government_position_held.from	http://rdf.freebase.com/ns/user.digitalarchivist.default_domain.appointed_government_position_held.to
+http://rdf.freebase.com/ns/user.evening.default_domain.business_group_relationship.from	http://rdf.freebase.com/ns/user.evening.default_domain.business_group_relationship.to
+http://rdf.freebase.com/ns/user.hirschch.academic_conferences.academic_conference_instance.start_date	http://rdf.freebase.com/ns/user.hirschch.academic_conferences.academic_conference_instance.end_date
+http://rdf.freebase.com/ns/user.jamie.default_domain.yacht_racing.commodore_tenure.start_date	http://rdf.freebase.com/ns/user.jamie.default_domain.yacht_racing.commodore_tenure.end_date
+http://rdf.freebase.com/ns/user.jfry.testing_types.j_marriage.from	http://rdf.freebase.com/ns/user.jfry.testing_types.j_marriage.to
+http://rdf.freebase.com/ns/user.joehughes.default_domain.item_with_lifetime.start_date	http://rdf.freebase.com/ns/user.joehughes.default_domain.item_with_lifetime.end_date
+http://rdf.freebase.com/ns/user.jondblackburn.default_domain.journal_coverage.start_date	http://rdf.freebase.com/ns/user.jondblackburn.default_domain.journal_coverage.end_date
+http://rdf.freebase.com/ns/user.micahsaul.advertising.ad_campaign.start_date	http://rdf.freebase.com/ns/user.micahsaul.advertising.ad_campaign.end_date
+http://rdf.freebase.com/ns/user.moonhouse.default_domain.non_government_office_holder.from	http://rdf.freebase.com/ns/user.moonhouse.default_domain.non_government_office_holder.to
+http://rdf.freebase.com/ns/user.ndunham.default_domain.uol_author.start	http://rdf.freebase.com/ns/user.ndunham.default_domain.uol_author.end
+http://rdf.freebase.com/ns/user.ontoligent.history.person.date_of_birth	http://rdf.freebase.com/ns/user.ontoligent.history.person.date_of_death
+http://rdf.freebase.com/ns/user.pak21.default_domain.pen_name_usage.start	http://rdf.freebase.com/ns/user.pak21.default_domain.pen_name_usage.end
+http://rdf.freebase.com/ns/user.patrick.default_domain.warship_crew_tenure.from	http://rdf.freebase.com/ns/user.patrick.default_domain.warship_crew_tenure.to
+http://rdf.freebase.com/ns/user.paulshanks.project_management.architectural_consultant.from	http://rdf.freebase.com/ns/user.paulshanks.project_management.architectural_consultant.to
+http://rdf.freebase.com/ns/user.paulshanks.project_management.structural_consultant.from	http://rdf.freebase.com/ns/user.paulshanks.project_management.structural_consultant.to
+http://rdf.freebase.com/ns/user.philg.default_domain.concert_tour.start_date	http://rdf.freebase.com/ns/user.philg.default_domain.concert_tour.end_date
+http://rdf.freebase.com/ns/user.pvonstackelberg.Futures_Studies.event.start_date	http://rdf.freebase.com/ns/user.pvonstackelberg.Futures_Studies.event.end_date
+http://rdf.freebase.com/ns/user.rcheramy.default_domain.event.start_date	http://rdf.freebase.com/ns/user.rcheramy.default_domain.event.end_date
+http://rdf.freebase.com/ns/user.rcheramy.default_domain.mayor.start_date	http://rdf.freebase.com/ns/user.rcheramy.default_domain.mayor.end_date
+http://rdf.freebase.com/ns/user.robert.roman_empire.roman_emperor.from	http://rdf.freebase.com/ns/user.robert.roman_empire.roman_emperor.to
+http://rdf.freebase.com/ns/user.robinboast.default_domain.historical_period.start_date	http://rdf.freebase.com/ns/user.robinboast.default_domain.historical_period.end_date
+http://rdf.freebase.com/ns/user.skud.boats.vessel_class_construction.from_date	http://rdf.freebase.com/ns/user.skud.boats.vessel_class_construction.to_date
+http://rdf.freebase.com/ns/user.skud.embassies_and_consulates.ambassadorial_tenure.from_date	http://rdf.freebase.com/ns/user.skud.embassies_and_consulates.ambassadorial_tenure.to_date
+http://rdf.freebase.com/ns/user.skud.nuclear_weapons.nuclear_test_series.start_date	http://rdf.freebase.com/ns/user.skud.nuclear_weapons.nuclear_test_series.end_date
+http://rdf.freebase.com/ns/user.sprocketonline.default_domain.bothy_maintenance_tenure.from	http://rdf.freebase.com/ns/user.sprocketonline.default_domain.bothy_maintenance_tenure.to
+http://rdf.freebase.com/ns/user.synedra.didwho.rehab.start_date	http://rdf.freebase.com/ns/user.synedra.didwho.rehab.end_date
+http://rdf.freebase.com/ns/user.tadhg.tbooks.book_edition_reading_event.start_date	http://rdf.freebase.com/ns/user.tadhg.tbooks.book_edition_reading_event.end_date
+http://rdf.freebase.com/ns/user.tpshek.default_domain.job.start_date	http://rdf.freebase.com/ns/user.tpshek.default_domain.job.end_date
+http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.sla_consumer_producer.date_begin	http://rdf.freebase.com/ns/user.unfoldingart.unfoldingart.sla_consumer_producer.date_end
+http://rdf.freebase.com/ns/user.wouter.default_domain.roadblock.start_date	http://rdf.freebase.com/ns/user.wouter.default_domain.roadblock.end_date
+http://rdf.freebase.com/ns/user.yellowbkpk.default_domain.movie_showtime.start_date	http://rdf.freebase.com/ns/user.yellowbkpk.default_domain.movie_showtime.end_date
+http://rdf.freebase.com/ns/user.zeusi.default_domain.athlete_team_relationship.from	http://rdf.freebase.com/ns/user.zeusi.default_domain.athlete_team_relationship.to
+http://rdf.freebase.com/ns/visual_art.artwork_location_relationship.from	http://rdf.freebase.com/ns/visual_art.artwork_location_relationship.to
+http://rdf.freebase.com/ns/zoos.animal_captivity.from	http://rdf.freebase.com/ns/zoos.animal_captivity.to
+http://rdf.freebase.com/ns/zoos.zoo.opened	http://rdf.freebase.com/ns/zoos.zoo.closed
