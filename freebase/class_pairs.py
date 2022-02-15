@@ -4,7 +4,6 @@ wikidata_url = "http://210.28.134.34:8890/sparql"
 endpoint = SPARQLWrapper(wikidata_url)
 endpoint.setReturnFormat(JSON)
 
-
 def parse_query_results(response, query):
     if 'ASK' in query or 'ask' in query:  # ask
         result = response['boolean']
@@ -92,30 +91,30 @@ if __name__ == "__main__":
             l = line.strip()
             predicates += l.split("\t")
     select_predicate(predicates)
-    # predicate_dict = dict()
-    # write_file = open("class_pairs_res.txt","a+",encoding="utf-8")
-    # p1 = []
-    # p2 = []
-    # p3 = []
-    # p = []
-    # begin_time = time()
-    # for i in predicates:
-    #     single_begin_time = time()
-    #     if(not is_exist_example(i)):
-    #         continue
-    #     num, pairs = get_class_pairs(i)
-    #     single_end_time = time()
-    #
-    #     print(i, num, single_end_time - single_begin_time)
-    #
-    #     if (len(pairs) > 0):
-    #         pairs = sorted(pairs, key=lambda i: i[2], reverse=True)
-    #         # print(pairs)
-    #         predicate_dict[i.replace("http://www.wikidata.org/entity/", "")] = pairs
-    #         write_file.write(
-    #             get_label(i) + "\t" + i.replace("http://www.wikidata.org/entity/", "") + "\t" + str(num) + "\t" + str(
-    #                 pairs) + "\t" + str(pqs) + "\n")
-    # end_time = time()
-    # run_time = end_time - begin_time
-    # print('该循环程序运行时间(s)：', run_time)
+    predicate_dict = dict()
+    write_file = open("class_pairs_res.txt","a+",encoding="utf-8")
+    p1 = []
+    p2 = []
+    p3 = []
+    p = []
+    begin_time = time()
+    for i in predicates:
+        single_begin_time = time()
+        if(not is_exist_example(i)):
+            continue
+        num, pairs = get_class_pairs(i)
+        single_end_time = time()
+
+        print(i, num, single_end_time - single_begin_time)
+
+        if (len(pairs) > 0):
+            pairs = sorted(pairs, key=lambda i: i[2], reverse=True)
+            # print(pairs)
+            predicate_dict[i.replace("http://rdf.freebase.com/ns/", "")] = pairs
+            write_file.write(
+                i.replace("http://rdf.freebase.com/ns/","") + "\t"  + str(num) + "\t" + str(
+                    pairs) + "\t" + "\n")
+    end_time = time()
+    run_time = end_time - begin_time
+    print('该循环程序运行时间(s)：', run_time)
 
