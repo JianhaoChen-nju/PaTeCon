@@ -1,5 +1,5 @@
 import read_datasets
-
+import Interval_Relations
 
 # eVertex: entity Vertex
 # sVertex: statement Vertex
@@ -29,7 +29,7 @@ class eVertex:
 
 
 class sVertex:
-    def __init__(self, key, begin, end, weight, truth=True):
+    def __init__(self, key, begin, end, weight=1, truth=True):
         self.id = key
         self.hasItem = None
         self.hasValue = None
@@ -147,126 +147,34 @@ class Graph:
 
     def ConstructThroughTsv(self, tsvFile):
         utkg = read_datasets.read_file(tsvFile)
+        # we need to filter the duplicate
+
+        NonDuplicate=[]
         for line in utkg:
             head = line[0]
             relation = line[1]
             tail = line[2]
             begin = int(line[3])
             end = int(line[4])
+            duplicate=str(head)+str(relation)+str(tail)+str(begin)+str(end)
+            if duplicate not in NonDuplicate:
+                NonDuplicate.append(duplicate)
+            else:
+                continue
+
             if line[5].__eq__("true"):
                 truth = True
             else:
                 truth = False
-            weight = float(line[6])
-            e1 = g.add_eVertex(head)
-            s = g.add_sVertex(relation, begin, end, weight, truth)
-            e2 = g.add_eVertex(tail)
-            g.add_e2s_Edge(e1, s)
-            g.add_s2e_Edge(s, e2)
+            # weight = float(line[6])
+            e1 = self.add_eVertex(head)
+            s = self.add_sVertex(relation, begin, end, 1, truth)
+            e2 = self.add_eVertex(tail)
+            self.add_e2s_Edge(e1, s)
+            self.add_s2e_Edge(s, e2)
 
 
-# (i1,i2)  (i3,i4)
-# meets is a special case of before
-def foundation(i1, i2):
-    if i1 <= i2:
-        return True
-    else:
-        return False
 
-
-def before(i1, i2, i3, i4):
-    # i2<=i3
-    if i2 <= i3:
-        return True
-    else:
-        return False
-
-
-def meets(i1, i2, i3, i4):
-    # i2=i3
-    if i2 == i3:
-        return True
-    else:
-        return False
-
-
-# before is a special order of disjoint
-def disjoint(i1, i2, i3, i4):
-    # i2<i3 || i4<i1
-    if i2 <= i3 or i4 <= i1:
-        return True
-    else:
-        return False
-
-
-# during, equal, starts, finish are special cases of overlap
-def overlap(i1, i2, i3, i4):
-    if i2 >= i3 and i1 <= i4:
-        return True
-    else:
-        return False
-
-
-def during(i1, i2, i3, i4):
-    if i1 >= i3 and i2 <= i4:
-        return True
-    else:
-        return False
-
-
-def start(i1, i2, i3, i4):
-    # i1=i3
-    if i1 == i3:
-        return True
-    else:
-        return False
-
-
-def finish(i1, i2, i3, i4):
-    # i2=i4
-    if i2 == i4:
-        return True
-    else:
-        return False
-
-
-def equal(i1, i2, i3, i4):
-    # i1=i3 && i2=i4
-    if i1 == i3 and i2 == i4:
-        return True
-    else:
-        return False
-
-
-def validSpanBelow(i1, i2, span):
-    # i2-i1<=span
-    if i2 - i1 <= span:
-        return True
-    else:
-        return False
-
-
-def validSpanAbove(i1, i2, span):
-    # i2-i1>span
-    if i2 - i1 > span:
-        return True
-    else:
-        return False
-
-
-def relationsSpanBelow(i1, i2, i3, i4, span):
-    # i3-i1<=span
-    if i3 - i1 <= span:
-        return True
-    else:
-        return False
-
-
-def relationsSpanAbove(i1, i2, i3, i4, span):
-    if i3 - i1 > span:
-        return True
-    else:
-        return False
 
 
 def temporal_representation_constraint(graph):
@@ -292,6 +200,7 @@ def functional_mining(graph):
     # find which relation is functional
     # what a functional constraint is like?
     # how to compute confidence? present strategy is consistent subsets/total subsets
+    print("functional_mining")
     threshold = 0.8
     functional_constraint = []
     consistent_subsets = 0
@@ -301,29 +210,36 @@ def functional_mining(graph):
         for i in graph.eVertexList:
             consistent = True
             hasRelation = False
+            head=graph.eVertexList[i].getId()
             for j in range(len(graph.eVertexList[i].hasStatement)):
                 r = graph.eVertexList[i].hasStatement[j].getId()
+                tail1 = graph.eVertexList[i].hasStatement[j].hasValue.getId()
                 if relation.__eq__(r):
                     hasRelation = True
+
                     i1 = graph.eVertexList[i].hasStatement[j].getBeginTime()
                     i2 = graph.eVertexList[i].hasStatement[j].getEndTime()
-                    for k in range(j, len(graph.eVertexList[i].hasStatement)):
+                    for k in range(j+1, len(graph.eVertexList[i].hasStatement)):
                         r1 = graph.eVertexList[i].hasStatement[k].getId()
+                        tail2 = graph.eVertexList[i].hasStatement[k].hasValue.getId()
                         if relation.__eq__(r1):
                             i3 = graph.eVertexList[i].hasStatement[k].getBeginTime()
                             i4 = graph.eVertexList[i].hasStatement[k].getEndTime()
-                            if disjoint(i1, i2, i3, i4):
-                                consistent = True
+                            if Interval_Relations.disjoint(i1, i2, i3, i4):
+                                continue
                             else:
                                 consistent=False
-                                # print(i1,i2,i3,i4)
+                                # print(head,tail1,i1,i2,tail2,i3,i4)
             if hasRelation:
                 total_subsets += 1
                 if consistent:
                     consistent_subsets += 1
-            confidence = consistent_subsets * 1.0 / total_subsets
-        print(relation, confidence)
-
+        confidence = consistent_subsets * 1.0 / total_subsets
+        print(relation, consistent_subsets,total_subsets,confidence)
+        if confidence > 0.95:
+            constraint="(a," + relation + ",b,t1,t2) & (a,"+relation+",c,t3,t4) => disjoint(t1,t2,t3,t4)"
+            print(constraint)
+    # x relation1 y & x relation2 z t1(t1=开始结束时间取平均数) & y relation3 w t2 = > t2 before t1 / t1 before t2 / t1 during t2 / t2 during t1
     return functional_constraint
 
 def reverse_functional_mining(graph):
@@ -331,6 +247,7 @@ def reverse_functional_mining(graph):
     # find which relation is functional
     # what a functional constraint is like?
     # how to compute confidence? present strategy is consistent subsets/total subsets
+    print("reverse_functional_mining")
     threshold = 0.8
     functional_constraint = []
     consistent_subsets = 0
@@ -340,26 +257,48 @@ def reverse_functional_mining(graph):
         for i in graph.eVertexList:
             consistent = True
             hasRelation = False
+            tail = graph.eVertexList[i].getId()
+            conflict_vector=[]
+            for j in range(len(graph.eVertexList[i].bePointedTo)):
+                conflict_vector.append(1)
             for j in range(len(graph.eVertexList[i].bePointedTo)):
                 r = graph.eVertexList[i].bePointedTo[j].getId()
-
+                head1 = graph.eVertexList[i].bePointedTo[j].hasItem.getId()
                 if relation.__eq__(r):
                     hasRelation = True
                     i1 = graph.eVertexList[i].bePointedTo[j].getBeginTime()
                     i2 = graph.eVertexList[i].bePointedTo[j].getEndTime()
-                    for k in range(j, len(graph.eVertexList[i].bePointedTo)):
+                    for k in range(j+1, len(graph.eVertexList[i].bePointedTo)):
                         r1 = graph.eVertexList[i].bePointedTo[k].getId()
+                        head2 = graph.eVertexList[i].bePointedTo[k].hasItem.getId()
                         if relation.__eq__(r1):
                             i3 = graph.eVertexList[i].bePointedTo[k].getBeginTime()
                             i4 = graph.eVertexList[i].bePointedTo[k].getEndTime()
-                            if overlap(i1, i2, i3, i4):
+                            if Interval_Relations.disjoint(i1, i2, i3, i4):
+                                continue
+                            else:
                                 consistent = False
+                                conflict_vector[j]=0
+                                conflict_vector[k]=0
+                                # print(tail,head1, i1, i2, head2, i3, i4)
             if hasRelation:
                 total_subsets += 1
                 if consistent:
                     consistent_subsets += 1
-            confidence = consistent_subsets * 1.0 / total_subsets
-        print(relation, confidence)
+
+                # TODO whether use this strategy
+                # else:
+                #     # we compute a fraction
+                #     consistent_degree=0
+                #     for j in range(len(conflict_vector)):
+                #         consistent_degree+=conflict_vector[j]
+                #     consistent_degree=consistent_degree*1.0/len(conflict_vector)
+                #     consistent_subsets+=consistent_degree
+        confidence = consistent_subsets * 1.0 / total_subsets
+        print(relation, consistent_subsets,total_subsets,confidence)
+        if confidence > 0.95:
+            print("TODO")
+        # x relation1 y & x relation2 z t1(t1=开始结束时间取平均数) & y relation3 w t2 = > t2 before t1 / t1 before t2 / t1 during t2 / t2 during t1
 
     return functional_constraint
 
@@ -401,6 +340,7 @@ if __name__ == '__main__':
     print("-------------------")
     # g.iterateOverGraph()
     conflicting_type1_facts = temporal_representation_constraint(g)
-    print(len(conflicting_type1_facts))
+    print("temporal_representation_constraint",len(conflicting_type1_facts))
     functional_mining(g)
+
     reverse_functional_mining(g)
