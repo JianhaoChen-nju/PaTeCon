@@ -1,5 +1,40 @@
 import os
 import random
+import time
+
+def pre_process(tsvFile):
+    file=open(tsvFile, "r", encoding="utf-8")
+    lines = file.readlines()
+    processed_file=[]
+    for line in lines:
+        fact=line.strip().replace("<","").replace(">","").split("\t")
+        str_fact=fact[0]+"\t"+fact[1]+"\t"+fact[2]+"\t"+fact[3]+"\t"+fact[4]
+        processed_file.append(str_fact)
+    file.close()
+    file = open(tsvFile, "w", encoding="utf-8")
+    file.writelines("\n".join(processed_file))
+    file.close()
+
+def temporal_representation_constraint(tsvFile,utkg):
+    # a pre_process of data
+    Conflicting_facts = []
+    Conflict_free_facts=[]
+    for temporal_fact in utkg:
+        if temporal_fact[3]=="null" or temporal_fact[4]=="null":
+            Conflict_free_facts.append(temporal_fact)
+            continue
+        start = int(temporal_fact[3])
+        end = int(temporal_fact[4])
+        if start > end:
+            Conflicting_facts.append(str(temporal_fact))
+        else:
+            Conflict_free_facts.append(temporal_fact)
+    print("there are ",len(Conflicting_facts)," facts whose start > end and they have been removed")
+    file=open(tsvFile+"_temporal_representation","w",encoding="utf-8")
+    file.writelines("\n".join(Conflicting_facts))
+
+    return Conflict_free_facts
+
 def read_footballdb_csv():
     footballdb = "football"
     filedir = os.listdir(footballdb)
@@ -63,7 +98,7 @@ def read_testfile():
 
 def assgin_weight(datasetname):
 
-    # todo football那边需要重排序一下，排序好删掉此备注
+    # Nottodo football那边需要重排序一下，排序好删掉此备注
     dataset = read_dataset(datasetname)
     utkg_full=dataset[5]
     percent_list=["0","10","25","50","75"]
@@ -115,12 +150,23 @@ def assgin_weight(datasetname):
 
 def read_file(filename):
     f = open(filename, "r", encoding="utf-8")
+    starttime=time.time()
     lines = f.readlines()
+    endtime=time.time()
+    runningtime=endtime-starttime
+    print("readlines running time is:",runningtime,"s")
     utkg = []
-    for line in lines:
-        uncertain_temporal_fact = line.strip().replace("<","").replace(">","").split("\t")
-        utkg.append(uncertain_temporal_fact)
+    starttime2 = time.time()
+    deduplicate_utkg = set(lines)
+    endtime2 = time.time()
+    runningtime2 = endtime2 - starttime2
+    print("duplicate running time is:", runningtime2, "s")
+    print("len of NonDuplicate utkg is", len(deduplicate_utkg))
+
     f.close()
+    for line in deduplicate_utkg:
+        line=line.strip().split("\t")
+        utkg.append(line)
     return utkg
 
 
@@ -145,6 +191,8 @@ def read_dataset(datasetname):
     # for i in utkg_list:
     #     print(len(i))
     return utkg_list
+
+
 
 if __name__ == '__main__':
     # read_footballdb()

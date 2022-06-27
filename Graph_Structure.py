@@ -1,3 +1,5 @@
+import time
+
 import read_datasets
 # eVertex: entity Vertex
 # sVertex: statement Vertex
@@ -66,9 +68,9 @@ class sVertex:
     def getWeight(self):
         return self.weight
 
-
 class Graph:
     def __init__(self):
+        # self.eVertexSet=set()
         self.eVertexList = {}
         self.relationList = []
         self.sVertexList = {}
@@ -76,12 +78,14 @@ class Graph:
         self.num_sVertices = 0
 
     def add_eVertex(self, key):
-        if key in self.eVertexList:
-            return self.get_eVertex(key)
-        self.num_eVertices = self.num_eVertices + 1
-        newVertex = eVertex(key)
-        self.eVertexList[key] = newVertex
-        return newVertex
+        # if not self.eVertexSet.__contains__(key):
+        #     self.eVertexSet.add(key)
+            self.num_eVertices = self.num_eVertices + 1
+            newVertex = eVertex(key)
+            self.eVertexList[key] = newVertex
+            return newVertex
+        # else:
+        #     return self.eVertexList[key]
 
     def add_sVertex(self, key, start, end, weight, truth=True):
         if key not in self.relationList:
@@ -92,11 +96,6 @@ class Graph:
         self.sVertexList.setdefault(key, []).append(newVertex)
         return newVertex
 
-    def get_eVertex(self, n):
-        if n in self.eVertexList:
-            return self.eVertexList[n]
-        else:
-            return None
 
     def get_sVertex(self, n):
         # return a list
@@ -113,6 +112,20 @@ class Graph:
 
     def add_s2e_Edge(self, s, e):
         s.addEdge(e)
+
+    def build_cache(self,utkg,tsvFile):
+        entity_list=set()
+        for line in utkg:
+            head=line[0]
+            tail=line[2]
+            entity_list.add(head)
+            entity_list.add(tail)
+        file=open(tsvFile+"_cache","w",encoding="utf-8")
+        file.writelines("\n".join(entity_list))
+        file.close()
+
+
+
 
     def __iter__(self):
         return iter(self.eVertexList.values())
@@ -144,12 +157,48 @@ class Graph:
                 truth = j.getTruth()
                 print(head, relation, tail, start, end,  weight, truth)
 
-    def ConstructThroughTsv(self, tsvFile):
+    def ConstructThroughTsv(self, tsvFile , percent=100):
+        # you can only define percent = 10,20,30...100
+        starttime0=time.time()
         utkg = read_datasets.read_file(tsvFile)
-        # we need to filter the duplicate
+        endtime0=time.time()
+        readfiletime=endtime0-starttime0
+        print("read file time:",readfiletime,"s")
 
-        # NonDuplicate=[]
-        for line in utkg:
+        # we need to do a fundamental check
+        starttime1=time.time()
+        Conflict_free_utkg=read_datasets.temporal_representation_constraint(tsvFile,utkg)
+        endtime1=time.time()
+        runningtime1=endtime1-starttime1
+        print("temporal representation running time is",runningtime1,"s")
+        print("len of Conflict-free utkg is",len(Conflict_free_utkg))
+
+        # we need to build a cache
+        self.build_cache(utkg,tsvFile)
+
+        # random sample
+        starttime2 = time.time()
+        selected_Conflict_free_utkg=[]
+        index=0
+        for item in Conflict_free_utkg:
+            index+=10
+            if index<=percent:
+                selected_Conflict_free_utkg.append(item)
+            if index==100:
+                index=0
+        print("len of selected conflict free utkg is",len(selected_Conflict_free_utkg))
+        endtime2 = time.time()
+        runningtime2=endtime2-starttime2
+        print("random sample running time is:",runningtime2,"s")
+
+        # construct temporal kg
+        starttime3=time.time()
+        cache_file=open(tsvFile+"_cache","r",encoding="UTF-8")
+        entities=cache_file.readlines()
+        for entity in entities:
+            entity=entity.strip("\n")
+            self.add_eVertex(entity)
+        for line in selected_Conflict_free_utkg:
             head = line[0]
             relation = line[1]
             tail = line[2]
@@ -157,25 +206,26 @@ class Graph:
                 start=-1
             else:
                 start = int(line[3])
+
             if line[4]=="null":
                 end=-1
             else:
                 end = int(line[4])
 
-            # deduplication has been abandoned
-            # duplicate=str(head)+str(relation)+str(tail)+str(start)+str(end)
-            # if duplicate not in NonDuplicate:
-            #     NonDuplicate.append(duplicate)
+            # we dont need truth and confidence
+            # if line[5].__eq__("true"):
+            #     truth = True
             # else:
-            #     continue
-
-            if line[5].__eq__("true"):
-                truth = True
-            else:
-                truth = False
+            #     truth = False
             # weight = float(line[6])
-            e1 = self.add_eVertex(head)
-            s = self.add_sVertex(relation, start, end, 1, truth)
-            e2 = self.add_eVertex(tail)
+            # e1=self.eVertexList[head]
+            # e2 = self.eVertexList[tail]
+            e1 =self.eVertexList[head]
+            e2=self.eVertexList[tail]
+            s = self.add_sVertex(relation, start, end, 1, True)
+
             self.add_e2s_Edge(e1, s)
             self.add_s2e_Edge(s, e2)
+        endtime3=time.time()
+        runningtime3=endtime3-starttime3
+        print("constructing graph running time is:",runningtime3,"s")
