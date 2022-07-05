@@ -4,33 +4,10 @@ import Graph_Structure
 import time
 import Conflict_Detection
 
-'''
+confidence_threshold=0.95
+truncate_threshold=0.95
+support_threshold=0
 
-Constraint_Set=["(a,P569,b,t1,t2) & (a,P569,c,t3,t4) => disjoint(t1,t2,t3,t4)",\
-                "(a,P26,b,t1,t2) & (a,P26,c,t3,t4) => disjoint(t1,t2,t3,t4)",\
-                "(a,P570,b,t1,t2) & (a,P570,c,t3,t4) => disjoint(t1,t2,t3,t4)",\
-"(a,P108,b,t1,t2) & (a,P108,c,t3,t4) => disjoint(t1,t2,t3,t4)",\
-"(a,P286,b,t1,t2) & (a,P286,c,t3,t4) => disjoint(t1,t2,t3,t4)",\
-"(a,P570,b,t1,t2) & (c,P570,b,t3,t4) => disjoint(t1,t2,t3,t4)",\
-"(a,P108,b,t1,t2) & (c,P108,b,t3,t4) => disjoint(t1,t2,t3,t4)",\
-"(a,P286,b,t1,t2) & (c,P286,b,t3,t4) => disjoint(t1,t2,t3,t4)",\
-"(a,P54,b,t1,t2) & (a,P570,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P569,b,t1,t2) & (a,P54,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P569,b,t1,t2) & (a,P26,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P569,b,t1,t2) & (a,P570,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P569,b,t1,t2) & (a,P108,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P26,b,t1,t2) & (a,P570,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P108,b,t1,t2) & (a,P570,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P54,b,t1,t2) & (a,P26,c,t3,t4) & (c,P569,d,t5,t6) => before(t5,t6,t1,t2)",\
-"(a,P569,b,t1,t2) & (a,P26,c,t3,t4) & (c,P54,d,t5,t6) => before(t1,t2,t5,t6)",\
-"(a,P569,b,t1,t2) & (a,P26,c,t3,t4) & (c,P570,d,t5,t6) => before(t1,t2,t5,t6)",\
-"(a,P569,b,t1,t2) & (a,P26,c,t3,t4) & (c,P108,d,t5,t6) => before(t1,t2,t5,t6)",\
-"(a,P569,b,t1,t2) & (a,father,c,t3,t4) & (c,P569,d,t5,t6) => before(t5,t6,t1,t2)",\
-"(a,P26,b,t1,t2) & (a,father,c,t3,t4) & (c,P569,d,t5,t6) => before(t5,t6,t1,t2)",\
-"(a,P570,b,t1,t2) & (a,P26,c,t3,t4) & (c,P569,d,t5,t6) => before(t5,t6,t1,t2)",\
-"(a,P570,b,t1,t2) & (a,father,c,t3,t4) & (c,P569,d,t5,t6) => before(t5,t6,t1,t2)",\
-"(a,P108,b,t1,t2) & (a,P26,c,t3,t4) & (c,P569,d,t5,t6) => before(t5,t6,t1,t2)"]
-'''
 def functional_mining(graph):
     # a relation is temporally functional if its value's valid time has no overlaps
     # find which relation is functional
@@ -84,8 +61,8 @@ def functional_mining(graph):
         else:
             confidence = consistent_subsets * 1.0 / total_subsets
         print(relation, consistent_subsets,total_subsets,confidence)
-        if confidence > 0.95:
-            constraint="(a," + relation + ",b,t1,t2) & (a,"+relation+",c,t3,t4) => disjoint(t1,t2,t3,t4)"
+        if confidence > confidence_threshold and consistent_subsets>support_threshold:
+            constraint="(a," + relation + ",b,t1,t2) & (a,"+relation+",c,t3,t4) => disjoint(t1,t2,t3,t4)|"+str(confidence)
             print(constraint)
             functional_constraint.append(constraint)
 
@@ -158,8 +135,8 @@ def inverse_functional_mining(graph):
         else:
             confidence = consistent_subsets * 1.0 / total_subsets
         print(relation, consistent_subsets,total_subsets,confidence)
-        if confidence > 0.95:
-            constraint = "(a," + relation + ",b,t1,t2) & (c," + relation + ",b,t3,t4) => disjoint(t1,t2,t3,t4)"
+        if confidence > confidence_threshold and consistent_subsets>support_threshold:
+            constraint = "(a," + relation + ",b,t1,t2) & (c," + relation + ",b,t3,t4) => disjoint(t1,t2,t3,t4)|"+str(confidence)
             print(constraint)
             inverse_functional_constraint.append(constraint)
 
@@ -227,29 +204,29 @@ def Single_Entity_Temporal_Order(graph):
                                                 start2) + "," + str(end2)
                                             inconsistent_set.append(inconsistent_pair)
 
-                                        # # include relation t1 include t2 i.e. t2 during t1
-                                        # if Interval_Relations.include(start1,end1,start2,end2)==False:
-                                        #     include_consistent=False
-                                        #
-                                        # # start relation
-                                        # if Interval_Relations.start(start1, end1, start2, end2) == False:
-                                        #     start_consistent = False
-                                        #
-                                        # # before relation
-                                        # if Interval_Relations.finish(start1, end1, start2, end2) == False:
-                                        #     finish_consistent = False
+                                        # include relation t1 include t2 i.e. t2 during t1
+                                        if Interval_Relations.include(start1,end1,start2,end2)==-1:
+                                            include_consistent=False
+
+                                        # start relation
+                                        if Interval_Relations.start(start1, end1, start2, end2) == -1:
+                                            start_consistent = False
+
+                                        # before relation
+                                        if Interval_Relations.finish(start1, end1, start2, end2) == -1:
+                                            finish_consistent = False
 
                 if hasRelation1==True and hasRelation2==True:
                     total_subsets += 1
 
                     if before_consistent==True:
                         before_consistent_subsets +=1
-                    # elif include_consistent==True:
-                    #     include_consistent_subsets +=1
-                    # elif start_consistent==True:
-                    #     start_consistent_subsets +=1
-                    # elif finish_consistent==True:
-                    #     finish_consistent_subsets +=1
+                    elif include_consistent==True:
+                        include_consistent_subsets +=1
+                    elif start_consistent==True:
+                        start_consistent_subsets +=1
+                    elif finish_consistent==True:
+                        finish_consistent_subsets +=1
 
             if total_subsets==0:
                 before_confidence=0
@@ -258,20 +235,20 @@ def Single_Entity_Temporal_Order(graph):
                 finish_confidence=0
             else:
                 before_confidence = before_consistent_subsets * 1.0 / total_subsets
-                # include_confidence = include_consistent_subsets * 1.0 / total_subsets
-                # start_confidence = start_consistent_subsets * 1.0 / total_subsets
-                # finish_confidence = finish_consistent_subsets * 1.0 / total_subsets
+                include_confidence = include_consistent_subsets * 1.0 / total_subsets
+                start_confidence = start_consistent_subsets * 1.0 / total_subsets
+                finish_confidence = finish_consistent_subsets * 1.0 / total_subsets
             if before_consistent_subsets!=0:
                 print("before relation",relation1, relation2, before_consistent_subsets, total_subsets, before_confidence)
-            # if include_consistent_subsets!=0:
-            #     print("include relation",relation1, relation2, include_consistent_subsets, total_subsets, include_confidence)
-            # if start_consistent_subsets!=0:
-            #     print("start relation", relation1, relation2, start_consistent_subsets, total_subsets,start_confidence)
-            # if finish_consistent_subsets!=0:
-            #     print("finish relation", relation1, relation2, finish_consistent_subsets, total_subsets,finish_confidence)
+            if include_consistent_subsets!=0:
+                print("include relation",relation1, relation2, include_consistent_subsets, total_subsets, include_confidence)
+            if start_consistent_subsets!=0:
+                print("start relation", relation1, relation2, start_consistent_subsets, total_subsets,start_confidence)
+            if finish_consistent_subsets!=0:
+                print("finish relation", relation1, relation2, finish_consistent_subsets, total_subsets,finish_confidence)
 
-            if before_confidence > threshold:
-                constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => before(t1,t2,t3,t4)"
+            if before_confidence > confidence_threshold and before_consistent_subsets>support_threshold:
+                constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => before(t1,t2,t3,t4)|"+str(before_confidence)
                 print(constraint)
                 Single_Entity_Temporal_Order_Constraint.append(constraint)
 
@@ -280,18 +257,18 @@ def Single_Entity_Temporal_Order(graph):
                 output_file.write(constraint)
                 output_file.write("\n")
                 output_file.writelines("\n".join(inconsistent_set))
-            # elif include_confidence > threshold:
-            #     constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => include(t1,t2,t3,t4)"
-            #     print(constraint)
-            #     Single_Entity_Temporal_Order_Constraint.append(constraint)
-            # elif start_confidence > threshold:
-            #     constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => start(t1,t2,t3,t4)"
-            #     print(constraint)
-            #     Single_Entity_Temporal_Order_Constraint.append(constraint)
-            # elif finish_confidence > threshold:
-            #     constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => finish(t1,t2,t3,t4)"
-            #     print(constraint)
-            #     Single_Entity_Temporal_Order_Constraint.append(constraint)
+            elif include_confidence > confidence_threshold and include_consistent_subsets>support_threshold:
+                constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => include(t1,t2,t3,t4)|"+str(include_confidence)
+                print(constraint)
+                Single_Entity_Temporal_Order_Constraint.append(constraint)
+            elif start_confidence > confidence_threshold and start_consistent_subsets>support_threshold:
+                constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => start(t1,t2,t3,t4)|"+str(start_confidence)
+                print(constraint)
+                Single_Entity_Temporal_Order_Constraint.append(constraint)
+            elif  finish_confidence > confidence_threshold and finish_consistent_subsets>support_threshold:
+                constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => finish(t1,t2,t3,t4)|"+str(finish_confidence)
+                print(constraint)
+                Single_Entity_Temporal_Order_Constraint.append(constraint)
     return Single_Entity_Temporal_Order_Constraint
 
 def Mutiple_Entity_Temporal_Order(graph):
@@ -366,28 +343,28 @@ def Mutiple_Entity_Temporal_Order(graph):
                                             #     print(start1,end1,start2,end2)
 
                                             # before relation
-                                            if Interval_Relations.before(start1, end1, start2, end2) == False:
+                                            if Interval_Relations.before(start1, end1, start2, end2) == -1:
                                                 before_consistent = False
 
                                             # symmetric
                                             #inverse relation
-                                            if Interval_Relations.before(start2,end2,start1,end1) == False:
+                                            if Interval_Relations.before(start2,end2,start1,end1) == -1:
                                                 inverse_before_consistent = False
 
                                             # include relation t1 include t2 i.e. t2 during t1
-                                            if Interval_Relations.include(start1, end1, start2, end2) == False:
+                                            if Interval_Relations.include(start1, end1, start2, end2) == -1:
                                                 include_consistent = False
 
                                             # for symmetric
-                                            if Interval_Relations.include(start2,end2,start1,end1) == False:
+                                            if Interval_Relations.include(start2,end2,start1,end1) == -1:
                                                 inverse_include_consistent = False
 
                                             # start relation
-                                            if Interval_Relations.start(start1, end1, start2, end2) == False:
+                                            if Interval_Relations.start(start1, end1, start2, end2) == -1:
                                                 start_consistent = False
 
                                             # before relation
-                                            if Interval_Relations.finish(start1, end1, start2, end2) == False:
+                                            if Interval_Relations.finish(start1, end1, start2, end2) == -1:
                                                 finish_consistent = False
 
                     if hasRelation1 == True and hasRelation2 == True and hasOneHop==True:
@@ -432,28 +409,28 @@ def Mutiple_Entity_Temporal_Order(graph):
                 if finish_consistent_subsets != 0:
                     print("finish relation", relation1, one_hop, relation2, finish_consistent_subsets, total_subsets,finish_confidence)
 
-                if before_confidence > threshold:
-                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => before(t1,t2,t5,t6)"
+                if before_confidence > confidence_threshold and before_consistent_subsets>support_threshold:
+                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => before(t1,t2,t5,t6)|"+str(before_confidence)
                     print(constraint)
                     Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-                elif inverse_before_confidence > threshold:
-                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => before(t5,t6,t1,t2)"
+                elif inverse_before_confidence > confidence_threshold and inverse_before_consistent_subsets>support_threshold:
+                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => before(t5,t6,t1,t2)|"+str(inverse_before_confidence)
                     print(constraint)
                     Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-                elif include_confidence > threshold:
-                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => include(t1,t2,t5,t6)"
+                elif include_confidence > confidence_threshold and include_consistent_subsets>support_threshold:
+                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => include(t1,t2,t5,t6)|"+str(include_confidence)
                     print(constraint)
                     Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-                elif inverse_include_confidence > threshold:
-                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => include(t5,t6,t1,t2)"
+                elif inverse_include_confidence > confidence_threshold and inverse_include_consistent_subsets>support_threshold:
+                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => include(t5,t6,t1,t2)|"+str(inverse_include_confidence)
                     print(constraint)
                     Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-                elif start_confidence > threshold:
-                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => start(t1,t2,t5,t6)"
+                elif start_confidence >confidence_threshold and start_consistent_subsets>support_threshold:
+                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => start(t1,t2,t5,t6)|"+str(start_confidence)
                     print(constraint)
                     Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-                elif finish_confidence > threshold:
-                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => finish(t1,t2,t5,t6)"
+                elif finish_confidence > confidence_threshold and finish_consistent_subsets>support_threshold:
+                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => finish(t1,t2,t5,t6)|"+str(finish_confidence)
                     print(constraint)
                     Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
     return Mutiple_Entity_Temporal_Order_Constraint
@@ -505,6 +482,8 @@ def simplify_constraint(constraint):
         (a,P569,b,t1,t2) before (a,father*P569,d,t5,t6)
         '''
     # print(constraint)
+    confidence=constraint.split("|")[1]
+    constraint=constraint.split("|")[0]
     constraint = constraint.replace("=>", ">")
 
     body = constraint.split(">")[0]
@@ -526,9 +505,12 @@ def simplify_constraint(constraint):
         simple_constraint=Compounded_atoms[0]+" "+relation+" "+Compounded_atoms[1]
     else:
         simple_constraint =Compounded_atoms[1]+" "+relation+" "+Compounded_atoms[0]
+    simple_constraint=simple_constraint+"|"+confidence
     return simple_constraint
 
 def Set_Include(constraint,Transitive_closure_set):
+    confidence = constraint.split("|")[1]
+    constraint = constraint.split("|")[0]
     fact1 = constraint.split(" ")[0]
     relation1 = fact1.split(",")[1]
     interval_relation1 = constraint.split(" ")[1]
@@ -536,6 +518,8 @@ def Set_Include(constraint,Transitive_closure_set):
     relation2 = fact2.split(",")[1]
     include=False
     for constraint2 in Transitive_closure_set:
+        confidence = constraint2.split("|")[1]
+        constraint2 = constraint2.split("|")[0]
         fact3 = constraint2.split(" ")[0]
         relation3 = fact3.split(",")[1]
         interval_relation2 = constraint2.split(" ")[1]
@@ -547,6 +531,8 @@ def Set_Include(constraint,Transitive_closure_set):
     return include
 
 def formal(simple_constraint):
+    # confidence = simple_constraint.split("|")[1]
+    # simple_constraint = simple_constraint.split("|")[0]
     formal_constraint=""
 
     variable_list=[]
@@ -584,6 +570,9 @@ def apply_transfering_rules(constraint,Old_Transitive_closure_set):
     a finish b, b before c => a before c
     '''
 
+    confidence = constraint.split("|")[1]
+    num_confidence=float(confidence)
+    constraint = constraint.split("|")[0]
     transitive_constraint_set=[]
     fact1=constraint.split(" ")[0]
     relation1=fact1.split(",")[1]
@@ -592,6 +581,9 @@ def apply_transfering_rules(constraint,Old_Transitive_closure_set):
     relation2=fact2.split(",")[1]
 
     for constraint2 in Old_Transitive_closure_set:
+        confidence2 = constraint2.split("|")[1]
+        num_confidence2=float(confidence2)
+        constraint2 = constraint2.split("|")[0]
         fact3 = constraint2.split(" ")[0]
         relation3 = fact3.split(",")[1]
         interval_relation2 = constraint2.split(" ")[1]
@@ -605,34 +597,44 @@ def apply_transfering_rules(constraint,Old_Transitive_closure_set):
         a start b, a start c => b start c
         a finish b, b finish c => a finish c
         a finish b, a finish c => b finish c
+        a special situation
+        a,father*P54,d,t5,t6 before a,P569,b,t1,t2 & a,P569,b,t1,t2 before a,P26*P108,d,t5,t6 => a,father*P54,d,t5,t6 before a,P26*P108,d,t5,t6|1.0
         '''
         interval_relations=["before","include","start","finish"]
         if relation2.__eq__(relation3):
             for interval_relation in interval_relations:
                 if interval_relation1.__eq__(interval_relation) and interval_relation2.__eq__(interval_relation):
-                    transitive_constraint=fact1+" "+interval_relation+" "+fact4
-                    print(constraint,"&",constraint2,"=>",transitive_constraint)
-                    if Set_Include(transitive_constraint,Old_Transitive_closure_set)==False:
-                        print("add")
-                        transitive_constraint_set.append(transitive_constraint)
+                    transfer_confidence=num_confidence*num_confidence2
+                    transitive_constraint=fact1+" "+interval_relation+" "+fact4+"|"+str(transfer_confidence)
+                    if transfer_confidence>truncate_threshold:
+                        if Set_Include(transitive_constraint,Old_Transitive_closure_set)==False:
+                            print("add")
+                            print(constraint, "&", constraint2, "=>", transitive_constraint)
+                            transitive_constraint_set.append(transitive_constraint)
             if interval_relation1.__eq__("before") and interval_relation2.__eq__("start"):
-                transitive_constraint = fact1 + " " + "before" + " " + fact4
-                print(constraint, "&", constraint2, "=>", transitive_constraint)
-                if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
-                    print("add")
-                    transitive_constraint_set.append(transitive_constraint)
+                transfer_confidence = num_confidence * num_confidence2
+                transitive_constraint = fact1 + " " + "before" + " " + fact4+"|"+str(transfer_confidence)
+                if transfer_confidence > truncate_threshold:
+                    if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
+                        print("add")
+                        print(constraint, "&", constraint2, "=>", transitive_constraint)
+                        transitive_constraint_set.append(transitive_constraint)
             elif interval_relation1.__eq__("before") and interval_relation2.__eq__("include"):
-                transitive_constraint = fact1 + " " + "before" + " " + fact4
-                print(constraint, "&", constraint2, "=>", transitive_constraint)
-                if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
-                    print("add")
-                    transitive_constraint_set.append(transitive_constraint)
+                transfer_confidence = num_confidence * num_confidence2
+                transitive_constraint = fact1 + " " + "before" + " " + fact4+"|"+str(transfer_confidence)
+                if transfer_confidence > truncate_threshold:
+                    if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
+                        print("add")
+                        print(constraint, "&", constraint2, "=>", transitive_constraint)
+                        transitive_constraint_set.append(transitive_constraint)
             elif interval_relation1.__eq__("finish") and interval_relation2.__eq__("before"):
-                transitive_constraint = fact1 + " " + "before" + " " + fact4
-                print(constraint, "&", constraint2, "=>", transitive_constraint)
-                if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
-                    print("add")
-                    transitive_constraint_set.append(transitive_constraint)
+                transfer_confidence = num_confidence * num_confidence2
+                transitive_constraint = fact1 + " " + "before" + " " + fact4+"|"+str(transfer_confidence)
+                if transfer_confidence > truncate_threshold:
+                    if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
+                        print("add")
+                        print(constraint, "&", constraint2, "=>", transitive_constraint)
+                        transitive_constraint_set.append(transitive_constraint)
         '''
             transfer rules
             a before b, b start c => a before c
@@ -644,18 +646,22 @@ def apply_transfering_rules(constraint,Old_Transitive_closure_set):
         if relation1.__eq__(relation3):
             for interval_relation in small_interval_relations:
                 if interval_relation1.__eq__(interval_relation) and interval_relation2.__eq__(interval_relation):
-                    transitive_constraint = fact1 + " " + interval_relation + " " + fact4
-                    print(constraint, "&", constraint2, "=>", transitive_constraint)
-                    if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
-                        print("add")
-                        transitive_constraint_set.append(transitive_constraint)
+                    transfer_confidence = num_confidence * num_confidence2
+                    transitive_constraint = fact1 + " " + interval_relation + " " + fact4+"|"+str(transfer_confidence)
+                    if transfer_confidence > truncate_threshold:
+                        if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
+                            print("add")
+                            print(constraint, "&", constraint2, "=>", transitive_constraint)
+                            transitive_constraint_set.append(transitive_constraint)
 
             if interval_relation1.__eq__("include") and interval_relation2.__eq__("before"):
-                transitive_constraint = fact2 + " " + "before" + " " + fact4
-                print(constraint, "&", constraint2, "=>", transitive_constraint)
-                if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
-                    print("add")
-                    transitive_constraint_set.append(transitive_constraint)
+                transfer_confidence = num_confidence * num_confidence2
+                transitive_constraint = fact2 + " " + "before" + " " + fact4+"|"+str(transfer_confidence)
+                if transfer_confidence > truncate_threshold:
+                    if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
+                        print("add")
+                        print(constraint, "&", constraint2, "=>", transitive_constraint)
+                        transitive_constraint_set.append(transitive_constraint)
 
     return transitive_constraint_set
 
@@ -841,7 +847,7 @@ def Soft_Constraint_Mining(graph):
 
     return Soft_Constraint_list
 
-if __name__ == '__main__':
+def test():
     # utkg=read_datasets.read_file("footballdb_tsv/player_team_year_rockit_0.tsv")
     # functional_detection(utkg)
     g = Graph_Structure.Graph()
@@ -850,25 +856,24 @@ if __name__ == '__main__':
     filename = "wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv"
     # filename = "all_relations_with_redundant_wikidata_alpha-1.2.tsv"
     read_datasets.pre_process(filename)
-    g.ConstructThroughTsv(filename,100)
+    g.ConstructThroughTsv(filename, 100)
 
-    print("number of entity vertex is ",g.num_eVertices)
-    print("number of statement vertex is",g.num_sVertices)
+    print("number of entity vertex is ", g.num_eVertices)
+    print("number of statement vertex is", g.num_sVertices)
     print(len(g.relationList))
     print(g.relationList)
     print("-------------------")
     # g.iterateOverGraph()
 
-    Constraint_Set=Constraint_Mining(g)
+    Constraint_Set = Constraint_Mining(g)
     # Soft_Constraint_Mining(g)
-    transitive_constraint_set=[]
-    transitive_constraint_set=transitive_closure(Constraint_Set)
+    transitive_constraint_set = transitive_closure(Constraint_Set)
     for constraint in transitive_constraint_set:
         print(constraint)
 
     # write rule file
-    write_filename=filename+"_rules"
-    write_file=open(write_filename,"w",encoding="utf-8")
+    write_filename = filename + "_rules"
+    write_file = open(write_filename, "w", encoding="utf-8")
     write_file.writelines("\n".join(transitive_constraint_set))
 
     # read rule file for detection
@@ -881,3 +886,6 @@ if __name__ == '__main__':
     #     transitive_constraint_set.append(constraint)
     # print("\n".join(transitive_constraint_set))
     # Conflict_Detection.Conflict_Detection(g,transitive_constraint_set)
+
+if __name__ == '__main__':
+    test()

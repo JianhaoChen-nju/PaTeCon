@@ -174,7 +174,7 @@ class Graph:
         print("len of Conflict-free utkg is",len(Conflict_free_utkg))
 
         # we need to build a cache
-        self.build_cache(utkg,tsvFile)
+        # self.build_cache(utkg,tsvFile)
 
         # random sample
         starttime2 = time.time()
