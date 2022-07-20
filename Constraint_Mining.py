@@ -1,438 +1,566 @@
+import gc
+
 import read_datasets
 import Interval_Relations
 import Graph_Structure
 import time
 import Conflict_Detection
+from multiprocessing.dummy import Pool as ThreadPool
+import Fine_Grained_Mining
 
-confidence_threshold=0.95
-truncate_threshold=0.95
-support_threshold=0
+candidate_threshold=0.6
+confidence_threshold=0.8
+truncate_threshold=0.9
+support_threshold=20
+
+
 
 def functional_mining(graph):
     # a relation is temporally functional if its value's valid time has no overlaps
     # find which relation is functional
     # what a functional constraint is like?
     # how to compute confidence? present strategy is consistent subsets/total subsets
-    print("functional_mining")
-    threshold = 0.8
+
+    print("functional_mining......")
+    st = time.time()
+    # output_filename = "functional_conflict.txt"
+    # a quick index dict
+    index_dict={}
     functional_constraint = []
-    # to delete
-    output_filename="functional_conflict.txt"
 
-    for relation in graph.relationList:
-        confidence = 0
-        total_subsets = 0
-        consistent_subsets = 0
-        inconsistent_set=[]
-        for i in graph.eVertexList:
+    for i in range(len(graph.temporalRelationList)):
+        index_dict[graph.temporalRelationList[i]]=i
+    F_relations = graph.temporalRelationList.copy()
+
+    # index_dict["P54"] = 0
+    # F_relations =["P54"]
+    F_relations_statistics=[]
+    for r in F_relations:
+        F_relations_statistics.append([r,0,0])
+        #relation consistent_subset total_subset
+        #[[P1,0,0]]
+    vertex_count=0
+    pre = time.time()
+
+    for i in graph.eVertexList:
+        vertex_count += 1
+        if vertex_count % 1000000 == 0:
+            ed = time.time()
+            print("have traversed nodes:", vertex_count)
+            print("time cost:", ed - pre, "s")
+        v = graph.eVertexList[i]
+        if v.isLiteral == True:
+            # return
+            continue
+        if len(v.hasStatement)<2:
+            continue
+        all_relation_pairs = {}
+
+        for s in v.hasStatement:
+            i1 = s.getStartTime()
+            i2 = s.getEndTime()
+            # we only care temporal facts
+            if i1 != -1 or i2 != -1:
+                relation = s.getId()
+                # if index_dict.__contains__(relation):
+                index = index_dict[relation]
+                all_relation_pairs.setdefault(index, []).append(s)
+                #用一个set把index填进去
+        for j in all_relation_pairs.keys():
+            # hasRelation=true
+            # total subsets+=1
+            if len(all_relation_pairs[j])==1:
+                continue
+            F_relations_statistics[j][2] += 1
             consistent = True
-            hasRelation = False
-            head=graph.eVertexList[i].getId()
-            for j in range(len(graph.eVertexList[i].hasStatement)):
-                r = graph.eVertexList[i].hasStatement[j].getId()
-                tail1 = graph.eVertexList[i].hasStatement[j].hasValue.getId()
-                if relation.__eq__(r):
+            exist = False
+            for k in range(len(all_relation_pairs[j])):
+                vertex1 = all_relation_pairs[j][k]
+                flag = True
+                for l in range(k + 1, len(all_relation_pairs[j])):
+                    vertex2 = all_relation_pairs[j][l]
+                    start1 = vertex1.getStartTime()
+                    end1 = vertex1.getEndTime()
+                    start2 = vertex2.getStartTime()
+                    end2 = vertex2.getEndTime()
+                    # tail1 = vertex1.hasValue.getId()
+                    # tail2 = vertex2.hasValue.getId()
+                    # if graph.entityType.__contains__(tail1):
+                    #     if "Q6979593" in graph.entityType[tail1]:
+                    #         if graph.entityType.__contains__(tail2):
+                    #             if "Q6979593" in graph.entityType[tail2]:
+                    #                 exist=True
 
-                    i1 = graph.eVertexList[i].hasStatement[j].getStartTime()
-                    i2 = graph.eVertexList[i].hasStatement[j].getEndTime()
-                    # if not all null
-                    if i1!=-1 or i2!=-1:
-                        hasRelation =True
-                        for k in range(j+1, len(graph.eVertexList[i].hasStatement)):
-                            r1 = graph.eVertexList[i].hasStatement[k].getId()
-                            tail2 = graph.eVertexList[i].hasStatement[k].hasValue.getId()
-                            if relation.__eq__(r1):
-                                i3 = graph.eVertexList[i].hasStatement[k].getStartTime()
-                                i4 = graph.eVertexList[i].hasStatement[k].getEndTime()
-                                # if not all null
-                                if i3!=-1 or i4!=-1:
-                                    if Interval_Relations.disjoint(i1, i2, i3, i4)==-1:
-                                        consistent=False
-                                        # to delete
-                                        inconsistent_pair=head+","+relation+","+tail1+","+str(i1)+","+str(i2)+"\t"+head+","+relation+","+tail2+","+str(i3)+","+str(i4)
-                                        inconsistent_set.append(inconsistent_pair)
-                                        # print(head,tail1,i1,i2,tail2,i3,i4)
-            if hasRelation:
-                total_subsets += 1
-                if consistent:
-                    consistent_subsets += 1
-        if total_subsets==0:
-            confidence=0
+                    if Interval_Relations.disjoint(start1, end1, start2, end2) == -1:
+                        consistent = False
+                        flag = False
+                        break
+                if flag == False:
+                    break
+
+            if consistent == True:
+                # consistent subsets+=1
+                F_relations_statistics[j][1] += 1
+        all_relation_pairs.clear()
+    for f in F_relations_statistics:
+        total_subsets=f[2]
+        consistent_subsets=f[1]
+        relation=f[0]
+        if total_subsets == 0:
+            confidence = 0
         else:
             confidence = consistent_subsets * 1.0 / total_subsets
-        print(relation, consistent_subsets,total_subsets,confidence)
-        if confidence > confidence_threshold and consistent_subsets>support_threshold:
-            constraint="(a," + relation + ",b,t1,t2) & (a,"+relation+",c,t3,t4) => disjoint(t1,t2,t3,t4)|"+str(confidence)
+        print(relation, consistent_subsets, total_subsets, confidence)
+        if confidence > candidate_threshold and consistent_subsets > support_threshold:
+        # if confidence > confidence_threshold and consistent_subsets > support_threshold:
+            constraint = "(a," + relation + ",b,t1,t2) & (a," + relation + ",c,t3,t4) => disjoint(t1,t2,t3,t4)|" + str(
+                confidence)
             print(constraint)
             functional_constraint.append(constraint)
 
-            # to delete
-            output_file=open(output_filename,"a",encoding="utf-8")
-            output_file.write(constraint)
-            output_file.write("\n")
-            output_file.writelines("\n".join(inconsistent_set))
-    # x relation1 y & x relation2 z t1(t1=开始结束时间取平均数) & y relation3 w t2 = > t2 before t1 / t1 before t2 / t1 during t2 / t2 during t1
+        # x relation1 y & x relation2 z t1(t1=开始结束时间取平均数) & y relation3 w t2 = > t2 before t1 / t1 before t2 / t1 during t2 / t2 during t1
+    ed = time.time()
+    print("functional_mining time is", ed - st, "s")
     return functional_constraint
+
 
 def inverse_functional_mining(graph):
     # a relation is temporally functional if its value's valid time has no overlaps
     # find which relation is functional
     # what a functional constraint is like?
     # how to compute confidence? present strategy is consistent subsets/total subsets
-    print("inverse_functional_mining")
-    threshold = 0.8
+    print("inverse_functional_mining......")
+    st=time.time()
+
     inverse_functional_constraint = []
+    index_dict = {}
+    for i in range(len(graph.temporalRelationList)):
+        index_dict[graph.temporalRelationList[i]] = i
 
-    for relation in graph.relationList:
-        confidence = 0
-        total_subsets = 0
-        consistent_subsets = 0
-        for i in graph.eVertexList:
+    IF_relations = graph.temporalRelationList.copy()
+    IF_relations_statistics = []
+    for r in IF_relations:
+        IF_relations_statistics.append([r, 0, 0])
+        # relation consistent_subset total_subset
+        # [[P1,0,0]]
+    vertex_count=0
+    pre=time.time()
+    for i in graph.eVertexList:
+        vertex_count+=1
+        if vertex_count%1000000==0:
+            ed=time.time()
+            print("have traversed nodes:",vertex_count)
+            print("time cost:",ed-pre,"s")
+        v = graph.eVertexList[i]
+        if len(v.bePointedTo)<2:
+            continue
+        if v.isLiteral==True:
+            continue
+
+        all_relation_pairs={}
+        if len(v.bePointedTo)>1000:
+            continue
+        for s in v.bePointedTo:
+            i1 = s.getStartTime()
+            i2 = s.getEndTime()
+            # we only care temporal facts
+            if i1 != -1 or i2 != -1:
+                relation = s.getId()
+                index = index_dict[relation]
+                all_relation_pairs.setdefault(index, []).append(s)
+
+                # [[P54,e,e,e],[P286,e,e,e]]
+        for j in all_relation_pairs.keys():
+            if len(all_relation_pairs[j])==1:
+                continue
+            IF_relations_statistics[j][2] += 1
             consistent = True
-            hasRelation = False
-            tail = graph.eVertexList[i].getId()
-            conflict_vector=[]
-            for j in range(len(graph.eVertexList[i].bePointedTo)):
-                conflict_vector.append(1)
-            for j in range(len(graph.eVertexList[i].bePointedTo)):
-                r = graph.eVertexList[i].bePointedTo[j].getId()
-                head1 = graph.eVertexList[i].bePointedTo[j].hasItem.getId()
-                if relation.__eq__(r):
-                    i1 = graph.eVertexList[i].bePointedTo[j].getStartTime()
-                    i2 = graph.eVertexList[i].bePointedTo[j].getEndTime()
-                    if i1!=-1 or i2!=-1:
-                        hasRelation =True
-                    for k in range(j+1, len(graph.eVertexList[i].bePointedTo)):
-                        r1 = graph.eVertexList[i].bePointedTo[k].getId()
-                        head2 = graph.eVertexList[i].bePointedTo[k].hasItem.getId()
-                        if relation.__eq__(r1):
-                            i3 = graph.eVertexList[i].bePointedTo[k].getStartTime()
-                            i4 = graph.eVertexList[i].bePointedTo[k].getEndTime()
-                            if i1 != -1 or i2 != -1:
-                                hasRelation = True
-                                if Interval_Relations.disjoint(i1, i2, i3, i4):
-                                    continue
-                                else:
-                                    consistent = False
-                                    conflict_vector[j]=0
-                                    conflict_vector[k]=0
-                                    # print(tail,head1, i1, i2, head2, i3, i4)
-            if hasRelation:
-                total_subsets += 1
-                if consistent:
-                    consistent_subsets += 1
-
-                # TODO whether use this strategy
-                # else:
-                #     # we compute a fraction
-                #     consistent_degree=0
-                #     for j in range(len(conflict_vector)):
-                #         consistent_degree+=conflict_vector[j]
-                #     consistent_degree=consistent_degree*1.0/len(conflict_vector)
-                #     consistent_subsets+=consistent_degree
-        if total_subsets==0:
-            confidence=0
+            for k in range(len(all_relation_pairs[j])):
+                vertex1 = all_relation_pairs[j][k]
+                flag=True
+                for l in range(k + 1, len(all_relation_pairs[j])):
+                    vertex2 = all_relation_pairs[j][l]
+                    start1 = vertex1.getStartTime()
+                    end1 = vertex1.getEndTime()
+                    start2 = vertex2.getStartTime()
+                    end2 = vertex2.getEndTime()
+                    if Interval_Relations.disjoint(start1, end1, start2, end2) == -1:
+                        consistent = False
+                        flag=False
+                        break
+                if flag==False:
+                    break
+            if consistent == True:
+                # consistent subsets+=1
+                IF_relations_statistics[j][1] += 1
+    for f in IF_relations_statistics:
+        total_subsets = f[2]
+        consistent_subsets = f[1]
+        relation = f[0]
+        if total_subsets == 0:
+            confidence = 0
         else:
             confidence = consistent_subsets * 1.0 / total_subsets
-        print(relation, consistent_subsets,total_subsets,confidence)
-        if confidence > confidence_threshold and consistent_subsets>support_threshold:
+        print(relation, consistent_subsets, total_subsets, confidence)
+        if confidence > candidate_threshold and consistent_subsets > support_threshold:
+        # if confidence > confidence_threshold and consistent_subsets > support_threshold:
             constraint = "(a," + relation + ",b,t1,t2) & (c," + relation + ",b,t3,t4) => disjoint(t1,t2,t3,t4)|"+str(confidence)
             print(constraint)
             inverse_functional_constraint.append(constraint)
 
         # x relation1 y & x relation2 z t1(t1=开始结束时间取平均数) & y relation3 w t2 = > t2 before t1 / t1 before t2 / t1 during t2 / t2 during t1
-
+    ed=time.time()
+    print("inverse_functional_mining time is",ed-st,"s")
     return inverse_functional_constraint
-
 
 def Single_Entity_Temporal_Order(graph):
     # transitivity
     # before include start finish overlap disjoint
-    Single_Entity_Temporal_Order_Constraint=[]
+    print("Single Entity Temporal Order Mining......")
+    st = time.time()
+    index_dict = {}
+    Single_Entity_Temporal_Order_Constraint = []
+    ZH_relations = []
+    ZH_relations_statistics=[]
+    cou=0
+    for i in range(len(graph.temporalRelationList)):
+        for j in range(i+1,len(graph.temporalRelationList)):
+            ZH_relation1 = graph.temporalRelationList[i]
+            ZH_relation2 = graph.temporalRelationList[j]
+            relation_pair1 = [ZH_relation1, ZH_relation2]
+            relation_pair2 = [ZH_relation2, ZH_relation1]
+            ZH_relations.append(relation_pair1)
+            ZH_relations_statistics.append([ZH_relation1,ZH_relation2,0,0,0,0,0])
+            key=ZH_relation1+"*"+ZH_relation2
+            index_dict[key]=cou
+            cou+=1
+            #before include start finish total
+            ZH_relations.append(relation_pair2)
+            ZH_relations_statistics.append([ZH_relation2, ZH_relation1, 0, 0, 0, 0, 0])
+            key = ZH_relation2 + "*" + ZH_relation1
+            index_dict[key] = cou
+            cou+=1
 
-    print("Single Entity Temporal Order Mining")
-    threshold = 0.95
-    # to delete
-    output_filename = "order_conflict.txt"
-    for index in range(len(graph.relationList)):
-        relation1 = graph.relationList[index]
-        for index2 in range(len(graph.relationList)):
-            relation2 = graph.relationList[index2]
-            if relation2.__eq__(relation1):
-                # print("yes")
-                continue
-            before_consistent_subsets = 0
-            include_consistent_subsets = 0
-            start_consistent_subsets=0
-            finish_consistent_subsets=0
-            total_subsets = 0
-            # above we select 2 relations
-            span_list = []
-            inconsistent_set = []
-            for i in graph.eVertexList:
-                # this is a subset
-                hasRelation1 = False
-                hasRelation2 = False
+            # [[P54,P569,before],[P54,P570,before]]
+    vertex_count = 0
+
+    pre = time.time()
+    # pool=ThreadPool(4)
+    # def single_subgraph_traverse(i):
+    for i in graph.eVertexList:
+        cou+=1
+        # print(cou)
+        vertex_count += 1
+        if vertex_count % 1000000 == 0:
+            ed = time.time()
+            print("have traversed nodes:", vertex_count)
+            print("time cost:", ed - pre, "s")
+
+        v = graph.eVertexList[i]
+        # print(v.getId())
+        if v.isLiteral==True:
+            continue
+            # return
+        if len(v.hasStatement) < 2:
+            continue
+            # return
+        else:
+            all_relation_pairs={}
+            for j in range(len(v.hasStatement)):
+                s1 = v.hasStatement[j]
+                start1 = s1.getStartTime()
+                end1 = s1.getEndTime()
+                if start1 != -1 or end1 != -1:
+                    for k in range(j+1,len(v.hasStatement)):
+                            s2 = v.hasStatement[k]
+                            if s1.getId().__eq__(s2.getId()):
+                                continue
+                            start2 = s2.getStartTime()
+                            end2 = s2.getEndTime()
+                            if start2 != -1 or end2 != -1:
+                                key1=s1.getId()+"*"+s2.getId()
+                                key2=s2.getId()+"*"+s1.getId()
+                                index1=index_dict[key1]
+                                index2=index_dict[key2]
+                                all_relation_pairs.setdefault(index1, []).append(s1)
+                                all_relation_pairs.setdefault(index1, []).append(s2)
+                                all_relation_pairs.setdefault(index2, []).append(s2)
+                                all_relation_pairs.setdefault(index2, []).append(s1)
+            for j in all_relation_pairs.keys():
                 before_consistent = True
                 include_consistent = True
                 start_consistent = True
                 finish_consistent = True
-                head = graph.eVertexList[i].getId()
-                for j in range(len(graph.eVertexList[i].hasStatement)):
-                    r1 = graph.eVertexList[i].hasStatement[j].getId()
-                    if relation1.__eq__(r1):
+                # total subsets+=1
+                ZH_relations_statistics[j][6]+=1
+                # step=2
+                for k in range(0,len(all_relation_pairs[j]), 2):
+                    vertex1 = all_relation_pairs[j][k]
+                    vertex2 = all_relation_pairs[j][k + 1]
+                    start1 = vertex1.getStartTime()
+                    end1 = vertex1.getEndTime()
+                    start2 = vertex2.getStartTime()
+                    end2 = vertex2.getEndTime()
+                    # choose which interval relation is
+                    if Interval_Relations.before(start1, end1, start2, end2) == -1:
+                        before_consistent=False
+                    if Interval_Relations.include(start1, end1, start2, end2) == -1:
+                        include_consistent = False
+                    if Interval_Relations.start(start1, end1, start2, end2) == -1:
+                        start_consistent = False
+                    if Interval_Relations.finish(start1, end1, start2, end2) == -1:
+                        finish_consistent = False
+                    if before_consistent==False and include_consistent==False and start_consistent==False and finish_consistent==False:
+                        break
+                if before_consistent==True:
+                    #before_consistent_subsets += 1
+                    ZH_relations_statistics[j][2]+=1
+                elif include_consistent==True:
+                    #include_consistent_subsets +=1
+                    ZH_relations_statistics[j][3] += 1
+                elif start_consistent==True:
+                    #start_consistent_subsets +=1
+                    ZH_relations_statistics[j][4] += 1
+                elif finish_consistent==True:
+                    #finish_consistent_subsets +=1
+                    ZH_relations_statistics[j][5] += 1
+    for f in ZH_relations_statistics:
+        relation1=f[0]
+        relation2=f[1]
+        total_subsets=f[6]
+        before_consistent_subsets=f[2]
+        include_consistent_subsets=f[3]
+        start_consistent_subsets = f[4]
+        finish_consistent_subsets = f[5]
+        if total_subsets == 0:
+            before_confidence = 0
+            include_confidence = 0
+            start_confidence = 0
+            finish_confidence = 0
+        else:
+            before_confidence = before_consistent_subsets * 1.0 / total_subsets
+            include_confidence = include_consistent_subsets * 1.0 / total_subsets
+            start_confidence = start_consistent_subsets * 1.0 / total_subsets
+            finish_confidence = finish_consistent_subsets * 1.0 / total_subsets
+        if before_consistent_subsets != 0:
+            print("before relation", relation1, relation2, before_consistent_subsets, total_subsets, before_confidence)
+        if include_consistent_subsets != 0:
+            print("include relation", relation1, relation2, include_consistent_subsets, total_subsets, include_confidence)
+        if start_consistent_subsets != 0:
+            print("start relation", relation1, relation2, start_consistent_subsets, total_subsets, start_confidence)
+        if finish_consistent_subsets != 0:
+            print("finish relation", relation1, relation2, finish_consistent_subsets, total_subsets, finish_confidence)
 
-                        start1 = graph.eVertexList[i].hasStatement[j].getStartTime()
-                        end1 = graph.eVertexList[i].hasStatement[j].getEndTime()
-                        tail1 = graph.eVertexList[i].hasStatement[j].hasValue.getId()
-                        if start1 != -1 or end1 != -1:
-                            hasRelation1 = True
-                            for k in range(len(graph.eVertexList[i].hasStatement)):
-                                r2 = graph.eVertexList[i].hasStatement[k].getId()
-                                if relation2.__eq__(r2):
-                                    start2 = graph.eVertexList[i].hasStatement[k].getStartTime()
-                                    end2 = graph.eVertexList[i].hasStatement[k].getEndTime()
-                                    tail2 = graph.eVertexList[i].hasStatement[k].hasValue.getId()
-                                    if start2 != -1 or end2 != -1:
-                                        hasRelation2 = True
-                                        # before relation
-                                        if Interval_Relations.before(start1,end1,start2,end2)==-1:
-                                            before_consistent=False
-                                            # to delete
-                                            inconsistent_pair =  head + "," + relation1 + "," + tail1 + "," + str(start1) + "," + str(
-                                                end1) + "\t" + head + "," + relation2 + "," + tail2 + "," + str(
-                                                start2) + "," + str(end2)
-                                            inconsistent_set.append(inconsistent_pair)
-
-                                        # include relation t1 include t2 i.e. t2 during t1
-                                        if Interval_Relations.include(start1,end1,start2,end2)==-1:
-                                            include_consistent=False
-
-                                        # start relation
-                                        if Interval_Relations.start(start1, end1, start2, end2) == -1:
-                                            start_consistent = False
-
-                                        # before relation
-                                        if Interval_Relations.finish(start1, end1, start2, end2) == -1:
-                                            finish_consistent = False
-
-                if hasRelation1==True and hasRelation2==True:
-                    total_subsets += 1
-
-                    if before_consistent==True:
-                        before_consistent_subsets +=1
-                    elif include_consistent==True:
-                        include_consistent_subsets +=1
-                    elif start_consistent==True:
-                        start_consistent_subsets +=1
-                    elif finish_consistent==True:
-                        finish_consistent_subsets +=1
-
-            if total_subsets==0:
-                before_confidence=0
-                include_confidence=0
-                start_confidence=0
-                finish_confidence=0
-            else:
-                before_confidence = before_consistent_subsets * 1.0 / total_subsets
-                include_confidence = include_consistent_subsets * 1.0 / total_subsets
-                start_confidence = start_consistent_subsets * 1.0 / total_subsets
-                finish_confidence = finish_consistent_subsets * 1.0 / total_subsets
-            if before_consistent_subsets!=0:
-                print("before relation",relation1, relation2, before_consistent_subsets, total_subsets, before_confidence)
-            if include_consistent_subsets!=0:
-                print("include relation",relation1, relation2, include_consistent_subsets, total_subsets, include_confidence)
-            if start_consistent_subsets!=0:
-                print("start relation", relation1, relation2, start_consistent_subsets, total_subsets,start_confidence)
-            if finish_consistent_subsets!=0:
-                print("finish relation", relation1, relation2, finish_consistent_subsets, total_subsets,finish_confidence)
-
-            if before_confidence > confidence_threshold and before_consistent_subsets>support_threshold:
-                constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => before(t1,t2,t3,t4)|"+str(before_confidence)
-                print(constraint)
-                Single_Entity_Temporal_Order_Constraint.append(constraint)
-
-                # to delete
-                output_file = open(output_filename, "a", encoding="utf-8")
-                output_file.write(constraint)
-                output_file.write("\n")
-                output_file.writelines("\n".join(inconsistent_set))
-            elif include_confidence > confidence_threshold and include_consistent_subsets>support_threshold:
-                constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => include(t1,t2,t3,t4)|"+str(include_confidence)
-                print(constraint)
-                Single_Entity_Temporal_Order_Constraint.append(constraint)
-            elif start_confidence > confidence_threshold and start_consistent_subsets>support_threshold:
-                constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => start(t1,t2,t3,t4)|"+str(start_confidence)
-                print(constraint)
-                Single_Entity_Temporal_Order_Constraint.append(constraint)
-            elif  finish_confidence > confidence_threshold and finish_consistent_subsets>support_threshold:
-                constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => finish(t1,t2,t3,t4)|"+str(finish_confidence)
-                print(constraint)
-                Single_Entity_Temporal_Order_Constraint.append(constraint)
+        # if before_confidence > confidence_threshold and before_consistent_subsets > support_threshold:
+        if before_confidence > candidate_threshold and before_consistent_subsets > support_threshold:
+            constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => before(t1,t2,t3,t4)|" + str(
+                before_confidence)
+            print(constraint)
+            Single_Entity_Temporal_Order_Constraint.append(constraint)
+        # elif include_confidence > confidence_threshold and include_consistent_subsets > support_threshold:
+        elif include_confidence > candidate_threshold and include_consistent_subsets > support_threshold:
+            constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => include(t1,t2,t3,t4)|" + str(
+                include_confidence)
+            print(constraint)
+            Single_Entity_Temporal_Order_Constraint.append(constraint)
+        elif start_confidence > confidence_threshold and start_consistent_subsets > support_threshold:
+            constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => start(t1,t2,t3,t4)|" + str(
+                start_confidence)
+            print(constraint)
+            Single_Entity_Temporal_Order_Constraint.append(constraint)
+        elif finish_confidence > confidence_threshold and finish_consistent_subsets > support_threshold:
+            constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => finish(t1,t2,t3,t4)|" + str(
+                finish_confidence)
+            print(constraint)
+            Single_Entity_Temporal_Order_Constraint.append(constraint)
+    ed=time.time()
+    print("Single Entity Temporal Order Mining time is",ed-st,"s")
     return Single_Entity_Temporal_Order_Constraint
 
 def Mutiple_Entity_Temporal_Order(graph):
+    print("Mutiple Entity Temporal Order Mining......")
+    st = time.time()
     Mutiple_Entity_Temporal_Order_Constraint = []
-
-    print("Mutiple Entity Temporal Order Mining")
-    threshold = 0.95
-
-    for index in range(len(graph.relationList)):
-        relation1 = graph.relationList[index]
-        for index1 in range(len(graph.relationList)):
-            one_hop=graph.relationList[index1]
-
-            if one_hop.__eq__(relation1):
+    index_dict = {}
+    OH_relations = []
+    OH_relations_statistics = []
+    cou = 0
+    for i in range(len(graph.temporalRelationList)):
+        OH_relation1 = graph.temporalRelationList[i]
+        for j in range(len(graph.relationList)):
+            OH_relation2 = graph.relationList[j]
+            if OH_relation2.__eq__(OH_relation1):
                 continue
-            for index2 in range(len(graph.relationList)):
-                relation2 = graph.relationList[index2]
-                if relation2.__eq__(one_hop):
-                    # print("yes")
+            for k in range(len(graph.temporalRelationList)):
+                OH_relation3 = graph.temporalRelationList[k]
+                if OH_relation3.__eq__(OH_relation2):
                     continue
-                before_consistent_subsets = 0
-                inverse_before_consistent_subsets = 0
-                include_consistent_subsets = 0
-                inverse_include_consistent_subsets = 0
-                start_consistent_subsets = 0
-                finish_consistent_subsets = 0
-                total_subsets = 0
-                # above we select 2 relations
-                span_list = []
-                for i in graph.eVertexList:
-                    # entity1
-                    # this is a subset
-                    hasRelation1 = False
-                    hasOneHop= False
-                    hasRelation2 = False
-                    before_consistent = True
-                    inverse_before_consistent = True
-                    include_consistent = True
-                    inverse_include_consistent = True
-                    start_consistent = True
-                    finish_consistent = True
+                relation_pair1 = [OH_relation1, OH_relation2,OH_relation3]
 
-                    for h in range(len(graph.eVertexList[i].hasStatement)):
-                        rhop = graph.eVertexList[i].hasStatement[h].getId()
-                        if one_hop.__eq__(rhop):
-                            hasOneHop=True
-                    if hasOneHop==False:
-                        #prune
-                        continue
+                OH_relations.append(relation_pair1)
+                OH_relations_statistics.append([OH_relation1, OH_relation2,OH_relation3,0,0,0,0,0,0,0])
+                # before inverse_before include inverse_include start finish total
+                key = OH_relation1 + "*" + OH_relation2+"*"+OH_relation3
+                index_dict[key] = cou
+                cou += 1
 
-                    for j in range(len(graph.eVertexList[i].hasStatement)):
-                        r1 = graph.eVertexList[i].hasStatement[j].getId()
-                        if relation1.__eq__(r1):
-                            hasRelation1 = True
-                            start1 = graph.eVertexList[i].hasStatement[j].getStartTime()
-                            end1 = graph.eVertexList[i].hasStatement[j].getEndTime()
+    vertex_count = 0
+    pre=time.time()
+    for i in graph.eVertexList:
+        # cou+=1
+        # print(cou)
+        vertex_count += 1
+        if vertex_count % 1000000 == 0:
+            ed = time.time()
+            print("have traversed nodes:", vertex_count)
+            print("time cost:", ed - pre, "s")
+        v = graph.eVertexList[i]
+        if v.isLiteral==True:
+            continue
+        if len(v.hasStatement) < 2:
+            continue
+        else:
+            all_relation_pairs={}
+            for j in range(len(v.hasStatement)):
+                s1 = v.hasStatement[j]
+                start1 = s1.getStartTime()
+                end1 = s1.getEndTime()
+                if start1 != -1 or end1 != -1:
+                    for k in range(len(v.hasStatement)):
+                        if j==k:
+                            continue
+                        s2 = v.hasStatement[k]
+                        if s1.getId().__eq__(s2.getId()):
+                            continue
+                        for l in range(len(s2.hasValue.hasStatement)):
+                            s3=s2.hasValue.hasStatement[l]
+                            if s2.getId().__eq__(s3.getId()):
+                                continue
+                            start2 = s3.getStartTime()
+                            end2 = s3.getEndTime()
+                            if start2 != -1 or end2 != -1:
+                                key1 = s1.getId() + "*" + s2.getId()+"*"+s3.getId()
+                                index1 = index_dict[key1]
+                                all_relation_pairs.setdefault(index1, []).append(s1)
+                                all_relation_pairs.setdefault(index1, []).append(s3)
+            for j in all_relation_pairs.keys():
+                before_consistent = True
+                inverse_before_consistent=True
+                include_consistent = True
+                inverse_include_consistent=True
+                start_consistent = True
+                finish_consistent = True
+                # total subsets+=1
+                OH_relations_statistics[j][9] += 1
+                # step=2
+                for k in range(0, len(all_relation_pairs[j]), 2):
+                    # print(len(all_relation_pairs[j]))
+                    vertex1 = all_relation_pairs[j][k]
+                    vertex2 = all_relation_pairs[j][k + 1]
+                    start1 = vertex1.getStartTime()
+                    end1 = vertex1.getEndTime()
+                    start2 = vertex2.getStartTime()
+                    end2 = vertex2.getEndTime()
 
-                            for h in range(len(graph.eVertexList[i].hasStatement)):
-                                rhop = graph.eVertexList[i].hasStatement[h].getId()
-                                if one_hop.__eq__(rhop):
-                                    entity2=graph.eVertexList[i].hasStatement[h].hasValue
+                    # choose which interval relation is
+                    if Interval_Relations.before(start1, end1, start2, end2) == -1:
+                        before_consistent = False
+                    if Interval_Relations.before(start2, end2, start1, end1) == -1:
+                        inverse_before_consistent = False
+                    if Interval_Relations.include(start1, end1, start2, end2) == -1:
+                        include_consistent = False
+                    if Interval_Relations.include(start2, end2, start1, end1) == -1:
+                        inverse_include_consistent = False
+                    if Interval_Relations.start(start1, end1, start2, end2) == -1:
+                        start_consistent = False
+                    if Interval_Relations.finish(start1, end1, start2, end2) == -1:
+                        finish_consistent = False
+                    if before_consistent==False and inverse_before_consistent==False and include_consistent==False \
+                            and inverse_include_consistent==False and start_consistent==False and finish_consistent==False:
+                        break
+                if before_consistent == True:
+                    # before_consistent_subsets += 1
+                    OH_relations_statistics[j][3] += 1
+                elif inverse_before_consistent == True:
+                    # inverse_before_consistent_subsets +=1
+                    OH_relations_statistics[j][4] += 1
+                elif include_consistent == True:
+                    # include_consistent_subsets +=1
+                    OH_relations_statistics[j][5] += 1
+                elif inverse_include_consistent == True:
+                    # inverse_include_consistent_subsets +=1
+                    OH_relations_statistics[j][6] += 1
+                elif start_consistent == True:
+                    # start_consistent_subsets +=1
+                    OH_relations_statistics[j][7] += 1
+                elif finish_consistent == True:
+                    # finish_consistent_subsets +=1
+                    OH_relations_statistics[j][8] += 1
+    for f in OH_relations_statistics:
+        relation1 = f[0]
+        one_hop=f[1]
+        relation2 = f[2]
+        total_subsets = f[9]
+        before_consistent_subsets = f[3]
+        inverse_before_consistent_subsets=f[4]
+        include_consistent_subsets = f[5]
+        inverse_include_consistent_subsets=f[6]
+        start_consistent_subsets = f[7]
+        finish_consistent_subsets = f[8]
+        if total_subsets == 0:
+            before_confidence = 0
+            inverse_before_confidence = 0
+            include_confidence = 0
+            inverse_include_confidence = 0
+            start_confidence = 0
+            finish_confidence = 0
+        else:
+            before_confidence = before_consistent_subsets * 1.0 / total_subsets
+            inverse_before_confidence = inverse_before_consistent_subsets * 1.0 / total_subsets
+            include_confidence = include_consistent_subsets * 1.0 / total_subsets
+            inverse_include_confidence = inverse_include_consistent_subsets * 1.0 /total_subsets
+            start_confidence = start_consistent_subsets * 1.0 / total_subsets
+            finish_confidence = finish_consistent_subsets * 1.0 / total_subsets
+        if before_consistent_subsets != 0:
+            print("before relation", relation1, one_hop, relation2, before_consistent_subsets, total_subsets, before_confidence)
+        if inverse_before_consistent_subsets != 0:
+            print("inverse before relation", relation1, one_hop, relation2, inverse_before_consistent_subsets, total_subsets, inverse_before_confidence)
+        if include_consistent_subsets != 0:
+            print("include relation", relation1, one_hop, relation2, include_consistent_subsets, total_subsets,include_confidence)
+        if inverse_include_consistent_subsets != 0:
+            print("inverse include relation", relation1, one_hop, relation2, inverse_include_consistent_subsets, total_subsets, inverse_include_confidence)
+        if start_consistent_subsets != 0:
+            print("start relation", relation1, one_hop, relation2, start_consistent_subsets, total_subsets, start_confidence)
+        if finish_consistent_subsets != 0:
+            print("finish relation", relation1, one_hop, relation2, finish_consistent_subsets, total_subsets,finish_confidence)
 
-                                    for k in range(len(entity2.hasStatement)):
-                                        r2 = entity2.hasStatement[k].getId()
-                                        if relation2.__eq__(r2):
+        if before_confidence > confidence_threshold and before_consistent_subsets>support_threshold:
+            constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => before(t1,t2,t5,t6)|"+str(before_confidence)
+            print(constraint)
+            Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
+        elif inverse_before_confidence > confidence_threshold and inverse_before_consistent_subsets>support_threshold:
+            constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => before(t5,t6,t1,t2)|"+str(inverse_before_confidence)
+            print(constraint)
+            Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
+        elif include_confidence > confidence_threshold and include_consistent_subsets>support_threshold:
+            constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => include(t1,t2,t5,t6)|"+str(include_confidence)
+            print(constraint)
+            Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
+        elif inverse_include_confidence > confidence_threshold and inverse_include_consistent_subsets>support_threshold:
+            constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => include(t5,t6,t1,t2)|"+str(inverse_include_confidence)
+            print(constraint)
+            Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
+        elif start_confidence >confidence_threshold and start_consistent_subsets>support_threshold:
+            constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => start(t1,t2,t5,t6)|"+str(start_confidence)
+            print(constraint)
+            Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
+        elif finish_confidence > confidence_threshold and finish_consistent_subsets>support_threshold:
+            constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => finish(t1,t2,t5,t6)|"+str(finish_confidence)
+            print(constraint)
+            Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
 
-                                            hasRelation2 = True
-                                            start2 = entity2.hasStatement[k].getStartTime()
-                                            end2 = entity2.hasStatement[k].getEndTime()
-                                            # if rhop.__eq__("father"):
-                                            #     print("yes")
-                                            #     print(start1,end1,start2,end2)
-
-                                            # before relation
-                                            if Interval_Relations.before(start1, end1, start2, end2) == -1:
-                                                before_consistent = False
-
-                                            # symmetric
-                                            #inverse relation
-                                            if Interval_Relations.before(start2,end2,start1,end1) == -1:
-                                                inverse_before_consistent = False
-
-                                            # include relation t1 include t2 i.e. t2 during t1
-                                            if Interval_Relations.include(start1, end1, start2, end2) == -1:
-                                                include_consistent = False
-
-                                            # for symmetric
-                                            if Interval_Relations.include(start2,end2,start1,end1) == -1:
-                                                inverse_include_consistent = False
-
-                                            # start relation
-                                            if Interval_Relations.start(start1, end1, start2, end2) == -1:
-                                                start_consistent = False
-
-                                            # before relation
-                                            if Interval_Relations.finish(start1, end1, start2, end2) == -1:
-                                                finish_consistent = False
-
-                    if hasRelation1 == True and hasRelation2 == True and hasOneHop==True:
-                        total_subsets += 1
-                        if before_consistent == True:
-                            before_consistent_subsets += 1
-                        elif inverse_before_consistent == True:
-                            inverse_before_consistent_subsets +=1
-                        elif include_consistent == True:
-                            include_consistent_subsets += 1
-                        elif inverse_include_consistent == True:
-                            inverse_include_consistent_subsets += 1
-                        elif start_consistent == True:
-                            start_consistent_subsets += 1
-                        elif finish_consistent == True:
-                            finish_consistent_subsets += 1
-
-                if total_subsets == 0:
-                    before_confidence = 0
-                    inverse_before_confidence = 0
-                    include_confidence = 0
-                    inverse_include_confidence = 0
-                    start_confidence = 0
-                    finish_confidence = 0
-                else:
-                    before_confidence = before_consistent_subsets * 1.0 / total_subsets
-                    inverse_before_confidence = inverse_before_consistent_subsets * 1.0 / total_subsets
-                    include_confidence = include_consistent_subsets * 1.0 / total_subsets
-                    inverse_include_confidence = inverse_include_consistent_subsets * 1.0 /total_subsets
-                    start_confidence = start_consistent_subsets * 1.0 / total_subsets
-                    finish_confidence = finish_consistent_subsets * 1.0 / total_subsets
-                if before_consistent_subsets != 0:
-                    print("before relation", relation1, one_hop, relation2, before_consistent_subsets, total_subsets, before_confidence)
-                if inverse_before_consistent_subsets != 0:
-                    print("inverse before relation", relation1, one_hop, relation2, inverse_before_consistent_subsets, total_subsets, inverse_before_confidence)
-                if include_consistent_subsets != 0:
-                    print("include relation", relation1, one_hop, relation2, include_consistent_subsets, total_subsets,include_confidence)
-                if inverse_include_consistent_subsets != 0:
-                    print("inverse include relation", relation1, one_hop, relation2, inverse_include_consistent_subsets, total_subsets, inverse_include_confidence)
-                if start_consistent_subsets != 0:
-                    print("start relation", relation1, one_hop, relation2, start_consistent_subsets, total_subsets, start_confidence)
-                if finish_consistent_subsets != 0:
-                    print("finish relation", relation1, one_hop, relation2, finish_consistent_subsets, total_subsets,finish_confidence)
-
-                if before_confidence > confidence_threshold and before_consistent_subsets>support_threshold:
-                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => before(t1,t2,t5,t6)|"+str(before_confidence)
-                    print(constraint)
-                    Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-                elif inverse_before_confidence > confidence_threshold and inverse_before_consistent_subsets>support_threshold:
-                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => before(t5,t6,t1,t2)|"+str(inverse_before_confidence)
-                    print(constraint)
-                    Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-                elif include_confidence > confidence_threshold and include_consistent_subsets>support_threshold:
-                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => include(t1,t2,t5,t6)|"+str(include_confidence)
-                    print(constraint)
-                    Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-                elif inverse_include_confidence > confidence_threshold and inverse_include_consistent_subsets>support_threshold:
-                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => include(t5,t6,t1,t2)|"+str(inverse_include_confidence)
-                    print(constraint)
-                    Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-                elif start_confidence >confidence_threshold and start_consistent_subsets>support_threshold:
-                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => start(t1,t2,t5,t6)|"+str(start_confidence)
-                    print(constraint)
-                    Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-                elif finish_confidence > confidence_threshold and finish_consistent_subsets>support_threshold:
-                    constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => finish(t1,t2,t5,t6)|"+str(finish_confidence)
-                    print(constraint)
-                    Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
+    ed=time.time()
+    print("Mutiple Entity Temporal Order Mining time is",ed-st,"s")
     return Mutiple_Entity_Temporal_Order_Constraint
 
 def Compound(atoms):
@@ -705,10 +833,10 @@ def Constraint_Mining(graph):
     Constraint_list += Single_Entity_Temporal_Order(graph)
     Constraint_list += Mutiple_Entity_Temporal_Order(graph)
     end=time.time()
-    print("running time is:",end-start,"s")
+    print("constraint mining running time is:",end-start,"s")
     print("Constraint_list:")
-    for item in Constraint_list:
-        print(item)
+    # for item in Constraint_list:
+    #     print(item)
     # print(Constraint_list)
     return Constraint_list
 
@@ -847,29 +975,35 @@ def Soft_Constraint_Mining(graph):
 
     return Soft_Constraint_list
 
+
+
 def test():
     # utkg=read_datasets.read_file("footballdb_tsv/player_team_year_rockit_0.tsv")
     # functional_detection(utkg)
     g = Graph_Structure.Graph()
     # filename="footballdb_tsv/player_team_year_rockit_0.tsv"
 
-    filename = "wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv"
+    # filename = "wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv"
     # filename = "all_relations_with_redundant_wikidata_alpha-1.2.tsv"
-    read_datasets.pre_process(filename)
-    g.ConstructThroughTsv(filename, 100)
+    filename = "all_relations_with_redundant_freebase_alpha-1.1.tsv"
+    # read_datasets.pre_process(filename)
+    # g.ConstructThroughTsv(filename, "wikidata",100)
+    g.ConstructThroughTsv(filename, "freebase", 100)
 
     print("number of entity vertex is ", g.num_eVertices)
     print("number of statement vertex is", g.num_sVertices)
-    print(len(g.relationList))
-    print(g.relationList)
+    # print("len(g.relationList):",len(g.relationList))
+    # print("g.relationList:",g.relationList)
+    print("len(g.temporalRelationList):",len(g.temporalRelationList))
+    print("g.temporalRelationList:",g.temporalRelationList)
     print("-------------------")
     # g.iterateOverGraph()
 
     Constraint_Set = Constraint_Mining(g)
     # Soft_Constraint_Mining(g)
     transitive_constraint_set = transitive_closure(Constraint_Set)
-    for constraint in transitive_constraint_set:
-        print(constraint)
+    # for constraint in transitive_constraint_set:
+    #     print(constraint)
 
     # write rule file
     write_filename = filename + "_rules"

@@ -5,24 +5,23 @@
 
 class FuzzyTime:
     def __init__(self,timeInt):
-        timeString=str(timeInt)
-        bc=""
-        if timeString[0]=="-":
-            bc="-"
-            timeString=timeString[1:]
-        if len(timeString)==6:
-            timeString+="01"
-        timeString=bc+timeString
-
-        if timeString=="-1":
+        if timeInt==-1:
             self.Year="####"
             self.Month="##"
             self.Day="##"
         else:
+            timeString=str(timeInt)
+            bc=""
+            if timeString[0]=="-":
+                bc="-"
+                timeString=timeString[1:]
+            while len(timeString)<5:
+                timeString='0'+timeString
+            timeString=bc+timeString
+
             self.Day=int(timeString[-2:])
             self.Month=int(timeString[-4:-2])
             self.Year=int(timeString[:-4])
-            # print(timeString)
             if self.Day==1:
                 self.Day="##"
                 if self.Month==1:

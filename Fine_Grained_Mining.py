@@ -1,58 +1,10 @@
-import copy
-import time
-
-import read_datasets
 import Constraint_Mining
-import Interval_Relations
+import Conflict_Detection
+import time
 import Graph_Structure
+import Interval_Relations
 
-'''
-functional
-(a," + relation + ",b,t1,t2) & (a,"+relation+",c,t3,t4) => disjoint(t1,t2,t3,t4)
-inverse_functional
-(a," + relation + ",b,t1,t2) & (c," + relation + ",b,t3,t4) => disjoint(t1,t2,t3,t4)
-single_before
-(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => before(t1,t2,t3,t4)
-single_include
-(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => include(t1,t2,t3,t4)
-single_temporal_span
-
-
-binary_temporal_span
-distribution_dict = {"type": "binary", "relation1": relation1, "relation2":relation2, "total": total, "max": max, "min": min,
-                                 "0-20": part1 * 1.0 / total, "20-40": part2 * 1.0 / total, "40-60": part3 * 1.0 / total,
-                                 "60-80": part4 * 1.0 / total, "80-100": part5 * 1.0 / total}
-'''
-
-Constraint_Set=["(a,P569,b,t1,t2) & (a,P569,c,t3,t4) => disjoint(t1,t2,t3,t4)",\
-                "(a,P26,b,t1,t2) & (a,P26,c,t3,t4) => disjoint(t1,t2,t3,t4)",\
-                "(a,P570,b,t1,t2) & (a,P570,c,t3,t4) => disjoint(t1,t2,t3,t4)",\
-"(a,P108,b,t1,t2) & (a,P108,c,t3,t4) => disjoint(t1,t2,t3,t4)",\
-"(a,P286,b,t1,t2) & (a,P286,c,t3,t4) => disjoint(t1,t2,t3,t4)",\
-"(a,P570,b,t1,t2) & (c,P570,b,t3,t4) => disjoint(t1,t2,t3,t4)",\
-"(a,P108,b,t1,t2) & (c,P108,b,t3,t4) => disjoint(t1,t2,t3,t4)",\
-"(a,P286,b,t1,t2) & (c,P286,b,t3,t4) => disjoint(t1,t2,t3,t4)",\
-"(a,P54,b,t1,t2) & (a,P570,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P569,b,t1,t2) & (a,P54,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P569,b,t1,t2) & (a,P26,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P569,b,t1,t2) & (a,P570,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P569,b,t1,t2) & (a,P108,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P26,b,t1,t2) & (a,P570,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P108,b,t1,t2) & (a,P570,c,t3,t4) => before(t1,t2,t3,t4)",\
-"(a,P54,b,t1,t2) & (a,P26,c,t3,t4) & (c,P569,d,t5,t6) => before(t5,t6,t1,t2)",\
-"(a,P569,b,t1,t2) & (a,P26,c,t3,t4) & (c,P54,d,t5,t6) => before(t1,t2,t5,t6)",\
-"(a,P569,b,t1,t2) & (a,P26,c,t3,t4) & (c,P570,d,t5,t6) => before(t1,t2,t5,t6)",\
-"(a,P569,b,t1,t2) & (a,P26,c,t3,t4) & (c,P108,d,t5,t6) => before(t1,t2,t5,t6)",\
-"(a,P569,b,t1,t2) & (a,father,c,t3,t4) & (c,P569,d,t5,t6) => before(t5,t6,t1,t2)",\
-"(a,P26,b,t1,t2) & (a,father,c,t3,t4) & (c,P569,d,t5,t6) => before(t5,t6,t1,t2)",\
-"(a,P570,b,t1,t2) & (a,P26,c,t3,t4) & (c,P569,d,t5,t6) => before(t5,t6,t1,t2)",\
-"(a,P570,b,t1,t2) & (a,father,c,t3,t4) & (c,P569,d,t5,t6) => before(t5,t6,t1,t2)",\
-"(a,P108,b,t1,t2) & (a,P26,c,t3,t4) & (c,P569,d,t5,t6) => before(t5,t6,t1,t2)"]
-
-def Compound(atom):
-    return
-
-def Subgraph_Detection0(temporal_KG,Constraint_Set):
+def Fine_Grained_Mining0(temporal_KG,Constraint_Set):
 
     '''
     translate and execute constraint
@@ -124,7 +76,7 @@ def Subgraph_Detection0(temporal_KG,Constraint_Set):
     # print(actions)
     return Conflict_Fact_set
 
-def Subgraph_Detection1(temporal_KG,Constraint_Set):
+def Fine_Grained_Mining1(temporal_KG,Constraint_Set):
 
     '''
     translate and execute constraint
@@ -201,7 +153,7 @@ def Subgraph_Detection1(temporal_KG,Constraint_Set):
     # print(actions)
     return Conflict_Fact_set
 
-def Subgraph_Detection2(temporal_KG,Constraint_Set):
+def Fine_Grained_Mining2(temporal_KG,Constraint_Set):
 
     '''
     translate and execute constraint
@@ -338,7 +290,7 @@ def Subgraph_Detection2(temporal_KG,Constraint_Set):
 
     return Conflict_Fact_set
 
-def Subgraph_Detection3(temporal_KG,Constraint_Set):
+def Fine_Grained_Mining3(temporal_KG,Constraint_Set):
 
     '''
     translate and execute constraint
@@ -496,7 +448,7 @@ def Subgraph_Detection3(temporal_KG,Constraint_Set):
 
     return Conflict_Fact_set
 
-def Subgraph_Detection4(temporal_KG,Constraint_Set):
+def Fine_Grained_Mining4(temporal_KG,Constraint_Set):
 
     '''
     translate and execute constraint
@@ -645,7 +597,7 @@ def Subgraph_Detection4(temporal_KG,Constraint_Set):
 
     return Conflict_Fact_set
 
-def Subgraph_Detection5(temporal_KG,Constraint_Set):
+def Fine_Grained_Mining5(temporal_KG,Constraint_Set):
 
     '''
     translate and execute constraint
@@ -808,13 +760,22 @@ def Subgraph_Detection5(temporal_KG,Constraint_Set):
 
     return Conflict_Fact_set
 
-def Conflict_Detection(temporal_KG,Constraint_Set):
-    # framework
-    # Constraint_Mining.simplify_constraint()
-    # file=open()
-    # Conflict_Set=[]
-    # for constraint in Constraint_Set:
-    Conflict_Set=[]
+def fine_grained_mining(graph,knowledgebase,Constraint_Set):
+    t0=time.time()
+    if knowledgebase=="wikidata":
+        type_file=open("wikidata-entity-type-info.tsv","r",encoding="UTF-8")
+    elif knowledgebase=="freebase":
+        type_file=open("freebase-entity-type-info.tsv","r",encoding="UTF-8")
+
+    types=type_file.readlines()
+    type_file.close()
+    for line in types:
+        elems=line.strip().split("\t")
+        key=elems[0]
+        for i in range(1,len(elems)):
+            graph.entityType.setdefault(key, []).append(elems[i])
+    t1=time.time()
+    print("read type cost time is:",t1-t0,"s")
 
     # functional constraints detection
     functional_constraints = []
@@ -832,44 +793,40 @@ def Conflict_Detection(temporal_KG,Constraint_Set):
             path1 = atom1.split(",")[1]
             edges1 = path1.split("*")
             path2 = atom2.split(",")[1]
-            edges2=path2.split("*")
+            edges2 = path2.split("*")
             if edges1[0] == edges2[0] and len(edges1) == 1 and len(edges2) == 1:
                 functional_constraints.append(c)
-    st = time.time()
-    Conflict_Set += Subgraph_Detection0(temporal_KG, functional_constraints)
-    ed0 = time.time()
-    print("Detection0 cost time:", ed0 - st, "s")
+
+
     # inverse functional constraints detection
     inverse_functional_constraints = []
     for c in Constraint_Set:
         elem = c.split(" ")
-        atom1=elem[0]
-        interval_relation=elem[1]
-        atom2=elem[2]
-        anchor=""
+        atom1 = elem[0]
+        interval_relation = elem[1]
+        atom2 = elem[2]
+        anchor = ""
         if atom1.split(",")[0].__eq__(atom2.split(",")[0]):
-            anchor="head"
+            anchor = "head"
         elif atom1.split(",")[2].__eq__(atom2.split(",")[2]):
-            anchor="tail"
-        if anchor=="tail":
+            anchor = "tail"
+        if anchor == "tail":
             inverse_functional_constraints.append(c)
 
-    Conflict_Set+=Subgraph_Detection1(temporal_KG,inverse_functional_constraints)
-    ed1=time.time()
-    print("Detection1 cost time:",ed1-ed0,"s")
+
     # zero hop constraint detection
-    zero_hop_constraints=[]
+    zero_hop_constraints = []
     for c in Constraint_Set:
         elem = c.split(" ")
-        atom1=elem[0]
-        interval_relation=elem[1]
-        atom2=elem[2]
-        anchor=""
+        atom1 = elem[0]
+        interval_relation = elem[1]
+        atom2 = elem[2]
+        anchor = ""
         if atom1.split(",")[0].__eq__(atom2.split(",")[0]):
-            anchor="head"
+            anchor = "head"
         elif atom1.split(",")[2].__eq__(atom2.split(",")[2]):
-            anchor="tail"
-        if anchor=="head":
+            anchor = "tail"
+        if anchor == "head":
             path1 = atom1.split(",")[1]
             edges1 = path1.split("*")
             path2 = atom2.split(",")[1]
@@ -877,9 +834,7 @@ def Conflict_Detection(temporal_KG,Constraint_Set):
             if edges1[0] != edges2[0] and len(edges1) == 1 and len(edges2) == 1:
                 zero_hop_constraints.append(c)
     # print(zero_hop_constraints)
-    Conflict_Set+=Subgraph_Detection2(temporal_KG,zero_hop_constraints)
-    ed2 = time.time()
-    print("Detection2 cost time:", ed2 - ed1, "s")
+
     # first one hop constraint detection
     first_one_hop_constraints = []
     for c in Constraint_Set:
@@ -899,9 +854,7 @@ def Conflict_Detection(temporal_KG,Constraint_Set):
             edges2 = path2.split("*")
             if len(edges1) == 2 and len(edges2) == 1:
                 first_one_hop_constraints.append(c)
-    Conflict_Set += Subgraph_Detection3(temporal_KG, first_one_hop_constraints)
-    ed3 = time.time()
-    print("Detection3 cost time:", ed3 - ed2, "s")
+
     # second one hop constraint detection
     second_one_hop_constraints = []
     for c in Constraint_Set:
@@ -921,9 +874,7 @@ def Conflict_Detection(temporal_KG,Constraint_Set):
             edges2 = path2.split("*")
             if len(edges1) == 1 and len(edges2) == 2:
                 second_one_hop_constraints.append(c)
-    Conflict_Set += Subgraph_Detection4(temporal_KG, second_one_hop_constraints)
-    ed4 = time.time()
-    print("Detection4 cost time:", ed4 - ed3, "s")
+
     # both one hop constraint detection
     both_one_hop_constraints = []
     for c in Constraint_Set:
@@ -943,64 +894,69 @@ def Conflict_Detection(temporal_KG,Constraint_Set):
             edges2 = path2.split("*")
             if len(edges1) == 2 and len(edges2) == 2:
                 both_one_hop_constraints.append(c)
-    Conflict_Set += Subgraph_Detection5(temporal_KG, both_one_hop_constraints)
+
+    Fine_Grained_Constraint_Set=[]
+    st = time.time()
+    Fine_Grained_Constraint_Set += Fine_Grained_Mining0(graph, functional_constraints)
+    ed0 = time.time()
+    print("Fine Grained Constraint Set0 cost time:", ed0 - st, "s")
+    Fine_Grained_Constraint_Set += Fine_Grained_Mining1(graph, inverse_functional_constraints)
+    ed1 = time.time()
+    print("Fine Grained Constraint Set1 cost time:", ed1 - ed0, "s")
+    Fine_Grained_Constraint_Set += Fine_Grained_Mining2(graph, zero_hop_constraints)
+    ed2 = time.time()
+    print("Fine Grained Constraint Set2 cost time:", ed2 - ed1, "s")
+    Fine_Grained_Constraint_Set += Fine_Grained_Mining3(graph, first_one_hop_constraints)
+    ed3 = time.time()
+    print("Fine Grained Constraint Set3 cost time:", ed3 - ed2, "s")
+    Fine_Grained_Constraint_Set += Fine_Grained_Mining4(graph, second_one_hop_constraints)
+    ed4 = time.time()
+    print("Fine Grained Constraint Set4 cost time:", ed4 - ed3, "s")
+    Fine_Grained_Constraint_Set += Fine_Grained_Mining5(graph, both_one_hop_constraints)
     ed5 = time.time()
-    print("Detection5 cost time:", ed5 - ed4, "s")
+    print("Fine Grained Constraint Set5 cost time:", ed5 - ed4, "s")
 
-    Detected_Constraint_Set=set(inverse_functional_constraints).union(set(functional_constraints))
-    Detected_Constraint_Set=Detected_Constraint_Set.union(zero_hop_constraints)
-    Detected_Constraint_Set = Detected_Constraint_Set.union(first_one_hop_constraints)
-    Detected_Constraint_Set = Detected_Constraint_Set.union(second_one_hop_constraints)
-    Detected_Constraint_Set = Detected_Constraint_Set.union(both_one_hop_constraints)
-    print("Total Constraint number is",len(Constraint_Set))
-    print("Detected Constraint number is",len(Detected_Constraint_Set))
-    print("Constraints not detected yet:")
-    Undetected_Constraint_Set=set()
-    Undetected_Constraint_Set=set(Constraint_Set).difference(Detected_Constraint_Set)
-    print(Undetected_Constraint_Set)
-    return Conflict_Set
+    Post_Processed_Constraint_Set = set(inverse_functional_constraints).union(set(functional_constraints))
+    Post_Processed_Constraint_Set = Post_Processed_Constraint_Set.union(zero_hop_constraints)
+    Post_Processed_Constraint_Set = Post_Processed_Constraint_Set.union(first_one_hop_constraints)
+    Post_Processed_Constraint_Set = Post_Processed_Constraint_Set.union(second_one_hop_constraints)
+    Post_Processed_Constraint_Set = Post_Processed_Constraint_Set.union(both_one_hop_constraints)
+    print("Total Constraint number is", len(Constraint_Set))
+    print("Fine Grained Mining Constraint number is", len(Post_Processed_Constraint_Set))
+    print("Constraints not fine grained mining yet:")
+    UnPost_Processed_Constraint_Set = set()
+    UnPost_Processed_Constraint_Set = set(Constraint_Set).difference(Post_Processed_Constraint_Set)
+    print(UnPost_Processed_Constraint_Set)
 
-def read_constraints(filename):
-    constraints=[]
-    # read constraints from file and detect
-
-    file=open(filename,"r",encoding="UTF-8")
-    lines=file.readlines()
-    constraints=[]
-    for line in lines:
-        line=line.strip()
-        constraints.append(line)
-    return constraints
+    return Fine_Grained_Constraint_Set
 
 def test():
     temporal_KG = Graph_Structure.Graph()
-    # filename = "wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv"
-    filename = "all_relations_with_redundant_wikidata_alpha-1.2.tsv"
+    knowledgebase="wikidata"
+    # knowledgebase = "freebase"
+    filename = "wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv"
+    # filename = "all_relations_with_redundant_wikidata_alpha-1.2.tsv"
     # filename="all_relations_with_redundant_freebase_alpha-1.1.tsv"
     # read_datasets.pre_process(filename)
 
     starttime0 = time.time()
-    temporal_KG.ConstructThroughTsv(filename,"wikidata", 100)
-    # temporal_KG.ConstructThroughTsv(filename, "freebase", 100)
+    temporal_KG.ConstructThroughTsv(filename, knowledgebase, 100)
     endtime0 = time.time()
     runningtime0 = endtime0 - starttime0
     print("ConstructThroughTsv running time:", runningtime0, "s")
+
 
     # print("entity vertex number is:",temporal_KG.num_eVertices)
     constraint_filename = "all_relations_with_redundant_wikidata_alpha-1.2.tsv_rules"
     # constraint_filename = "all_relations_with_redundant_freebase_alpha-1.1.tsv_rules"
     # constraint_filename="constraint_list_wikidata.txt"
-    constraint_set = read_constraints(constraint_filename)
+    constraint_set = Conflict_Detection.read_constraints(constraint_filename)
     starttime = time.time()
-    conflicts = Conflict_Detection(temporal_KG, constraint_set)
+    conflicts = fine_grained_mining(temporal_KG, "wikidata",constraint_set)
     endtime = time.time()
     runningtime = endtime - starttime
     print("Conflict detection running time:", runningtime, "s")
-    # for conflict in conflicts:
-    #     print(conflict)
-    conflict_file=open(filename+"_conflict","w",encoding="UTF-8")
-    conflict_file.writelines("\n".join(conflicts))
-
+    return 0
 
 if __name__ == '__main__':
     test()
