@@ -6,13 +6,101 @@ import Graph_Structure
 import time
 import Conflict_Detection
 from multiprocessing.dummy import Pool as ThreadPool
-import Fine_Grained_Mining
+import Refinement_Mining
 
 candidate_threshold=0.6
-confidence_threshold=0.8
+confidence_threshold=0.9
+mutual_exclusion_threshold= 0.98
 truncate_threshold=0.9
-support_threshold=20
+support_threshold=100
 
+def Mutual_Exclusion_mining(graph):
+    # a relation is temporally functional if its value's valid time has no overlaps
+    # find which relation is functional
+    # what a functional constraint is like?
+    # how to compute confidence? present strategy is consistent subsets/total subsets
+
+    print("Mutual_Exclusion_mining......")
+    st = time.time()
+    # output_filename = "functional_conflict.txt"
+    # a quick index dict
+    index_dict={}
+    Mutual_Exclusion_constraint = []
+
+    for i in range(len(graph.temporalRelationList)):
+        index_dict[graph.temporalRelationList[i]]=i
+    F_relations = graph.temporalRelationList.copy()
+
+    # index_dict["P54"] = 0
+    # F_relations =["P54"]
+    F_relations_statistics=[]
+    for r in F_relations:
+        F_relations_statistics.append([r,0,0])
+        #relation consistent_subset total_subset
+        #[[P1,0,0]]
+    vertex_count=0
+    pre = time.time()
+
+    for i in graph.eVertexList:
+        vertex_count += 1
+        if vertex_count % 1000000 == 0:
+            ed = time.time()
+            print("have traversed nodes:", vertex_count)
+            print("time cost:", ed - pre, "s")
+        v = graph.eVertexList[i]
+        if v.isLiteral == True:
+            # return
+            continue
+        # if len(v.hasStatement)<2:
+        #     continue
+        all_relation_pairs = {}
+
+        for s in v.hasStatement:
+            i1 = s.getStartTime()
+            i2 = s.getEndTime()
+            # we only care temporal facts
+            tail=s.hasValue.getId()
+            if i1 != -1 or i2 != -1:
+                relation = s.getId()
+                if index_dict.__contains__(relation):
+                    index = index_dict[relation]
+                    all_relation_pairs.setdefault(index, []).append(s)
+                #用一个set把index填进去
+        for j in all_relation_pairs.keys():
+            # hasRelation=true
+            # total subsets+=1
+            # if len(all_relation_pairs[j])==1:
+            #     continue
+            F_relations_statistics[j][2] += 1
+            consistent = True
+            exist = False
+            if len(all_relation_pairs[j])!=1:
+                consistent=False
+
+            if consistent == True:
+                # consistent subsets+=1
+                F_relations_statistics[j][1] += 1
+        all_relation_pairs.clear()
+    for f in F_relations_statistics:
+        total_subsets=f[2]
+        consistent_subsets=f[1]
+        relation=f[0]
+        if total_subsets == 0:
+            confidence = 0
+        else:
+            confidence = consistent_subsets * 1.0 / total_subsets
+        print(relation, consistent_subsets, total_subsets, confidence)
+        if confidence > mutual_exclusion_threshold and consistent_subsets > support_threshold:
+        # if confidence > confidence_threshold and consistent_subsets > support_threshold:
+            constraint = "(a," + relation + ",b,t1,t2) & (a," + relation + ",c,t3,t4) => MutualExclusion|" + str(
+                confidence)
+            print(constraint)
+            Mutual_Exclusion_constraint.append(constraint)
+
+        # x relation1 y & x relation2 z t1(t1=开始结束时间取平均数) & y relation3 w t2 = > t2 before t1 / t1 before t2 / t1 during t2 / t2 during t1
+    ed = time.time()
+    print("Mutual_Exclusion_Mining time is", ed - st, "s")
+    return Mutual_Exclusion_constraint
 
 
 def functional_mining(graph):
@@ -52,28 +140,30 @@ def functional_mining(graph):
         if v.isLiteral == True:
             # return
             continue
-        if len(v.hasStatement)<2:
-            continue
+        # if len(v.hasStatement)<2:
+        #     continue
         all_relation_pairs = {}
 
         for s in v.hasStatement:
             i1 = s.getStartTime()
             i2 = s.getEndTime()
             # we only care temporal facts
+            tail=s.hasValue.getId()
             if i1 != -1 or i2 != -1:
                 relation = s.getId()
-                # if index_dict.__contains__(relation):
-                index = index_dict[relation]
-                all_relation_pairs.setdefault(index, []).append(s)
+                if index_dict.__contains__(relation):
+                    index = index_dict[relation]
+                    all_relation_pairs.setdefault(index, []).append(s)
                 #用一个set把index填进去
         for j in all_relation_pairs.keys():
             # hasRelation=true
             # total subsets+=1
-            if len(all_relation_pairs[j])==1:
-                continue
-            F_relations_statistics[j][2] += 1
+            # if len(all_relation_pairs[j])==1:
+            #     continue
+
+            # F_relations_statistics[j][2] += 1
             consistent = True
-            exist = False
+            negative = False
             for k in range(len(all_relation_pairs[j])):
                 vertex1 = all_relation_pairs[j][k]
                 flag = True
@@ -83,24 +173,36 @@ def functional_mining(graph):
                     end1 = vertex1.getEndTime()
                     start2 = vertex2.getStartTime()
                     end2 = vertex2.getEndTime()
-                    # tail1 = vertex1.hasValue.getId()
-                    # tail2 = vertex2.hasValue.getId()
-                    # if graph.entityType.__contains__(tail1):
-                    #     if "Q6979593" in graph.entityType[tail1]:
-                    #         if graph.entityType.__contains__(tail2):
-                    #             if "Q6979593" in graph.entityType[tail2]:
-                    #                 exist=True
+                    tail1 = vertex1.hasValue.getId()
+                    tail2 = vertex2.hasValue.getId()
 
-                    if Interval_Relations.disjoint(start1, end1, start2, end2) == -1:
+                    # confidence = positive+unknown/positive+unknown+negative
+                    # if Interval_Relations.disjoint(start1, end1, start2, end2) == -1:
+                    #     consistent = False
+                    #     flag = False
+                    #     break
+
+                    #confidence = positive/positive+negative
+                    result=Interval_Relations.disjoint(start1, end1, start2, end2)
+                    if result == -1:
                         consistent = False
                         flag = False
+                        negative=True
                         break
+
+                    if result == 0:
+                        consistent = False
+
                 if flag == False:
                     break
 
             if consistent == True:
                 # consistent subsets+=1
                 F_relations_statistics[j][1] += 1
+            # confidence = positive/positive+negative
+                F_relations_statistics[j][2] += 1
+            elif negative==True:
+                F_relations_statistics[j][2] += 1
         all_relation_pairs.clear()
     for f in F_relations_statistics:
         total_subsets=f[2]
@@ -152,8 +254,8 @@ def inverse_functional_mining(graph):
             print("have traversed nodes:",vertex_count)
             print("time cost:",ed-pre,"s")
         v = graph.eVertexList[i]
-        if len(v.bePointedTo)<2:
-            continue
+        # if len(v.bePointedTo)<2:
+        #     continue
         if v.isLiteral==True:
             continue
 
@@ -171,10 +273,11 @@ def inverse_functional_mining(graph):
 
                 # [[P54,e,e,e],[P286,e,e,e]]
         for j in all_relation_pairs.keys():
-            if len(all_relation_pairs[j])==1:
-                continue
-            IF_relations_statistics[j][2] += 1
+            # if len(all_relation_pairs[j])==1:
+            #     continue
+            # IF_relations_statistics[j][2] += 1
             consistent = True
+            negative = False
             for k in range(len(all_relation_pairs[j])):
                 vertex1 = all_relation_pairs[j][k]
                 flag=True
@@ -184,15 +287,31 @@ def inverse_functional_mining(graph):
                     end1 = vertex1.getEndTime()
                     start2 = vertex2.getStartTime()
                     end2 = vertex2.getEndTime()
-                    if Interval_Relations.disjoint(start1, end1, start2, end2) == -1:
+
+                    # if Interval_Relations.disjoint(start1, end1, start2, end2) == -1:
+                    #     consistent = False
+                    #     flag=False
+                    #     break
+
+                    # confidence = positive/positive+negative
+                    result=Interval_Relations.disjoint(start1, end1, start2, end2)
+                    if result == -1:
                         consistent = False
-                        flag=False
+                        flag = False
+                        negative = True
                         break
+
+                    if result == 0:
+                        consistent = False
                 if flag==False:
                     break
             if consistent == True:
                 # consistent subsets+=1
                 IF_relations_statistics[j][1] += 1
+                # confidence = positive/positive+negative
+                IF_relations_statistics[j][2] += 1
+            elif negative == True:
+                IF_relations_statistics[j][2] += 1
     for f in IF_relations_statistics:
         total_subsets = f[2]
         consistent_subsets = f[1]
@@ -230,13 +349,13 @@ def Single_Entity_Temporal_Order(graph):
             relation_pair1 = [ZH_relation1, ZH_relation2]
             relation_pair2 = [ZH_relation2, ZH_relation1]
             ZH_relations.append(relation_pair1)
-            ZH_relations_statistics.append([ZH_relation1,ZH_relation2,0,0,0,0,0])
+            ZH_relations_statistics.append([ZH_relation1,ZH_relation2,0,0,0,0,0,0,0,0])
             key=ZH_relation1+"*"+ZH_relation2
             index_dict[key]=cou
             cou+=1
             #before include start finish total
             ZH_relations.append(relation_pair2)
-            ZH_relations_statistics.append([ZH_relation2, ZH_relation1, 0, 0, 0, 0, 0])
+            ZH_relations_statistics.append([ZH_relation2, ZH_relation1, 0, 0, 0, 0, 0,0,0,0])
             key = ZH_relation2 + "*" + ZH_relation1
             index_dict[key] = cou
             cou+=1
@@ -291,8 +410,17 @@ def Single_Entity_Temporal_Order(graph):
                 include_consistent = True
                 start_consistent = True
                 finish_consistent = True
+                before_negative = False
+                include_negative = False
+                start_negative = False
+                finish_negative = False
+                flag1 = True
+                flag2 = True
+                flag3 = True
+                flag4 = True
                 # total subsets+=1
-                ZH_relations_statistics[j][6]+=1
+                # 1
+                # ZH_relations_statistics[j][6]+=1
                 # step=2
                 for k in range(0,len(all_relation_pairs[j]), 2):
                     vertex1 = all_relation_pairs[j][k]
@@ -302,54 +430,126 @@ def Single_Entity_Temporal_Order(graph):
                     start2 = vertex2.getStartTime()
                     end2 = vertex2.getEndTime()
                     # choose which interval relation is
-                    if Interval_Relations.before(start1, end1, start2, end2) == -1:
+                    result1=Interval_Relations.before(start1, end1, start2, end2)
+                    result2=Interval_Relations.include(start1, end1, start2, end2)
+                    result3=Interval_Relations.start(start1, end1, start2, end2)
+                    result4=Interval_Relations.finish(start1, end1, start2, end2)
+                    if result1== -1:
                         before_consistent=False
-                    if Interval_Relations.include(start1, end1, start2, end2) == -1:
+                        before_negative=True
+                        flag1=False
+                    elif result1==0:
+                        before_consistent=False
+
+                    if result2 == -1:
                         include_consistent = False
-                    if Interval_Relations.start(start1, end1, start2, end2) == -1:
+                        include_negative = True
+                        flag2 = False
+                    elif result2 == 0:
+                        include_consistent = False
+
+                    if result3 == -1:
                         start_consistent = False
-                    if Interval_Relations.finish(start1, end1, start2, end2) == -1:
+                        start_negative = True
+                        flag3 = False
+                    elif result3 == 0:
+                        start_consistent = False
+
+                    if result4 == -1:
                         finish_consistent = False
-                    if before_consistent==False and include_consistent==False and start_consistent==False and finish_consistent==False:
+                        finish_negative = True
+                        flag4 = False
+                    elif result4 == 0:
+                        finish_consistent = False
+
+                    # 1
+                    # if before_consistent==False and include_consistent==False and start_consistent==False and finish_consistent==False:
+                    #     break
+                    if flag1==False and flag2==False and flag3==False and flag4==False:
                         break
                 if before_consistent==True:
                     #before_consistent_subsets += 1
                     ZH_relations_statistics[j][2]+=1
-                elif include_consistent==True:
+                    # confidence = positive/positive+negative
+                    ZH_relations_statistics[j][6] += 1
+                elif before_negative == True:
+                    ZH_relations_statistics[j][6] += 1
+
+                if include_consistent==True:
                     #include_consistent_subsets +=1
                     ZH_relations_statistics[j][3] += 1
-                elif start_consistent==True:
+                    # confidence = positive/positive+negative
+                    ZH_relations_statistics[j][7] += 1
+                elif include_negative == True:
+                    ZH_relations_statistics[j][7] += 1
+
+                if start_consistent==True:
                     #start_consistent_subsets +=1
                     ZH_relations_statistics[j][4] += 1
-                elif finish_consistent==True:
+                    # confidence = positive/positive+negative
+                    ZH_relations_statistics[j][8] += 1
+                elif start_negative == True:
+                    ZH_relations_statistics[j][8] += 1
+
+                if finish_consistent==True:
                     #finish_consistent_subsets +=1
                     ZH_relations_statistics[j][5] += 1
+                    # confidence = positive/positive+negative
+                    ZH_relations_statistics[j][9] += 1
+                elif finish_negative == True:
+                    ZH_relations_statistics[j][9] += 1
     for f in ZH_relations_statistics:
         relation1=f[0]
         relation2=f[1]
-        total_subsets=f[6]
+        # 1
+        # before_total_subsets= f[6]
         before_consistent_subsets=f[2]
         include_consistent_subsets=f[3]
         start_consistent_subsets = f[4]
         finish_consistent_subsets = f[5]
-        if total_subsets == 0:
+        before_total_subsets = f[6]
+        include_total_subsets = f[7]
+        start_total_subsets = f[8]
+        finish_total_subsets = f[9]
+
+        # 1
+        # if total_subsets == 0:
+        #     before_confidence = 0
+        #     include_confidence = 0
+        #     start_confidence = 0
+        #     finish_confidence = 0
+        # else:
+        #     before_confidence = before_consistent_subsets * 1.0 / total_subsets
+        #     include_confidence = include_consistent_subsets * 1.0 / total_subsets
+        #     start_confidence = start_consistent_subsets * 1.0 / total_subsets
+        #     finish_confidence = finish_consistent_subsets * 1.0 / total_subsets
+
+        # 2
+        if before_total_subsets==0:
             before_confidence = 0
+        else:
+            before_confidence = before_consistent_subsets * 1.0 / before_total_subsets
+        if include_total_subsets == 0:
             include_confidence = 0
+        else:
+            include_confidence = include_consistent_subsets * 1.0 / include_total_subsets
+        if start_total_subsets == 0:
             start_confidence = 0
+        else:
+            start_confidence = before_consistent_subsets * 1.0 / start_total_subsets
+        if finish_total_subsets == 0:
             finish_confidence = 0
         else:
-            before_confidence = before_consistent_subsets * 1.0 / total_subsets
-            include_confidence = include_consistent_subsets * 1.0 / total_subsets
-            start_confidence = start_consistent_subsets * 1.0 / total_subsets
-            finish_confidence = finish_consistent_subsets * 1.0 / total_subsets
+            finish_confidence = before_consistent_subsets * 1.0 / finish_total_subsets
+
         if before_consistent_subsets != 0:
-            print("before relation", relation1, relation2, before_consistent_subsets, total_subsets, before_confidence)
+            print("before relation", relation1, relation2, before_consistent_subsets, before_total_subsets, before_confidence)
         if include_consistent_subsets != 0:
-            print("include relation", relation1, relation2, include_consistent_subsets, total_subsets, include_confidence)
+            print("include relation", relation1, relation2, include_consistent_subsets, include_total_subsets, include_confidence)
         if start_consistent_subsets != 0:
-            print("start relation", relation1, relation2, start_consistent_subsets, total_subsets, start_confidence)
+            print("start relation", relation1, relation2, start_consistent_subsets, start_total_subsets, start_confidence)
         if finish_consistent_subsets != 0:
-            print("finish relation", relation1, relation2, finish_consistent_subsets, total_subsets, finish_confidence)
+            print("finish relation", relation1, relation2, finish_consistent_subsets, finish_total_subsets, finish_confidence)
 
         # if before_confidence > confidence_threshold and before_consistent_subsets > support_threshold:
         if before_confidence > candidate_threshold and before_consistent_subsets > support_threshold:
@@ -363,12 +563,12 @@ def Single_Entity_Temporal_Order(graph):
                 include_confidence)
             print(constraint)
             Single_Entity_Temporal_Order_Constraint.append(constraint)
-        elif start_confidence > confidence_threshold and start_consistent_subsets > support_threshold:
+        elif start_confidence > candidate_threshold and start_consistent_subsets > support_threshold:
             constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => start(t1,t2,t3,t4)|" + str(
                 start_confidence)
             print(constraint)
             Single_Entity_Temporal_Order_Constraint.append(constraint)
-        elif finish_confidence > confidence_threshold and finish_consistent_subsets > support_threshold:
+        elif finish_confidence > candidate_threshold and finish_consistent_subsets > support_threshold:
             constraint = "(a," + relation1 + ",b,t1,t2) & (a," + relation2 + ",c,t3,t4) => finish(t1,t2,t3,t4)|" + str(
                 finish_confidence)
             print(constraint)
@@ -398,7 +598,7 @@ def Mutiple_Entity_Temporal_Order(graph):
                 relation_pair1 = [OH_relation1, OH_relation2,OH_relation3]
 
                 OH_relations.append(relation_pair1)
-                OH_relations_statistics.append([OH_relation1, OH_relation2,OH_relation3,0,0,0,0,0,0,0])
+                OH_relations_statistics.append([OH_relation1, OH_relation2,OH_relation3,0,0,0,0,0,0,0,0,0,0,0,0,0])
                 # before inverse_before include inverse_include start finish total
                 key = OH_relation1 + "*" + OH_relation2+"*"+OH_relation3
                 index_dict[key] = cou
@@ -450,8 +650,21 @@ def Mutiple_Entity_Temporal_Order(graph):
                 inverse_include_consistent=True
                 start_consistent = True
                 finish_consistent = True
+                before_negative = False
+                inverse_before_negative = False
+                include_negative = False
+                inverse_include_negative = False
+                start_negative = False
+                finish_negative = False
+                flag1 = True
+                flag2 = True
+                flag3 = True
+                flag4 = True
+                flag5 = True
+                flag6 = True
+
                 # total subsets+=1
-                OH_relations_statistics[j][9] += 1
+                # OH_relations_statistics[j][9] += 1
                 # step=2
                 for k in range(0, len(all_relation_pairs[j]), 2):
                     # print(len(all_relation_pairs[j]))
@@ -463,98 +676,200 @@ def Mutiple_Entity_Temporal_Order(graph):
                     end2 = vertex2.getEndTime()
 
                     # choose which interval relation is
-                    if Interval_Relations.before(start1, end1, start2, end2) == -1:
+                    result1=Interval_Relations.before(start1, end1, start2, end2)
+                    result2 = Interval_Relations.before(start2, end2, start1, end1)
+                    result3 = Interval_Relations.include(start1, end1, start2, end2)
+                    result4 = Interval_Relations.include(start2, end2, start1, end1)
+                    result5 = Interval_Relations.start(start1, end1, start2, end2)
+                    result6 = Interval_Relations.finish(start1, end1, start2, end2)
+                    if  result1== -1:
                         before_consistent = False
-                    if Interval_Relations.before(start2, end2, start1, end1) == -1:
+                        before_negative=True
+                        flag1=False
+                    elif result1==0:
+                        before_consistent=False
+
+                    if  result2== -1:
                         inverse_before_consistent = False
-                    if Interval_Relations.include(start1, end1, start2, end2) == -1:
+                        inverse_before_negative = True
+                        flag2 = False
+                    elif result2 == 0:
+                        inverse_before_consistent = False
+
+                    if  result3== -1:
                         include_consistent = False
-                    if Interval_Relations.include(start2, end2, start1, end1) == -1:
+                        include_negative = True
+                        flag3 = False
+                    elif result3 == 0:
+                        include_consistent = False
+
+                    if  result4== -1:
                         inverse_include_consistent = False
-                    if Interval_Relations.start(start1, end1, start2, end2) == -1:
+                        inverse_include_negative = True
+                        flag4 = False
+                    elif result4 == 0:
+                        inverse_include_consistent = False
+
+                    if  result5== -1:
                         start_consistent = False
-                    if Interval_Relations.finish(start1, end1, start2, end2) == -1:
+                        start_negative = True
+                        flag5 = False
+                    elif result5 == 0:
+                        start_consistent = False
+
+                    if  result6== -1:
                         finish_consistent = False
-                    if before_consistent==False and inverse_before_consistent==False and include_consistent==False \
-                            and inverse_include_consistent==False and start_consistent==False and finish_consistent==False:
+                        finish_negative = True
+                        flag6 = False
+                    elif result6 == 0:
+                        finish_consistent = False
+
+                    # if before_consistent==False and inverse_before_consistent==False and include_consistent==False \
+                    #         and inverse_include_consistent==False and start_consistent==False and finish_consistent==False:
+                    #     break
+                    if flag1==False and flag2==False and flag3==False and flag4==False and flag5==False and flag6==False:
                         break
                 if before_consistent == True:
                     # before_consistent_subsets += 1
                     OH_relations_statistics[j][3] += 1
-                elif inverse_before_consistent == True:
+                    # confidence = positive/positive+negative
+                    OH_relations_statistics[j][9] += 1
+                elif before_negative == True:
+                    OH_relations_statistics[j][9] += 1
+
+                if inverse_before_consistent == True:
                     # inverse_before_consistent_subsets +=1
                     OH_relations_statistics[j][4] += 1
-                elif include_consistent == True:
+                    # confidence = positive/positive+negative
+                    OH_relations_statistics[j][10] += 1
+                elif inverse_before_negative == True:
+                    OH_relations_statistics[j][10] += 1
+
+                if include_consistent == True:
                     # include_consistent_subsets +=1
                     OH_relations_statistics[j][5] += 1
-                elif inverse_include_consistent == True:
+                    # confidence = positive/positive+negative
+                    OH_relations_statistics[j][11] += 1
+                elif include_negative == True:
+                    OH_relations_statistics[j][11] += 1
+
+                if inverse_include_consistent == True:
                     # inverse_include_consistent_subsets +=1
                     OH_relations_statistics[j][6] += 1
-                elif start_consistent == True:
+                    # confidence = positive/positive+negative
+                    OH_relations_statistics[j][12] += 1
+                elif inverse_include_negative == True:
+                    OH_relations_statistics[j][12] += 1
+
+                if start_consistent == True:
                     # start_consistent_subsets +=1
                     OH_relations_statistics[j][7] += 1
-                elif finish_consistent == True:
+                    # confidence = positive/positive+negative
+                    OH_relations_statistics[j][13] += 1
+                elif start_negative == True:
+                    OH_relations_statistics[j][13] += 1
+
+                if finish_consistent == True:
                     # finish_consistent_subsets +=1
                     OH_relations_statistics[j][8] += 1
+                    # confidence = positive/positive+negative
+                    OH_relations_statistics[j][14] += 1
+                elif finish_negative == True:
+                    OH_relations_statistics[j][14] += 1
     for f in OH_relations_statistics:
         relation1 = f[0]
         one_hop=f[1]
         relation2 = f[2]
-        total_subsets = f[9]
+        # 1
+        # total_subsets = f[9]
         before_consistent_subsets = f[3]
         inverse_before_consistent_subsets=f[4]
         include_consistent_subsets = f[5]
         inverse_include_consistent_subsets=f[6]
         start_consistent_subsets = f[7]
         finish_consistent_subsets = f[8]
-        if total_subsets == 0:
+        before_total_subsets = f[9]
+        inverse_before_total_subsets = f[10]
+        include_total_subsets = f[11]
+        inverse_include_total_subsets = f[12]
+        start_total_subsets = f[13]
+        finish_total_subsets = f[14]
+
+        # 2
+        if before_total_subsets == 0:
             before_confidence = 0
+        else:
+            before_confidence = before_consistent_subsets * 1.0 / before_total_subsets
+        if inverse_before_total_subsets == 0:
             inverse_before_confidence = 0
+        else:
+            inverse_before_confidence = inverse_before_consistent_subsets * 1.0 / inverse_before_total_subsets
+        if include_total_subsets == 0:
             include_confidence = 0
+        else:
+            include_confidence = include_consistent_subsets * 1.0 / include_total_subsets
+        if inverse_include_total_subsets == 0:
             inverse_include_confidence = 0
+        else:
+            inverse_include_confidence = inverse_include_consistent_subsets * 1.0 / inverse_include_total_subsets
+        if start_total_subsets == 0:
             start_confidence = 0
+        else:
+            start_confidence = before_consistent_subsets * 1.0 / start_total_subsets
+        if finish_total_subsets == 0:
             finish_confidence = 0
         else:
-            before_confidence = before_consistent_subsets * 1.0 / total_subsets
-            inverse_before_confidence = inverse_before_consistent_subsets * 1.0 / total_subsets
-            include_confidence = include_consistent_subsets * 1.0 / total_subsets
-            inverse_include_confidence = inverse_include_consistent_subsets * 1.0 /total_subsets
-            start_confidence = start_consistent_subsets * 1.0 / total_subsets
-            finish_confidence = finish_consistent_subsets * 1.0 / total_subsets
-        if before_consistent_subsets != 0:
-            print("before relation", relation1, one_hop, relation2, before_consistent_subsets, total_subsets, before_confidence)
-        if inverse_before_consistent_subsets != 0:
-            print("inverse before relation", relation1, one_hop, relation2, inverse_before_consistent_subsets, total_subsets, inverse_before_confidence)
-        if include_consistent_subsets != 0:
-            print("include relation", relation1, one_hop, relation2, include_consistent_subsets, total_subsets,include_confidence)
-        if inverse_include_consistent_subsets != 0:
-            print("inverse include relation", relation1, one_hop, relation2, inverse_include_consistent_subsets, total_subsets, inverse_include_confidence)
-        if start_consistent_subsets != 0:
-            print("start relation", relation1, one_hop, relation2, start_consistent_subsets, total_subsets, start_confidence)
-        if finish_consistent_subsets != 0:
-            print("finish relation", relation1, one_hop, relation2, finish_consistent_subsets, total_subsets,finish_confidence)
+            finish_confidence = before_consistent_subsets * 1.0 / finish_total_subsets
 
-        if before_confidence > confidence_threshold and before_consistent_subsets>support_threshold:
+        # 1
+        # if total_subsets == 0:
+        #     before_confidence = 0
+        #     inverse_before_confidence = 0
+        #     include_confidence = 0
+        #     inverse_include_confidence = 0
+        #     start_confidence = 0
+        #     finish_confidence = 0
+        # else:
+        #     before_confidence = before_consistent_subsets * 1.0 / total_subsets
+        #     inverse_before_confidence = inverse_before_consistent_subsets * 1.0 / total_subsets
+        #     include_confidence = include_consistent_subsets * 1.0 / total_subsets
+        #     inverse_include_confidence = inverse_include_consistent_subsets * 1.0 /total_subsets
+        #     start_confidence = start_consistent_subsets * 1.0 / total_subsets
+        #     finish_confidence = finish_consistent_subsets * 1.0 / total_subsets
+        if before_consistent_subsets != 0:
+            print("before relation", relation1, one_hop, relation2, before_consistent_subsets, before_total_subsets, before_confidence)
+        if inverse_before_consistent_subsets != 0:
+            print("inverse before relation", relation1, one_hop, relation2, inverse_before_consistent_subsets, inverse_before_total_subsets, inverse_before_confidence)
+        if include_consistent_subsets != 0:
+            print("include relation", relation1, one_hop, relation2, include_consistent_subsets, include_total_subsets,include_confidence)
+        if inverse_include_consistent_subsets != 0:
+            print("inverse include relation", relation1, one_hop, relation2, inverse_include_consistent_subsets, inverse_include_total_subsets, inverse_include_confidence)
+        if start_consistent_subsets != 0:
+            print("start relation", relation1, one_hop, relation2, start_consistent_subsets, start_total_subsets, start_confidence)
+        if finish_consistent_subsets != 0:
+            print("finish relation", relation1, one_hop, relation2, finish_consistent_subsets, finish_total_subsets,finish_confidence)
+
+        if before_confidence > candidate_threshold and before_consistent_subsets>support_threshold:
             constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => before(t1,t2,t5,t6)|"+str(before_confidence)
             print(constraint)
             Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-        elif inverse_before_confidence > confidence_threshold and inverse_before_consistent_subsets>support_threshold:
+        elif inverse_before_confidence > candidate_threshold and inverse_before_consistent_subsets>support_threshold:
             constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => before(t5,t6,t1,t2)|"+str(inverse_before_confidence)
             print(constraint)
             Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-        elif include_confidence > confidence_threshold and include_consistent_subsets>support_threshold:
+        elif include_confidence > candidate_threshold and include_consistent_subsets>support_threshold:
             constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => include(t1,t2,t5,t6)|"+str(include_confidence)
             print(constraint)
             Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-        elif inverse_include_confidence > confidence_threshold and inverse_include_consistent_subsets>support_threshold:
+        elif inverse_include_confidence > candidate_threshold and inverse_include_consistent_subsets>support_threshold:
             constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => include(t5,t6,t1,t2)|"+str(inverse_include_confidence)
             print(constraint)
             Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-        elif start_confidence >confidence_threshold and start_consistent_subsets>support_threshold:
+        elif start_confidence > candidate_threshold and start_consistent_subsets>support_threshold:
             constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => start(t1,t2,t5,t6)|"+str(start_confidence)
             print(constraint)
             Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
-        elif finish_confidence > confidence_threshold and finish_consistent_subsets>support_threshold:
+        elif finish_confidence > candidate_threshold and finish_consistent_subsets>support_threshold:
             constraint = "(a," + relation1 + ",b,t1,t2) & (a," + one_hop + ",c,t3,t4) & (c," + relation2 + ",d,t5,t6) => finish(t1,t2,t5,t6)|"+str(finish_confidence)
             print(constraint)
             Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
@@ -562,6 +877,7 @@ def Mutiple_Entity_Temporal_Order(graph):
     ed=time.time()
     print("Mutiple Entity Temporal Order Mining time is",ed-st,"s")
     return Mutiple_Entity_Temporal_Order_Constraint
+
 
 def Compound(atoms):
     Compounded_atoms=[]
@@ -623,7 +939,11 @@ def simplify_constraint(constraint):
     Compounded_atoms = Compound(atoms)
     # print(Compounded_atoms)
     relation=head.replace(" ","").split("(")[0]
-    t=head.replace(" ","").split("(")[1].split(",")[0]
+    t=head.replace(" ","")
+    if t=="MutualExclusion":
+        simple_constraint = Compounded_atoms[0] + " " + relation + " " + Compounded_atoms[1]+"|"+confidence
+        return simple_constraint
+    t=t.split("(")[1].split(",")[0]
 
     if len(Compounded_atoms)!=2:
         print("Compound atoms error: len != 2 ")
@@ -736,32 +1056,32 @@ def apply_transfering_rules(constraint,Old_Transitive_closure_set):
                     transitive_constraint=fact1+" "+interval_relation+" "+fact4+"|"+str(transfer_confidence)
                     if transfer_confidence>truncate_threshold:
                         if Set_Include(transitive_constraint,Old_Transitive_closure_set)==False:
-                            print("add")
-                            print(constraint, "&", constraint2, "=>", transitive_constraint)
+                            # print("add")
+                            # print(constraint, "&", constraint2, "=>", transitive_constraint)
                             transitive_constraint_set.append(transitive_constraint)
             if interval_relation1.__eq__("before") and interval_relation2.__eq__("start"):
                 transfer_confidence = num_confidence * num_confidence2
                 transitive_constraint = fact1 + " " + "before" + " " + fact4+"|"+str(transfer_confidence)
                 if transfer_confidence > truncate_threshold:
                     if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
-                        print("add")
-                        print(constraint, "&", constraint2, "=>", transitive_constraint)
+                        # print("add")
+                        # print(constraint, "&", constraint2, "=>", transitive_constraint)
                         transitive_constraint_set.append(transitive_constraint)
             elif interval_relation1.__eq__("before") and interval_relation2.__eq__("include"):
                 transfer_confidence = num_confidence * num_confidence2
                 transitive_constraint = fact1 + " " + "before" + " " + fact4+"|"+str(transfer_confidence)
                 if transfer_confidence > truncate_threshold:
                     if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
-                        print("add")
-                        print(constraint, "&", constraint2, "=>", transitive_constraint)
+                        # print("add")
+                        # print(constraint, "&", constraint2, "=>", transitive_constraint)
                         transitive_constraint_set.append(transitive_constraint)
             elif interval_relation1.__eq__("finish") and interval_relation2.__eq__("before"):
                 transfer_confidence = num_confidence * num_confidence2
                 transitive_constraint = fact1 + " " + "before" + " " + fact4+"|"+str(transfer_confidence)
                 if transfer_confidence > truncate_threshold:
                     if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
-                        print("add")
-                        print(constraint, "&", constraint2, "=>", transitive_constraint)
+                        # print("add")
+                        # print(constraint, "&", constraint2, "=>", transitive_constraint)
                         transitive_constraint_set.append(transitive_constraint)
         '''
             transfer rules
@@ -778,8 +1098,8 @@ def apply_transfering_rules(constraint,Old_Transitive_closure_set):
                     transitive_constraint = fact1 + " " + interval_relation + " " + fact4+"|"+str(transfer_confidence)
                     if transfer_confidence > truncate_threshold:
                         if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
-                            print("add")
-                            print(constraint, "&", constraint2, "=>", transitive_constraint)
+                            # print("add")
+                            # print(constraint, "&", constraint2, "=>", transitive_constraint)
                             transitive_constraint_set.append(transitive_constraint)
 
             if interval_relation1.__eq__("include") and interval_relation2.__eq__("before"):
@@ -787,8 +1107,8 @@ def apply_transfering_rules(constraint,Old_Transitive_closure_set):
                 transitive_constraint = fact2 + " " + "before" + " " + fact4+"|"+str(transfer_confidence)
                 if transfer_confidence > truncate_threshold:
                     if Set_Include(transitive_constraint, Old_Transitive_closure_set) == False:
-                        print("add")
-                        print(constraint, "&", constraint2, "=>", transitive_constraint)
+                        # print("add")
+                        # print(constraint, "&", constraint2, "=>", transitive_constraint)
                         transitive_constraint_set.append(transitive_constraint)
 
     return transitive_constraint_set
@@ -828,6 +1148,7 @@ def Constraint_Mining(graph):
     '''
     Constraint_list = []
     start = time.time()
+    Constraint_list += Mutual_Exclusion_mining(graph)
     Constraint_list += functional_mining(graph)
     Constraint_list += inverse_functional_mining(graph)
     Constraint_list += Single_Entity_Temporal_Order(graph)
@@ -835,8 +1156,8 @@ def Constraint_Mining(graph):
     end=time.time()
     print("constraint mining running time is:",end-start,"s")
     print("Constraint_list:")
-    # for item in Constraint_list:
-    #     print(item)
+    for item in Constraint_list:
+        print(item)
     # print(Constraint_list)
     return Constraint_list
 
@@ -984,11 +1305,11 @@ def test():
     # filename="footballdb_tsv/player_team_year_rockit_0.tsv"
 
     # filename = "wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv"
-    # filename = "all_relations_with_redundant_wikidata_alpha-1.2.tsv"
-    filename = "all_relations_with_redundant_freebase_alpha-1.1.tsv"
+    filename = "all_relations_with_redundant_wikidata_alpha-1.3.tsv"
+    # filename = "all_relations_with_redundant_freebase_alpha-1.1.tsv"
     # read_datasets.pre_process(filename)
-    # g.ConstructThroughTsv(filename, "wikidata",100)
-    g.ConstructThroughTsv(filename, "freebase", 100)
+    g.ConstructThroughTsv(filename, "wikidata",100)
+    # g.ConstructThroughTsv(filename, "freebase", 100)
 
     print("number of entity vertex is ", g.num_eVertices)
     print("number of statement vertex is", g.num_sVertices)
@@ -1000,15 +1321,21 @@ def test():
     # g.iterateOverGraph()
 
     Constraint_Set = Constraint_Mining(g)
+    Simplified_constraint_set = []
+    for c in Constraint_Set:
+        sc=simplify_constraint(c)
+        Simplified_constraint_set.append(sc)
+
     # Soft_Constraint_Mining(g)
-    transitive_constraint_set = transitive_closure(Constraint_Set)
+    # transitive_constraint_set = transitive_closure(Constraint_Set)
     # for constraint in transitive_constraint_set:
     #     print(constraint)
 
     # write rule file
     write_filename = filename + "_rules"
     write_file = open(write_filename, "w", encoding="utf-8")
-    write_file.writelines("\n".join(transitive_constraint_set))
+    write_file.writelines("\n".join(Simplified_constraint_set))
+    # write_file.writelines("\n".join(transitive_constraint_set))
 
     # read rule file for detection
     # read_filename=filename+"_rules"

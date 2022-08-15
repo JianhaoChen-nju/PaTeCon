@@ -5,6 +5,7 @@ import read_datasets
 import Constraint_Mining
 import Interval_Relations
 import Graph_Structure
+import Refined_Detection
 
 '''
 functional
@@ -51,6 +52,75 @@ Constraint_Set=["(a,P569,b,t1,t2) & (a,P569,c,t3,t4) => disjoint(t1,t2,t3,t4)",\
 
 def Compound(atom):
     return
+
+def Mutual_Exclusion_Detection(temporal_KG,Constraint_Set):
+
+    '''
+    translate and execute constraint
+    :param Conflict_temporal_facts:
+    :param constraint:
+    :return:
+    '''
+    # TODO
+    # simplify_constraint()
+    Conflict_Fact_set=[]
+    # functional constraints detection
+    Mutual_Exclusion_constraints = Constraint_Set
+    print("len of mutual exclusion constraint:",len(Mutual_Exclusion_constraints))
+    FC_relations = []
+    for c in Mutual_Exclusion_constraints:
+        FC_relation = c.split(" ")[0].split(",")[1]
+        FC_relations.append(FC_relation)
+    index_dict={}
+    for i in range(len(FC_relations)):
+        index_dict[FC_relations[i]]=i
+    # actions=0
+    vertex_count = 0
+    pre = time.time()
+    for i in temporal_KG.eVertexList:
+        v = temporal_KG.eVertexList[i]
+        vertex_count += 1
+        if vertex_count % 1000000 == 0:
+            ed = time.time()
+            print("have traversed nodes:", vertex_count)
+            print("time cost:", ed - pre, "s")
+        if v.isLiteral==True:
+            continue
+        if len(v.hasStatement) < 2:
+            continue
+        else:
+            all_relation_pairs = {}
+            for s in v.hasStatement:
+                r=s.getId()
+                i1=s.getStartTime()
+                i2=s.getEndTime()
+                if i1!=-1 or i2!=-1:
+                    if index_dict.__contains__(r):
+                        index=index_dict[r]
+                        all_relation_pairs.setdefault(index, []).append(s)
+                        #[[P54,e,e,e],[P286,e,e,e]]
+            # print("detect cost time:", ed - st, "s")
+            for j in all_relation_pairs.keys():
+                for k in range(len(all_relation_pairs[j])):
+                    vertex1=all_relation_pairs[j][k]
+                    for l in range(k+1,len(all_relation_pairs[j])):
+                        vertex2 = all_relation_pairs[j][l]
+                        start1 = vertex1.getStartTime()
+                        end1 = vertex1.getEndTime()
+                        start2 = vertex2.getStartTime()
+                        end2 = vertex2.getEndTime()
+                        head = v.getId()
+                        relation1 = vertex1.getId()
+                        tail1 = vertex1.hasValue.getId()
+                        relation2 = vertex2.getId()
+                        tail2 = vertex2.hasValue.getId()
+                        inconsistent_pair = Mutual_Exclusion_constraints[j] + "\t" + head + "," + relation1 + "," + tail1 + "," + str(
+                            start1) + "," + str(
+                            end1) + "\t" + head + "," + relation2 + "," + tail2 + "," + str(
+                            start2) + "," + str(end2)
+                        Conflict_Fact_set.append(inconsistent_pair)
+    # print(actions)
+    return Conflict_Fact_set
 
 def Subgraph_Detection0(temporal_KG,Constraint_Set):
 
@@ -113,7 +183,6 @@ def Subgraph_Detection0(temporal_KG,Constraint_Set):
                         tail1 = vertex1.hasValue.getId()
                         relation2 = vertex2.getId()
                         tail2 = vertex2.hasValue.getId()
-
                         if Interval_Relations.disjoint(start1, end1, start2, end2) == -1:
                             # actions+=1
                             inconsistent_pair = functional_constraints[j] + "\t" + head + "," + relation1 + "," + tail1 + "," + str(
@@ -808,146 +877,101 @@ def Subgraph_Detection5(temporal_KG,Constraint_Set):
 
     return Conflict_Fact_set
 
-def Conflict_Detection(temporal_KG,Constraint_Set):
+
+
+def Conflict_Detection(temporal_KG,Constraint_Set,filename,knowledgebase):
     # framework
     # Constraint_Mining.simplify_constraint()
     # file=open()
     # Conflict_Set=[]
     # for constraint in Constraint_Set:
     Conflict_Set=[]
+    filtered_Constraint = []
+    refined_Constraint =[]
+    for c in Constraint_Set:
+        if c.__contains__("class"):
+            refined_Constraint.append(c)
+        else:
+            filtered_Constraint.append(c)
 
+    Constraint_Set = filtered_Constraint
+    # mutual exclusion constraints detection
+    mutual_exclusion_constraints = []
     # functional constraints detection
     functional_constraints = []
+    # inverse functional constraints detection
+    inverse_functional_constraints = []
+    # zero hop constraint detection
+    zero_hop_constraints=[]
+    # first one hop constraint detection
+    first_one_hop_constraints = []
+    # second one hop constraint detection
+    second_one_hop_constraints = []
+    # both one hop constraint detection
+    both_one_hop_constraints = []
+
     for c in Constraint_Set:
         elem = c.split(" ")
         atom1 = elem[0]
         interval_relation = elem[1]
         atom2 = elem[2]
         anchor = ""
-        if atom1.split(",")[0].__eq__(atom2.split(",")[0]):
-            anchor = "head"
-        elif atom1.split(",")[2].__eq__(atom2.split(",")[2]):
-            anchor = "tail"
-        if anchor == "head":
-            path1 = atom1.split(",")[1]
-            edges1 = path1.split("*")
-            path2 = atom2.split(",")[1]
-            edges2=path2.split("*")
-            if edges1[0] == edges2[0] and len(edges1) == 1 and len(edges2) == 1:
-                functional_constraints.append(c)
+        if interval_relation=="MutualExclusion":
+            mutual_exclusion_constraints.append(c)
+        else:
+            if atom1.split(",")[0].__eq__(atom2.split(",")[0]):
+                anchor = "head"
+            elif atom1.split(",")[2].__eq__(atom2.split(",")[2]):
+                anchor = "tail"
+            if anchor == "head":
+                path1 = atom1.split(",")[1]
+                edges1 = path1.split("*")
+                path2 = atom2.split(",")[1]
+                edges2=path2.split("*")
+                if edges1[0] == edges2[0] and len(edges1) == 1 and len(edges2) == 1:
+                    functional_constraints.append(c)
+                elif edges1[0] != edges2[0] and len(edges1) == 1 and len(edges2) == 1:
+                    zero_hop_constraints.append(c)
+                elif len(edges1) == 2 and len(edges2) == 1:
+                    first_one_hop_constraints.append(c)
+                elif len(edges1) == 1 and len(edges2) == 2:
+                    second_one_hop_constraints.append(c)
+                elif len(edges1) == 2 and len(edges2) == 2:
+                    both_one_hop_constraints.append(c)
+            elif anchor=="tail":
+                inverse_functional_constraints.append(c)
+    st0 = time.time()
+    Conflict_Set += Mutual_Exclusion_Detection(temporal_KG, mutual_exclusion_constraints)
     st = time.time()
+    print("Mutual Exclusion Detection cost time:", st - st0, "s")
+
     Conflict_Set += Subgraph_Detection0(temporal_KG, functional_constraints)
     ed0 = time.time()
     print("Detection0 cost time:", ed0 - st, "s")
-    # inverse functional constraints detection
-    inverse_functional_constraints = []
-    for c in Constraint_Set:
-        elem = c.split(" ")
-        atom1=elem[0]
-        interval_relation=elem[1]
-        atom2=elem[2]
-        anchor=""
-        if atom1.split(",")[0].__eq__(atom2.split(",")[0]):
-            anchor="head"
-        elif atom1.split(",")[2].__eq__(atom2.split(",")[2]):
-            anchor="tail"
-        if anchor=="tail":
-            inverse_functional_constraints.append(c)
 
     Conflict_Set+=Subgraph_Detection1(temporal_KG,inverse_functional_constraints)
     ed1=time.time()
     print("Detection1 cost time:",ed1-ed0,"s")
-    # zero hop constraint detection
-    zero_hop_constraints=[]
-    for c in Constraint_Set:
-        elem = c.split(" ")
-        atom1=elem[0]
-        interval_relation=elem[1]
-        atom2=elem[2]
-        anchor=""
-        if atom1.split(",")[0].__eq__(atom2.split(",")[0]):
-            anchor="head"
-        elif atom1.split(",")[2].__eq__(atom2.split(",")[2]):
-            anchor="tail"
-        if anchor=="head":
-            path1 = atom1.split(",")[1]
-            edges1 = path1.split("*")
-            path2 = atom2.split(",")[1]
-            edges2 = path2.split("*")
-            if edges1[0] != edges2[0] and len(edges1) == 1 and len(edges2) == 1:
-                zero_hop_constraints.append(c)
+
     # print(zero_hop_constraints)
     Conflict_Set+=Subgraph_Detection2(temporal_KG,zero_hop_constraints)
     ed2 = time.time()
     print("Detection2 cost time:", ed2 - ed1, "s")
-    # first one hop constraint detection
-    first_one_hop_constraints = []
-    for c in Constraint_Set:
-        elem = c.split(" ")
-        atom1 = elem[0]
-        interval_relation = elem[1]
-        atom2 = elem[2]
-        anchor = ""
-        if atom1.split(",")[0].__eq__(atom2.split(",")[0]):
-            anchor = "head"
-        elif atom1.split(",")[2].__eq__(atom2.split(",")[2]):
-            anchor = "tail"
-        if anchor == "head":
-            path1 = atom1.split(",")[1]
-            edges1 = path1.split("*")
-            path2 = atom2.split(",")[1]
-            edges2 = path2.split("*")
-            if len(edges1) == 2 and len(edges2) == 1:
-                first_one_hop_constraints.append(c)
+
     Conflict_Set += Subgraph_Detection3(temporal_KG, first_one_hop_constraints)
     ed3 = time.time()
     print("Detection3 cost time:", ed3 - ed2, "s")
-    # second one hop constraint detection
-    second_one_hop_constraints = []
-    for c in Constraint_Set:
-        elem = c.split(" ")
-        atom1 = elem[0]
-        interval_relation = elem[1]
-        atom2 = elem[2]
-        anchor = ""
-        if atom1.split(",")[0].__eq__(atom2.split(",")[0]):
-            anchor = "head"
-        elif atom1.split(",")[2].__eq__(atom2.split(",")[2]):
-            anchor = "tail"
-        if anchor == "head":
-            path1 = atom1.split(",")[1]
-            edges1 = path1.split("*")
-            path2 = atom2.split(",")[1]
-            edges2 = path2.split("*")
-            if len(edges1) == 1 and len(edges2) == 2:
-                second_one_hop_constraints.append(c)
+
     Conflict_Set += Subgraph_Detection4(temporal_KG, second_one_hop_constraints)
     ed4 = time.time()
     print("Detection4 cost time:", ed4 - ed3, "s")
-    # both one hop constraint detection
-    both_one_hop_constraints = []
-    for c in Constraint_Set:
-        elem = c.split(" ")
-        atom1 = elem[0]
-        interval_relation = elem[1]
-        atom2 = elem[2]
-        anchor = ""
-        if atom1.split(",")[0].__eq__(atom2.split(",")[0]):
-            anchor = "head"
-        elif atom1.split(",")[2].__eq__(atom2.split(",")[2]):
-            anchor = "tail"
-        if anchor == "head":
-            path1 = atom1.split(",")[1]
-            edges1 = path1.split("*")
-            path2 = atom2.split(",")[1]
-            edges2 = path2.split("*")
-            if len(edges1) == 2 and len(edges2) == 2:
-                both_one_hop_constraints.append(c)
+
     Conflict_Set += Subgraph_Detection5(temporal_KG, both_one_hop_constraints)
     ed5 = time.time()
     print("Detection5 cost time:", ed5 - ed4, "s")
 
     Detected_Constraint_Set=set(inverse_functional_constraints).union(set(functional_constraints))
+    Detected_Constraint_Set = Detected_Constraint_Set.union(mutual_exclusion_constraints)
     Detected_Constraint_Set=Detected_Constraint_Set.union(zero_hop_constraints)
     Detected_Constraint_Set = Detected_Constraint_Set.union(first_one_hop_constraints)
     Detected_Constraint_Set = Detected_Constraint_Set.union(second_one_hop_constraints)
@@ -958,6 +982,9 @@ def Conflict_Detection(temporal_KG,Constraint_Set):
     Undetected_Constraint_Set=set()
     Undetected_Constraint_Set=set(Constraint_Set).difference(Detected_Constraint_Set)
     print(Undetected_Constraint_Set)
+
+    # refined detection
+    Refined_Detection.Refined_Conflict_Detection(temporal_KG,refined_Constraint,filename,knowledgebase)
     return Conflict_Set
 
 def read_constraints(filename):
@@ -974,25 +1001,29 @@ def read_constraints(filename):
 
 def test():
     temporal_KG = Graph_Structure.Graph()
-    # filename = "wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv"
-    filename = "all_relations_with_redundant_wikidata_alpha-1.2.tsv"
+    filename = "wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv"
+    # filename = "all_relations_with_redundant_wikidata_alpha-1.3.tsv"
     # filename="all_relations_with_redundant_freebase_alpha-1.1.tsv"
     # read_datasets.pre_process(filename)
 
+    knowledgebase="wikidata"
     starttime0 = time.time()
-    temporal_KG.ConstructThroughTsv(filename,"wikidata", 100)
+    temporal_KG.ConstructThroughTsv(filename,knowledgebase, 100)
     # temporal_KG.ConstructThroughTsv(filename, "freebase", 100)
     endtime0 = time.time()
     runningtime0 = endtime0 - starttime0
     print("ConstructThroughTsv running time:", runningtime0, "s")
 
     # print("entity vertex number is:",temporal_KG.num_eVertices)
-    constraint_filename = "all_relations_with_redundant_wikidata_alpha-1.2.tsv_rules"
+    # constraint_filename = "all_relations_with_redundant_wikidata_alpha-1.3.tsv_rules"
+    # constraint_filename = "all_relations_with_redundant_wikidata_alpha-1.3.tsv_refined_rules"
+    # constraint_filename ="wikidata_constraint_before_transfering.txt"
     # constraint_filename = "all_relations_with_redundant_freebase_alpha-1.1.tsv_rules"
-    # constraint_filename="constraint_list_wikidata.txt"
+    # constraint_filename="constraint_list_wikidata1.txt"
+    constraint_filename="wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv_all_constraints"
     constraint_set = read_constraints(constraint_filename)
     starttime = time.time()
-    conflicts = Conflict_Detection(temporal_KG, constraint_set)
+    conflicts = Conflict_Detection(temporal_KG, constraint_set,filename,knowledgebase)
     endtime = time.time()
     runningtime = endtime - starttime
     print("Conflict detection running time:", runningtime, "s")
@@ -1004,3 +1035,12 @@ def test():
 
 if __name__ == '__main__':
     test()
+    # file=open("all_relations_with_redundant_wikidata_alpha-1.2.tsv_conflict","r",encoding="UTF-8")
+    # lines=file.readlines()
+    # count=0
+    # for line in lines:
+    #     r=line.split("\t")[0]
+    #     c=float(r.split("|")[1])
+    #     if c>0.85:
+    #        count+=1
+    # print(count)

@@ -77,6 +77,7 @@ class Graph:
         self.temporalRelationList = []
         self.sVertexList = {}
         self.entityType={}
+        self.sorted_Rotypes=[]
         self.num_eVertices = 0
         self.num_sVertices = 0
 
