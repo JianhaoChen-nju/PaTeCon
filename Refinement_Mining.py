@@ -4,10 +4,10 @@ import time
 import Graph_Structure
 import Interval_Relations
 
-candidate_threshold=0.6
+candidate_threshold=0.5
 confidence_threshold=0.9
 truncate_threshold=0.9
-support_threshold=20
+support_threshold=100
 
 entity_type_threshold=10
 entity_type_threshold1=5

@@ -8,7 +8,7 @@ import Conflict_Detection
 from multiprocessing.dummy import Pool as ThreadPool
 import Refinement_Mining
 
-candidate_threshold=0.6
+candidate_threshold=0.5
 confidence_threshold=0.9
 mutual_exclusion_threshold= 0.98
 truncate_threshold=0.9
