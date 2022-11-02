@@ -79,93 +79,99 @@ def foundation(i1, i2):
 
 
 def before(i1, i2, i3, i4):
-    t1=FuzzyTime(i1)
-    t2=FuzzyTime(i2)
-    t3=FuzzyTime(i3)
-    t4=FuzzyTime(i4)
-    # i2<=i3
-    if t1.isnotnull() and t2.isnotnull() and t3.isnotnull() and t4.isnotnull():
-        if comp_time(t1, t3) == "eq" and comp_time(t2, t4) == "eq":
-            return -1
-        comp_res=comp_time(t2,t3)
-        if comp_res == "lt" or comp_res=="eq":
-            return 1
-        elif comp_res=="unk":
-            return 0
-        else:
-            return -1
+    t1s=FuzzyTime(i1)
+    t1e=FuzzyTime(i2)
+    t2s=FuzzyTime(i3)
+    t2e=FuzzyTime(i4)
+    if comp_time(t1e,t2s) =="lt" or comp_time(t1e,t2s) =="eq":
+        return 1
+    elif comp_time(t1e,t2s)=="gt" or comp_time(t1e,t2e)=="gt" or comp_time(t1s,t2s)=="gt" or comp_time(t1s,t2e)=="gt":
+        return -1
     else:
-        if t1.isnull():
-            #i2!=-1
-            if t3.isnull():
-                #i4!=-1
-                # (-,i2) (-,i4)
-                if comp_time(t2,t4)=="gt":
-                    return -1
-                else:
-                    return 0
-            elif t4.isnull():
-                #i3!=-1
-                # (-,i2) (i3,-)
-                comp_res=comp_time(t2,t3)
-                if comp_res == "lt" or comp_res=="eq":
-                    return 1
-                elif comp_res=="unk":
-                    return 0
-                else:
-                    return -1
-            else:
-                #i3&i4!=-1
-                # (-,i2) (i3,i4)
-                comp_res=comp_time(t2,t3)
-                if comp_res == "lt" or comp_res=="eq":
-                    return 1
-                elif comp_res=="unk":
-                    return 0
-                else:
-                    return -1
-        elif t2.isnull():
-            #i1!=-1
-            if t3.isnull():
-                #i4!=-1
-                # (i1,-) (-,i4)
-                if comp_time(t1,t4)=="gt":
-                    return -1
-                else:
-                    return 0
-            elif t4.isnull():
-                #i3!=-1
-                # (i1,-) (i3,-)
-                if comp_time(t1,t3)=="gt":
-                    return -1
-                else:
-                    return 0
-            else:
-                #i3&i4!=-1
-                # (i1,-) (i3,i4)
-                if comp_time(t1,t3)=="gt":
-                    return -1
-                else:
-                    return 0
-        else:
-            #i1&i2!=-1
-            if t3.isnull():
-                # i4!=-1
-                # (i1,i2) (-,i4)
-                if comp_time(t4,t2)=="lt":
-                    return -1
-                else:
-                    return 0
-            else:
-                # i3!=-1
-                # (i1,i2) (i3,-)
-                comp_res=comp_time(t2,t3)
-                if comp_res == "lt" or comp_res=="eq":
-                    return 1
-                elif comp_res=="unk":
-                    return 0
-                else:
-                    return -1
+        return 0
+    # # i2<=i3
+    # if t1.isnotnull() and t2.isnotnull() and t3.isnotnull() and t4.isnotnull():
+    #     if comp_time(t1, t3) == "eq" and comp_time(t2, t4) == "eq":
+    #         return -1
+    #     comp_res=comp_time(t2,t3)
+    #     if comp_res == "lt" or comp_res=="eq":
+    #         return 1
+    #     elif comp_res=="unk":
+    #         return 0
+    #     else:
+    #         return -1
+    # else:
+    #     if t1.isnull():
+    #         #i2!=-1
+    #         if t3.isnull():
+    #             #i4!=-1
+    #             # (-,i2) (-,i4)
+    #             if comp_time(t2,t4)=="gt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         elif t4.isnull():
+    #             #i3!=-1
+    #             # (-,i2) (i3,-)
+    #             comp_res=comp_time(t2,t3)
+    #             if comp_res == "lt" or comp_res=="eq":
+    #                 return 1
+    #             elif comp_res=="unk":
+    #                 return 0
+    #             else:
+    #                 return -1
+    #         else:
+    #             #i3&i4!=-1
+    #             # (-,i2) (i3,i4)
+    #             comp_res=comp_time(t2,t3)
+    #             if comp_res == "lt" or comp_res=="eq":
+    #                 return 1
+    #             elif comp_res=="unk":
+    #                 return 0
+    #             else:
+    #                 return -1
+    #     elif t2.isnull():
+    #         #i1!=-1
+    #         if t3.isnull():
+    #             #i4!=-1
+    #             # (i1,-) (-,i4)
+    #             if comp_time(t1,t4)=="gt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         elif t4.isnull():
+    #             #i3!=-1
+    #             # (i1,-) (i3,-)
+    #             if comp_time(t1,t3)=="gt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         else:
+    #             #i3&i4!=-1
+    #             # (i1,-) (i3,i4)
+    #             if comp_time(t1,t3)=="gt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #     else:
+    #         #i1&i2!=-1
+    #         if t3.isnull():
+    #             # i4!=-1
+    #             # (i1,i2) (-,i4)
+    #             if comp_time(t4,t2)=="lt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         else:
+    #             # i3!=-1
+    #             # (i1,i2) (i3,-)
+    #             comp_res=comp_time(t2,t3)
+    #             if comp_res == "lt" or comp_res=="eq":
+    #                 return 1
+    #             elif comp_res=="unk":
+    #                 return 0
+    #             else:
+    #                 return -1
 
 
 def meets(i1, i2, i3, i4):
@@ -179,99 +185,107 @@ def meets(i1, i2, i3, i4):
 
 # before is a special order of disjoint
 def disjoint(i1, i2, i3, i4):
-    t1=FuzzyTime(i1)
-    t2=FuzzyTime(i2)
-    t3=FuzzyTime(i3)
-    t4=FuzzyTime(i4)
-    # i2<i3 || i4<i1
-    if t1.isnotnull() and t2.isnotnull() and t3.isnotnull() and t4.isnotnull():
-        if comp_time(t1, t3) == "eq" and comp_time(t2, t4) == "eq":
-            return -1
-        comp_res_t2t3=comp_time(t2,t3)
-        comp_res_t4t1=comp_time(t4,t1)
-        if comp_res_t2t3=="lt" or comp_res_t2t3=="eq" or comp_res_t4t1=="lt" or comp_res_t4t1=="eq":
-            return 1
-        elif comp_res_t2t3=="unk" or comp_res_t4t1=="unk":
-            return 0
-        else:
-            return -1
-    else:
-        if t1.isnull():
-            #i2!=-1
-            if t3.isnull():
-                #i4!=-1
-                # (-,i2) (-,i4)
-                return 0
-            elif t4.isnull():
-                #i3!=-1
-                # (-,i2) (i3,-)
-                comp_res_t2t3=comp_time(t2,t3)
-                if comp_res_t2t3=="lt" or comp_res_t2t3=="eq":
-                    return 1
-                else:
-                    return 0
-            else:
-                #i3&i4!=-1
-                # (-,i2) (i3,i4)
-                comp_res_t2t3=comp_time(t2,t3)
-                comp_res_t2t4=comp_time(t2,t4)
-                if comp_res_t2t3=="lt" or comp_res_t2t3=="eq":
-                    return 1
-                elif comp_res_t2t3=="gt" and comp_res_t2t4=="lt":
-                    return -1
-                else:
-                    return 0
-        elif t2.isnull():
-            #i1!=-1
-            if t3.isnull():
-                #i4!=-1
-                # (i1,-) (-,i4)
-                comp_res_t1t4=comp_time(t1,t4)
-                if comp_res_t1t4=="gt" or comp_res_t1t4=="eq":
-                    return 1
-                else:
-                    return 0
-            elif t4.isnull():
-                #i3!=-1
-                # (i1,-) (i3,-)
+    # t1s=FuzzyTime(i1)
+    # t1e=FuzzyTime(i2)
+    # t2s=FuzzyTime(i3)
+    # t2e=FuzzyTime(i4)
+    factor1=before(i1,i2,i3,i4)
+    factor2=before(i3,i4,i1,i2)
+    if factor1==1 or factor2==1:
+        return 1
+    elif factor1==-1 and factor2==-1:
+        return -1
+    else: 
+        return 0
+    # # i2<i3 || i4<i1
+    # if t1.isnotnull() and t2.isnotnull() and t3.isnotnull() and t4.isnotnull():
+    #     if comp_time(t1, t3) == "eq" and comp_time(t2, t4) == "eq":
+    #         return -1
+    #     comp_res_t2t3=comp_time(t2,t3)
+    #     comp_res_t4t1=comp_time(t4,t1)
+    #     if comp_res_t2t3=="lt" or comp_res_t2t3=="eq" or comp_res_t4t1=="lt" or comp_res_t4t1=="eq":
+    #         return 1
+    #     elif comp_res_t2t3=="unk" or comp_res_t4t1=="unk":
+    #         return 0
+    #     else:
+    #         return -1
+    # else:
+    #     if t1.isnull():
+    #         #i2!=-1
+    #         if t3.isnull():
+    #             #i4!=-1
+    #             # (-,i2) (-,i4)
+    #             return 0
+    #         elif t4.isnull():
+    #             #i3!=-1
+    #             # (-,i2) (i3,-)
+    #             comp_res_t2t3=comp_time(t2,t3)
+    #             if comp_res_t2t3=="lt" or comp_res_t2t3=="eq":
+    #                 return 1
+    #             else:
+    #                 return 0
+    #         else:
+    #             #i3&i4!=-1
+    #             # (-,i2) (i3,i4)
+    #             comp_res_t2t3=comp_time(t2,t3)
+    #             comp_res_t2t4=comp_time(t2,t4)
+    #             if comp_res_t2t3=="lt" or comp_res_t2t3=="eq":
+    #                 return 1
+    #             elif comp_res_t2t3=="gt" and comp_res_t2t4=="lt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #     elif t2.isnull():
+    #         #i1!=-1
+    #         if t3.isnull():
+    #             #i4!=-1
+    #             # (i1,-) (-,i4)
+    #             comp_res_t1t4=comp_time(t1,t4)
+    #             if comp_res_t1t4=="gt" or comp_res_t1t4=="eq":
+    #                 return 1
+    #             else:
+    #                 return 0
+    #         elif t4.isnull():
+    #             #i3!=-1
+    #             # (i1,-) (i3,-)
 
-                return 0
-            else:
-                #i3&i4!=-1
-                # (i1,-) (i3,i4)
-                comp_res_t1t4=comp_time(t1,t4)
-                comp_res_t1t3=comp_time(t1,t3)
-                if comp_res_t1t4=="gt" or comp_res_t1t4=="eq":
-                    return 1
-                elif comp_res_t1t3=="gt" and comp_res_t1t4=="lt":
-                    return -1
-                else:
-                    return 0
-        else:
-            #i1&i2!=-1
-            if t3.isnull():
-                # i4!=-1
-                # (i1,i2) (-,i4)
-                comp_res_t4t1=comp_time(t4,t1)
-                comp_res_t4t2=comp_time(t4,t2)
-                if comp_res_t4t1=="lt" or comp_res_t4t1=="eq":
-                    return 1
-                elif comp_res_t4t1=="gt" and comp_res_t4t2=="lt":
-                    return -1
-                else:
-                    return 0
-            else:
-                # i3!=-1
-                # (i1,i2) (i3,-)
-                comp_res_t2t3=comp_time(t2,t3)
-                comp_res_t3t1=comp_time(t3,t1)
+    #             return 0
+    #         else:
+    #             #i3&i4!=-1
+    #             # (i1,-) (i3,i4)
+    #             comp_res_t1t4=comp_time(t1,t4)
+    #             comp_res_t1t3=comp_time(t1,t3)
+    #             if comp_res_t1t4=="gt" or comp_res_t1t4=="eq":
+    #                 return 1
+    #             elif comp_res_t1t3=="gt" and comp_res_t1t4=="lt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #     else:
+    #         #i1&i2!=-1
+    #         if t3.isnull():
+    #             # i4!=-1
+    #             # (i1,i2) (-,i4)
+    #             comp_res_t4t1=comp_time(t4,t1)
+    #             comp_res_t4t2=comp_time(t4,t2)
+    #             if comp_res_t4t1=="lt" or comp_res_t4t1=="eq":
+    #                 return 1
+    #             elif comp_res_t4t1=="gt" and comp_res_t4t2=="lt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         else:
+    #             # i3!=-1
+    #             # (i1,i2) (i3,-)
+    #             comp_res_t2t3=comp_time(t2,t3)
+    #             comp_res_t3t1=comp_time(t3,t1)
 
-                if comp_res_t2t3=="lt" or comp_res_t2t3=="eq":
-                    return 1
-                elif comp_res_t2t3=="gt" and comp_res_t3t1=="gt":
-                    return -1
-                else:
-                    return 0
+    #             if comp_res_t2t3=="lt" or comp_res_t2t3=="eq":
+    #                 return 1
+    #             elif comp_res_t2t3=="gt" and comp_res_t3t1=="gt":
+    #                 return -1
+    #             else:
+    #                 return 0
 
 
 
@@ -283,88 +297,94 @@ def overlap(i1, i2, i3, i4):
         return False
 
 def include(i1, i2, i3, i4):
-    t1=FuzzyTime(i1)
-    t2=FuzzyTime(i2)
-    t3=FuzzyTime(i3)
-    t4=FuzzyTime(i4)
-    if t1.isnotnull() and t2.isnotnull() and t3.isnotnull() and t4.isnotnull():
-        comp_res_t1t3=comp_time(t1,t3)
-        comp_res_t1t4=comp_time(t1,t4)
-        comp_res_t2t3=comp_time(t2,t3)
-        comp_res_t2t4=comp_time(t2,t4)
-        if (comp_res_t1t3=="lt" or comp_res_t1t3=="eq") and (comp_res_t2t4=="gt" or comp_res_t2t4=="eq"):
-            return 1
-        elif (comp_res_t2t3=="gt" and comp_res_t2t4=="lt") or (comp_res_t1t3=="gt" and comp_res_t1t4=="lt") or (comp_res_t2t3=="lt") or (comp_res_t1t4=="gt"):
-            return -1
-        else:
-            return 0
+    t1s=FuzzyTime(i1)
+    t1e=FuzzyTime(i2)
+    t2s=FuzzyTime(i3)
+    t2e=FuzzyTime(i4)
+    if comp_time(t1s,t2s)=="lt" or comp_time(t1s,t2s)=="eq" or comp_time(t1e,t2e)=="gt" or comp_time(t1e,t2e)=="eq":
+        return 1
+    elif comp_time(t1s,t2s)=="gt" or comp_time(t1s,t2e)=="gt" or comp_time(t1e,t2e)=="lt" or comp_time(t1e,t2s)=="lt":
+        return -1
     else:
-        if t1.isnull():
-            #i2!=-1
-            if t3.isnull():
-                #i4!=-1
-                # (-,i2) (-,i4)
-                if comp_time(t2,t4)=="lt":
-                    return -1
-                else:
-                    return 0
-            elif t4.isnull():
-                #i3!=-1
-                # (-,i2) (i3,-)
-                if comp_time(t2,t3)=="lt":
-                    return -1
-                else:
-                    return 0
-            else:
-                #i3&i4!=-1
-                # (-,i2) (i3,i4)
-                if comp_time(t2,t4)=="lt":
-                    return -1
-                else:
-                    return 0
-        elif t2.isnull():
-            #i1!=-1
-            if t3.isnull():
-                #i4!=-1
-                # (i1,-) (-,i4)
-                if comp_time(t1,t4)=="gt":
-                    return -1
-                else:
-                    return 0
-            elif t4.isnull():
-                #i3!=-1
-                # (i1,-) (i3,-)
-                if comp_time(t1,t3)=="gt":
-                    return -1
-                else:
-                    return 0
-            else:
-                #i3&i4!=-1
-                # (i1,-) (i3,i4)
-                if comp_time(t1,t3)=="gt":
-                    return -1
-                else:
-                    return 0
-        else:
-            #i1&i2!=-1
-            if t3.isnull():
-                # i4!=-1
-                # (i1,i2) (-,i4)
-                comp_res_t4t1=comp_time(t4,t1)
-                comp_res_t4t2=comp_time(t4,t2)
-                if comp_res_t4t1=="lt" or comp_res_t4t2=="gt":
-                    return -1
-                else:
-                    return 0
-            else:
-                # i3!=-1
-                # (i1,i2) (i3,-)
-                comp_res_t3t1=comp_time(t3,t1)
-                comp_res_t3t2=comp_time(t3,t2)
-                if comp_res_t3t1=="lt" or comp_res_t3t2=="gt":
-                    return -1
-                else:
-                    return 0
+        return 0
+    # if t1.isnotnull() and t2.isnotnull() and t3.isnotnull() and t4.isnotnull():
+    #     comp_res_t1t3=comp_time(t1,t3)
+    #     comp_res_t1t4=comp_time(t1,t4)
+    #     comp_res_t2t3=comp_time(t2,t3)
+    #     comp_res_t2t4=comp_time(t2,t4)
+    #     if (comp_res_t1t3=="lt" or comp_res_t1t3=="eq") and (comp_res_t2t4=="gt" or comp_res_t2t4=="eq"):
+    #         return 1
+    #     elif (comp_res_t2t3=="gt" and comp_res_t2t4=="lt") or (comp_res_t1t3=="gt" and comp_res_t1t4=="lt") or (comp_res_t2t3=="lt") or (comp_res_t1t4=="gt"):
+    #         return -1
+    #     else:
+    #         return 0
+    # else:
+    #     if t1.isnull():
+    #         #i2!=-1
+    #         if t3.isnull():
+    #             #i4!=-1
+    #             # (-,i2) (-,i4)
+    #             if comp_time(t2,t4)=="lt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         elif t4.isnull():
+    #             #i3!=-1
+    #             # (-,i2) (i3,-)
+    #             if comp_time(t2,t3)=="lt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         else:
+    #             #i3&i4!=-1
+    #             # (-,i2) (i3,i4)
+    #             if comp_time(t2,t4)=="lt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #     elif t2.isnull():
+    #         #i1!=-1
+    #         if t3.isnull():
+    #             #i4!=-1
+    #             # (i1,-) (-,i4)
+    #             if comp_time(t1,t4)=="gt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         elif t4.isnull():
+    #             #i3!=-1
+    #             # (i1,-) (i3,-)
+    #             if comp_time(t1,t3)=="gt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         else:
+    #             #i3&i4!=-1
+    #             # (i1,-) (i3,i4)
+    #             if comp_time(t1,t3)=="gt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #     else:
+    #         #i1&i2!=-1
+    #         if t3.isnull():
+    #             # i4!=-1
+    #             # (i1,i2) (-,i4)
+    #             comp_res_t4t1=comp_time(t4,t1)
+    #             comp_res_t4t2=comp_time(t4,t2)
+    #             if comp_res_t4t1=="lt" or comp_res_t4t2=="gt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         else:
+    #             # i3!=-1
+    #             # (i1,i2) (i3,-)
+    #             comp_res_t3t1=comp_time(t3,t1)
+    #             comp_res_t3t2=comp_time(t3,t2)
+    #             if comp_res_t3t1=="lt" or comp_res_t3t2=="gt":
+    #                 return -1
+    #             else:
+    #                 return 0
 
 def during(i1, i2, i3, i4):
     if i1 >= i3 and i2 <= i4:
@@ -375,165 +395,178 @@ def during(i1, i2, i3, i4):
 
 def start(i1, i2, i3, i4):
     # i1=i3
-    t1=FuzzyTime(i1)
-    t2=FuzzyTime(i2)
-    t3=FuzzyTime(i3)
-    t4=FuzzyTime(i4)
-    if t1.isnotnull() and t2.isnotnull() and t3.isnotnull() and t4.isnotnull():
-        if comp_time(t1,t3)=="eq":
-            return 1
-        elif comp_time(t1,t3)=="unk":
-            return 0
-        else:
-            return -1
+    t1s=FuzzyTime(i1)
+    t1e=FuzzyTime(i2)
+    t2s=FuzzyTime(i3)
+    t2e=FuzzyTime(i4)
+    if comp_time(t1s,t2s)=="eq":
+        return 1
+    elif comp_time(t1s,t2s)=="lt" or comp_time(t1s,t2s)=="gt" or comp_time(t1s,t2e)=="gt" or comp_time(t1e,t2s)=="lt":
+        return -1
     else:
-        if t1.isnull():
-            #i2!=-1
-            if t3.isnull():
-                #i4!=-1
-                # (-,i2) (-,i4)
-                return 0
-            elif t4.isnull():
-                #i3!=-1
-                # (-,i2) (i3,-)
-                if comp_time(t2,t3)=="lt":
-                    return -1
-                else:
-                    return 0
-            else:
-                #i3&i4!=-1
-                # (-,i2) (i3,i4)
-                if comp_time(t2,t3)=="lt":
-                    return -1
-                else:
-                    return 0
-        elif t2.isnull():
-            #i1!=-1
-            if t3.isnull():
-                #i4!=-1
-                # (i1,-) (-,i4)
-                if comp_time(t1,t4)=="gt":
-                    return -1
-                else:
-                    return 0
-            elif t4.isnull():
-                #i3!=-1
-                # (i1,-) (i3,-)
-                if comp_time(t1,t3)=="eq":
-                    return 1
-                elif comp_time(t1,t3)=="unk":
-                    return 0
-                else:
-                    return -1
-            else:
-                #i3&i4!=-1
-                # (i1,-) (i3,i4)
-                if comp_time(t1,t3)=="eq":
-                    return 1
-                elif comp_time(t1,t3)=="unk":
-                    return 0
-                else:
-                    return -1
-        else:
-            #i1&i2!=-1
-            if t3.isnull():
-                # i4!=-1
-                # (i1,i2) (-,i4)
-                if comp_time(t4,t1)=="lt":
-                    return -1
-                else:
-                    return 0
-            else:
-                # i3!=-1
-                # (i1,i2) (i3,-)
-                if comp_time(t1,t3)=="eq":
-                    return 1
-                elif comp_time(t1,t3)=="unk":
-                    return 0
-                else:
-                    return -1
+        return 0
+
+    # if t1.isnotnull() and t2.isnotnull() and t3.isnotnull() and t4.isnotnull():
+    #     if comp_time(t1,t3)=="eq":
+    #         return 1
+    #     elif comp_time(t1,t3)=="unk":
+    #         return 0
+    #     else:
+    #         return -1
+    # else:
+    #     if t1.isnull():
+    #         #i2!=-1
+    #         if t3.isnull():
+    #             #i4!=-1
+    #             # (-,i2) (-,i4)
+    #             return 0
+    #         elif t4.isnull():
+    #             #i3!=-1
+    #             # (-,i2) (i3,-)
+    #             if comp_time(t2,t3)=="lt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         else:
+    #             #i3&i4!=-1
+    #             # (-,i2) (i3,i4)
+    #             if comp_time(t2,t3)=="lt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #     elif t2.isnull():
+    #         #i1!=-1
+    #         if t3.isnull():
+    #             #i4!=-1
+    #             # (i1,-) (-,i4)
+    #             if comp_time(t1,t4)=="gt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         elif t4.isnull():
+    #             #i3!=-1
+    #             # (i1,-) (i3,-)
+    #             if comp_time(t1,t3)=="eq":
+    #                 return 1
+    #             elif comp_time(t1,t3)=="unk":
+    #                 return 0
+    #             else:
+    #                 return -1
+    #         else:
+    #             #i3&i4!=-1
+    #             # (i1,-) (i3,i4)
+    #             if comp_time(t1,t3)=="eq":
+    #                 return 1
+    #             elif comp_time(t1,t3)=="unk":
+    #                 return 0
+    #             else:
+    #                 return -1
+    #     else:
+    #         #i1&i2!=-1
+    #         if t3.isnull():
+    #             # i4!=-1
+    #             # (i1,i2) (-,i4)
+    #             if comp_time(t4,t1)=="lt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         else:
+    #             # i3!=-1
+    #             # (i1,i2) (i3,-)
+    #             if comp_time(t1,t3)=="eq":
+    #                 return 1
+    #             elif comp_time(t1,t3)=="unk":
+    #                 return 0
+    #             else:
+    #                 return -1
 
 
 def finish(i1, i2, i3, i4):
     # i2=i4
-    t1=FuzzyTime(i1)
-    t2=FuzzyTime(i2)
-    t3=FuzzyTime(i3)
-    t4=FuzzyTime(i4)
-    if t1.isnotnull() and t2.isnotnull() and t3.isnotnull() and t4.isnotnull():
-        if comp_time(t2,t4)=="eq":
-            return 1
-        elif comp_time(t2,t4)=="unk":
-            return 0
-        else:
-            return -1
+    t1s=FuzzyTime(i1)
+    t1e=FuzzyTime(i2)
+    t2s=FuzzyTime(i3)
+    t2e=FuzzyTime(i4)
+    if comp_time(t1e,t2e)=="eq":
+        return 1
+    elif comp_time(t1e,t2e)=="lt" or comp_time(t1e,t2e)=="gt" or comp_time(t1e,t2s)=="lt" or comp_time(t1s,t2e)=="gt":
+        return -1
     else:
-        if t1.isnull():
-            # i2!=-1
-            if t3.isnull():
-                # i4!=-1
-                # (-,i2) (-,i4)
-                if comp_time(t2,t4)=="eq":
-                    return 1
-                elif comp_time(t2,t4)=="unk":
-                    return 0
-                else:
-                    return -1
-            elif t4.isnull():
-                # i3!=-1
-                # (-,i2) (i3,-)
-                if comp_time(t2,t3)=="lt":
-                    return -1
-                else:
-                    return 0
-            else:
-                # i3&i4!=-1
-                # (-,i2) (i3,i4)
-                if comp_time(t2,t4)=="eq":
-                    return 1
-                elif comp_time(t2,t4)=="unk":
-                    return 0
-                else:
-                    return -1
-        elif t2.isnull():
-            # i1!=-1
-            if t3.isnull():
-                # i4!=-1
-                # (i1,-) (-,i4)
-                if comp_time(t1,t4)=="gt":
-                    return -1
-                else:
-                    return 0
-            elif t4.isnull():
-                # i3!=-1
-                # (i1,-) (i3,-)
+        return 0
+    # if t1.isnotnull() and t2.isnotnull() and t3.isnotnull() and t4.isnotnull():
+    #     if comp_time(t2,t4)=="eq":
+    #         return 1
+    #     elif comp_time(t2,t4)=="unk":
+    #         return 0
+    #     else:
+    #         return -1
+    # else:
+    #     if t1.isnull():
+    #         # i2!=-1
+    #         if t3.isnull():
+    #             # i4!=-1
+    #             # (-,i2) (-,i4)
+    #             if comp_time(t2,t4)=="eq":
+    #                 return 1
+    #             elif comp_time(t2,t4)=="unk":
+    #                 return 0
+    #             else:
+    #                 return -1
+    #         elif t4.isnull():
+    #             # i3!=-1
+    #             # (-,i2) (i3,-)
+    #             if comp_time(t2,t3)=="lt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         else:
+    #             # i3&i4!=-1
+    #             # (-,i2) (i3,i4)
+    #             if comp_time(t2,t4)=="eq":
+    #                 return 1
+    #             elif comp_time(t2,t4)=="unk":
+    #                 return 0
+    #             else:
+    #                 return -1
+    #     elif t2.isnull():
+    #         # i1!=-1
+    #         if t3.isnull():
+    #             # i4!=-1
+    #             # (i1,-) (-,i4)
+    #             if comp_time(t1,t4)=="gt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #         elif t4.isnull():
+    #             # i3!=-1
+    #             # (i1,-) (i3,-)
 
-                return 0
-            else:
-                # i3&i4!=-1
-                # (i1,-) (i3,i4)
-                if comp_time(t1,t4)=="gt":
-                    return -1
-                else:
-                    return 0
-        else:
-            # i1&i2!=-1
-            if t3.isnull():
-                # i4!=-1
-                # (i1,i2) (-,i4)
-                if comp_time(t2,t4)=="eq":
-                    return 1
-                elif comp_time(t2,t4)=="unk":
-                    return 0
-                else:
-                    return -1
-            else:
-                # i3!=-1
-                # (i1,i2) (i3,-)
-                if comp_time(t2,t3)=="lt":
-                    return -1
-                else:
-                    return 0
+    #             return 0
+    #         else:
+    #             # i3&i4!=-1
+    #             # (i1,-) (i3,i4)
+    #             if comp_time(t1,t4)=="gt":
+    #                 return -1
+    #             else:
+    #                 return 0
+    #     else:
+    #         # i1&i2!=-1
+    #         if t3.isnull():
+    #             # i4!=-1
+    #             # (i1,i2) (-,i4)
+    #             if comp_time(t2,t4)=="eq":
+    #                 return 1
+    #             elif comp_time(t2,t4)=="unk":
+    #                 return 0
+    #             else:
+    #                 return -1
+    #         else:
+    #             # i3!=-1
+    #             # (i1,i2) (i3,-)
+    #             if comp_time(t2,t3)=="lt":
+    #                 return -1
+    #             else:
+    #                 return 0
 
 
 def equal(i1, i2, i3, i4):
