@@ -68,9 +68,15 @@ def Refined_Subgraph_Detection0(temporal_KG,Constraint_Set):
                         end2 = vertex2.getEndTime()
                         head = v.getId()
                         relation1 = vertex1.getId()
-                        tail1 = vertex1.hasValue.getId()
+                        if vertex1.hasValue.isLiteral == True:
+                            tail1 = vertex1.hasValue.getLabel()
+                        else:
+                            tail1 = vertex1.hasValue.getId()
                         relation2 = vertex2.getId()
-                        tail2 = vertex2.hasValue.getId()
+                        if vertex2.hasValue.isLiteral == True:
+                            tail2 = vertex2.hasValue.getLabel()
+                        else:
+                            tail2 = vertex2.hasValue.getId()
                         if Interval_Relations.disjoint(start1, end1, start2, end2) == -1:
                             # actions+=1
                             inconsistent_pair = functional_constraints[j] + "\t" + head + "," + relation1 + "," + tail1 + "," + str(
@@ -151,7 +157,6 @@ def Refined_Subgraph_Detection1(temporal_KG,Constraint_Set):
                         head1 = vertex1.hasItem.getId()
                         relation2 = vertex2.getId()
                         head2 = vertex2.hasItem.getId()
-
 
                         if Interval_Relations.disjoint(start1, end1, start2, end2) == -1:
                             # actions+=1
@@ -340,10 +345,15 @@ def Refined_Subgraph_Detection2(temporal_KG,Constraint_Set):
                         end2 = vertex2.getEndTime()
                         head = v.getId()
                         relation1 = vertex1.getId()
-                        tail1 = vertex1.hasValue.getId()
+                        if vertex1.hasValue.isLiteral == True:
+                            tail1 = vertex1.hasValue.getLabel()
+                        else:
+                            tail1 = vertex1.hasValue.getId()
                         relation2 = vertex2.getId()
-                        tail2 = vertex2.hasValue.getId()
-
+                        if vertex2.hasValue.isLiteral == True:
+                            tail2 = vertex2.hasValue.getLabel()
+                        else:
+                            tail2 = vertex2.hasValue.getId()
                         # choose which interval relation is
                         if ZHC_relations[j][2].__eq__("before"):
                             if Interval_Relations.before(start1,end1,start2,end2)==-1:
@@ -518,6 +528,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                     index = index_dict[key]
                                                     all_relation_pairs.setdefault(index, []).append(s1)
                                                     all_relation_pairs.setdefault(index, []).append(l)
+                                                    all_relation_pairs.setdefault(index, []).append(s2)
                                         # oxo
                                         for s in temporal_KG.entityType[tail0]:
                                             for u in temporal_KG.entityType[tail2]:
@@ -527,6 +538,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                     index = index_dict[key]
                                                     all_relation_pairs.setdefault(index, []).append(s1)
                                                     all_relation_pairs.setdefault(index, []).append(l)
+                                                    all_relation_pairs.setdefault(index, []).append(s2)
                                         # oox
                                         for s in temporal_KG.entityType[tail0]:
                                             for t in temporal_KG.entityType[tail1]:
@@ -536,6 +548,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                     index = index_dict[key]
                                                     all_relation_pairs.setdefault(index, []).append(s1)
                                                     all_relation_pairs.setdefault(index, []).append(l)
+                                                    all_relation_pairs.setdefault(index, []).append(s2)
                                         # oxx
                                         for s in temporal_KG.entityType[tail0]:
                                             t = "null"
@@ -545,6 +558,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                 index = index_dict[key]
                                                 all_relation_pairs.setdefault(index, []).append(s1)
                                                 all_relation_pairs.setdefault(index, []).append(l)
+                                                all_relation_pairs.setdefault(index, []).append(s2)
 
                                         # xox
                                         for t in temporal_KG.entityType[tail1]:
@@ -555,6 +569,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                 index = index_dict[key]
                                                 all_relation_pairs.setdefault(index, []).append(s1)
                                                 all_relation_pairs.setdefault(index, []).append(l)
+                                                all_relation_pairs.setdefault(index, []).append(s2)
 
                                         # xxo
                                         for u in temporal_KG.entityType[tail2]:
@@ -565,6 +580,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                 index = index_dict[key]
                                                 all_relation_pairs.setdefault(index, []).append(s1)
                                                 all_relation_pairs.setdefault(index, []).append(l)
+                                                all_relation_pairs.setdefault(index, []).append(s2)
 
                                         # ooo
                                         for s in temporal_KG.entityType[tail0]:
@@ -575,6 +591,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                         index = index_dict[key]
                                                         all_relation_pairs.setdefault(index, []).append(s1)
                                                         all_relation_pairs.setdefault(index, []).append(l)
+                                                        all_relation_pairs.setdefault(index, []).append(s2)
                                     else:
                                         # oox
                                         for s in temporal_KG.entityType[tail0]:
@@ -585,6 +602,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                     index = index_dict[key]
                                                     all_relation_pairs.setdefault(index, []).append(s1)
                                                     all_relation_pairs.setdefault(index, []).append(l)
+                                                    all_relation_pairs.setdefault(index, []).append(s2)
                                         # oxx
                                         for s in temporal_KG.entityType[tail0]:
                                             t = "null"
@@ -594,6 +612,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                 index = index_dict[key]
                                                 all_relation_pairs.setdefault(index, []).append(s1)
                                                 all_relation_pairs.setdefault(index, []).append(l)
+                                                all_relation_pairs.setdefault(index, []).append(s2)
                                         # xox
                                         for t in temporal_KG.entityType[tail1]:
                                             s = "null"
@@ -603,6 +622,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                 index = index_dict[key]
                                                 all_relation_pairs.setdefault(index, []).append(s1)
                                                 all_relation_pairs.setdefault(index, []).append(l)
+                                                all_relation_pairs.setdefault(index, []).append(s2)
                                 else:
                                     if temporal_KG.entityType.__contains__(tail2):
                                         # oxo
@@ -614,6 +634,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                     index = index_dict[key]
                                                     all_relation_pairs.setdefault(index, []).append(s1)
                                                     all_relation_pairs.setdefault(index, []).append(l)
+                                                    all_relation_pairs.setdefault(index, []).append(s2)
                                         # oxx
                                         for s in temporal_KG.entityType[tail0]:
                                             t = "null"
@@ -623,6 +644,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                 index = index_dict[key]
                                                 all_relation_pairs.setdefault(index, []).append(s1)
                                                 all_relation_pairs.setdefault(index, []).append(l)
+                                                all_relation_pairs.setdefault(index, []).append(s2)
                                         # xxo
                                         for u in temporal_KG.entityType[tail2]:
                                             s = "null"
@@ -632,6 +654,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                 index = index_dict[key]
                                                 all_relation_pairs.setdefault(index, []).append(s1)
                                                 all_relation_pairs.setdefault(index, []).append(l)
+                                                all_relation_pairs.setdefault(index, []).append(s2)
                                     else:
                                         # oxx
                                         for s in temporal_KG.entityType[tail0]:
@@ -642,6 +665,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                 index = index_dict[key]
                                                 all_relation_pairs.setdefault(index, []).append(s1)
                                                 all_relation_pairs.setdefault(index, []).append(l)
+                                                all_relation_pairs.setdefault(index, []).append(s2)
                             else:
                                 if temporal_KG.entityType.__contains__(tail1):
                                     if temporal_KG.entityType.__contains__(tail2):
@@ -654,6 +678,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                     index = index_dict[key]
                                                     all_relation_pairs.setdefault(index, []).append(s1)
                                                     all_relation_pairs.setdefault(index, []).append(l)
+                                                    all_relation_pairs.setdefault(index, []).append(s2)
                                         # xox
                                         for t in temporal_KG.entityType[tail1]:
                                             s = "null"
@@ -663,6 +688,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                 index = index_dict[key]
                                                 all_relation_pairs.setdefault(index, []).append(s1)
                                                 all_relation_pairs.setdefault(index, []).append(l)
+                                                all_relation_pairs.setdefault(index, []).append(s2)
 
                                         # xxo
                                         for u in temporal_KG.entityType[tail2]:
@@ -673,6 +699,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                 index = index_dict[key]
                                                 all_relation_pairs.setdefault(index, []).append(s1)
                                                 all_relation_pairs.setdefault(index, []).append(l)
+                                                all_relation_pairs.setdefault(index, []).append(s2)
                                     else:
                                         # xox
                                         for t in temporal_KG.entityType[tail1]:
@@ -683,6 +710,7 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                 index = index_dict[key]
                                                 all_relation_pairs.setdefault(index, []).append(s1)
                                                 all_relation_pairs.setdefault(index, []).append(l)
+                                                all_relation_pairs.setdefault(index, []).append(s2)
                                 else:
                                     if temporal_KG.entityType.__contains__(tail2):
                                         # xxo
@@ -694,12 +722,15 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                                 index = index_dict[key]
                                                 all_relation_pairs.setdefault(index, []).append(s1)
                                                 all_relation_pairs.setdefault(index, []).append(l)
+                                                all_relation_pairs.setdefault(index, []).append(s2)
 
             for j in all_relation_pairs.keys():
                     # step=2
-                    for k in range(0,len(all_relation_pairs[j]),2):
+                    for k in range(0,len(all_relation_pairs[j]),3):
                         vertex1 = all_relation_pairs[j][k]
                         vertex2 = all_relation_pairs[j][k+1]
+                        one_hop_vertex = all_relation_pairs[j][k + 2]
+                        one_hop_entity = one_hop_vertex.hasValue.getId()
                         start1 = vertex1.getStartTime()
                         end1 = vertex1.getEndTime()
                         start2 = vertex2.getStartTime()
@@ -707,62 +738,69 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                         head = v.getId()
                         relation=SOH_relations[j][1]
                         relation1 = vertex1.getId()
-                        tail1 = vertex1.hasValue.getId()
+
+                        if vertex1.hasValue.isLiteral == True:
+                            tail1 = vertex1.hasValue.getLabel()
+                        else:
+                            tail1 = vertex1.hasValue.getId()
                         relation2 = vertex2.getId()
-                        tail2 = vertex2.hasValue.getId()
+                        if vertex2.hasValue.isLiteral == True:
+                            tail2 = vertex2.hasValue.getLabel()
+                        else:
+                            tail2 = vertex2.hasValue.getId()
 
                         # choose which interval relation is
                         if SOH_relations[j][3].__eq__("before"):
                             if Interval_Relations.before(start1,end1,start2,end2)==-1:
                                 inconsistent_pair = one_hop_constraints[j]+"\t"+head+"," \
                                                     + relation1 + "," + tail1 + "," + str(start1) + "," + str(
-                                    end1) + "\t" + head  + ","+ relation+",entity,"+ relation2 + "," + tail2 + "," + str(start2) + "," + str(end2)
+                                    end1) + "\t" + head  + ","+ relation+","+one_hop_entity+","+ relation2 + "," + tail2 + "," + str(start2) + "," + str(end2)
                                 Conflict_Fact_set.append(inconsistent_pair)
                         if SOH_relations[j][3].__eq__("inverse_before"):
                             if Interval_Relations.before(start2, end2, start1, end1) == -1:
                                 inconsistent_pair = one_hop_constraints[j] + "\t" + head + "," \
                                                     + relation2 + "," + tail2 + "," + str(start2) + "," + str(
-                                    end2) + "\t" + head + "," + relation + ",entity," + relation1 + "," + tail1 + "," + str(
+                                    end2) + "\t" + head + "," + relation + ","+one_hop_entity+"," + relation1 + "," + tail1 + "," + str(
                                     start1) + "," + str(end1)
                                 Conflict_Fact_set.append(inconsistent_pair)
                         elif SOH_relations[j][3].__eq__("include"):
                             if Interval_Relations.include(start1, end1, start2, end2) == -1:
                                 inconsistent_pair = one_hop_constraints[j] + "\t" + head+"," \
                                                     + relation1 + "," + tail1 + "," + str(start1) + "," + str(
-                                    end1) + "\t" + head + "," + relation + ",entity,"+ relation2 + "," + tail2 + "," + str(
+                                    end1) + "\t" + head + "," + relation + ","+one_hop_entity+","+ relation2 + "," + tail2 + "," + str(
                                     start2) + "," + str(end2)
                                 Conflict_Fact_set.append(inconsistent_pair)
                         elif SOH_relations[j][3].__eq__("inverse_include"):
                             if Interval_Relations.include(start2, end2, start1, end1) == -1:
                                 inconsistent_pair = one_hop_constraints[j] + "\t" + head+"," \
                                                     + relation2 + "," + tail2 + "," + str(start2) + "," + str(
-                                    end2) + "\t" + head + "," + relation + ",entity,"+ relation1 + "," + tail1 + "," + str(
+                                    end2) + "\t" + head + "," + relation + ","+one_hop_entity+","+ relation1 + "," + tail1 + "," + str(
                                     start1) + "," + str(end1)
                                 Conflict_Fact_set.append(inconsistent_pair)
                         elif SOH_relations[j][3].__eq__("start"):
                             if Interval_Relations.start(start1, end1, start2, end2) == -1:
                                 inconsistent_pair = one_hop_constraints[j] + "\t" + head+"," \
                                                     + relation1 + "," + tail1 + "," + str(start1) + "," + str(
-                                    end1) + "\t" + head + "," + relation + ",entity,"+ relation2 + "," + tail2 + "," + str(
+                                    end1) + "\t" + head + "," + relation + ","+one_hop_entity+","+ relation2 + "," + tail2 + "," + str(
                                     start2) + "," + str(end2)
                                 Conflict_Fact_set.append(inconsistent_pair)
                         elif SOH_relations[j][3].__eq__("finish"):
                             if Interval_Relations.finish(start1, end1, start2, end2) == -1:
                                 inconsistent_pair = one_hop_constraints[j] + "\t" + head+"," \
                                                     + relation1 + "," + tail1 + "," + str(start1) + "," + str(
-                                    end1) + "\t" + head + "," + relation + ",entity,"+ relation2 + "," + tail2 + "," + str(
+                                    end1) + "\t" + head + "," + relation + ","+one_hop_entity+","+ relation2 + "," + tail2 + "," + str(
                                     start2) + "," + str(end2)
                                 Conflict_Fact_set.append(inconsistent_pair)
 
     return Conflict_Fact_set
 
-def Refined_Conflict_Detection(temporal_KG, Constraint_Set,filename,knowledgebase):
+def Refined_Conflict_Detection(temporal_KG, Constraint_Set,filename,typefile):
     t0 = time.time()
-    if knowledgebase == "wikidata":
-        type_file = open("wikidata-entity-type-info.tsv", "r", encoding="UTF-8")
-    elif knowledgebase == "freebase":
-        type_file = open("freebase-entity-type-info.tsv", "r", encoding="UTF-8")
-
+    # if knowledgebase == "wikidata":
+    #     type_file = open("our_resource/wikidata-entity-type-info.tsv", "r", encoding="UTF-8")
+    # elif knowledgebase == "freebase":
+    #     type_file = open("our_resource/freebase-entity-type-info.tsv", "r", encoding="UTF-8")
+    type_file = open(typefile, "r", encoding="UTF-8")
     types = type_file.readlines()
     type_file.close()
     for line in types:
@@ -782,6 +820,7 @@ def Refined_Conflict_Detection(temporal_KG, Constraint_Set,filename,knowledgebas
     zero_hop_constraints = []
     # one hop constraint detection
     one_hop_constraints = []
+
 
     for c in Constraint_Set:
         c1=c.split("|")[0]
@@ -843,7 +882,7 @@ def Refined_Conflict_Detection(temporal_KG, Constraint_Set,filename,knowledgebas
     return Conflict_Set
 
 def test():
-    # Refined_Conflict_Detection()
+    Refined_Conflict_Detection()
     return
 
 if __name__ == '__main__':

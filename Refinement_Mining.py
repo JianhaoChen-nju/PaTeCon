@@ -27,7 +27,7 @@ def refined_functional_mining(graph,constraint_set):
 
     # new_added
     functional_constraints = constraint_set
-    print("len of constraint0:", len(functional_constraints))
+    print("len of functional constraint:", len(functional_constraints))
     F_relations = []
     for c in functional_constraints:
         F_relation = c.split(" ")[0].split(",")[1]
@@ -76,8 +76,8 @@ def refined_functional_mining(graph,constraint_set):
         if v.isLiteral == True:
             # return
             continue
-        # if len(v.hasStatement)<2:
-        #     continue
+        if len(v.hasStatement)<2:
+            continue
         all_relation_pairs = {}
 
         for s in v.hasStatement:
@@ -114,11 +114,6 @@ def refined_functional_mining(graph,constraint_set):
                     tail1 = vertex1.hasValue.getId()
                     tail2 = vertex2.hasValue.getId()
 
-                    # if Interval_Relations.disjoint(start1, end1, start2, end2) == -1:
-                    #     consistent = False
-                    #     flag = False
-                    #     break
-
                     # confidence = positive/positive+negative
                     result = Interval_Relations.disjoint(start1, end1, start2, end2)
                     if result == -1:
@@ -149,12 +144,11 @@ def refined_functional_mining(graph,constraint_set):
             confidence = 0
         else:
             confidence = consistent_subsets * 1.0 / total_subsets
-        print(relation+"*"+entity_type, consistent_subsets, total_subsets, confidence)
+        # print(relation+"*"+entity_type, consistent_subsets, total_subsets, confidence)
         if confidence > confidence_threshold and consistent_subsets > support_threshold:
-        # if confidence > confidence_threshold and consistent_subsets > support_threshold:
             constraint = "a," + relation + ",b,t1,t2 b,class,"+entity_type+" disjoint a," + relation + ",c,t3,t4 c,class,"+entity_type+"|" + str(
                 confidence)
-            print(constraint)
+            # print(constraint)
             refined_functional_constraint.append(constraint)
 
         # x relation1 y & x relation2 z t1(t1=开始结束时间取平均数) & y relation3 w t2 = > t2 before t1 / t1 before t2 / t1 during t2 / t2 during t1
@@ -172,7 +166,7 @@ def refined_inverse_functional_mining(graph,constraint_set):
 
     # new_added
     inverse_functional_constraints = constraint_set
-    print("len of constraint1:", len(inverse_functional_constraints))
+    print("len of inverse_functional constraint:", len(inverse_functional_constraints))
     IF_relations = []
     for c in inverse_functional_constraints:
         IF_relation = c.split(" ")[0].split(",")[1]
@@ -216,8 +210,8 @@ def refined_inverse_functional_mining(graph,constraint_set):
             print("have traversed nodes:",vertex_count)
             print("time cost:",ed-pre,"s")
         v = graph.eVertexList[i]
-        # if len(v.bePointedTo)<2:
-        #     continue
+        if len(v.bePointedTo)<2:
+            continue
         if v.isLiteral==True:
             continue
 
@@ -255,10 +249,6 @@ def refined_inverse_functional_mining(graph,constraint_set):
                     end1 = vertex1.getEndTime()
                     start2 = vertex2.getStartTime()
                     end2 = vertex2.getEndTime()
-                    # if Interval_Relations.disjoint(start1, end1, start2, end2) == -1:
-                    #     consistent = False
-                    #     flag=False
-                    #     break
 
                     # confidence = positive/positive+negative
                     result = Interval_Relations.disjoint(start1, end1, start2, end2)
@@ -288,11 +278,11 @@ def refined_inverse_functional_mining(graph,constraint_set):
             confidence = 0
         else:
             confidence = consistent_subsets * 1.0 / total_subsets
-        print(relation+"*"+entity_type, consistent_subsets, total_subsets, confidence)
+        # print(relation+"*"+entity_type, consistent_subsets, total_subsets, confidence)
         if confidence > confidence_threshold and consistent_subsets > support_threshold:
         # if confidence > confidence_threshold and consistent_subsets > support_threshold:
             constraint = "a," + relation + ",b,t1,t2 b,class,"+entity_type+" disjoint c," + relation + ",b,t3,t4 b,class,"+entity_type+"|"+str(confidence)
-            print(constraint)
+            # print(constraint)
             refined_inverse_functional_constraint.append(constraint)
 
         # x relation1 y & x relation2 z t1(t1=开始结束时间取平均数) & y relation3 w t2 = > t2 before t1 / t1 before t2 / t1 during t2 / t2 during t1
@@ -309,7 +299,7 @@ def Refined_Single_Entity_Temporal_Order(graph,constraint_set):
     cou=0
 
     zero_hop_constraints = constraint_set
-    print("len of constraint2:", len(zero_hop_constraints))
+    print("len of Single Entity constraint:", len(zero_hop_constraints))
     ZHC_relations = []
     index_dict = {}
     count = 0
@@ -569,14 +559,14 @@ def Refined_Single_Entity_Temporal_Order(graph,constraint_set):
             confidence = 0
         else:
             confidence = consistent_subsets * 1.0 / total_subsets
-        if consistent_subsets != 0:
-            print(ZHC_interval_relation, relation1,entity_type1, relation2,entity_type2, consistent_subsets, total_subsets, confidence)
+        # if consistent_subsets != 0:
+        #     print(ZHC_interval_relation, relation1,entity_type1, relation2,entity_type2, consistent_subsets, total_subsets, confidence)
 
         # if before_confidence > confidence_threshold and before_consistent_subsets > support_threshold:
         if confidence > confidence_threshold and consistent_subsets > support_threshold:
             constraint = "a," + relation1 + ",b,t1,t2 b,class,"+entity_type1+" "+ZHC_interval_relation+" a," + relation2 + ",c,t3,t4 c,class,"+entity_type2+"|" + str(
                 confidence)
-            print(constraint)
+            # print(constraint)
             Refined_Single_Entity_Temporal_Order_Constraint.append(constraint)
 
     return Refined_Single_Entity_Temporal_Order_Constraint
@@ -590,7 +580,7 @@ def Refined_Mutiple_Entity_Temporal_Order(graph,constraint_set):
     cou = 0
 
     one_hop_constraints = constraint_set
-    print("len of constraint3:", len(one_hop_constraints))
+    print("len of Mutiple Entity constraint:", len(one_hop_constraints))
     index_dict = {}
     for c in one_hop_constraints:
         elem = c.split(" ")
@@ -1049,26 +1039,26 @@ def Refined_Mutiple_Entity_Temporal_Order(graph,constraint_set):
             confidence = 0
         else:
             confidence = consistent_subsets * 1.0 / total_subsets
-        if consistent_subsets != 0:
-            print(OHC_interval_relation, relation1,t0, one_hop,t1, relation2,t2, consistent_subsets, total_subsets, confidence)
+        # if consistent_subsets != 0:
+        #     print(OHC_interval_relation, relation1,t0, one_hop,t1, relation2,t2, consistent_subsets, total_subsets, confidence)
 
         if confidence > confidence_threshold and consistent_subsets>support_threshold:
             if OHC_interval_relation.__contains__("inverse_"):
                 OHC_interval_relation=OHC_interval_relation.replace("inverse_","")
                 constraint = "a," + one_hop+"*"+relation2 + ",d,t3,t4 c,class,"+t1+" d,class,"+t2+" "+ OHC_interval_relation +" a," + relation1 + \
                              ",b,t1,t2 b,class,"+t0+"|" + str(confidence)
-                print(constraint)
+                # print(constraint)
                 Refined_Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
             else:
                 constraint = "a," + relation1 + ",b,t1,t2 b,class,"+t0+" "+OHC_interval_relation+" a," + one_hop+"*"+relation2 + ",d,t3,t4 c" \
                     ",class,"+t1+" d,class,"+t2+"|" + str(
                     confidence)
-                print(constraint)
+                # print(constraint)
                 Refined_Mutiple_Entity_Temporal_Order_Constraint.append(constraint)
 
     return Refined_Mutiple_Entity_Temporal_Order_Constraint
 
-def refined_mining(graph,knowledgebase,Constraint_Set):
+def refined_mining(graph,typefile,Constraint_Set):
 
     # refined condition
     # unconditional refine or depending on confidence
@@ -1080,10 +1070,11 @@ def refined_mining(graph,knowledgebase,Constraint_Set):
     Constraint_Set=filtered_Constraint
 
     t0=time.time()
-    if knowledgebase=="wikidata":
-        type_file=open("wikidata-entity-type-info.tsv","r",encoding="UTF-8")
-    elif knowledgebase=="freebase":
-        type_file=open("freebase-entity-type-info.tsv","r",encoding="UTF-8")
+    type_file = open(typefile, "r", encoding="UTF-8")
+    # if knowledgebase=="wikidata":
+    #     type_file=open("our_resource/wikidata-entity-type-info.tsv","r",encoding="UTF-8")
+    # elif knowledgebase=="freebase":
+    #     type_file=open("our_resource/freebase-entity-type-info.tsv","r",encoding="UTF-8")
 
     types=type_file.readlines()
     type_file.close()
@@ -1203,16 +1194,16 @@ def refined_mining(graph,knowledgebase,Constraint_Set):
     st = time.time()
     Fine_Grained_Constraint_Set += refined_functional_mining(graph, functional_constraints)
     ed0 = time.time()
-    print("Fine Grained Constraint Set0 cost time:", ed0 - st, "s")
+    print("Fine Grained functional Constraint Set cost time:", ed0 - st, "s")
     Fine_Grained_Constraint_Set += refined_inverse_functional_mining(graph, inverse_functional_constraints)
     ed1 = time.time()
-    print("Fine Grained Constraint Set1 cost time:", ed1 - ed0, "s")
+    print("Fine Grained inverse functional Constraint Set cost time:", ed1 - ed0, "s")
     Fine_Grained_Constraint_Set += Refined_Single_Entity_Temporal_Order(graph, zero_hop_constraints)
     ed2 = time.time()
-    print("Fine Grained Constraint Set2 cost time:", ed2 - ed1, "s")
+    print("Fine Grained Single Entity Constraint Set cost time:", ed2 - ed1, "s")
     Fine_Grained_Constraint_Set += Refined_Mutiple_Entity_Temporal_Order(graph, one_hop_constraints)
     ed3 = time.time()
-    print("Fine Grained Constraint Set3 cost time:", ed3 - ed2, "s")
+    print("Fine Grained Mutiple Entity Constraint Set cost time:", ed3 - ed2, "s")
 
     Post_Processed_Constraint_Set = set(inverse_functional_constraints).union(set(functional_constraints))
     Post_Processed_Constraint_Set = Post_Processed_Constraint_Set.union(zero_hop_constraints)
@@ -1222,31 +1213,32 @@ def refined_mining(graph,knowledgebase,Constraint_Set):
     print("Constraints not fine grained mining yet:")
     UnPost_Processed_Constraint_Set = set()
     UnPost_Processed_Constraint_Set = set(Constraint_Set).difference(Post_Processed_Constraint_Set)
-    print(UnPost_Processed_Constraint_Set)
+    # print(UnPost_Processed_Constraint_Set)
 
     return Fine_Grained_Constraint_Set
 
-def test(filename):
-    temporal_KG = Graph_Structure.Graph()
-    knowledgebase="wikidata"
-    # knowledgebase = "freebase"
+def test(tkg,filename,constraint_filename,typefile,knowledgegraph):
 
-    # read_datasets.pre_process(filename)
+    # knowledgebase="wikidata"
+    # knowledgebase = ""
+    # if filename.__contains__("WIKI") or filename.__contains__("wikidata"):
+    #     knowledgebase = "wikidata"
+    # elif filename.__contains__("freebase"):
+    #     knowledgebase = "freebase"
+    # else:
+    #     knowledgebase = "other"
 
-    starttime0 = time.time()
-    temporal_KG.ConstructThroughTsv(filename, knowledgebase, 100)
-    endtime0 = time.time()
-    runningtime0 = endtime0 - starttime0
-    print("ConstructThroughTsv running time:", runningtime0, "s")
+    # read_datasets.pre_process
 
+    knowledgebase = knowledgegraph
+
+    temporal_KG=tkg
 
     # print("entity vertex number is:",temporal_KG.num_eVertices)
-    constraint_filename = "all_relations_with_redundant_wikidata_alpha-1.3.tsv_rules"
-    # constraint_filename = "all_relations_with_redundant_freebase_alpha-1.1.tsv_rules"
-    # constraint_filename="constraint_list_wikidata.txt"
+
     constraint_set = Conflict_Detection.read_constraints(constraint_filename)
     starttime = time.time()
-    constraints = refined_mining(temporal_KG, knowledgebase,constraint_set)
+    constraints = refined_mining(temporal_KG, typefile,constraint_set)
     endtime = time.time()
     runningtime = endtime - starttime
     print("Refined mining running time:", runningtime, "s")
@@ -1258,27 +1250,24 @@ def test(filename):
 
 if __name__ == '__main__':
     # filename = "wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv"
-    filename = "all_relations_with_redundant_wikidata_alpha-1.3.tsv"
-    # filename="all_relations_with_redundant_freebase_alpha-1.1.tsv"
-    test(filename)
-    fn1=filename+"_rules"
-    fn2=filename+"_refined_rules"
-    f1=open(fn1,"r",encoding="utf-8")
-    f2=open(fn2,"r",encoding="utf-8")
-    constraint1=f1.readlines()
-    constraint2=f2.readlines()
-    constraints=[]
-    for c in constraint1:
-        confidence=float(c.strip().split("|")[1])
-        if confidence>= confidence_threshold:
-            constraints.append(c.strip())
-    for c in constraint2:
-        confidence=float(c.strip().split("|")[1])
-        if confidence>= confidence_threshold:
-            constraints.append(c.strip())
-    write_filename = filename + "_all_constraints"
-    write_file = open(write_filename, "w", encoding="utf-8")
-    write_file.writelines("\n".join(constraints))
+    filename = "our_resource/all_relations_with_redundant_wikidata_alpha-1.3.tsv"
+    # filename="our_resource/all_relations_with_redundant_freebase_alpha-1.1.tsv"
+
+    constraint_filename = "our_resource/all_relations_with_redundant_wikidata_alpha-1.3.tsv_rules"
+    # constraint_filename = "our_resource/all_relations_with_redundant_freebase_alpha-1.1.tsv_rules"
+    # constraint_filename="WD50K_trans/new_rockit_wikidata_0_50k.tsv_rules"
+    # constraint_filename="constraint_list_wikidata.txt"
+    typefile="our_resource/wikidata-entity-type-info.tsv"
+    knowledgegraph="wikidata"
+    temporal_KG = Graph_Structure.Graph()
+    starttime0 = time.time()
+    temporal_KG.ConstructThroughTsv(filename, knowledgegraph, 100)
+    endtime0 = time.time()
+    runningtime0 = endtime0 - starttime0
+    print("ConstructThroughTsv running time:", runningtime0, "s")
+    test(temporal_KG,filename,constraint_filename,typefile,knowledgegraph)
+
+    Constraint_Mining.MergeConstraint(filename)
 
 
 

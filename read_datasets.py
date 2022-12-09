@@ -161,6 +161,7 @@ def read_file(filename):
     endtime2 = time.time()
     runningtime2 = endtime2 - starttime2
     print("duplicate running time is:", runningtime2, "s")
+    print("len of file is",len(lines))
     print("len of NonDuplicate utkg is", len(deduplicate_utkg))
 
     f.close()
@@ -201,4 +202,6 @@ if __name__ == '__main__':
     # datasetname="footballdb_tsv"
     # datasetname="wikidata_dataset_tsv"
     # read_dataset(datasetname)
-    assgin_weight("wikidata_dataset_tsv")
+    # assgin_weight("wikidata_dataset_tsv")
+    filename="wikidata_dataset_tsv/rockit_wikidata_100_50k.tsv"
+    pre_process(filename)

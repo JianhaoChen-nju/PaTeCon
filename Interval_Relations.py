@@ -85,8 +85,6 @@ def before(i1, i2, i3, i4):
     t4=FuzzyTime(i4)
     # i2<=i3
     if t1.isnotnull() and t2.isnotnull() and t3.isnotnull() and t4.isnotnull():
-        if comp_time(t1, t3) == "eq" and comp_time(t2, t4) == "eq":
-            return -1
         comp_res=comp_time(t2,t3)
         if comp_res == "lt" or comp_res=="eq":
             return 1
@@ -185,8 +183,6 @@ def disjoint(i1, i2, i3, i4):
     t4=FuzzyTime(i4)
     # i2<i3 || i4<i1
     if t1.isnotnull() and t2.isnotnull() and t3.isnotnull() and t4.isnotnull():
-        if comp_time(t1, t3) == "eq" and comp_time(t2, t4) == "eq":
-            return -1
         comp_res_t2t3=comp_time(t2,t3)
         comp_res_t4t1=comp_time(t4,t1)
         if comp_res_t2t3=="lt" or comp_res_t2t3=="eq" or comp_res_t4t1=="lt" or comp_res_t4t1=="eq":

@@ -1,3 +1,6 @@
+import argparse
+import os
+
 import copy
 import time
 
@@ -54,7 +57,7 @@ def Compound(atom):
     return
 
 def Mutual_Exclusion_Detection(temporal_KG,Constraint_Set):
-
+    possible_subgraph=0
     '''
     translate and execute constraint
     :param Conflict_temporal_facts:
@@ -66,7 +69,7 @@ def Mutual_Exclusion_Detection(temporal_KG,Constraint_Set):
     Conflict_Fact_set=[]
     # functional constraints detection
     Mutual_Exclusion_constraints = Constraint_Set
-    print("len of mutual exclusion constraint:",len(Mutual_Exclusion_constraints))
+    # print("len of mutual exclusion constraint:",len(Mutual_Exclusion_constraints))
     FC_relations = []
     for c in Mutual_Exclusion_constraints:
         FC_relation = c.split(" ")[0].split(",")[1]
@@ -82,8 +85,8 @@ def Mutual_Exclusion_Detection(temporal_KG,Constraint_Set):
         vertex_count += 1
         if vertex_count % 1000000 == 0:
             ed = time.time()
-            print("have traversed nodes:", vertex_count)
-            print("time cost:", ed - pre, "s")
+            # print("have traversed nodes:", vertex_count)
+            # print("time cost:", ed - pre, "s")
         if v.isLiteral==True:
             continue
         if len(v.hasStatement) < 2:
@@ -97,6 +100,7 @@ def Mutual_Exclusion_Detection(temporal_KG,Constraint_Set):
                 if i1!=-1 or i2!=-1:
                     if index_dict.__contains__(r):
                         index=index_dict[r]
+
                         all_relation_pairs.setdefault(index, []).append(s)
                         #[[P54,e,e,e],[P286,e,e,e]]
             # print("detect cost time:", ed - st, "s")
@@ -104,6 +108,7 @@ def Mutual_Exclusion_Detection(temporal_KG,Constraint_Set):
                 for k in range(len(all_relation_pairs[j])):
                     vertex1=all_relation_pairs[j][k]
                     for l in range(k+1,len(all_relation_pairs[j])):
+                        possible_subgraph += 1
                         vertex2 = all_relation_pairs[j][l]
                         start1 = vertex1.getStartTime()
                         end1 = vertex1.getEndTime()
@@ -111,19 +116,26 @@ def Mutual_Exclusion_Detection(temporal_KG,Constraint_Set):
                         end2 = vertex2.getEndTime()
                         head = v.getId()
                         relation1 = vertex1.getId()
-                        tail1 = vertex1.hasValue.getId()
+                        if vertex1.hasValue.isLiteral==True:
+                            tail1=vertex1.hasValue.getLabel()
+                        else:
+                            tail1 = vertex1.hasValue.getId()
                         relation2 = vertex2.getId()
-                        tail2 = vertex2.hasValue.getId()
+                        if vertex2.hasValue.isLiteral==True:
+                            tail2=vertex2.hasValue.getLabel()
+                        else:
+                            tail2 = vertex2.hasValue.getId()
                         inconsistent_pair = Mutual_Exclusion_constraints[j] + "\t" + head + "," + relation1 + "," + tail1 + "," + str(
                             start1) + "," + str(
                             end1) + "\t" + head + "," + relation2 + "," + tail2 + "," + str(
                             start2) + "," + str(end2)
                         Conflict_Fact_set.append(inconsistent_pair)
     # print(actions)
+    # print(possible_subgraph)
     return Conflict_Fact_set
 
 def Subgraph_Detection0(temporal_KG,Constraint_Set):
-
+    # possible_subgraph = 0
     '''
     translate and execute constraint
     :param Conflict_temporal_facts:
@@ -135,7 +147,7 @@ def Subgraph_Detection0(temporal_KG,Constraint_Set):
     Conflict_Fact_set=[]
     # functional constraints detection
     functional_constraints = Constraint_Set
-    print("len of constraint0:",len(functional_constraints))
+    # print("len of constraint0:",len(functional_constraints))
     FC_relations = []
     for c in functional_constraints:
         FC_relation = c.split(" ")[0].split(",")[1]
@@ -151,8 +163,8 @@ def Subgraph_Detection0(temporal_KG,Constraint_Set):
         vertex_count += 1
         if vertex_count % 1000000 == 0:
             ed = time.time()
-            print("have traversed nodes:", vertex_count)
-            print("time cost:", ed - pre, "s")
+            # print("have traversed nodes:", vertex_count)
+            # print("time cost:", ed - pre, "s")
         if v.isLiteral==True:
             continue
         if len(v.hasStatement) < 2:
@@ -173,6 +185,7 @@ def Subgraph_Detection0(temporal_KG,Constraint_Set):
                 for k in range(len(all_relation_pairs[j])):
                     vertex1=all_relation_pairs[j][k]
                     for l in range(k+1,len(all_relation_pairs[j])):
+                        # possible_subgraph += 1
                         vertex2 = all_relation_pairs[j][l]
                         start1 = vertex1.getStartTime()
                         end1 = vertex1.getEndTime()
@@ -180,9 +193,15 @@ def Subgraph_Detection0(temporal_KG,Constraint_Set):
                         end2 = vertex2.getEndTime()
                         head = v.getId()
                         relation1 = vertex1.getId()
-                        tail1 = vertex1.hasValue.getId()
+                        if vertex1.hasValue.isLiteral==True:
+                            tail1=vertex1.hasValue.getLabel()
+                        else:
+                            tail1 = vertex1.hasValue.getId()
                         relation2 = vertex2.getId()
-                        tail2 = vertex2.hasValue.getId()
+                        if vertex2.hasValue.isLiteral==True:
+                            tail2=vertex2.hasValue.getLabel()
+                        else:
+                            tail2 = vertex2.hasValue.getId()
                         if Interval_Relations.disjoint(start1, end1, start2, end2) == -1:
                             # actions+=1
                             inconsistent_pair = functional_constraints[j] + "\t" + head + "," + relation1 + "," + tail1 + "," + str(
@@ -191,10 +210,11 @@ def Subgraph_Detection0(temporal_KG,Constraint_Set):
                                 start2) + "," + str(end2)
                             Conflict_Fact_set.append(inconsistent_pair)
     # print(actions)
+    # print(possible_subgraph)
     return Conflict_Fact_set
 
 def Subgraph_Detection1(temporal_KG,Constraint_Set):
-
+    # possible_subgraph = 0
     '''
     translate and execute constraint
     :param Conflict_temporal_facts:
@@ -206,7 +226,7 @@ def Subgraph_Detection1(temporal_KG,Constraint_Set):
     Conflict_Fact_set=[]
     # inverse functional constraints detection
     inverse_functional_constraints = Constraint_Set
-    print("len of constraint1:", len(inverse_functional_constraints))
+    # print("len of constraint1:", len(inverse_functional_constraints))
     IFC_relations = []
     for c in inverse_functional_constraints:
         IFC_relation = c.split(" ")[0].split(",")[1]
@@ -222,8 +242,8 @@ def Subgraph_Detection1(temporal_KG,Constraint_Set):
         vertex_count += 1
         if vertex_count % 1000000 == 0:
             ed = time.time()
-            print("have traversed nodes:", vertex_count)
-            print("time cost:", ed - pre, "s")
+            # print("have traversed nodes:", vertex_count)
+            # print("time cost:", ed - pre, "s")
         if v.isLiteral==True:
             continue
         if len(v.bePointedTo) < 2:
@@ -248,6 +268,7 @@ def Subgraph_Detection1(temporal_KG,Constraint_Set):
                 for k in range(len(all_relation_pairs[j])):
                     vertex1=all_relation_pairs[j][k]
                     for l in range(k+1,len(all_relation_pairs[j])):
+                        # possible_subgraph += 1
                         vertex2 = all_relation_pairs[j][l]
                         start1 = vertex1.getStartTime()
                         end1 = vertex1.getEndTime()
@@ -268,10 +289,11 @@ def Subgraph_Detection1(temporal_KG,Constraint_Set):
                                 start2) + "," + str(end2)
                             Conflict_Fact_set.append(inconsistent_pair)
     # print(actions)
+    # print(possible_subgraph)
     return Conflict_Fact_set
 
 def Subgraph_Detection2(temporal_KG,Constraint_Set):
-
+    # possible_subgraph = 0
     '''
     translate and execute constraint
     :param Conflict_temporal_facts:
@@ -283,7 +305,7 @@ def Subgraph_Detection2(temporal_KG,Constraint_Set):
     Conflict_Fact_set=[]
     # functional constraints detection
     zero_hop_constraints = Constraint_Set
-    print("len of constraint2:", len(zero_hop_constraints))
+    # print("len of constraint2:", len(zero_hop_constraints))
     ZHC_relations = []
     index_dict = {}
     count=0
@@ -312,8 +334,8 @@ def Subgraph_Detection2(temporal_KG,Constraint_Set):
         vertex_count += 1
         if vertex_count % 1000000 == 0:
             ed = time.time()
-            print("have traversed nodes:", vertex_count)
-            print("time cost:", ed - pre, "s")
+            # print("have traversed nodes:", vertex_count)
+            # print("time cost:", ed - pre, "s")
         # cou+=1
         # print(cou)
         if v.isLiteral==True:
@@ -373,10 +395,16 @@ def Subgraph_Detection2(temporal_KG,Constraint_Set):
                         end2 = vertex2.getEndTime()
                         head = v.getId()
                         relation1 = vertex1.getId()
-                        tail1 = vertex1.hasValue.getId()
+                        if vertex1.hasValue.isLiteral == True:
+                            tail1 = vertex1.hasValue.getLabel()
+                        else:
+                            tail1 = vertex1.hasValue.getId()
                         relation2 = vertex2.getId()
-                        tail2 = vertex2.hasValue.getId()
-
+                        if vertex2.hasValue.isLiteral == True:
+                            tail2 = vertex2.hasValue.getLabel()
+                        else:
+                            tail2 = vertex2.hasValue.getId()
+                        # possible_subgraph += 1
                         # choose which interval relation is
                         if ZHC_relations[j][2].__eq__("before"):
                             if Interval_Relations.before(start1,end1,start2,end2)==-1:
@@ -404,7 +432,14 @@ def Subgraph_Detection2(temporal_KG,Constraint_Set):
                                     end1) + "\t" + head + "," + relation2 + "," + tail2 + "," + str(
                                     start2) + "," + str(end2)
                                 Conflict_Fact_set.append(inconsistent_pair)
-
+                        elif ZHC_relations[j][2].__eq__("disjoint"):
+                            if Interval_Relations.disjoint(start1, end1, start2, end2) == -1:
+                                inconsistent_pair = zero_hop_constraints[j]+"\t"+head + "," + relation1 + "," + tail1 + "," + str(
+                                    start1) + "," + str(
+                                    end1) + "\t" + head + "," + relation2 + "," + tail2 + "," + str(
+                                    start2) + "," + str(end2)
+                                Conflict_Fact_set.append(inconsistent_pair)
+    # print(possible_subgraph)
     return Conflict_Fact_set
 
 def Subgraph_Detection3(temporal_KG,Constraint_Set):
@@ -420,7 +455,7 @@ def Subgraph_Detection3(temporal_KG,Constraint_Set):
     Conflict_Fact_set=[]
     # functional constraints detection
     first_one_hop_constraints = Constraint_Set
-    print("len of constraint3:", len(first_one_hop_constraints))
+    # print("len of constraint3:", len(first_one_hop_constraints))
     FOH_relations = []
     index_dict = {}
     count = 0
@@ -451,8 +486,8 @@ def Subgraph_Detection3(temporal_KG,Constraint_Set):
         vertex_count += 1
         if vertex_count % 1000000 == 0:
             ed = time.time()
-            print("have traversed nodes:", vertex_count)
-            print("time cost:", ed - pre, "s")
+            # print("have traversed nodes:", vertex_count)
+            # print("time cost:", ed - pre, "s")
         if v.isLiteral==True:
             continue
         if len(v.hasStatement) < 2:
@@ -514,12 +549,15 @@ def Subgraph_Detection3(temporal_KG,Constraint_Set):
                                     index=index_dict[key]
                                     all_relation_pairs.setdefault(index, []).append(l)
                                     all_relation_pairs.setdefault(index, []).append(s2)
+                                    all_relation_pairs.setdefault(index, []).append(s1)
 
             for j in all_relation_pairs.keys():
                     # step=2
-                    for k in range(0,len(all_relation_pairs[j]),2):
+                    for k in range(0,len(all_relation_pairs[j]),3):
                         vertex1 = all_relation_pairs[j][k]
                         vertex2 = all_relation_pairs[j][k+1]
+                        one_hop_vertex = all_relation_pairs[j][k + 2]
+                        one_hop_entity = one_hop_vertex.hasValue.getId()
                         start1 = vertex1.getStartTime()
                         end1 = vertex1.getEndTime()
                         start2 = vertex2.getStartTime()
@@ -527,21 +565,27 @@ def Subgraph_Detection3(temporal_KG,Constraint_Set):
                         head = v.getId()
                         relation=FOH_relations[j][0]
                         relation1 = vertex1.getId()
-                        tail1 = vertex1.hasValue.getId()
+                        if vertex1.hasValue.isLiteral == True:
+                            tail1 = vertex1.hasValue.getLabel()
+                        else:
+                            tail1 = vertex1.hasValue.getId()
                         relation2 = vertex2.getId()
-                        tail2 = vertex2.hasValue.getId()
+                        if vertex2.hasValue.isLiteral == True:
+                            tail2 = vertex2.hasValue.getLabel()
+                        else:
+                            tail2 = vertex2.hasValue.getId()
 
                         # choose which interval relation is
                         if FOH_relations[j][3].__eq__("before"):
                             if Interval_Relations.before(start1,end1,start2,end2)==-1:
-                                inconsistent_pair = first_one_hop_constraints[j]+"\t"+head + ","+ relation+",entity,"\
+                                inconsistent_pair = first_one_hop_constraints[j]+"\t"+head + ","+ relation+","+one_hop_entity+","\
                                                     + relation1 + "," + tail1 + "," + str(start1) + "," + str(
                                     end1) + "\t" + head + "," + relation2 + "," + tail2 + "," + str(start2) + "," + str(end2)
                                 Conflict_Fact_set.append(inconsistent_pair)
                         elif FOH_relations[j][3].__eq__("include"):
                             if Interval_Relations.include(start1, end1, start2, end2) == -1:
                                 inconsistent_pair = first_one_hop_constraints[
-                                                        j] + "\t" + head + "," + relation + ",entity," \
+                                                        j] + "\t" + head + "," + relation + ","+one_hop_entity+"," \
                                                     + relation1 + "," + tail1 + "," + str(start1) + "," + str(
                                     end1) + "\t" + head + "," + relation2 + "," + tail2 + "," + str(
                                     start2) + "," + str(end2)
@@ -549,7 +593,7 @@ def Subgraph_Detection3(temporal_KG,Constraint_Set):
                         elif FOH_relations[j][3].__eq__("start"):
                             if Interval_Relations.start(start1, end1, start2, end2) == -1:
                                 inconsistent_pair = first_one_hop_constraints[
-                                                        j] + "\t" + head + "," + relation + ",entity," \
+                                                        j] + "\t" + head + "," + relation + ","+one_hop_entity+"," \
                                                     + relation1 + "," + tail1 + "," + str(start1) + "," + str(
                                     end1) + "\t" + head + "," + relation2 + "," + tail2 + "," + str(
                                     start2) + "," + str(end2)
@@ -557,7 +601,7 @@ def Subgraph_Detection3(temporal_KG,Constraint_Set):
                         elif FOH_relations[j][3].__eq__("finish"):
                             if Interval_Relations.finish(start1, end1, start2, end2) == -1:
                                 inconsistent_pair = first_one_hop_constraints[
-                                                        j] + "\t" + head + "," + relation + ",entity," \
+                                                        j] + "\t" + head + "," + relation + ","+one_hop_entity+"," \
                                                     + relation1 + "," + tail1 + "," + str(start1) + "," + str(
                                     end1) + "\t" + head + "," + relation2 + "," + tail2 + "," + str(
                                     start2) + "," + str(end2)
@@ -578,7 +622,7 @@ def Subgraph_Detection4(temporal_KG,Constraint_Set):
     Conflict_Fact_set=[]
     # functional constraints detection
     second_one_hop_constraints = Constraint_Set
-    print("len of constraint4:", len(second_one_hop_constraints))
+    # print("len of constraint4:", len(second_one_hop_constraints))
     SOH_relations = []
     index_dict = {}
     count = 0
@@ -609,8 +653,8 @@ def Subgraph_Detection4(temporal_KG,Constraint_Set):
         vertex_count += 1
         if vertex_count % 1000000 == 0:
             ed = time.time()
-            print("have traversed nodes:", vertex_count)
-            print("time cost:", ed - pre, "s")
+            # print("have traversed nodes:", vertex_count)
+            # print("time cost:", ed - pre, "s")
         if v.isLiteral==True:
             continue
         if len(v.hasStatement) < 2:
@@ -666,12 +710,15 @@ def Subgraph_Detection4(temporal_KG,Constraint_Set):
                                 index = index_dict[key]
                                 all_relation_pairs.setdefault(index, []).append(s1)
                                 all_relation_pairs.setdefault(index, []).append(l)
+                                all_relation_pairs.setdefault(index, []).append(s2)
 
             for j in all_relation_pairs.keys():
                     # step=2
-                    for k in range(0,len(all_relation_pairs[j]),2):
+                    for k in range(0,len(all_relation_pairs[j]),3):
                         vertex1 = all_relation_pairs[j][k]
                         vertex2 = all_relation_pairs[j][k+1]
+                        one_hop_vertex = all_relation_pairs[j][k+2]
+                        one_hop_entity=one_hop_vertex.hasValue.getId()
                         start1 = vertex1.getStartTime()
                         end1 = vertex1.getEndTime()
                         start2 = vertex2.getStartTime()
@@ -679,36 +726,43 @@ def Subgraph_Detection4(temporal_KG,Constraint_Set):
                         head = v.getId()
                         relation=SOH_relations[j][1]
                         relation1 = vertex1.getId()
-                        tail1 = vertex1.hasValue.getId()
+
+                        if vertex1.hasValue.isLiteral == True:
+                            tail1 = vertex1.hasValue.getLabel()
+                        else:
+                            tail1 = vertex1.hasValue.getId()
                         relation2 = vertex2.getId()
-                        tail2 = vertex2.hasValue.getId()
+                        if vertex2.hasValue.isLiteral == True:
+                            tail2 = vertex2.hasValue.getLabel()
+                        else:
+                            tail2 = vertex2.hasValue.getId()
 
                         # choose which interval relation is
                         if SOH_relations[j][3].__eq__("before"):
                             if Interval_Relations.before(start1,end1,start2,end2)==-1:
                                 inconsistent_pair = second_one_hop_constraints[j]+"\t"+head+"," \
                                                     + relation1 + "," + tail1 + "," + str(start1) + "," + str(
-                                    end1) + "\t" + head  + ","+ relation+",entity,"+ relation2 + "," + tail2 + "," + str(start2) + "," + str(end2)
+                                    end1) + "\t" + head  + ","+ relation+","+one_hop_entity+","+ relation2 + "," + tail2 + "," + str(start2) + "," + str(end2)
                                 Conflict_Fact_set.append(inconsistent_pair)
                         elif SOH_relations[j][3].__eq__("include"):
                             if Interval_Relations.include(start1, end1, start2, end2) == -1:
                                 inconsistent_pair = second_one_hop_constraints[j] + "\t" + head+"," \
                                                     + relation1 + "," + tail1 + "," + str(start1) + "," + str(
-                                    end1) + "\t" + head + "," + relation + ",entity,"+ relation2 + "," + tail2 + "," + str(
+                                    end1) + "\t" + head + "," + relation + ","+one_hop_entity+","+ relation2 + "," + tail2 + "," + str(
                                     start2) + "," + str(end2)
                                 Conflict_Fact_set.append(inconsistent_pair)
                         elif SOH_relations[j][3].__eq__("start"):
                             if Interval_Relations.start(start1, end1, start2, end2) == -1:
                                 inconsistent_pair = second_one_hop_constraints[j] + "\t" + head+"," \
                                                     + relation1 + "," + tail1 + "," + str(start1) + "," + str(
-                                    end1) + "\t" + head + "," + relation + ",entity,"+ relation2 + "," + tail2 + "," + str(
+                                    end1) + "\t" + head + "," + relation + ","+one_hop_entity+","+ relation2 + "," + tail2 + "," + str(
                                     start2) + "," + str(end2)
                                 Conflict_Fact_set.append(inconsistent_pair)
                         elif SOH_relations[j][3].__eq__("finish"):
                             if Interval_Relations.finish(start1, end1, start2, end2) == -1:
                                 inconsistent_pair = second_one_hop_constraints[j] + "\t" + head+"," \
                                                     + relation1 + "," + tail1 + "," + str(start1) + "," + str(
-                                    end1) + "\t" + head + "," + relation + ",entity,"+ relation2 + "," + tail2 + "," + str(
+                                    end1) + "\t" + head + "," + relation + ","+one_hop_entity+","+ relation2 + "," + tail2 + "," + str(
                                     start2) + "," + str(end2)
                                 Conflict_Fact_set.append(inconsistent_pair)
 
@@ -727,7 +781,7 @@ def Subgraph_Detection5(temporal_KG,Constraint_Set):
     Conflict_Fact_set=[]
     # functional constraints detection
     both_one_hop_constraints = Constraint_Set
-    print("len of constraint5:", len(both_one_hop_constraints))
+    # print("len of constraint5:", len(both_one_hop_constraints))
     BOH_relations = []
     index_dict = {}
     count = 0
@@ -759,8 +813,8 @@ def Subgraph_Detection5(temporal_KG,Constraint_Set):
         vertex_count += 1
         if vertex_count % 1000000 == 0:
             ed = time.time()
-            print("have traversed nodes:", vertex_count)
-            print("time cost:", ed - pre, "s")
+            # print("have traversed nodes:", vertex_count)
+            # print("time cost:", ed - pre, "s")
         if v.isLiteral==True:
             continue
         if len(v.hasStatement) < 2:
@@ -838,10 +892,19 @@ def Subgraph_Detection5(temporal_KG,Constraint_Set):
                         head = v.getId()
                         relation=BOH_relations[j][0]
                         relation1 = vertex1.getId()
-                        tail1 = vertex1.hasValue.getId()
+
+                        if vertex1.hasValue.isLiteral==True:
+                            tail1=vertex1.hasValue.getLabel()
+                        else:
+                            tail1 = vertex1.hasValue.getId()
+
+
                         relation3=BOH_relations[j][2]
                         relation2 = vertex2.getId()
-                        tail2 = vertex2.hasValue.getId()
+                        if vertex2.hasValue.isLiteral==True:
+                            tail2=vertex2.hasValue.getLabel()
+                        else:
+                            tail2 = vertex2.hasValue.getId()
 
                         # choose which interval relation is
                         if BOH_relations[j][4].__eq__("before"):
@@ -879,7 +942,7 @@ def Subgraph_Detection5(temporal_KG,Constraint_Set):
 
 
 
-def Conflict_Detection(temporal_KG,Constraint_Set,filename,knowledgebase):
+def Conflict_Detection(temporal_KG,Constraint_Set,filename,knowledgebase,refinement,typefile):
     # framework
     # Constraint_Mining.simplify_constraint()
     # file=open()
@@ -911,6 +974,7 @@ def Conflict_Detection(temporal_KG,Constraint_Set,filename,knowledgebase):
     both_one_hop_constraints = []
 
     for c in Constraint_Set:
+        # print(c)
         elem = c.split(" ")
         atom1 = elem[0]
         interval_relation = elem[1]
@@ -943,32 +1007,32 @@ def Conflict_Detection(temporal_KG,Constraint_Set,filename,knowledgebase):
     st0 = time.time()
     Conflict_Set += Mutual_Exclusion_Detection(temporal_KG, mutual_exclusion_constraints)
     st = time.time()
-    print("Mutual Exclusion Detection cost time:", st - st0, "s")
+    # print("Mutual Exclusion Detection cost time:", st - st0, "s")
 
     Conflict_Set += Subgraph_Detection0(temporal_KG, functional_constraints)
     ed0 = time.time()
-    print("Detection0 cost time:", ed0 - st, "s")
+    # print("Detection0 cost time:", ed0 - st, "s")
 
     Conflict_Set+=Subgraph_Detection1(temporal_KG,inverse_functional_constraints)
     ed1=time.time()
-    print("Detection1 cost time:",ed1-ed0,"s")
+    # print("Detection1 cost time:",ed1-ed0,"s")
 
     # print(zero_hop_constraints)
     Conflict_Set+=Subgraph_Detection2(temporal_KG,zero_hop_constraints)
     ed2 = time.time()
-    print("Detection2 cost time:", ed2 - ed1, "s")
+    # print("Detection2 cost time:", ed2 - ed1, "s")
 
     Conflict_Set += Subgraph_Detection3(temporal_KG, first_one_hop_constraints)
     ed3 = time.time()
-    print("Detection3 cost time:", ed3 - ed2, "s")
+    # print("Detection3 cost time:", ed3 - ed2, "s")
 
     Conflict_Set += Subgraph_Detection4(temporal_KG, second_one_hop_constraints)
     ed4 = time.time()
-    print("Detection4 cost time:", ed4 - ed3, "s")
+    # print("Detection4 cost time:", ed4 - ed3, "s")
 
     Conflict_Set += Subgraph_Detection5(temporal_KG, both_one_hop_constraints)
     ed5 = time.time()
-    print("Detection5 cost time:", ed5 - ed4, "s")
+    # print("Detection5 cost time:", ed5 - ed4, "s")
 
     Detected_Constraint_Set=set(inverse_functional_constraints).union(set(functional_constraints))
     Detected_Constraint_Set = Detected_Constraint_Set.union(mutual_exclusion_constraints)
@@ -976,15 +1040,17 @@ def Conflict_Detection(temporal_KG,Constraint_Set,filename,knowledgebase):
     Detected_Constraint_Set = Detected_Constraint_Set.union(first_one_hop_constraints)
     Detected_Constraint_Set = Detected_Constraint_Set.union(second_one_hop_constraints)
     Detected_Constraint_Set = Detected_Constraint_Set.union(both_one_hop_constraints)
-    print("Total Constraint number is",len(Constraint_Set))
-    print("Detected Constraint number is",len(Detected_Constraint_Set))
-    print("Constraints not detected yet:")
+    # print("Total Constraint number is",len(Constraint_Set))
+    # print("Detected Constraint number is",len(Detected_Constraint_Set))
+    # print("Constraints not detected yet:")
     Undetected_Constraint_Set=set()
     Undetected_Constraint_Set=set(Constraint_Set).difference(Detected_Constraint_Set)
-    print(Undetected_Constraint_Set)
+    # print(Undetected_Constraint_Set)
 
     # refined detection
-    Refined_Detection.Refined_Conflict_Detection(temporal_KG,refined_Constraint,filename,knowledgebase)
+    if refinement=="True":
+        Refined_Detection.Refined_Conflict_Detection(temporal_KG,refined_Constraint,filename,typefile)
+
     return Conflict_Set
 
 def read_constraints(filename):
@@ -999,31 +1065,47 @@ def read_constraints(filename):
         constraints.append(line)
     return constraints
 
-def test():
+def test(filename,knowledgegraph,constraint_filename,refinement,typefile):
     temporal_KG = Graph_Structure.Graph()
-    filename = "wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv"
-    # filename = "all_relations_with_redundant_wikidata_alpha-1.3.tsv"
-    # filename="all_relations_with_redundant_freebase_alpha-1.1.tsv"
+    # filename = "WD50K_trans/new_rockit_wikidata_0_50k.tsv"
+    # filename = "our_resource/all_relations_with_redundant_wikidata_alpha-1.3.tsv"
+    # filename="our_resource/all_relations_with_redundant_freebase_alpha-1.1.tsv"
+    # filename = "processed_data/YAGO/time_merged_train.txt"
     # read_datasets.pre_process(filename)
+    knowledgebase=knowledgegraph
 
-    knowledgebase="wikidata"
+    # knowledgebase = ""
+    # if filename.__contains__("WIKI") or filename.__contains__("wikidata"):
+    #     knowledgebase="wikidata"
+    # elif filename.__contains__("freebase"):
+    #     knowledgebase="freebase"
+    # else:
+    #     knowledgebase="other"
+
+    # knowledgebase="freebase"
     starttime0 = time.time()
     temporal_KG.ConstructThroughTsv(filename,knowledgebase, 100)
     # temporal_KG.ConstructThroughTsv(filename, "freebase", 100)
     endtime0 = time.time()
     runningtime0 = endtime0 - starttime0
-    print("ConstructThroughTsv running time:", runningtime0, "s")
+    # print("ConstructThroughTsv running time:", runningtime0, "s")
 
     # print("entity vertex number is:",temporal_KG.num_eVertices)
-    # constraint_filename = "all_relations_with_redundant_wikidata_alpha-1.3.tsv_rules"
-    # constraint_filename = "all_relations_with_redundant_wikidata_alpha-1.3.tsv_refined_rules"
+    # constraint_filename = "our_resource/all_relations_with_redundant_wikidata_alpha-1.3.tsv_all_constraints"
+    # constraint_filename = "our_resource/all_relations_with_redundant_freebase_alpha-1.1.tsv_all_constraints"
+    # constraint_filename = "our_resource/all_relations_with_redundant_wikidata_alpha-1.3.tsv_refined_rules"
     # constraint_filename ="wikidata_constraint_before_transfering.txt"
-    # constraint_filename = "all_relations_with_redundant_freebase_alpha-1.1.tsv_rules"
-    # constraint_filename="constraint_list_wikidata1.txt"
-    constraint_filename="wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv_all_constraints"
+    # constraint_filename = "our_resource/all_relations_with_redundant_freebase_alpha-1.1.tsv_rules"
+    # constraint_filename="sampled_50_rules1.txt"
+
+
+    # constraint_filename="WD50K_trans/new_rockit_wikidata_0_50k.tsv_rules"
+    # constraint_filename = "wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv_all_constraints"
+    # constraint_filename = "wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv_all_handcrafted_constraints"
+    # constraint_filename ="processed_data/YAGO/time_merged_train.txt_rules"
     constraint_set = read_constraints(constraint_filename)
     starttime = time.time()
-    conflicts = Conflict_Detection(temporal_KG, constraint_set,filename,knowledgebase)
+    conflicts = Conflict_Detection(temporal_KG, constraint_set,filename,knowledgebase,refinement,typefile)
     endtime = time.time()
     runningtime = endtime - starttime
     print("Conflict detection running time:", runningtime, "s")
@@ -1032,15 +1114,52 @@ def test():
     conflict_file=open(filename+"_conflict","w",encoding="UTF-8")
     conflict_file.writelines("\n".join(conflicts))
 
+def MergeConflict(filename):
+    fn1 = filename + "_conflict"
+    fn2 = filename + "_refined_conflict"
+    f1 = open(fn1, "r", encoding="utf-8")
+    Conflict1 = f1.readlines()
+    if os.path.exists(fn2):
+        f2 = open(fn2, "r", encoding="utf-8")
+        Conflict2 = f2.readlines()
+
+    Conflicts = []
+    for c in Conflict1:
+            Conflicts.append(c.strip())
+    for c in Conflict2:
+            Conflicts.append(c.strip())
+    write_filename = filename + "_all_conflicts"
+    write_file = open(write_filename, "w", encoding="utf-8")
+    write_file.writelines("\n".join(Conflicts))
 
 if __name__ == '__main__':
-    test()
-    # file=open("all_relations_with_redundant_wikidata_alpha-1.2.tsv_conflict","r",encoding="UTF-8")
-    # lines=file.readlines()
-    # count=0
-    # for line in lines:
-    #     r=line.split("\t")[0]
-    #     c=float(r.split("|")[1])
-    #     if c>0.85:
-    #        count+=1
-    # print(count)
+    parser = argparse.ArgumentParser(description='Conflict Detection')
+    parser.add_argument('--dataset', metavar='FILE', default='', help='KG to be mined')
+    parser.add_argument('--knowledgegraph', metavar='KG', default='wikidata', help='which type of kg')
+    parser.add_argument('--constraint', metavar='constraint file', default='', help='constraint file you used to detect conflicts'),
+    parser.add_argument('--refinement', metavar='Boolean',  default="False",
+                        help='whether to mine refined constraints')
+    parser.add_argument('--typefile', metavar='FILE', default='',
+                        help='entity type infomation file needed during refinement')
+
+    args = parser.parse_args()
+
+    if not os.path.exists(args.dataset):
+        print("Error: Invalid dataset %s" % args.dataset)
+        exit(-1)
+
+    if not os.path.exists(args.constraint):
+        print("Error: Invalid dataset %s" % args.constraint)
+        exit(-1)
+
+    if args.refinement == "True":
+        if not os.path.exists(args.typefile):
+            print("Error: Invalid typefile %s" % args.typefile)
+            exit(-1)
+
+    filename = args.dataset
+    knowledgegraph = args.knowledgegraph
+    constraint=args.constraint
+    # print(args.refinement)
+    test(filename,knowledgegraph,constraint,args.refinement,args.typefile)
+    MergeConflict(filename)

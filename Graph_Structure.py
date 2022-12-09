@@ -1,5 +1,6 @@
 import time
 
+import random
 import read_datasets
 # eVertex: entity Vertex
 # sVertex: statement Vertex
@@ -16,8 +17,8 @@ class eVertex:
         self.hasStatement.append(nbr)
         nbr.hasItem = self
 
-    def __str__(self):
-        return str(self.id) + ' hasStatement: ' + str([x.id for x in self.hasStatement])
+    # def __str__(self):
+    #     return str(self.id) + ' hasStatement: ' + str([x.id for x in self.hasStatement])
 
     def hasStatement(self):
         return self.hasStatement
@@ -43,8 +44,8 @@ class sVertex:
         self.hasValue = nbr
         nbr.bePointedTo.append(self)
 
-    def __str__(self):
-        return str(self.id) + ' hasValue: ' + self.hasValue
+    # def __str__(self):
+    #     return str(self.id) + ' hasValue: ' + self.hasValue
 
 
     def hasItem(self):
@@ -71,27 +72,30 @@ class sVertex:
 
 class Graph:
     def __init__(self):
-        # self.eVertexSet=set()
+        self.eVertexSet=set()
         self.eVertexList = {}
         self.relationList = []
         self.temporalRelationList = []
         self.sVertexList = {}
         self.entityType={}
         self.sorted_Rotypes=[]
+        self.minTime=1000000
+        self.maxTime=0
         self.num_eVertices = 0
         self.num_sVertices = 0
 
     def add_eVertex(self, key,label="Toadd",isLiteral=False):
-        # if not self.eVertexSet.__contains__(key):
-        #     self.eVertexSet.add(key)
+        if not self.eVertexSet.__contains__(key):
+            self.eVertexSet.add(key)
+
             self.num_eVertices = self.num_eVertices + 1
             newVertex = eVertex(key,label=label,isLiteral=isLiteral)
             self.eVertexList[key] = newVertex
             return newVertex
-        # else:
-        #     return self.eVertexList[key]
+        else:
+            return self.eVertexList[key]
 
-    def add_sVertex(self, key, start, end, weight, truth=True):
+    def add_sVertex(self, key, start, end, weight=1, truth=True):
         if key not in self.relationList:
             self.relationList.append(key)
         self.num_sVertices = self.num_sVertices + 1
@@ -100,6 +104,20 @@ class Graph:
         self.sVertexList.setdefault(key, []).append(newVertex)
         return newVertex
 
+    # def delete operation
+    def delete_sVertex(self,fact,svertex):
+        head=fact[0]
+        tail=fact[2]
+        relation=fact[1]
+        st=fact[3]
+        ed=fact[4]
+        e1 = self.eVertexList[head]
+        e2 = self.eVertexList[tail]
+        # delete svertex and 2 edges
+        e1.hasStatement.remove(svertex)
+        e2.bePointedTo.remove(svertex)
+        self.sVertexList.setdefault(relation,[]).remove(svertex)
+        del svertex
 
     def get_sVertex(self, n):
         # return a list
@@ -129,6 +147,8 @@ class Graph:
                 Begin_Word=head[1]
                 if Begin_Word==".":
                     entity_list.add(head)
+            else:
+                entity_list.add(head)
             tail=line[2]
             if knowledgebase=="wikidata":
                 Begin_Word=tail[0]
@@ -138,6 +158,8 @@ class Graph:
                 Begin_Word=tail[1]
                 if Begin_Word==".":
                     entity_list.add(tail)
+            else:
+                entity_list.add(tail)
         file=open(tsvFile+"_cache","w",encoding="utf-8")
         file.writelines("\n".join(entity_list))
         file.close()
@@ -151,16 +173,16 @@ class Graph:
     def iterateOverGraph(self):
         # there are 2 ways to iterate over the entire graph
         # the first way is iterating from entity
-        # for i in self.eVertexList:
-        #     for j in self.eVertexList[i].hasStatement:
-        #         head = self.eVertexList[i].getId()
-        #         relation = j.getId()
-        #         tail = j.hasValue.getId()
-        #         start = j.getStartTime()
-        #         end = j.getEndTime()
-        #         weight = j.getWeight()
-        #         truth = j.getTruth()
-        #         print(head, relation, tail, start, end,  weight, truth)
+        for i in self.eVertexList:
+            for j in self.eVertexList[i].hasStatement:
+                head = self.eVertexList[i].getId()
+                relation = j.getId()
+                tail = j.hasValue.getId()
+                start = j.getStartTime()
+                end = j.getEndTime()
+                weight = j.getWeight()
+                truth = j.getTruth()
+                print(head, relation, tail, start, end)
 
         # the second way is iterating from relation
         # for i in self.sVertexList.keys():
@@ -214,14 +236,18 @@ class Graph:
         # random sample
         starttime2 = time.time()
         selected_Conflict_free_utkg=[]
-        index=0
-        for item in Conflict_free_utkg:
-            index+=10
-            if index<=percent:
-                selected_Conflict_free_utkg.append(item)
-            if index==100:
-                index=0
-        print("len of selected conflict free utkg is",len(selected_Conflict_free_utkg))
+        if percent!=100:
+            index=0
+            for item in Conflict_free_utkg:
+                index+=10
+                if index<=percent:
+                    selected_Conflict_free_utkg.append(item)
+                if index==100:
+                    index=0
+
+        else:
+            selected_Conflict_free_utkg=Conflict_free_utkg
+        print("len of selected conflict free utkg is", len(selected_Conflict_free_utkg))
         endtime2 = time.time()
         runningtime2=endtime2-starttime2
         print("random sample running time is:",runningtime2,"s")
@@ -278,11 +304,15 @@ class Graph:
                 start=-1
             else:
                 start = int(line[3])
+                if start<self.minTime:
+                    self.minTime=start
 
             if line[4]=="null":
                 end=-1
             else:
                 end = int(line[4])
+                if end>self.maxTime:
+                    self.maxTime=end
             if start!=-1 or end!=-1:
                 temporalRelationList.add(relation)
 
@@ -309,4 +339,35 @@ class Graph:
         self.temporalRelationList=list(temporalRelationList)
         endtime3=time.time()
         runningtime3=endtime3-starttime3
+        # random.shuffle(self.eVertexList)
         print("constructing graph running time is:",runningtime3,"s")
+
+    def select_subgraph(self,head,tail):
+        subgraph=Graph()
+        # the structure is already in g
+        # the only thing we need to do is add head and tail to sg.eVertexList
+        e1=self.add_eVertex(head)
+        e2=self.add_eVertex(tail)
+        subgraph.eVertexList[head]=e1
+        subgraph.eVertexList[tail]=e2
+        return subgraph
+
+if __name__ == '__main__':
+    g=Graph()
+    e1=g.add_eVertex("a")
+    e2=g.add_eVertex("b")
+    e3 = g.add_eVertex("c")
+    new_svertex=g.add_sVertex("relation1",1,2)
+    g.add_e2s_Edge(e1,new_svertex)
+    g.add_s2e_Edge(new_svertex,e2)
+    new_svertex2= g.add_sVertex("relation2", 2, 3)
+    g.add_e2s_Edge(e2, new_svertex2)
+    g.add_s2e_Edge(new_svertex2, e3)
+    g.iterateOverGraph()
+    fact=["a","relation","b",1,2]
+    # g.delete_sVertex(fact,new_svertex)
+    g.iterateOverGraph()
+    sg=g.select_subgraph("a","b")
+    sg.iterateOverGraph()
+    print(sg.eVertexList)
+    del sg
