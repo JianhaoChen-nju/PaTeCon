@@ -1,1 +1,0 @@
-http://rdf.freebase.com/ns/people.marriage.from
