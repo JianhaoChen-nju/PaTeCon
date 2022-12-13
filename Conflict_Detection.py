@@ -1119,15 +1119,15 @@ def MergeConflict(filename):
     fn2 = filename.replace("resource","output").replace(".tsv","") + ".refined_conflict"
     f1 = open(fn1, "r", encoding="utf-8")
     Conflict1 = f1.readlines()
-    if os.path.exists(fn2):
-        f2 = open(fn2, "r", encoding="utf-8")
-        Conflict2 = f2.readlines()
 
     Conflicts = []
     for c in Conflict1:
             Conflicts.append(c.strip())
-    for c in Conflict2:
-            Conflicts.append(c.strip())
+    if os.path.exists(fn2):
+        f2 = open(fn2, "r", encoding="utf-8")
+        Conflict2 = f2.readlines()
+        for c in Conflict2:
+                Conflicts.append(c.strip())
     write_filename = filename.replace("resource","output").replace(".tsv","") + ".all_conflicts"
     write_file = open(write_filename, "w", encoding="utf-8")
     write_file.writelines("\n".join(Conflicts))
