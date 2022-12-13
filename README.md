@@ -23,7 +23,7 @@ pip install -r requirements.txt
 
 ## Dataset
 
-Our datasets WD50K, WD27M and FB37M can be downloaded in this [Google Drive URL](https://drive.google.com/drive/folders/1tFmSPK7RzYM1qVDlCB7d8vuk_pHwqYGV?usp=sharing). You can also find the original WD50k in https://github.com/dwslab/TeCoRe/tree/master/conf/resources/rockit.
+Our datasets WD50K, WD27M and FB37M can be downloaded in this url [Google Drive URL](https://drive.google.com/drive/folders/1tFmSPK7RzYM1qVDlCB7d8vuk_pHwqYGV?usp=sharing). You can also find the original WD50k in https://github.com/dwslab/TeCoRe/tree/master/conf/resources/rockit.
 
 Our data is organized as follows:
 
