@@ -16,12 +16,14 @@ Install requirements
 
 ```shell
 cd PaTeCon
+conda create -n PaTeCon python=3.9
+conda activate PaTeCon
 pip install -r requirements.txt
 ```
 
 ## Dataset
 
-Our datasets WD50K, WD27M and FB37M can be downloaded in https://drive.google.com/drive/folders/1tFmSPK7RzYM1qVDlCB7d8vuk_pHwqYGV?usp=sharing. You can also find the original WD50k in https://github.com/dwslab/TeCoRe/tree/master/conf/resources/rockit.
+Our datasets WD50K, WD27M and FB37M can be downloaded in this [Google Drive URL](https://drive.google.com/drive/folders/1tFmSPK7RzYM1qVDlCB7d8vuk_pHwqYGV?usp=sharing). You can also find the original WD50k in https://github.com/dwslab/TeCoRe/tree/master/conf/resources/rockit.
 
 Our data is organized as follows:
 
@@ -31,7 +33,7 @@ Our data is organized as follows:
 
 If start time or end time value == "null", it means that the time value is unknown or doesn't exist.
 
-In https://drive.google.com/drive/folders/1tFmSPK7RzYM1qVDlCB7d8vuk_pHwqYGV?usp=sharing, you can also find the type files needed for refinements: wikidata-entity-type-info.tsv and freebase-entity-type-info.tsv.
+In this [Google Drive URL](https://drive.google.com/drive/folders/1tFmSPK7RzYM1qVDlCB7d8vuk_pHwqYGV?usp=sharing), you can also find the type files needed for refinements: wikidata-entity-type-info.tsv and freebase-entity-type-info.tsv.
 
 The type file is organized as follows:
 
