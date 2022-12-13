@@ -877,7 +877,7 @@ def Refined_Conflict_Detection(temporal_KG, Constraint_Set,filename,typefile):
     Undetected_Constraint_Set = set(Constraint_Set).difference(Detected_Constraint_Set)
     print(Undetected_Constraint_Set)
 
-    conflict_file = open(filename + "_refined_conflict", "w", encoding="UTF-8")
+    conflict_file = open(filename.replace("resource","output").replace(".tsv","") + ".refined_conflict", "w", encoding="UTF-8")
     conflict_file.writelines("\n".join(Conflict_Set))
     return Conflict_Set
 

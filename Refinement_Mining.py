@@ -1243,7 +1243,7 @@ def test(tkg,filename,constraint_filename,typefile,knowledgegraph):
     runningtime = endtime - starttime
     print("Refined mining running time:", runningtime, "s")
 
-    write_filename = filename + "_refined_rules"
+    write_filename = filename.replace("resource","output").replace(".tsv","") + ".refined_rules"
     write_file = open(write_filename, "w", encoding="utf-8")
     write_file.writelines("\n".join(constraints))
     return 0

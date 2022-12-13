@@ -1785,7 +1785,7 @@ def test(filename,knowledgegraph):
     #     print(constraint)
 
     # write rule file
-    write_filename = filename + "_rules"
+    write_filename = filename.replace("resource","output").replace(".tsv","") + ".rules"
     write_file = open(write_filename, "w", encoding="utf-8")
     write_file.writelines("\n".join(Simplified_constraint_set))
     # write_file.writelines("\n".join(transitive_constraint_set))
@@ -1803,8 +1803,8 @@ def test(filename,knowledgegraph):
     return g
 
 def MergeConstraint(filename):
-    fn1 = filename + "_rules"
-    fn2 = filename + "_refined_rules"
+    fn1 = filename.replace("resource","output").replace(".tsv","") + ".rules"
+    fn2 = filename.replace("resource","output").replace(".tsv","") + ".refined_rules"
     constraint1 = []
     constraint2 = []
     f1 = open(fn1, "r", encoding="utf-8")
@@ -1822,7 +1822,7 @@ def MergeConstraint(filename):
         confidence = float(c.strip().split("|")[1])
         if confidence >= confidence_threshold:
             constraints.append(c.strip())
-    write_filename = filename + "_all_constraints"
+    write_filename = filename.replace("resource","output").replace(".tsv","") + ".all_constraints"
     write_file = open(write_filename, "w", encoding="utf-8")
     write_file.writelines("\n".join(constraints))
 
@@ -1855,8 +1855,8 @@ if __name__ == '__main__':
 
     tkg=test(filename,knowledgegraph)
 
-    constraint_name=filename+"_rules"
-    if args.refinement == True:
+    constraint_name=filename.replace("resource","output").replace(".tsv","") + ".rules"
+    if args.refinement == "True":
         typefile=args.typefile
         Refinement_Mining.test(tkg,filename,constraint_name,typefile,knowledgegraph)
 
