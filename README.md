@@ -23,7 +23,7 @@ pip install -r requirements.txt
 
 ## Dataset
 
-Our datasets WD50K, WD27M and FB37M can be downloaded in this url [Google Drive URL](https://drive.google.com/drive/folders/1tFmSPK7RzYM1qVDlCB7d8vuk_pHwqYGV?usp=sharing). You can also find the original WD50k in https://github.com/dwslab/TeCoRe/tree/master/conf/resources/rockit.
+Our datasets WD50K, WD27M and FB37M can be downloaded in url [Google Drive URL](https://drive.google.com/drive/folders/1tFmSPK7RzYM1qVDlCB7d8vuk_pHwqYGV?usp=sharing). You can also find the original WD50k in https://github.com/dwslab/TeCoRe/tree/master/conf/resources/rockit.
 
 Our data is organized as follows:
 
@@ -85,28 +85,28 @@ Parameters to choose:
 
 **Output**: 
 
-We will output all candidate constraints in file dataset+"\_rules". Refined rules are in file dataset+"_refined_rules".
+We will output all candidate constraints in file "output/"+dataset+"\_rules". Refined rules are in file "output/"+dataset+"_refined_rules".
 
-The final constraints are in file dataset+"_all_constraints".
+The final constraints are in file "output/"+dataset+"_all_constraints".
 
 #### Conflict Detection:
 
 run WD50K :
 
 ```shell
-python Conflict_Detection.py --dataset=resource/WD50K.tsv --knowledgegraph=wikidata --constraint=resource/WD50K.tsv_all_constraints
+python Conflict_Detection.py --dataset=resource/WD50K.tsv --knowledgegraph=wikidata --constraint=output/WD50K.tsv_all_constraints
 ```
 
 run WD27M
 
 ```
-python Conflict_Detection.py --dataset=resource/WD27M.tsv --knowledgegraph=wikidata --constraint=resource/WD27M.tsv_all_constraints --refinement=True --typefile=resource/wikidata-entity-type-info.tsv
+python Conflict_Detection.py --dataset=resource/WD27M.tsv --knowledgegraph=wikidata --constraint=output/WD27M.tsv_all_constraints --refinement=True --typefile=resource/wikidata-entity-type-info.tsv
 ```
 
 run FB37M
 
 ```
-python Conflict_Detection.py --dataset=resource/FB37M.tsv --knowledgegraph=freebase --constraint=resource/FB37M.tsv_all_constraints --refinement=True --typefile=resource/freebase-entity-type-info.tsv
+python Conflict_Detection.py --dataset=resource/FB37M.tsv --knowledgegraph=freebase --constraint=output/FB37M.tsv_all_constraints --refinement=True --typefile=resource/freebase-entity-type-info.tsv
 ```
 
 Parameters to choose:
@@ -125,9 +125,9 @@ Parameters to choose:
 
 **Output**: 
 
-We will output conflicts which are detected by non-refined constraints in file dataset+"\_conflict". Conflicts detected by refined constraints are in file dataset+"_refined_conflict".
+We will output conflicts which are detected by non-refined constraints in file "output/"+dataset+"\_conflict". Conflicts detected by refined constraints are in file "output/"+dataset+"_refined_conflict".
 
-All conflicts are in file dataset+"_all_conflicts".
+All conflicts are in file "output/"+dataset+"_all_conflicts".
 
 ## Constraint and conflict form
 
