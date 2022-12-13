@@ -94,19 +94,19 @@ The final constraints are in file "output/"+dataset+"_all_constraints".
 run WD50K :
 
 ```shell
-python Conflict_Detection.py --dataset=resource/WD50K.tsv --knowledgegraph=wikidata --constraint=output/WD50K.tsv_all_constraints
+python Conflict_Detection.py --dataset=resource/WD50K.tsv --knowledgegraph=wikidata --constraint=output/WD50K.all_constraints
 ```
 
 run WD27M
 
 ```
-python Conflict_Detection.py --dataset=resource/WD27M.tsv --knowledgegraph=wikidata --constraint=output/WD27M.tsv_all_constraints --refinement=True --typefile=resource/wikidata-entity-type-info.tsv
+python Conflict_Detection.py --dataset=resource/WD27M.tsv --knowledgegraph=wikidata --constraint=output/WD27M.all_constraints --refinement=True --typefile=resource/wikidata-entity-type-info.tsv
 ```
 
 run FB37M
 
 ```
-python Conflict_Detection.py --dataset=resource/FB37M.tsv --knowledgegraph=freebase --constraint=output/FB37M.tsv_all_constraints --refinement=True --typefile=resource/freebase-entity-type-info.tsv
+python Conflict_Detection.py --dataset=resource/FB37M.tsv --knowledgegraph=freebase --constraint=output/FB37M.all_constraints --refinement=True --typefile=resource/freebase-entity-type-info.tsv
 ```
 
 Parameters to choose:
