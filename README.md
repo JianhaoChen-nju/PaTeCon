@@ -190,7 +190,7 @@ If you used our work or found it helpful, please use the following citation:
                Wentao Ding and
                Yuzhong Qu},
   title     = {PaTeCon: A Pattern-Based Temporal Constraint Mining Method for Conflict Detection on Knowledge Graphs},
-  booktitle={Thirty-Seventh {AAAI} Conference on Artificial Intelligence}
+  booktitle={Thirty-Seventh {AAAI} Conference on Artificial Intelligence},
   year={2023}
 }
 ```
