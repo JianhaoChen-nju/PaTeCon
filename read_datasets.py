@@ -26,11 +26,12 @@ def temporal_representation_constraint(tsvFile,utkg):
         start = int(temporal_fact[3])
         end = int(temporal_fact[4])
         if start > end:
-            Conflicting_facts.append(str(temporal_fact))
+            f=temporal_fact[0]+","+temporal_fact[1]+","+temporal_fact[2]+","+temporal_fact[3]+","+temporal_fact[4]
+            Conflicting_facts.append(f)
         else:
             Conflict_free_facts.append(temporal_fact)
     print("there are ",len(Conflicting_facts)," facts whose start > end and they have been removed")
-    file=open(tsvFile+"_temporal_representation","w",encoding="utf-8")
+    file=open(tsvFile.replace("resource","output").replace(".tsv",".temporal_representation_conflicts"),"w",encoding="utf-8")
     file.writelines("\n".join(Conflicting_facts))
 
     return Conflict_free_facts
@@ -86,7 +87,6 @@ def read_testfile():
     lines = f.readlines()
     new_lines = []
     for line in lines:
-
         tuples = line.split("\t")
         new_line = tuples[0] + "\t" + tuples[1] + "\t" + tuples[2]
         new_lines.append(new_line)
@@ -97,7 +97,6 @@ def read_testfile():
     f1.close()
 
 def assgin_weight(datasetname):
-
     # Nottodo football那边需要重排序一下，排序好删掉此备注
     dataset = read_dataset(datasetname)
     utkg_full=dataset[5]
@@ -171,7 +170,7 @@ def read_file(filename):
     return utkg
 
 
-
+# Function has been deprecated.
 def read_dataset(datasetname):
     # output: utkg_list
     # 0:0% 1:10% 2:25% 3:50% 4:75% 5:100%
@@ -203,5 +202,8 @@ if __name__ == '__main__':
     # datasetname="wikidata_dataset_tsv"
     # read_dataset(datasetname)
     # assgin_weight("wikidata_dataset_tsv")
-    filename="wikidata_dataset_tsv/rockit_wikidata_100_50k.tsv"
-    pre_process(filename)
+    filename="wikidata_dataset_tsv/rockit_wikidata_0_50k.tsv"
+    utkg=read_file(filename)
+    # print(utkg[0])
+    # pre_process(filename)
+

@@ -178,11 +178,13 @@ class Graph:
                 head = self.eVertexList[i].getId()
                 relation = j.getId()
                 tail = j.hasValue.getId()
+                if "L" in tail:
+                    tail=j.hasValue.getLabel()
                 start = j.getStartTime()
                 end = j.getEndTime()
                 weight = j.getWeight()
                 truth = j.getTruth()
-                print(head, relation, tail, start, end)
+                print(head+"\t"+relation+"\t"+tail+"\t"+str(start)+"\t"+str(end))
 
         # the second way is iterating from relation
         # for i in self.sVertexList.keys():
@@ -352,22 +354,112 @@ class Graph:
         subgraph.eVertexList[tail]=e2
         return subgraph
 
-if __name__ == '__main__':
+def construct_small_WDgraph4aaai17():
+    file="resource/WD27M_wrong_facts.tsv"
     g=Graph()
-    e1=g.add_eVertex("a")
-    e2=g.add_eVertex("b")
-    e3 = g.add_eVertex("c")
-    new_svertex=g.add_sVertex("relation1",1,2)
-    g.add_e2s_Edge(e1,new_svertex)
-    g.add_s2e_Edge(new_svertex,e2)
-    new_svertex2= g.add_sVertex("relation2", 2, 3)
-    g.add_e2s_Edge(e2, new_svertex2)
-    g.add_s2e_Edge(new_svertex2, e3)
-    g.iterateOverGraph()
-    fact=["a","relation","b",1,2]
-    # g.delete_sVertex(fact,new_svertex)
-    g.iterateOverGraph()
-    sg=g.select_subgraph("a","b")
-    sg.iterateOverGraph()
-    print(sg.eVertexList)
-    del sg
+    filename="resource/WD27M.tsv"
+    knowledgebase="wikidata"
+    g.ConstructThroughTsv(filename, knowledgebase, 100)
+
+    subgraph=Graph()
+    with open(file,"r",encoding="utf-8") as f:
+        f.readline()
+        lines=f.readlines()
+        for line in lines:
+            line=line.strip()
+            ele=line.split("\t")
+            head=ele[1]
+            tail=ele[3]
+            relation=ele[2]
+            start=ele[4]
+            end=ele[5]
+
+            e1=g.add_eVertex(head)
+            e2=g.add_eVertex(tail)
+            subgraph.eVertexList[head]=e1
+            subgraph.eVertexList[tail]=e2
+
+    print(subgraph.iterateOverGraph())
+    print(subgraph.num_eVertices)
+    print(subgraph.num_sVertices)
+
+def construct_small_FBgraph4aaai17():
+    file = "resource/FB37M_wrong_facts.tsv"
+    g = Graph()
+    filename = "resource/FB37M.tsv"
+    knowledgebase = "freebase"
+    g.ConstructThroughTsv(filename, knowledgebase, 100)
+
+    subgraph = Graph()
+    with open(file, "r", encoding="utf-8") as f:
+        f.readline()
+        lines = f.readlines()
+        for line in lines:
+            line = line.strip()
+            ele = line.split("\t")
+            head = ele[1]
+            tail = ele[3]
+            relation = ele[2]
+            start = ele[4]
+            end = ele[5]
+
+            e1 = g.add_eVertex(head)
+            e2 = g.add_eVertex(tail)
+            subgraph.eVertexList[head] = e1
+            subgraph.eVertexList[tail] = e2
+
+    print(subgraph.iterateOverGraph())
+    print(subgraph.num_eVertices)
+    print(subgraph.num_sVertices)
+
+def filter_non_temporal_facts():
+    filename = "resource/FB_small.tsv"
+    # file = "resource/WD_small.tsv"
+    new_line=[]
+    with open(filename,"r",encoding="utf-8") as file:
+        lines=file.readlines()
+        for line in lines:
+            line=line.strip()
+            element=line.split("\t")
+            if element[3]=="-1" and element[4]=="-1":
+                continue
+            else:
+                new_line.append(line)
+
+    with open(filename,"w",encoding="utf-8") as file1:
+        file1.write("\n".join(new_line))
+
+if __name__ == '__main__':
+    # g=Graph()
+    # e1=g.add_eVertex("a")
+    # e2=g.add_eVertex("b")
+    # e3 = g.add_eVertex("c")
+    # new_svertex=g.add_sVertex("relation1",1,2)
+    # g.add_e2s_Edge(e1,new_svertex)
+    # g.add_s2e_Edge(new_svertex,e2)
+    # new_svertex2= g.add_sVertex("relation2", 2, 3)
+    # g.add_e2s_Edge(e2, new_svertex2)
+    # g.add_s2e_Edge(new_svertex2, e3)
+    # g.iterateOverGraph()
+    # fact=["a","relation","b",1,2]
+    # # g.delete_sVertex(fact,new_svertex)
+    # g.iterateOverGraph()
+    # sg=g.select_subgraph("a","b")
+    # sg.iterateOverGraph()
+    # print(sg.eVertexList)
+    # del sg
+
+    # g=Graph()
+    # filename="resource/WD27M.tsv"
+    # filename = "resource/FB37M.tsv"
+    # knowledgebase="wikidata"
+    # knowledgebase = "freebase"
+    # g.ConstructThroughTsv(filename, knowledgebase, 100)
+
+    # construct_small_WDgraph4aaai17()
+    # construct_small_FBgraph4aaai17()
+    filter_non_temporal_facts()
+    # g = Graph()
+    # filename = "resource/selected_fb_facts.tsv"
+    # knowledgebase = "freebase"
+    # g.ConstructThroughTsv(filename, knowledgebase, 100)

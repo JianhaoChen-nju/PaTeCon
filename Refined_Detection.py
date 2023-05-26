@@ -758,9 +758,9 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                 Conflict_Fact_set.append(inconsistent_pair)
                         if SOH_relations[j][3].__eq__("inverse_before"):
                             if Interval_Relations.before(start2, end2, start1, end1) == -1:
-                                inconsistent_pair = one_hop_constraints[j] + "\t" + head + "," \
+                                inconsistent_pair = one_hop_constraints[j] + "\t" + head + "," + relation + ","+one_hop_entity+","\
                                                     + relation2 + "," + tail2 + "," + str(start2) + "," + str(
-                                    end2) + "\t" + head + "," + relation + ","+one_hop_entity+"," + relation1 + "," + tail1 + "," + str(
+                                    end2) + "\t" + head + ","  + relation1 + "," + tail1 + "," + str(
                                     start1) + "," + str(end1)
                                 Conflict_Fact_set.append(inconsistent_pair)
                         elif SOH_relations[j][3].__eq__("include"):
@@ -772,9 +772,9 @@ def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
                                 Conflict_Fact_set.append(inconsistent_pair)
                         elif SOH_relations[j][3].__eq__("inverse_include"):
                             if Interval_Relations.include(start2, end2, start1, end1) == -1:
-                                inconsistent_pair = one_hop_constraints[j] + "\t" + head+"," \
+                                inconsistent_pair = one_hop_constraints[j] + "\t" + head+","  + relation + ","+one_hop_entity+","\
                                                     + relation2 + "," + tail2 + "," + str(start2) + "," + str(
-                                    end2) + "\t" + head + "," + relation + ","+one_hop_entity+","+ relation1 + "," + tail1 + "," + str(
+                                    end2) + "\t" + head + ","+ relation1 + "," + tail1 + "," + str(
                                     start1) + "," + str(end1)
                                 Conflict_Fact_set.append(inconsistent_pair)
                         elif SOH_relations[j][3].__eq__("start"):

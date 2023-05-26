@@ -1059,7 +1059,6 @@ def Refined_Mutiple_Entity_Temporal_Order(graph,constraint_set):
     return Refined_Mutiple_Entity_Temporal_Order_Constraint
 
 def refined_mining(graph,typefile,Constraint_Set):
-
     # refined condition
     # unconditional refine or depending on confidence
     filtered_Constraint=[]

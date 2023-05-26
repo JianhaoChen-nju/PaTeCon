@@ -16,9 +16,9 @@ candidate_threshold=0.5
 confidence_threshold=0.9
 support_threshold=100
 
-pruned_threshold=0.4
-pruned_instances=50
-relation_prune_threshold=5*support_threshold
+pruned_threshold=0.8*candidate_threshold
+pruned_instances=0.5*support_threshold
+relation_prune_threshold=10*support_threshold
 # relation_prune_threshold=100
 # relation_prune_threshold=100000000
 
@@ -792,7 +792,6 @@ def Mutiple_Entity_Temporal_Order(graph,pruned_relation):
                 if start1 != -1 or end1 != -1:
                     if relation1 in pruned_relation:
                         continue
-
                     for k in range(len(v.hasStatement)):
                         if j==k:
                             continue
@@ -1560,7 +1559,6 @@ def Constraint_Mining(graph):
     mutual_exclusion_constraint = Mutual_Exclusion_mining(graph)
     functional_constraint = functional_mining(graph)
     Constraint_list += filter_mutual_functional(mutual_exclusion_constraint,functional_constraint)
-
     Constraint_list += inverse_functional_mining(graph)
     pruned_relation=set()
     Constraint_list += Single_Entity_Temporal_Order(graph,pruned_relation)
@@ -1852,6 +1850,9 @@ if __name__ == '__main__':
     candidate_threshold = args.candidate_confidence
     confidence_threshold = args.confidence
     support_threshold = args.support
+    # pruned_threshold = 0.8 * candidate_threshold
+    # pruned_instances = 0.5 * support_threshold
+    # relation_prune_threshold = 5 * support_threshold
 
     tkg=test(filename,knowledgegraph)
 
