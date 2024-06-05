@@ -184,13 +184,13 @@ This example explains that Q1611104 has two birthdays, which violates the constr
 If you used our work or found it helpful, please use the following citation:
 
 ```bib
-@inproceedings{chen2023PaTeCon,
-  author    = {Jianhao Chen and
-               Junyang Ren and
-               Wentao Ding and
-               Yuzhong Qu},
-  title     = {PaTeCon: A Pattern-Based Temporal Constraint Mining Method for Conflict Detection on Knowledge Graphs},
-  booktitle={Thirty-Seventh {AAAI} Conference on Artificial Intelligence},
+@inproceedings{chen2023patecon,
+  title={PaTeCon: a pattern-based temporal constraint mining method for conflict detection on knowledge graphs},
+  author={Chen, Jianhao and Ren, Junyang and Ding, Wentao and Qu, Yuzhong},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={37},
+  number={4},
+  pages={4166--4172},
   year={2023}
 }
 ```
