@@ -1,8 +1,6 @@
 # PaTeCon+
 
-
-
-This is also the code for our AAAI 2023 paper [**PaTeCon: A Pattern-Based Temporal Constraint Mining Method for Conflict Detection on Knowledge Graphs**](https://ojs.aaai.org/index.php/AAAI/article/view/25533).
+This is the code for our Arxiv paper [Conflict Detection for Temporal Knowledge Graphs:A Fast Constraint Mining Algorithm and New Benchmarks](https://arxiv.org/abs/2312.11053), which is an improved version of our AAAI 2023 paper [**PaTeCon: A Pattern-Based Temporal Constraint Mining Method for Conflict Detection on Knowledge Graphs**](https://ojs.aaai.org/index.php/AAAI/article/view/25533).
 
 Because we keep improving the code, the experimental results may be slightly different from the paper.
 
