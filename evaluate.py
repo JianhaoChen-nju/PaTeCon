@@ -233,10 +233,6 @@ def sample_annotated_data():
     #     item=item+"\t"+str(fb_predicate_list[predicate])+"\n"
     #     write_free_predicates.write(item)
 
-
-
-
-
 def query_wikidata():
     '''
     human(Q5)
@@ -267,7 +263,6 @@ def query_wikidata():
     # Print the results
     for result in results["results"]["bindings"]:
         print(result["property"]["value"], result["value"]["value"])
-
 
 def reformat_time(t):
     #YYYYY/MM/DD
@@ -302,8 +297,6 @@ def select_mutiple_wiki():
         start = fact[4]
         # end = fact[4]
         year=o.split("-")[0]
-
-
 
 def truth_verification_wiki():
     supplement=False
@@ -488,7 +481,6 @@ def truth_verification_wiki():
             # return False
         wiki_annotated_file.write(line)
         time.sleep(delay_time)
-
 
 def truth_verification_free():
     # freebase

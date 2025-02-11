@@ -154,7 +154,6 @@ def refined_inverse_functional_mining(graph,constraint_set):
     # what a functional constraint is like?
     # how to compute confidence? present strategy is consistent subsets/total subsets
     print("refined inverse_functional_mining......")
-
     refined_inverse_functional_constraint = []
     index_dict = {}
 

@@ -169,7 +169,6 @@ def read_file(filename):
         utkg.append(line)
     return utkg
 
-
 # Function has been deprecated.
 def read_dataset(datasetname):
     # output: utkg_list
@@ -191,8 +190,6 @@ def read_dataset(datasetname):
     # for i in utkg_list:
     #     print(len(i))
     return utkg_list
-
-
 
 if __name__ == '__main__':
     # read_footballdb()

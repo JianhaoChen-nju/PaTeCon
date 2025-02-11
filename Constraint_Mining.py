@@ -1,6 +1,5 @@
 import argparse
 import gc
-
 import read_datasets
 import Interval_Relations
 import Graph_Structure
@@ -9,7 +8,6 @@ import os
 import Conflict_Detection
 from multiprocessing.dummy import Pool as ThreadPool
 import Refinement_Mining
-
 
 # prune2_begin_percent=0.1
 candidate_threshold=0.5

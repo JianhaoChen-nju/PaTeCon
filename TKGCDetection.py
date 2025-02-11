@@ -1,5 +1,4 @@
 import argparse
-
 import Constraint_Mining
 import Graph_Structure
 import Conflict_Detection
@@ -34,7 +33,6 @@ def pre_process():
             print(os.path.join(root, f))
 
         # 遍历所有的文件夹
-
         # for d in dirs:
         #     print(os.path.join(root, d))
 

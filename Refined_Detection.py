@@ -381,9 +381,7 @@ def Refined_Subgraph_Detection2(temporal_KG,Constraint_Set):
                                     end1) + "\t" + head + "," + relation2 + "," + tail2 + "," + str(
                                     start2) + "," + str(end2)
                                 Conflict_Fact_set.append(inconsistent_pair)
-
     return Conflict_Fact_set
-
 
 def Refined_Subgraph_Detection3(temporal_KG,Constraint_Set):
 

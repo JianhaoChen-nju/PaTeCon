@@ -269,6 +269,7 @@ def refined_inverse_functional_mining(graph,constraint_set):
                 IF_relations_statistics[j][2] += 1
             elif negative == True:
                 IF_relations_statistics[j][2] += 1
+                
     for f in IF_relations_statistics:
         total_subsets = f[2]
         consistent_subsets = f[1]

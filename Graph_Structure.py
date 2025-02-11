@@ -1,5 +1,4 @@
 import time
-
 import random
 import read_datasets
 # eVertex: entity Vertex

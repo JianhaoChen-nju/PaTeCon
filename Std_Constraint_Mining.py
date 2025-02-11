@@ -1,6 +1,5 @@
 import argparse
 import gc
-
 import Refinement_Mining
 import read_datasets
 import Interval_Relations

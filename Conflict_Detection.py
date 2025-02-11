@@ -1,9 +1,7 @@
 import argparse
 import os
-
 import copy
 import time
-
 import read_datasets
 import Constraint_Mining
 import Interval_Relations

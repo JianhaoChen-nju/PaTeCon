@@ -1,8 +1,3 @@
-# (i1,i2)  (i3,i4)
-# meets is a special case of before
-# a naive strategy
-# if i1==-1 or i2==-1 or i3==-1 or i4==-1:
-
 class FuzzyTime:
     def __init__(self,timeInt):
         if timeInt==-1:
